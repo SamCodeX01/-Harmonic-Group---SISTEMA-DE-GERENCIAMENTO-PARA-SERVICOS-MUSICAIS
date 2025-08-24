@@ -1,4 +1,4 @@
-# 🎵 Harmonic Group - Sistema de Gerenciamento para Serviços Musicais
+# 🎵 Harmonic Group - Sistema de Gerenciamento para Serviços Musicais (TG2)
 
 <!-- ![Banner Profissional](https://via.placeholder.com/1200x400/4B3869/FFFFFF?text=Sistema+de+Gestão+Musical+-+Harmonic+Group)-->
 
