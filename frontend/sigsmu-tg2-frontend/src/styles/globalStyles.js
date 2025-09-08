@@ -12,5 +12,3 @@ const myGlobalStyles = createGlobalStyle`
     p {}
 `
 export default myGlobalStyles;
-
-
