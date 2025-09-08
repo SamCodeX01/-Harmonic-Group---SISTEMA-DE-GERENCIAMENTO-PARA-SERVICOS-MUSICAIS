@@ -2,11 +2,14 @@ import { StrictMode } from 'react'
 import "./styles/globalStyles.css"
 
 import { createRoot } from 'react-dom/client'
-import TelaLogin from './pages_containers/TelaLogin'
+import Rotas from './routes/Rotas.jsx'
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <TelaLogin/>
+    
+    <Rotas/>
+
     {/* <App/> Fazer Depois */}
   </StrictMode>,
 )

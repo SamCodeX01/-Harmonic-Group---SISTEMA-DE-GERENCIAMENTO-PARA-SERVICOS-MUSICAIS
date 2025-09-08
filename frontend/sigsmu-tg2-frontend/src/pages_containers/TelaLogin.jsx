@@ -1,5 +1,5 @@
 import React from "react";
-import css from "./main.module.css"
+import css from "./TelaLogin.module.css"
 
 import Botao from "../components/forms/Botao.jsx";
 import Campo from "../components/forms/Campo.jsx";
