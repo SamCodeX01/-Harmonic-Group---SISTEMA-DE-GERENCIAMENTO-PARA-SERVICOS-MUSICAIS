@@ -12,7 +12,14 @@
 .main * {
     display: block;
     width: 300px;
-    margin: 7px 0;
+    margin: 7px auto;
+}
+
+
+.img {
+    width: 30%;
+    margin: auto;
+    padding: 10px;
 }
 
 
@@ -29,11 +36,4 @@
 } .main > p:nth-of-type(2) {
     font-size: 1.2em;
     margin-top: 20px;
-}
-
-
-.img {
-    width: 30%;
-    margin: auto;
-    padding: 10px;
 }

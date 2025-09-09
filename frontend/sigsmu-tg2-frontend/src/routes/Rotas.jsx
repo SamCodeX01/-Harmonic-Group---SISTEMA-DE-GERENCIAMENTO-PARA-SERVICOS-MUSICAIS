@@ -8,8 +8,6 @@ function Rotas() {
             <Routes>
                 <Route path='/' element={<TelaLogin/>}/>
                 <Route path='/TelaCadastro' element={<TelaCadastro/>}/>
-                {/* <Route path='TelaLogin'/> */}
-                
             </Routes>
         </Router>
     )
