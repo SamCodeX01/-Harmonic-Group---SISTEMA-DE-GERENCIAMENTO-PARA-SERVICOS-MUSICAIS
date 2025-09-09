@@ -1,6 +1,6 @@
 import React from "react";
 import css from "./TelaLogin.module.css"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Botao from "../components/forms/Botao.jsx";
 import Campo from "../components/forms/Campo.jsx";
@@ -11,6 +11,8 @@ function TelaLogin() {
     const telaCadastro = () => {
         navigate("/TelaCadastro")
     }
+
+    
 
     return (
         <div className={css.main}>
@@ -28,6 +30,8 @@ function TelaLogin() {
             <p>Não tem uma conta?</p>
             <Botao valor="Criar uma nova conta" irPara={telaCadastro}/>
             
+            {/* Passa para a próxima tela */} <br/><br/>
+            <Link to="/TelaCadastro">AQUI</Link>
         </div>
     )
 }
