@@ -1,18 +1,91 @@
-import "../styles/globalStyles.css"
-import css from "./TelaCadastro.module.css"
-
-import Secao1 from "../components/cadastro/Secao1.jsx";
-import Secao2 from "../components/cadastro/Secao2.jsx";
+import React from "react";
+import css from "../styles/telacadastro.module.css"
+// import styled from "styled-components";
 
 
-function TelaCadastro() {
-    return (
-        <div>
-            <form action="post">
-                <Secao1/>
-                <Secao2/>
-            </form>
-        </div>
+function TelaCadastro(){
+    return(
+        <form action="url" method="POST">
+            <label htmlFor="pessoaFisica">Pessoa Física: </label>
+            <input type="radio" name="pessoaFisica"  id="pessoaFisica"/>            
+            <label htmlFor="pessoaJuridica">| Pessoa Jurídica: </label>
+            <input type="radio" name="pessoaJuridica" id="pessoaJuridica"/>
+           
+            <fieldset>
+                <legend>Para empresas</legend>
+                <label htmlFor="cnpj">CNPJ: </label>
+                <input type="number" name="cnpj" id="cnpj" placeholder="Digite o cnpj da sua empresa"></input>            
+                <label htmlFor="inscricaoEstadual">Inscrição Estadual: </label>
+                <input type="number" name="inscricaoEstadual" id="inscricaoEstadual" placeholder="Digite a sua inscrição estadual"></input>            
+                <label htmlFor="razaoSocial">Razão Social: </label>
+                <input type="text" name="razaoSocial" id="razaoSocial" placeholder="Digite a razão social"></input>
+                <label htmlFor="nomeFantasia">Nome Fantasia: </label>
+                <input type="text" name="nomeFantasia" id="nomeFantasia" placeholder="Digite o nome fantasia"></input>
+                <label htmlFor=""></label>
+             
+            </fieldset>
+               
+              <fieldset>
+                <legend>Cadastro</legend>
+                <label htmlFor="nome">Nome: </label>
+                <input type="text" name="nome" id="nome" placeholder="Digite o seu nome"></input>
+                <label htmlFor="sobrenome">Sobrenome: </label>
+                <input type="text" name="sobrenome" id="sobrenome" placeholder="Digite o seu sobrenome"></input>
+                <label htmlFor="nascimento">Nascimento: </label>          
+                <input type="date" name="nascimento" id="nascimento"/>            
+           
+            <label htmlFor="titulo">Qual o seu gênero?</label>
+                <select>
+                    <optgroup label="Titulo">
+                    <option>Feminino</option>
+                    <option>Masculino</option>
+                    <option>Prefiro não dizer</option>
+                    <option>Outro</option>
+                    <input type="text" />
+                    </optgroup>
+                </select>
+            </fieldset>
+           
+              <fieldset>
+                <legend>Contatos</legend>
+                <label htmlFor="telefone">Telefone</label>
+                <input type="text" name="telefone" id="telefone" placeholder="Digite o seu telefone" />
+                <label htmlFor="celular">Celular</label>
+                <input type="text" name="celular" id="celular" placeholder="Digite o seu celular" />
+                <label htmlFor="email">E-mail</label>
+                <input type="email" name="email" id="email" placeholder="Digite o seu email" />
+                <label htmlFor="dataCadastro">Data do Cadastro</label>
+                <input type="text" name="dataCadastro" id="dataCadastro" placeholder="Digite a data do seu aniversário"></input>            
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Endereço</legend>
+                <label htmlFor="rua">Rua: </label>
+                <input type="text" name="rua" id="rua" placeholder="Digite o nome da rua"></input>
+                <label htmlFor="numero">Número: </label>
+                <input type="text" name="numero" id="numero" placeholder="Digite o número da rua"></input>
+                <label htmlFor="complemento">Complemento: </label>
+                <input type="text" name="complemento" id="complemento" placeholder="Digite o complemento"></input>
+                <label htmlFor="bairro">Bairro: </label>
+                <input type="text" name="bairro" id="bairro" placeholder="Digite o bairro"></input>
+                <label htmlFor="cep">CEP: </label>
+                <input type="number" name="cep" id="cep" placeholder="Digite o cep"></input>
+                <label htmlFor="cidade">Cidade: </label>
+                <input type="text" name="cidade" id="cidade" placeholder="Digite a cidade"></input>
+                <label htmlFor="estado">Estado: </label>
+                <input type="text" name="estado" id="estado" placeholder="Digite o estado"></input>
+                <label htmlFor="referencia">Referência: </label>
+                <input type="text" name="referencia" id="referencia" placeholder="Digite uma refência"></input>
+            </fieldset>
+
+
+            <input type="password" name="senha" placeholder="Digite a sua senha" />
+            <input type="email" name="senha" placeholder="Digite o seu email" />
+            <button type="submit">ENVIAR</button>
+        </form>
+       
+       
     )
 }
 export default TelaCadastro;
