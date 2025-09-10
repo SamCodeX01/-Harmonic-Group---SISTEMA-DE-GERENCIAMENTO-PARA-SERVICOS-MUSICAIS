@@ -6,15 +6,6 @@ import Botao from "../components/forms/Botao.jsx";
 import Campo from "../components/forms/Campo.jsx";
 
 function TelaLogin() {
-    // Mudar de Tela
-    const navigate = useNavigate()
-    const telaInicialDoUsuario = () => {
-        // CONDICIONAIS DE ACESSO
-        navigate("/TelaCadastro")
-    }
-
-    
-
     return (
         <div className={css.main}>
             <img src="imagens/sem_imagem.png" alt="Logo" className={css.img}/>
