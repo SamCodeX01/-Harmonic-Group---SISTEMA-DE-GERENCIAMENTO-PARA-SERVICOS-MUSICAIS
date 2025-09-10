@@ -1,13 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import css from "./Botao.module.css"
 
-function Botao({valor, estilo, irPara=null}) {
+function Botao({msg, estilo, rota=null}) {
+    const navigate = useNavigate()
+
     return (
-        <input
-            type="button" 
-            value={valor} 
-            className={`${css.main} ${estilo ? css.cores : ""}`}
-            onClick={irPara}
-        />
+        <button className={`${css.main} ${estilo ? css.cores : ""}`}
+        onClick={() => navigate(rota)}>
+        {msg} </button>
     )
 }
 export default Botao;

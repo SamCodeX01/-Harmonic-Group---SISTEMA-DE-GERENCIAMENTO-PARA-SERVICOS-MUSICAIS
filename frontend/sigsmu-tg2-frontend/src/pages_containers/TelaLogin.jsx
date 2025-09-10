@@ -8,7 +8,8 @@ import Campo from "../components/forms/Campo.jsx";
 function TelaLogin() {
     // Mudar de Tela
     const navigate = useNavigate()
-    const telaCadastro = () => {
+    const telaInicialDoUsuario = () => {
+        // CONDICIONAIS DE ACESSO
         navigate("/TelaCadastro")
     }
 
@@ -23,15 +24,14 @@ function TelaLogin() {
                 dica="Informe seu email"/>
                 <Campo tipo="password" nome="senha"
                 dica="Informe sua senha"/>
-                <Botao valor="Fazer login" estilo={true}/>
+                <Botao msg="Fazer login" estilo={true}/>
             </form>
             <p><a href="" target="blank">Esqueci minha senha</a></p>
             
             <p>Não tem uma conta?</p>
-            <Botao valor="Criar uma nova conta" irPara={telaCadastro}/>
-            
-            {/* Passa para a próxima tela */} <br/><br/>
-            <Link to="/TelaCadastro">AQUI</Link>
+
+            {/* Passa para a próxima tela */}
+            <Botao msg="Criar uma nova conta" estilo={false} rota="/TelaCadastro"/>
         </div>
     )
 }
