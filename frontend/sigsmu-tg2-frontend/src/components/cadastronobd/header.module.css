@@ -1,0 +1,9 @@
+.main {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 10px;
+    gap: 10px;
+}
+.main * {
+    height: fit-content;
+}

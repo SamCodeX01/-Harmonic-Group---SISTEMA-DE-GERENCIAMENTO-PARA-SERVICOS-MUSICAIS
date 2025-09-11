@@ -1,3 +1,4 @@
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { StrictMode } from 'react'
 import "./styles/global.css"
 

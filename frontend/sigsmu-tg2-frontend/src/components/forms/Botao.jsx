@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import css from "./Botao.module.css"
 
-function Botao({msg, estilo, rota=null}) {
+function Botao({msg, estilo, rota}) {
     const navigate = useNavigate()
 
     return (

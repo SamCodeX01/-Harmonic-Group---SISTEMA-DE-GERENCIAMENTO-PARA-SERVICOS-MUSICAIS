@@ -4,12 +4,7 @@ function Campo({nome, msg, tipo, dica}) {
     return (
         <div>
             <label htmlFor={nome}> {msg} </label>
-            <input 
-                type={tipo} 
-                name={nome} 
-                placeholder={dica} 
-                className={css.main}
-            />
+            <input type={tipo} name={nome} placeholder={dica} className={css.main}/>
         </div>
     )
 }
