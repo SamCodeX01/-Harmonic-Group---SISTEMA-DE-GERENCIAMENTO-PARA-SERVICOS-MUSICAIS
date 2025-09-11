@@ -1,37 +1,41 @@
-import React from "react";
+// Telas
 import css from "./TelaCadastro.module.css"
 
+// Do React
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import styled from "styled-components";
+import { useState } from "react";
+
+// Componentes
+import Campo from "../components/forms/Campo";
 
 
 function TelaCadastro(){
+    // Pega o estado do radioButton para saber se é empresa ou não
+    const [estado, setEstado] = useState(false);
+
     return(
-        <form action="url" method="POST">
-            <label htmlFor="pessoaFisica">Pessoa Física: </label>
-            <input type="radio" name="pessoaFisica"  id="pessoaFisica"/>            
-            <label htmlFor="pessoaJuridica">| Pessoa Jurídica: </label>
-            <input type="radio" name="pessoaJuridica" id="pessoaJuridica"/>
+        <form action="url" method="POST" className={css.main}>
+            {/* Muda o valor de estado quando selecionado (useState) */}
+            <input type="radio" name="radio"  id="pessoaFisica" defaultChecked onChange={e => setEstado(!estado)} />         
+            <label htmlFor="pessoaFisica">Pessoa Física</label>
+
+            {/* Muda o valor de estado quando selecionado (useState) */}
+            <input type="radio" name="radio" id="pessoaJuridica" onChange={e => setEstado(!estado)}/>
+            <label htmlFor="pessoaJuridica">Pessoa Jurídica</label>
            
-            <fieldset>
-                <legend>Para empresas</legend>
-
-                {/* Juntar a label e input em um único componente */}
-                <label htmlFor="cnpj">CNPJ: </label>
-                <input type="number" name="cnpj" id="cnpj" placeholder="Digite o cnpj da sua empresa"></input>
-
-                <label htmlFor="inscricaoEstadual">Inscrição Estadual: </label>
-                <input type="number" name="inscricaoEstadual" id="inscricaoEstadual" placeholder="Digite a sua inscrição estadual"></input>
-
-                <label htmlFor="razaoSocial">Razão Social: </label>
-                <input type="text" name="razaoSocial" id="razaoSocial" placeholder="Digite a razão social"></input>
-
-                <label htmlFor="nomeFantasia">Nome Fantasia: </label>
-                <input type="text" name="nomeFantasia" id="nomeFantasia" placeholder="Digite o nome fantasia"></input>
-             
-            </fieldset>
+           {/* Renderiza o fieldset somente se estado for igual a true */}
+           {(estado && 
+                <fieldset>
+                    <legend>Para empresas</legend>
+                    <Campo nome={"CNPJ"} msg={"CNPJ:"} tipo={"number"} dica={"Digite o cnpj da sua empresa"}/>
+                    <Campo nome={"inscricaoEstadual"} msg={"Inscrição Estadual:"} tipo={"number"} dica={"Digite a sua inscrição estadual"}/>
+                    <Campo nome={"razaoSocial"} msg={"Razão Social:"} tipo={"text"} dica={"Digite a razão social"}/>
+                    <Campo nome={"nomeFantasia"} msg={"Nome Fantasia:"} tipo={"text"} dica={"Digite o nome fantasia"}/>
+                </fieldset>
+            )}
                
-              <fieldset>
+            <fieldset>
                 <legend>Cadastro</legend>
 
                 <label htmlFor="nome">Nome: </label>
@@ -100,13 +104,13 @@ function TelaCadastro(){
                 <input type="text" name="referencia" id="referencia" placeholder="Digite uma refência"></input>
             </fieldset>
 
-
             <input type="password" name="senha" placeholder="Digite a sua senha" />
             <input type="email" name="senha" placeholder="Digite o seu email" />
             <button type="submit">ENVIAR</button>
 
-            {/* Passa para a próxima tela */} <br/><br/>
-            <Link to="/TelaLogin">AQUI</Link>
+            {/* Passa para a próxima tela */} 
+            {/* <br/><br/> */}
+            {/* <Link to="/TelaLogin">AQUI</Link> */}
         </form>
        
        

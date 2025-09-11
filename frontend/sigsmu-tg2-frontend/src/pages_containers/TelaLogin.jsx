@@ -22,7 +22,7 @@ function TelaLogin() {
             <p>Não tem uma conta?</p>
 
             {/* Passa para a próxima tela */}
-            <Botao msg="Criar uma nova conta" estilo={false} rota="/TelaCadastro"/>
+            {/* <Botao msg="Criar uma nova conta" estilo={false} rota="/TelaCadastro"/> */}
         </div>
     )
 }

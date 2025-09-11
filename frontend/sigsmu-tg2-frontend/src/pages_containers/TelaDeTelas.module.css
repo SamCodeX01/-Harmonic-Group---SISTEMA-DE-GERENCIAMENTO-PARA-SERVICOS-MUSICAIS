@@ -1,0 +1,9 @@
+.main {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+
+    width: 400px;
+    padding: 10px;
+    margin: auto;
+}

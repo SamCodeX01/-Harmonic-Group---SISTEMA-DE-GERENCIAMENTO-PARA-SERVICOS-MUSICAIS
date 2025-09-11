@@ -8,7 +8,7 @@ import Rotas from './routes/Rotas.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     
-    <Rotas/>
+    <Rotas />
 
   </StrictMode>,
 )

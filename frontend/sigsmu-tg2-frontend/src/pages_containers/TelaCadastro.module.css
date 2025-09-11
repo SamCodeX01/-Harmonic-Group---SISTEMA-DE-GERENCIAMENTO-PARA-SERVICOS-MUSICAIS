@@ -1,0 +1,98 @@
+.main {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+}
+
+/* Campos agrupados */
+.main fieldset {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.main legend {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0 10px;
+  color: #444;
+}
+
+/* Labels e inputs alinhados */
+.main label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.main input,
+.main select,
+.main textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: 0.3s ease;
+}
+
+/* Efeito ao focar */
+.main input:focus,
+.main select:focus,
+.main textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+/* Radio buttons em linha */
+.main input[type="radio"] {
+  width: auto;
+  margin-right: 6px;
+}
+
+.main label[for="pessoaFisica"],
+.main label[for="pessoaJuridica"] {
+  display: inline-block;
+  margin-right: 15px;
+  font-weight: normal;
+}
+
+/* Botão */
+.main button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.main button:hover {
+  background: #0056b3;
+}
+
+/* Link */
+.main a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.main a:hover {
+  text-decoration: underline;
+}
