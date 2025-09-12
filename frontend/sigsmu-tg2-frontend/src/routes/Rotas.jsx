@@ -7,18 +7,19 @@ import TelaCadastro from '../pages_containers/TelaCadastro';
 import TelaCadastroItensGestor from '../pages_containers/TelaCadastroItensGestor';
 
 // Importação das rotas específicas
-import RotasGestor from './RotasGestor';
+import RotasGestor from './RotasGestor.jsx';
 
 function Rotas() {
     return (
         <Router>
             <Routes>
-                <Route path='/' element={<TelaDeTeste/>}/>
-                <Route path='/TelaLogin' element={<TelaLogin/>}/>
-                <Route path='/TelaCadastro' element={<TelaCadastro/>}/>
-                <Route path='/TelaCadastroItensGestor' element={<TelaCadastroItensGestor/>}/>
+                <Route index element={<TelaDeTeste/>}/>
+                <Route path='/TelaLogin/' element={<TelaLogin/>}/>
+                <Route path='/TelaCadastro/' element={<TelaCadastro/>}/>
+                <Route path='/TelaCadastroItensGestor/' element={<TelaCadastroItensGestor/>}/>
 
-                <Route path='/RotasGestor' element={<RotasGestor/>}/>
+                {/* Rotas de Usuários */}
+                <Route path='/RotasGestor/*' element={<RotasGestor />}/>
             </Routes>
         </Router>
     )
