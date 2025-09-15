@@ -1,8 +1,9 @@
-// Importação de componentes
+// Importações de componentes
 import Botao from "../forms/Botao";
 
-// Importação de estilos
+// Importações de estilos
 import styles from "./header.module.css"
+
 
 function Header() {
     return (

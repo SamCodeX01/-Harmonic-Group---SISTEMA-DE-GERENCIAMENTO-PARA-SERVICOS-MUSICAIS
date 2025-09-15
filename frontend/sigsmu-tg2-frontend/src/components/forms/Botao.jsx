@@ -1,13 +1,20 @@
+// Importações do React
 import { useNavigate } from "react-router-dom";
-import css from "./Botao.module.css"
 
+// Importações de estilos
+import styles from "./botao.module.css"
+
+
+// Componente criado para FACILITAR A PASSAGEM DE PARÂMETROS para um botão comum
 function Botao({msg, estilo, rota}) {
     const navigate = useNavigate()
 
     return (
-        <button className={`${css.main} ${estilo ? css.cores : ""}`}
-        onClick={() => navigate(rota)}>
-        {msg} </button>
+        <button 
+            className={`${styles.main} ${estilo ? styles.cores : ""}`}
+            onClick={() => navigate(rota)}>
+            {msg} 
+        </button>
     )
 }
 export default Botao;

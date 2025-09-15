@@ -1,6 +1,11 @@
+// Importações de componentes
 import Botao from "../components/forms/Botao";
-import styles from "./TelaDeTelas.module.css"
 
+// Importações de estilos
+import styles from "./telaDeTelas.module.css"
+
+
+// Tela criada para MOSTRAR TODAS AS TELAS JÁ CRIADAS (para facilitar)
 function TelaDeTelas() {
     return (
         <div className={styles.main}>

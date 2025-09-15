@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import TelaDeTeste from '../pages_containers/TelaDeTelas';
 import TelaLogin from '../pages_containers/TelaLogin';
 import TelaCadastro from '../pages_containers/TelaCadastro';
-import TelaCadastroItensGestor from '../pages_containers/TelaCadastroItensGestor';
 
 // Importação das rotas específicas
 import RotasGestor from './RotasGestor.jsx';
@@ -14,9 +13,9 @@ function Rotas() {
         <Router>
             <Routes>
                 <Route index element={<TelaDeTeste/>}/>
+                
                 <Route path='/TelaLogin/' element={<TelaLogin/>}/>
                 <Route path='/TelaCadastro/' element={<TelaCadastro/>}/>
-                <Route path='/TelaCadastroItensGestor/' element={<TelaCadastroItensGestor/>}/>
 
                 {/* Rotas de Usuários */}
                 <Route path='/RotasGestor/*' element={<RotasGestor />}/>

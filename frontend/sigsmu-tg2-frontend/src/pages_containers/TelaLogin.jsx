@@ -1,16 +1,18 @@
-import React from "react";
-import css from "./TelaLogin.module.css"
-import { Link, useNavigate } from "react-router-dom";
+// Importações de estilos
+import styles from "./telaLogin.module.css"
 
+// Importações de componentes
 import Botao from "../components/forms/Botao.jsx";
 import Campo from "../components/forms/Campo.jsx";
 
+
+// Tela de LOGIN - para que usuários logem no sistema e vejam configurações específicas para cada tipo de perfil
 function TelaLogin() {
     return (
-        <div className={css.main}>
-            <img src="imagens/sem_imagem.png" alt="Logo" className={css.img}/>
+        <div className={styles.main}>
+            <img src="../imagens/sem_imagem.png" alt="Logo" className={styles.img}/>
             
-            <form action="post" className={css.form}>
+            <form action="post" className={styles.form}>
                 <Campo tipo="email" nome="login" 
                 dica="Informe seu email"/>
                 <Campo tipo="password" nome="senha"
@@ -22,7 +24,8 @@ function TelaLogin() {
             <p>Não tem uma conta?</p>
 
             {/* Passa para a próxima tela */}
-            {/* <Botao msg="Criar uma nova conta" estilo={false} rota="/TelaCadastro" onClick={navigate("/TelaCadastro")}/> */}
+            <Botao msg="Criar uma nova conta" estilo={false} /> 
+            {/* rota="/TelaCadastro" /> */}
         </div>
     )
 }

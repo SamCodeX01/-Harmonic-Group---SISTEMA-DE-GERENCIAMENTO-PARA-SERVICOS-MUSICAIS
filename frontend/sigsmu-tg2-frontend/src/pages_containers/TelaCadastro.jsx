@@ -1,31 +1,31 @@
-// Telas
-import css from "./TelaCadastro.module.css"
-
-// Do React
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+// Importações do React
 import { useState } from "react";
 
-// Componentes
+// Importações de telas
+import styles from "./telaCadastro.module.css"
+
+// Importações de componentes
 import Campo from "../components/forms/Campo";
 
 
-function TelaCadastro(){
-    // Pega o estado do radioButton para saber se é empresa ou não
-    const [estado, setEstado] = useState(false);
+// Tela de CADASTRO DE USUÁRIOS - para que usuários se cadastrem no sistema como clientes/músicos/gestores.
+function TelaCadastro() {
+
+    // Pega o empresa do radioButton para saber se é empresa ou não
+    const [empresa, setEmpresa] = useState(false);
 
     return(
-        <form action="url" method="POST" className={css.main}>
-            {/* Muda o valor de estado quando selecionado (useState) */}
-            <input type="radio" name="radio"  id="pessoaFisica" defaultChecked onChange={e => setEstado(!estado)} />         
+        <form action="url" method="POST" className={styles.main}>
+            {/* Muda o valor de empresa quando selecionado (useState) */}
+            <input type="radio" name="radio"  id="pessoaFisica" defaultChecked onChange={evt => setEmpresa(!empresa)} />         
             <label htmlFor="pessoaFisica">Pessoa Física</label>
 
-            {/* Muda o valor de estado quando selecionado (useState) */}
-            <input type="radio" name="radio" id="pessoaJuridica" onChange={e => setEstado(!estado)}/>
+            {/* Muda o valor de empresa quando selecionado (useState) */}
+            <input type="radio" name="radio" id="pessoaJuridica" onChange={evt => setEmpresa(!empresa)}/>
             <label htmlFor="pessoaJuridica">Pessoa Jurídica</label>
            
-           {/* Renderiza o fieldset somente se estado for igual a true */}
-           {(estado && 
+           {/* Renderiza o fieldset somente se empresa for igual a true */}
+           {(empresa && 
                 <fieldset>
                     <legend>Para empresas</legend>
                     <Campo nome={"CNPJ"} msg={"CNPJ:"} tipo={"number"} dica={"Digite o cnpj da sua empresa"}/>
