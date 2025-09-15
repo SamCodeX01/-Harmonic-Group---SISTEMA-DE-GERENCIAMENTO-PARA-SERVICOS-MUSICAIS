@@ -1,3 +1,53 @@
 .main {
+    border: solid blue;
+    display: grid;
+    grid-template: 1fr 6fr 3fr / 1fr 2fr ;
+
+    height: 94vh;
+}
+.main > * {
+    border: 1px solid black;
+    height: 30px;
+}
+
+.schema {
+    /* background-color: aqua; */
+    grid-area: 1 / 1 / -1 / 2;
+    height: 100%;
+}
+
+
+
+
+.botoes {
+    grid-area: 1 / 2 / 2 / -1;
+
+    display: flex;
+    flex-flow: row nowrap;
+
+    justify-content: space-around;
+    align-items: center;
     
+    height: 100%;
+    border: 1px solid red;
+} .botoes * {
+    border: solid black;
+    height: fit-content;
+    flex: 0 0 170px
+}
+
+.tabelas {
+    display: flex;
+    flex-flow: row wrap;
+
+    grid-area: 2 / 2 / 3 / -1;
+    height: 100%;
+} .tabelas * {
+    width: 300px;
+}
+
+.inputGestor {
+    grid-area: 2 / -2 / -1 / -1;
+    height: 100%;
+
 }
