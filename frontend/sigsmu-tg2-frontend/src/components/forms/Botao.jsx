@@ -4,9 +4,12 @@ import { useNavigate } from "react-router-dom";
 // Importações de estilos
 import styles from "./botao.module.css"
 
+// Importações de componentes
+import TabelaCampos from "../cadastronobd/TabelaCampos";
+
 
 // Componente criado para FACILITAR A PASSAGEM DE PARÂMETROS para um botão comum
-function Botao({msg, estilo, rota, selecionavel, marcadoPadrao}) {
+function Botao({msg, estilo, rota, marcadoPadrao, value, selectTable}) {
     const navigate = useNavigate()
 
     return (
@@ -18,22 +21,21 @@ function Botao({msg, estilo, rota, selecionavel, marcadoPadrao}) {
             `}
             
             onClick={evt => {
-                // Pega os irmãos do botão (filhos do pai do botão)
-                let filhos = [...evt.currentTarget.parentElement.children]
+                    // console.log(evt.currentTarget.parentElement.nextSibling.appendChild())
+                    
 
-                // Remove a classe "selecionado" de cada filho
-                filhos.map(filho => {
-                    filho.classList.remove(styles.selecionado)
-                })
+                    // if (evt.currentTarget.parentElement.nextSibling.hasChildNodes)
+                    //     evt.currentTarget.parentElement.nextSibling.firstChild.get
+                        selectTable(msg)
+                        console.log()
 
-                // Se selecionavel, pinta de outra cor adicionando a classe com background
-                if (selecionavel) 
-                    evt.currentTarget.classList.add(styles.selecionado)
-                navigate(rota)
-                
+                    // evt.currentTarget.parentElement.nextSibling.appendChild(evt.currentTarget)
+                    // return <TabelaCampos tabela={msg} campos={value} />
+
+
+                    navigate(rota)
             }}
         >
-
         {msg} </button>
     )
 }

@@ -4,7 +4,7 @@ import Botao from "../forms/Botao";
 
 
 function TabelaGestor({tabela, campos}) {
-    console.log(tabela + " -> " + campos)
+    // console.log(tabela + " -> " + campos)
 
     return (
         <div>
@@ -13,7 +13,7 @@ function TabelaGestor({tabela, campos}) {
                 {
                     campos.map((campo, i) => {
                         if (i != 0)
-                            return <Botao className={styles.main} msg={campos[0] + campo} estilo={true} selecionavel={true} />
+                            return <Botao className={styles.main} msg={campos[0] + campo} estilo={true} selecionavel={true} key={i} />
                     })
                 }
             </div>

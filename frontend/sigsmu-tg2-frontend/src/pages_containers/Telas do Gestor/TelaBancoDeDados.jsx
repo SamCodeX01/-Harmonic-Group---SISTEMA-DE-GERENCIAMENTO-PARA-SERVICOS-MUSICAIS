@@ -3,11 +3,16 @@ import styles from "./telabancoDeDados.module.css"
 
 // Importação de componentes
 import Botao from "../../components/forms/Botao"
+import BotaoSelecionavel from "../../components/forms/BotaoSelecionavel"
 import TabelaGestor from "../../components/cadastronobd/TabelaGestor"
+import TabelaCampos from "../../components/cadastronobd/TabelaCampos"
+import { useState } from "react"
 
 
 // Tela de BANCO DE DADOS - para que gestores consigam cadastrar novos serviços/músicas/meios de pagamento/etc
 function TelaBancoDeDados() {
+
+    const [tabelaSelecionada, setTabelaSelecionada] = useState(null)
 
     // NOME DAS TABELAS DO BANCO
     const tabelas = [
@@ -21,15 +26,15 @@ function TelaBancoDeDados() {
     ]
 
     // CAMPOS DAS TABELAS DO BANCO DE DADOS
-    const campos = {
-        pacotesServico: ["pac_", "id", "nome", "valor", "qtdMusicos", "descricao"],
-        instrumentos: ["ins_", "id", "nome"],
-        meiosPagamento: ["pgt_", "id", "nome"],
-        tipoServico: ["ser_", "id", "nome"],
-        repertorio: ["rep_", "id", "musica", "artista", "genero", "tempo", "tocamos"],
-        status: ["stt_", "id", "situacao"],
-        tipoLocal: ["tip_", "id", "tipo"]
-    }
+    const campos = [
+        ["pac_", "id", "nome", "valor", "qtdMusicos", "descricao"],
+        ["ins_", "id", "nome"],
+        ["pgt_", "id", "nome"],
+        ["ser_", "id", "nome"],
+        ["rep_", "id", "musica", "artista", "genero", "tempo", "tocamos"],
+        ["stt_", "id", "situacao"],
+        ["tip_", "id", "tipo"]
+    ]
     
 
     return (
@@ -37,51 +42,27 @@ function TelaBancoDeDados() {
             <div className={styles.schema}></div>
 
             <div className={styles.botoes}>
-                <Botao msg={"CADASTRAR"} estilo={true} selecionavel={true} marcadoPadrao={true} />
-                <Botao msg={"ALTERAR"} estilo={true} selecionavel={true} />
-                <Botao msg={"EXCLUIR"} estilo={true} selecionavel={true} />
+                <BotaoSelecionavel msg={"CADASTRAR"} estilo={true} marcadoPadrao={true} />
+                <BotaoSelecionavel msg={"ALTERAR"} estilo={true} />
+                <BotaoSelecionavel msg={"EXCLUIR"} estilo={true} />
             </div>
 
-            <div className={styles.tabelas}>
-
+            <div className={styles.seletorTabelas}>
                 {
-                    Object.values(campos).map((campo, i) => {
-                        return <TabelaGestor tabela={tabelas[i]} campos={campo} />
+                    tabelas.map((table, i) => {
+                        if (table !== tabelaSelecionada)
+                            return <Botao msg={table} key={"table" + i} value={campos[i]} selectTable={setTabelaSelecionada}/>
+                    })
+                }     
+            </div>
+
+            <div className={styles.tabelaCampos} >
+                {
+                    tabelas.map((table, i) => {
+                        if (table === tabelaSelecionada)
+                            return <Botao msg={table} key={"table" + i} value={campos[i]} selectTable={setTabelaSelecionada}/>
                     })
                 }
-
-                {/* <TabelaGestor tabela={tabelas[0]} campos={campos.instrumentos} /> */}
-                {
-                // console.log(campos.instrumentos)
-                }
-
-                {/* <div>
-                    <Botao msg={"Pacotes de Serviço"} />
-                </div>
-
-                <div>
-                    <Botao msg={"Instrumento"} />
-                </div>
-
-                <div>
-                    <Botao msg={"Tipo de Serviço"} />
-                </div>
-
-                <div>
-                    <Botao msg={"Meios de Pagamento"} />
-                </div>
-
-                <div>
-                    <Botao msg={"Repertório / Músicas"} />
-                </div>
-
-                <div>
-                    <Botao msg={"Status / Andamento"} />
-                </div>
-
-                <div>
-                    <Botao msg={"Tipo de Local"} />
-                </div> */}
             </div>
 
             <div className={styles.inputGestor}>
