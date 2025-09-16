@@ -39,15 +39,15 @@
 .tabelas {
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-around;
 
     grid-area: 2 / 2 / 3 / -1;
     height: 100%;
 } .tabelas * {
-    width: 300px;
+    width: 350px;
 }
 
 .inputGestor {
     grid-area: 2 / -2 / -1 / -1;
     height: 100%;
-
 }

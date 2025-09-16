@@ -21,13 +21,15 @@ function TelaBancoDeDados() {
     ]
 
     // CAMPOS DAS TABELAS DO BANCO DE DADOS
-    const pacotesServico = ["pac_", "id", "nome", "valor", "qtdMusicos", "descricao"]
-    const instrumentos = ["ins_", "id", "nome"]
-    const meiosPagamento = ["pgt_", "id", "nome"]
-    const tipoServico = ["ser_", "id", "nome"]
-    const repertorio = ["rep_", "id", "musica", "artista", "genero", "tempo", "tocamos"]
-    const status = ["stt_", "id", "situacao"]
-    const tipoLocal = ["tip_", "id", "tipo"]
+    const campos = {
+        pacotesServico: ["pac_", "id", "nome", "valor", "qtdMusicos", "descricao"],
+        instrumentos: ["ins_", "id", "nome"],
+        meiosPagamento: ["pgt_", "id", "nome"],
+        tipoServico: ["ser_", "id", "nome"],
+        repertorio: ["rep_", "id", "musica", "artista", "genero", "tempo", "tocamos"],
+        status: ["stt_", "id", "situacao"],
+        tipoLocal: ["tip_", "id", "tipo"]
+    }
     
 
     return (
@@ -41,11 +43,19 @@ function TelaBancoDeDados() {
             </div>
 
             <div className={styles.tabelas}>
-                <TabelaGestor tabela={"NOME DA TABELA - JÁ RETORNA COM OS CAMPOS"} campos={"CAMPOS DA TABELA EM ARRAY"} />
-                <TabelaGestor tabela={"NOME DA TABELA - JÁ RETORNA COM OS CAMPOS"} campos={"CAMPOS DA TABELA EM ARRAY"} />
-                <TabelaGestor tabela={"NOME DA TABELA - JÁ RETORNA COM OS CAMPOS"} campos={"CAMPOS DA TABELA EM ARRAY"} />
 
-                <div>
+                {
+                    Object.values(campos).map((campo, i) => {
+                        return <TabelaGestor tabela={tabelas[i]} campos={campo} />
+                    })
+                }
+
+                {/* <TabelaGestor tabela={tabelas[0]} campos={campos.instrumentos} /> */}
+                {
+                // console.log(campos.instrumentos)
+                }
+
+                {/* <div>
                     <Botao msg={"Pacotes de Serviço"} />
                 </div>
 
@@ -71,7 +81,7 @@ function TelaBancoDeDados() {
 
                 <div>
                     <Botao msg={"Tipo de Local"} />
-                </div>
+                </div> */}
             </div>
 
             <div className={styles.inputGestor}>
