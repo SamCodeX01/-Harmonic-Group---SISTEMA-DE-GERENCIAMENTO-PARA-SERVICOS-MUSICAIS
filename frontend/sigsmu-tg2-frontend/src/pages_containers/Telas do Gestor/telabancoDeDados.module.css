@@ -52,10 +52,31 @@
 
 
 .tabelaCampos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: red;
     height: 100%;
+    width: 100%;
+    
 
     grid-area: 3 / 2 / 4 / -1;
+}
+
+.tabelaCampos > div {
+    font-size: 1.5em;
+
+    min-width: 300px;
+    max-width: 430px;
+
+    padding: 20px;
+    background-color: aqua;
+}
+
+.tabelaCampos > div > button {
+    width: 100%;
+    background-color: red;
 }
 
 

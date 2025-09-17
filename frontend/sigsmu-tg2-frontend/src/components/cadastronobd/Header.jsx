@@ -1,23 +1,41 @@
+// Importações do React
+import { useState } from "react";
+
 // Importações de componentes
-import BotaoSelecionavel from "../forms/Botao";
-import Campo from "../forms/Campo";
-// import Botao from "../forms/Campo";
+import BotaoSelecionavel from "../forms/BotaoSelecionavel";
 
 // Importações de estilos
 import styles from "./header.module.css"
 
 
+// Componente utilizado como HEADER em todas as telas do gestor. 
+// Direciona para a tela que o gestor escolher
 function Header() {
+    const [botao, setBotao] = useState("Início (indicadores)")
+
+    
+    const dados = {
+        "Início (indicadores)"    : "/RotasGestor/Inicio",
+        "Solicitações de Serviço" : "/RotasGestor/SolicitacoesServico",
+        "Banco de Dados"          : "/RotasGestor/BancoDeDados",
+        "Gerencia de Permissões"  : "/RotasGestor/Permissoes",
+        "Histórico Geral"         : "/RotasGestor/Historico"
+    }// key = nome da tela        - value = rota
+
     return (
         <div className={styles.main}>
-            {/* <Campo msg={"Início (indicadores)"} tipo={"radio"} nome={"radio1"} />
-            <Campo msg={"Solicitações de Serviço"} tipo={"radio"} nome={"radio2"} /> */}
-
-            <BotaoSelecionavel msg={"Início (indicadores)"} estilo={true} rota={"/RotasGestor/Inicio"} selecionavel={true} marcadoPadrao={true} />
-            <BotaoSelecionavel msg={"Solicitações de Serviço"} estilo={true} rota={"/RotasGestor/SolicitacoesServico"} selecionavel={true} />
-            <BotaoSelecionavel msg={"Banco de Dados"} estilo={true} rota={"/RotasGestor/BancoDeDados"} selecionavel={true} />
-            <BotaoSelecionavel msg={"Gerencia de Permissões"} estilo={true} rota={"/RotasGestor/Permissoes"} selecionavel={true} />
-            <BotaoSelecionavel msg={"Histórico Geral"} estilo={true} rota={"/RotasGestor/Historico"} selecionavel={true} />
+        {
+            Object.entries(dados).map((dado, i) => {
+                return <BotaoSelecionavel 
+                    msg={dado[0]}               // define a mensagem a ser exibida no botão
+                    estilo={true}               // define se o botão tem estilo ou não
+                    rota={dado[1]}              // define a rota a qual o botão irá direcionar
+                    key={"button" + (i+1)}      // define o id do botão (para não dar erro no console)
+                    selecionado={botao}         // envia o botão atualmente selecionado (serve para comparação)
+                    setSelecionado={setBotao}   // envia o método set para alterar o estado dos botões
+                />
+            })
+        }
         </div>
     )
 }
