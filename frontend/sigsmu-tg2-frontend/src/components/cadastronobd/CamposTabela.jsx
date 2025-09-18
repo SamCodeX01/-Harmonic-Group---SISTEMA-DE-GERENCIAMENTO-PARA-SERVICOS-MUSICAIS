@@ -7,9 +7,9 @@ import BotaoSelecionavel from "../forms/BotaoSelecionavel";
 import { useState } from "react";
 
 // Componente que retorna todos os campos de uma tabela do banco de dados
-function CamposTabela({campos, setCallback_pai}) {
-    const [callback_filho1, setCallback_filho1] = useState(null)
-    setCallback_pai(callback_filho1)
+function CamposTabela({campos, callback}) {
+    const [callback2, setCallback2] = useState(null)
+    callback(callback2)
 
 
     const [campoSelecionado, setCampoSelecionado] = useState(campos[0])
@@ -18,15 +18,16 @@ function CamposTabela({campos, setCallback_pai}) {
         <div className={styles.main}>
         {
             campos.map((campo, i) => {
+
                 if (campo[3] !== "_")
                     return <BotaoSelecionavel 
-                        msg={campo} 
+                        msg={campo}
                         selecionado={campoSelecionado} 
                         setSelecionado={setCampoSelecionado} 
                         key={"campo" + (i+1)} 
-                        setCallback_filho1={setCallback_filho1} 
+
+                        callback={setCallback2}
                     />
-                
             })
         }
         </div>

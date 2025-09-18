@@ -6,6 +6,7 @@ import Botao from "../../components/forms/Botao"
 import BotaoSelecionavel from "../../components/forms/BotaoSelecionavel"
 import CamposTabela from "../../components/cadastronobd/CamposTabela"
 import TabelaGestor from "../../components/cadastronobd/TabelaGestor"
+import HelpDoGestor from "../../components/cadastronobd/HelpDoGestor"
 
 import { useState } from "react"
 
@@ -85,10 +86,6 @@ function TelaBancoDeDados() {
                         if (table !== tabelaSelecionada)
                             return <Botao msg={table} key={"table" + (i+1)} value={Object.values(dados)[i]} selectTable={setTabelaSelecionada}/>
                     })
-                    // tabelas.map((table, i) => {
-                    //     if (table !== tabelaSelecionada)
-                    //         return <Botao msg={table} key={"table" + (i+1)} value={campos[i]} selectTable={setTabelaSelecionada}/>
-                    // })
                 }     
             </div>
 
@@ -109,7 +106,7 @@ function TelaBancoDeDados() {
                         <div className={styles.teste}> 
                             <CamposTabela 
                                 campos={dados[tabelaSelecionada]} 
-                                setCallback_pai={setEvento} 
+                                callback={setEvento} 
                             /> 
                         </div>
                 }
@@ -119,11 +116,11 @@ function TelaBancoDeDados() {
 
             {/* Local em que o gestor poderá DAR INPUT de dados e manipular o banco */}
             <div className={styles.inputGestor}>
-                <div>asdf</div>
-                <div>dasfh</div>
-                <div>dfgj</div>
-                {/* <div> {console.log( (evento !== null ? evento.value : "ERRO") )} </div> */}
-                <div> {(evento !== null ? evento.value : "ERRO")} </div>
+                <HelpDoGestor input={true} msg={"Dado a ser inserido:"} />
+                <HelpDoGestor msg={"Campo a ser preenchido:"} evento={evento} prefixo={dados[tabelaSelecionada]} />
+                <HelpDoGestor msg={"Nome da tabela:"} tabela={tabelaSelecionada} />
+
+                <button>EXECUTAR COMANDO</button>
             </div>
 
         </div>

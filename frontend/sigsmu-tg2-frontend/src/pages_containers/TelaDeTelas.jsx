@@ -1,5 +1,5 @@
 // Importações de componentes
-import Botao from "../components/forms/Botao";
+import BotaoDirecionavel from "../components/forms/BotaoDirecionavel";
 
 // Importações de estilos
 import styles from "./telaDeTelas.module.css"
@@ -9,9 +9,9 @@ import styles from "./telaDeTelas.module.css"
 function TelaDeTelas() {
     return (
         <div className={styles.main}>
-            <Botao msg="Tela de Login" estilo={true} rota="/TelaLogin/" />
-            <Botao msg="Tela de Cadastro" estilo={true} rota="/TelaCadastro/" />
-            <Botao msg="Tela de Alteração do Banco do Gestor" estilo={true} rota="/RotasGestor" />
+            <BotaoDirecionavel msg="Tela de Login" estilo={true} rota="/TelaLogin/" />
+            <BotaoDirecionavel msg="Tela de Cadastro" estilo={true} rota="/TelaCadastro/" />
+            <BotaoDirecionavel msg="Tela de Alteração do Banco do Gestor" estilo={true} rota="/RotasGestor" />
         </div>
     )
 }
