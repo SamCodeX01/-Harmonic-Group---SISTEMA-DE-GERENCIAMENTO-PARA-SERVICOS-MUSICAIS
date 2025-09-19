@@ -63,7 +63,6 @@
 
     grid-area: 3 / 2 / 4 / -1;
 }
-
 .tabelaCampos > div {
     font-size: 1.5em;
 
@@ -73,7 +72,6 @@
     padding: 20px;
     background-color: aqua;
 }
-
 .tabelaCampos > div > button {
     width: 100%;
     background-color: red;
@@ -83,4 +81,17 @@
 .inputGestor {
     grid-area: -2 / 2 / -1 / -1;
     height: 100%;
+}
+
+.inputGestor > fieldset {
+    width: 80%; 
+    
+}
+
+.inputGestor > div {
+    display: flex;
+    gap: 20px;
+}
+.inputGestor > div > fieldset {
+    width: 80%;
 }

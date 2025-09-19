@@ -1,5 +1,5 @@
 // Importações de estilos
-import styles from "./telabancoDeDados.module.css"
+import styles from "./CSS/telabancoDeDados.module.css"
 
 // Importação de componentes
 import Botao from "../../components/forms/Botao"
@@ -57,6 +57,8 @@ function TelaBancoDeDados() {
         "Status / Andamento"   : ["stt_", "id", "situacao"],
         "Tipo de Local"        : ["tip_", "id", "tipo"]
     }
+
+    const gambiarra = () => {}
     
 
     return (
@@ -72,7 +74,16 @@ function TelaBancoDeDados() {
             <div className={styles.botoes}>
                 {
                     crud.map((op, i) => {
-                        return <BotaoSelecionavel msg={op} estilo={true} selecionado={operacao} setSelecionado={setOperacao} key={"crud" + (i+1)} />
+                        return <BotaoSelecionavel 
+                                    msg={op} 
+                                    estilo={true} 
+                                    selecionado={operacao} 
+                                    setSelecionado={setOperacao} 
+                                    key={"crud" + (i+1)}
+
+                                    callback={gambiarra}        
+                                    // serve pra nada, só pra não quebrar tudo!
+                                />
                     })
                 }
             </div>
@@ -117,10 +128,17 @@ function TelaBancoDeDados() {
             {/* Local em que o gestor poderá DAR INPUT de dados e manipular o banco */}
             <div className={styles.inputGestor}>
                 <HelpDoGestor input={true} msg={"Dado a ser inserido:"} />
-                <HelpDoGestor msg={"Campo a ser preenchido:"} evento={evento} prefixo={dados[tabelaSelecionada]} />
-                <HelpDoGestor msg={"Nome da tabela:"} tabela={tabelaSelecionada} />
 
-                <button>EXECUTAR COMANDO</button>
+                <HelpDoGestor 
+                    msg={"Campo a ser preenchido:"} 
+                    evento={evento} 
+                    prefixo={dados[tabelaSelecionada]} 
+                />
+                
+                <div>
+                    <HelpDoGestor msg={"Nome da tabela:"} tabela={tabelaSelecionada} />
+                    <button onClick={() => {alert("Dado adicionado!")}}>EXECUTAR COMANDO</button>
+                </div>
             </div>
 
         </div>

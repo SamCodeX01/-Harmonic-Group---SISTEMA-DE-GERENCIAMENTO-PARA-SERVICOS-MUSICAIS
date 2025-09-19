@@ -13,6 +13,8 @@ import styles from "./header.module.css"
 function Header() {
     const [botao, setBotao] = useState("Início (indicadores)")
 
+
+    const gambiarra = () => {}
     
     const dados = {
         "Início (indicadores)"    : "/RotasGestor/Inicio",
@@ -33,6 +35,7 @@ function Header() {
                     key={"button" + (i+1)}      // define o id do botão (para não dar erro no console)
                     selecionado={botao}         // envia o botão atualmente selecionado (serve para comparação)
                     setSelecionado={setBotao}   // envia o método set para alterar o estado dos botões
+                    callback={gambiarra}        // serve pra nada, só pra não quebrar tudo!
                 />
             })
         }

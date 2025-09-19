@@ -1,5 +1,5 @@
 // Importações de estilos
-import styles from "./telapermissoes.module.css"
+import styles from "./CSS/telapermissoes.module.css"
 
 
 // Tela de PERMISSÕES - para gerenciamento de permissões de usuários do sistema
