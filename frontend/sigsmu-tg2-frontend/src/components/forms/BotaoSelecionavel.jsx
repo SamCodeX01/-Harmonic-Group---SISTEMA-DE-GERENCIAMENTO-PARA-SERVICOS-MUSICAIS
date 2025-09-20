@@ -2,8 +2,7 @@
 import { useNavigate } from "react-router-dom";
 
 // Importações de estilos
-import styles from "./botaoSelecionavel.module.css"
-import { useState } from "react";
+import styles from "./CSS/botaoselecionavel.module.css"
 
 
 // Componente criado para FACILITAR A PASSAGEM DE PARÂMETROS para um botão comum

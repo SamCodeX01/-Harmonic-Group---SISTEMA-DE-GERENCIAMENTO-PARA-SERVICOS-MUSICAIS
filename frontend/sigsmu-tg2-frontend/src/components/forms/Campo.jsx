@@ -1,5 +1,5 @@
 // Importações de estilos
-import styles from "./campo.module.css"
+import styles from "./CSS/campo.module.css"
 
 
 // Componente criado para JUNTAR LABEL+INPUT para melhor organização do código

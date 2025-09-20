@@ -1,5 +1,5 @@
 // Importações de estilos
-import styles from "./telaLogin.module.css"
+import styles from "./CSS/telalogin.module.css"
 
 // Importações de componentes
 import Botao from "../components/forms/Botao.jsx";

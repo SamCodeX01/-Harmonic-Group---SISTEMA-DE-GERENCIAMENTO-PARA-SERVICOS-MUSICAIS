@@ -1,8 +1,8 @@
+// Importações de estilos
+import styles from "./CSS/teladetelas.module.css"
+
 // Importações de componentes
 import BotaoDirecionavel from "../components/forms/BotaoDirecionavel";
-
-// Importações de estilos
-import styles from "./telaDeTelas.module.css"
 
 
 // Tela criada para MOSTRAR TODAS AS TELAS JÁ CRIADAS (para facilitar)
@@ -16,3 +16,12 @@ function TelaDeTelas() {
     )
 }
 export default TelaDeTelas;
+
+// Comandos para possíveis erros no powershell
+
+// Para quando não tiver permissão de executar scripts (execução de scripts desabilitada):
+// Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+// Para quando houver incompatibilidade entre versões node:
+// npm uninstall vite @vitejs/plugin-react
+// npm install vite@5.4.0 @vitejs/plugin-react@4.2.0

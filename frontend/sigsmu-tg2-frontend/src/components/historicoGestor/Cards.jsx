@@ -1,12 +1,14 @@
+// Importações de estilos
+import styles from "./CSS/cards.module.css"
+
 // Importações do React
 import { useState } from "react";
-
-// Importações de estilos
-import styles from "./cards.module.css"
 
 // Importações de componentes
 import BotoesSolicitacoesGestor from "./BotoesSolicitacoesGestor";
 
+
+// DESCRIÇÃO
 function Cards({id, objCliente, metodoSet, comBotao=false, clicavel=false}) {
     const [mostrarBotoes, setMostrarBotoes] = useState(false)
 

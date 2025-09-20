@@ -1,5 +1,5 @@
 // Importações de estilos
-import styles from "./radioButton.module.css"
+import styles from "./CSS/radiobutton.module.css"
 
 
 // Componente criado para facilitar o uso de um radio button

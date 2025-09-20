@@ -1,8 +1,11 @@
-import styles from "./tabelaGestor.module.css"
+// Importações de estilos
+import styles from "./CSS/tabelagestor.module.css"
 
+// Importações de componentes
 import Botao from "../forms/Botao";
 
 
+// DESCRIÇÃO
 function TabelaGestor({tabela, campos}) {
     // console.log(tabela + " -> " + campos)
 

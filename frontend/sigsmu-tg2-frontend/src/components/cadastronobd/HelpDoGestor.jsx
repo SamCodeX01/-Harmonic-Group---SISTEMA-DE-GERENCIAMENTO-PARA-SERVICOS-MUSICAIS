@@ -1,5 +1,8 @@
-import styles from "./helpDoGestor.module.css"
+// Importações de estilos
+import styles from "./CSS/helpdogestor.module.css"
 
+
+// DESCRIÇÃO
 function HelpDoGestor({input, msg, evento=null, tabela="nada", prefixo=""}) {
     if (input)
         return (

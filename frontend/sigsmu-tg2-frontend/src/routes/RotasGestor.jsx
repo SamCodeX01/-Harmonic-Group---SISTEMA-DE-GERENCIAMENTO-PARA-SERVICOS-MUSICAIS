@@ -2,7 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 
 // Importações de estilos
-import styles from "./rotasGestor.module.css"
+import styles from "./CSS/rotasgestor.module.css"
 
 // Importações de telas do gestor
 import TelaInicio from "../pages_containers/Telas do Gestor/TelaInicio";

@@ -1,10 +1,14 @@
 // Importações de estilos
-import styles from "./botoessolicitacoesgestor.module.css"
+import styles from "./CSS/botoessolicitacoesgestor.module.css"
 
 // Importações de componentes
 import RadioButton from "../forms/RadioButton";
+
+// Importações do React
 import { useState } from "react";
 
+
+// DESCRIÇÃO
 function BotoesSolicitacoesGestor() {
     // const [estado, setEstado] = useState(isActive)
 

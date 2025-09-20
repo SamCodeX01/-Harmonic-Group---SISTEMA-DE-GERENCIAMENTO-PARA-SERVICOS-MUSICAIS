@@ -1,11 +1,11 @@
-// Importações do React
-import { useState } from "react";
-
-// Importações de telas
-import styles from "./telaCadastro.module.css"
+// Importações de estilos
+import styles from "./CSS/telacadastro.module.css"
 
 // Importações de componentes
 import Campo from "../components/forms/Campo";
+
+// Importações do React
+import { useState } from "react";
 
 
 // Tela de CADASTRO DE USUÁRIOS - para que usuários se cadastrem no sistema como clientes/músicos/gestores.

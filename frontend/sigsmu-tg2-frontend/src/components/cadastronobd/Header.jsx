@@ -1,18 +1,16 @@
-// Importações do React
-import { useState } from "react";
+// Importações de estilos
+import styles from "./CSS/header.module.css"
 
 // Importações de componentes
 import BotaoSelecionavel from "../forms/BotaoSelecionavel";
 
-// Importações de estilos
-import styles from "./header.module.css"
+// Importações do React
+import { useState } from "react";
 
 
-// Componente utilizado como HEADER em todas as telas do gestor. 
-// Direciona para a tela que o gestor escolher
+// Componente utilizado como HEADER em todas as telas do gestor, direcionando para a tela que o gestor escolher
 function Header() {
     const [botao, setBotao] = useState("Início (indicadores)")
-
 
     const gambiarra = () => {}
     

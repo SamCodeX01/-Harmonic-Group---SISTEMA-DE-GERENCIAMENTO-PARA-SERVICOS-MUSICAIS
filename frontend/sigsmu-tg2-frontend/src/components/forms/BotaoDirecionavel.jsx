@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom";
 
 // Importações de estilos
-import styles from "./botaoDirecionavel.module.css"
+import styles from "./CSS/botaodirecionavel.module.css"
 
 
 // Componente criado para FACILITAR A PASSAGEM DE PARÂMETROS para um botão comum

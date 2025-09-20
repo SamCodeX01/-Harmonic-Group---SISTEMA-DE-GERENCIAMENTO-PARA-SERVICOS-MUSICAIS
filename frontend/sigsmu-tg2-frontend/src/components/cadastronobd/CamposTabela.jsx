@@ -1,10 +1,11 @@
 // Importações de estilo
-import styles from "./camposTabela.module.css"
-import buttonStyles from "../forms/botaoSelecionavel.module.css"
+import styles from "./CSS/campostabela.module.css"
+import buttonStyles from "../forms/CSS/botaoselecionavel.module.css"
 
 // Importações de componentes
 import BotaoSelecionavel from "../forms/BotaoSelecionavel";
 import { useState } from "react";
+
 
 // Componente que retorna todos os campos de uma tabela do banco de dados
 function CamposTabela({campos, callback}) {
