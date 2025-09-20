@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 // Importação das Telas
-import TelaDeTeste from '../pages_containers/TelaDeTelas';
-import TelaLogin from '../pages_containers/TelaLogin';
-import TelaCadastro from '../pages_containers/TelaCadastro';
+import TelaDeTeste from '../pages_containers/Outras/TelaDeTelas';
+import TelaLogin from '../pages_containers/Outras/TelaLogin';
+import TelaCadastro from '../pages_containers/Outras/TelaCadastro';
 
 // Importação das rotas específicas
 import RotasGestor from './RotasGestor.jsx';

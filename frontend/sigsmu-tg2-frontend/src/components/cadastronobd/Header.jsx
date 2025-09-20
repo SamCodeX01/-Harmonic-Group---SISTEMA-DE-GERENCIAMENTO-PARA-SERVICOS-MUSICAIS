@@ -2,7 +2,8 @@
 import styles from "./CSS/header.module.css"
 
 // Importações de componentes
-import BotaoSelecionavel from "../forms/BotaoSelecionavel";
+import BotaoSimples from "../forms/BotaoSimples";
+import Radio from "../forms/Radio";
 
 // Importações do React
 import { useState } from "react";
@@ -10,32 +11,20 @@ import { useState } from "react";
 
 // Componente utilizado como HEADER em todas as telas do gestor, direcionando para a tela que o gestor escolher
 function Header() {
-    const [botao, setBotao] = useState("Início (indicadores)")
 
-    const gambiarra = () => {}
-    
-    const dados = {
-        "Início (indicadores)"    : "/RotasGestor/Inicio",
-        "Solicitações de Serviço" : "/RotasGestor/SolicitacoesServico",
-        "Banco de Dados"          : "/RotasGestor/BancoDeDados",
-        "Gerencia de Permissões"  : "/RotasGestor/Permissoes",
-        "Histórico Geral"         : "/RotasGestor/Historico"
-    }// key = nome da tela        - value = rota
+    // Usado para pegar o botão selecionado
+    const [botao, setBotao] = useState("iheader0")
 
     return (
         <div className={styles.main}>
         {
-            Object.entries(dados).map((dado, i) => {
-                return <BotaoSelecionavel 
-                    msg={dado[0]}               // define a mensagem a ser exibida no botão
-                    estilo={true}               // define se o botão tem estilo ou não
-                    rota={dado[1]}              // define a rota a qual o botão irá direcionar
-                    key={"button" + (i+1)}      // define o id do botão (para não dar erro no console)
-                    selecionado={botao}         // envia o botão atualmente selecionado (serve para comparação)
-                    setSelecionado={setBotao}   // envia o método set para alterar o estado dos botões
-                    callback={gambiarra}        // serve pra nada, só pra não quebrar tudo!
-                />
-            })
+            <Radio selecionado={botao} setSelecionado={setBotao} name={"header"} grupo={1} >
+                <BotaoSimples msg={"Início (indicadores)"} rota={"/RotasGestor/Inicio"} estilo={true} />
+                <BotaoSimples msg={"Solicitações de Serviço"} rota={"/RotasGestor/SolicitacoesServico"} estilo={true} />
+                <BotaoSimples msg={"Banco de Dados"} rota={"/RotasGestor/BancoDeDados"} estilo={true} />
+                <BotaoSimples msg={"Gerencia de Permissões"} rota={"/RotasGestor/Permissoes"} estilo={true} />
+                <BotaoSimples msg={"Histórico Geral"} rota={"/RotasGestor/Historico"} estilo={true} />
+            </Radio>
         }
         </div>
     )

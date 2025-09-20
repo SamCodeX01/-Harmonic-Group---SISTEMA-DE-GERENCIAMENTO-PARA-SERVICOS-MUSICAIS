@@ -2,7 +2,7 @@
 import styles from "./CSS/telacadastro.module.css"
 
 // Importações de componentes
-import Campo from "../components/forms/Campo";
+import Campo from "../../components/forms/Campo";
 
 // Importações do React
 import { useState } from "react";

@@ -12,6 +12,7 @@ import TelaPermissoes from "../pages_containers/Telas do Gestor/TelaPermissoes";
 import TelaHistorico from "../pages_containers/Telas do Gestor/TelaHistorico";
 import Header from "../components/cadastronobd/Header";
 
+
 function RotasGestor() {
     return (
         <div className={styles.main}>
