@@ -1,13 +1,13 @@
 // Importações de estilos
-import styles from "./CSS/campo.module.css"
+import campoCss from "./CSS/campo.module.css"
 
 
 // Componente criado para JUNTAR LABEL+INPUT para melhor organização do código
-function Campo({nome, msg, tipo, dica, id}) {
+function Campo({type, name, placeholder, labelName, id, htmlFor}) {
     return (
         <div>
-            <label htmlFor={nome}> {msg} </label>
-            <input type={tipo} name={nome} placeholder={dica} className={styles.main}/>
+            <label htmlFor={htmlFor}> {labelName} </label>
+            <input type={type} name={name} placeholder={placeholder} className={campoCss.main} id={id}/>
         </div>
     )
 }

@@ -28,15 +28,17 @@ function TelaCadastro() {
            {(empresa && 
                 <fieldset>
                     <legend>Para empresas</legend>
-                    <Campo nome={"CNPJ"} msg={"CNPJ:"} tipo={"number"} dica={"Digite o cnpj da sua empresa"}/>
-                    <Campo nome={"inscricaoEstadual"} msg={"Inscrição Estadual:"} tipo={"number"} dica={"Digite a sua inscrição estadual"}/>
-                    <Campo nome={"razaoSocial"} msg={"Razão Social:"} tipo={"text"} dica={"Digite a razão social"}/>
-                    <Campo nome={"nomeFantasia"} msg={"Nome Fantasia:"} tipo={"text"} dica={"Digite o nome fantasia"}/>
+                    <Campo name={"cnpj"} id={cnpj} labelName={"Cnpj:"} type={"number"} placeholder={"Digite o cnpj da sua empresa"}/>
+                    <Campo name={"inscricaoEstadual"}  id={inscricaoEstadual} labelName={"Inscrição Estadual:"} type={"number"} placeholder={"Digite a sua inscrição estadual"}/>
+                    <Campo name={"razaoSocial"}  id={razaoSocial} labelName={"Razão Social:"} type={"text"} placeholder={"Digite a razão social"}/>
+                    <Campo name={"nomeFantasia"}  id={nomeFantasia} labelName={"Nome Fantasia:"} type={"text"} placeholder={"Digite o nome fantasia"}/>
                 </fieldset>
             )}
                
             <fieldset>
                 <legend>Cadastro</legend>
+
+                <Campo htmlFor={"xxx"}/>
 
                 <label htmlFor="nome">Nome: </label>
                 <input type="text" name="nome" id="nome" placeholder="Digite o seu nome"></input>

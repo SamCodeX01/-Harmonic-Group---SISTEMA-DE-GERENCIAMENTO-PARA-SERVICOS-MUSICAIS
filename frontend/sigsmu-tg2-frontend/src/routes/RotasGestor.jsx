@@ -5,11 +5,11 @@ import { Routes, Route } from "react-router-dom";
 import styles from "./CSS/rotasgestor.module.css"
 
 // Importações de telas do gestor
-import TelaInicio from "../pages_containers/Telas do Gestor/TelaInicio";
-import TelaSolicitacoesServico from "../pages_containers/Telas do Gestor/TelaSolicitacoesServico";
-import TelaBancoDeDados from "../pages_containers/Telas do Gestor/TelaBancoDeDados";
-import TelaPermissoes from "../pages_containers/Telas do Gestor/TelaPermissoes";
-import TelaHistorico from "../pages_containers/Telas do Gestor/TelaHistorico";
+import TelaInicio from "../pages_containers/telas-do-gestor/TelaInicio";
+import TelaSolicitacoesServico from "../pages_containers/telas-do-gestor/TelaSolicitacoesServico";
+import TelaBancoDeDados from "../pages_containers/telas-do-gestor/TelaBancoDeDados";
+import TelaPermissoes from "../pages_containers/telas-do-gestor/TelaPermissoes";
+import TelaHistorico from "../pages_containers/telas-do-gestor/TelaHistorico";
 import Header from "../components/cadastronobd/Header";
 
 
