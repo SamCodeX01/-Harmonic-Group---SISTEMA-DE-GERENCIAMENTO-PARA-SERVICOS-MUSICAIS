@@ -1,24 +1,17 @@
 // Importações de estilos
 import styles from "./CSS/cards.module.css"
 
-// Importações do React
-import { useState } from "react";
-
 // Importações de componentes
 import BotoesSolicitacoesGestor from "./BotoesSolicitacoesGestor";
 
 
-// DESCRIÇÃO
-function Cards({id, objCliente, metodoSet, comBotao=false, clicavel=false}) {
-    const [mostrarBotoes, setMostrarBotoes] = useState(false)
+// DESCRIÇÃO...
+function Cards({id, objCliente, metodoSet, comBotao=false, idCardSelecionado}) {
 
     return (
         <div 
-            className={(comBotao ? styles.main : styles.mainSemFlex)} 
+            className={`${styles.main} ${(comBotao ? styles.mainComFlex : styles.mainSemFlex)}`} 
             id={id}
-            onClick={clicavel ? () => {
-                setMostrarBotoes(!mostrarBotoes)
-            } : ""}
             >
 
             <div className={styles.secondary}>
@@ -36,7 +29,10 @@ function Cards({id, objCliente, metodoSet, comBotao=false, clicavel=false}) {
                 </div>
             </div>
 
-            { (mostrarBotoes && <BotoesSolicitacoesGestor />) }
+            {/* Mostra os botões correspondentes ao card selecionado */}
+            {idCardSelecionado === "icard"+id && <BotoesSolicitacoesGestor />}
+
+            
             { (comBotao && <button className={styles.button}>Visualizar <br/> contrato</button>) }
 
         </div>

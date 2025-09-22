@@ -1,8 +1,9 @@
 .main {
-    
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
 }
 
-.main > div > div:hover {
+.main label > div:hover {
     background-color: aqua;
-    cursor: pointer;
 }

@@ -1,7 +1,7 @@
 .main {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: center;
+    justify-content: space-between;
 
     padding: 10px;
     gap: 15px;

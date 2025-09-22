@@ -1,11 +1,11 @@
 .main {
-    height: 35px;
+    height: fit-content;
     border-radius: 5px;
     font-size: 1.2em;
 
     width: fit-content;
     padding: 7px 10px 0px 10px;
-    border: 1px solid black;
+    border: solid black;
     text-align: center;
 }
 .main:hover {

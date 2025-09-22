@@ -25,7 +25,7 @@ function TelaCadastro() {
             <label htmlFor="pessoaJuridica">Pessoa Jurídica</label>
            
            {/* Renderiza o fieldset somente se empresa for igual a true */}
-           {(empresa && 
+           {(empresa &&
                 <fieldset>
                     <legend>Para empresas</legend>
                     <Campo name={"cnpj"} id={cnpj} labelName={"Cnpj:"} type={"number"} placeholder={"Digite o cnpj da sua empresa"}/>
