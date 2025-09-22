@@ -2,8 +2,6 @@
 import styles from "./CSS/telainicio.module.css"
 
 // Importações de componentes
-// import BotaoSimples from "../../components/forms/BotaoSimples";
-// import Radio from "../../components/forms/Radio";
 import Lado from "../../components/_maiores/gestor/indicadores/Lado";
 
 // Importações do React

@@ -13,7 +13,11 @@ import TelaBancoDeDados from "../pages_containers/telas-do-gestor/TelaBancoDeDad
 import TelaPermissoes from "../pages_containers/telas-do-gestor/TelaPermissoes";
 import TelaHistorico from "../pages_containers/telas-do-gestor/TelaHistorico";
 
+import TelaAlteracaoContrato from "../pages_containers/telas-do-gestor/_telas-de-opcoes/TelaAlteracaoContrato";
+import TelaAtribuicaoAutomatica from "../pages_containers/telas-do-gestor/_telas-de-opcoes/TelaAtribuicaoAutomatica";
+import TelaAtribuicaoManual from "../pages_containers/telas-do-gestor/_telas-de-opcoes/TelaAtribuicaoManual";
 import TelaDeCustos from "../pages_containers/telas-do-gestor/_telas-de-opcoes/TelaDeCustos";
+import TelaEnvioDevolutiva from "../pages_containers/telas-do-gestor/_telas-de-opcoes/TelaEnvioDevolutiva";
 
 
 function RotasGestor() {
@@ -30,11 +34,11 @@ function RotasGestor() {
                 <Route path="/Permissoes" element={<TelaPermissoes />} />
                 <Route path="/Historico" element={<TelaHistorico />} /> 
 
+                <Route path="/AlteracaoContrato" element={<TelaAlteracaoContrato />} />
                 <Route path="/Custos" element={<TelaDeCustos />} /> 
-                <Route path="/Custos" element={<TelaDeCustos />} /> 
-                <Route path="/Custos" element={<TelaDeCustos />} /> 
-                <Route path="/Custos" element={<TelaDeCustos />} /> 
-                <Route path="/Custos" element={<TelaDeCustos />} /> 
+                <Route path="/AtribuicaoAutomatica" element={<TelaAtribuicaoAutomatica />} /> 
+                <Route path="/AtribuicaoManual" element={<TelaAtribuicaoManual />} /> 
+                <Route path="/Devolutiva" element={<TelaEnvioDevolutiva />} /> 
             </Routes>
          </div>
     )
