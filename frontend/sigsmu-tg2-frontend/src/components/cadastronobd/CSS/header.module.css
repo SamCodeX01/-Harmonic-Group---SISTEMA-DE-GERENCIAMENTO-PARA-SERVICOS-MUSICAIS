@@ -7,5 +7,5 @@
     gap: 15px;
 }
 .main * {
-    height: fit-content;
+    height: fit-content; /*fit-content define que a altura de um elemento será ajustada dinamicamente para se encaixar perfeitamente no seu conteúdo.*/
 }

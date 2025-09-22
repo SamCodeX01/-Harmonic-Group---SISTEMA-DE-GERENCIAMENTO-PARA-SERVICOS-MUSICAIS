@@ -1,0 +1,60 @@
+/* Função: CSS Global. Todas as regras que você colocar nele serão aplicadas a toda a aplicação, 
+independentemente do componente. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+   /* Suaviza o scroll na página  */
+    scroll-behavior: smooth;
+}
+
+body {
+ 
+/*Fundo e cor base do texto */
+  background-color: #beb8f0;  
+  color: #333; 
+
+/* Melhora a renderização das fontes  */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+/* Fonte padrão */
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  /* line-height: 1.2; */
+}
+
+/* Links */
+a {
+  color: inherit; /* Herda a cor do elemento pai*/
+  text-decoration: none; /*Remove o sublinhado*/ 
+}
+
+* Listas 
+ul, ol {
+  list-style: none; /* Remove as bolinhas/números */
+}
+
+/* Imagens */
+img {
+  max-width: 100%; /* Faz a imagem ser responsiva*/ 
+  height: auto; /* Mantém a proporção*/
+  display: block; /* Remove espaço fantasma abaixo da imagem */
+}
+
+/* Botões e inputs (para remover estilos padrão do navegador) */
+
+button, input, textarea, select {
+  font: inherit; /* Faz com que herdem a fonte do body*/
+  border: none;
+  background: none;
+  outline: none; /* Cuidado com acessibilidade! Considere estilar o :focus */
+}
+
+/* Melhoria de acessibilidade para remover outline mas manter funcionalidade */
+button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+}

@@ -2,7 +2,7 @@
 import styles from "./CSS/telacadastro.module.css"
 
 // Importações de componentes
-import Campo from "../../components/forms/Campo";
+import Campo from "../components/forms/Campo";
 
 // Importações do React
 import { useState } from "react";
@@ -37,23 +37,16 @@ function TelaCadastro() {
                
             <fieldset>
                 <legend>Cadastro</legend>
+                <Campo htmlFor={"nome"} labelName={"Nome:"} type={"text"} name={"nome"} id={"nome"} placeholder={"Digite o seu nome"}/>
+                <Campo htmlFor={"sobrenome"} labelName={"Sobrenome:"} type={"text"} name={"sobrenome"} id={"sobrenome"} placeholder={"Digite o seu sobrenome"}/>
+                <Campo htmlFor={"nascimento"} labelName={"Nascimento: "} type={"date"} name={"nascimento"} id={"nascimento"} placeholder={"Digite o seu nome"}/>           
+                <label htmlFor="titulo">Como você se identifica?</label>
 
-                <Campo htmlFor={"xxx"}/>
-
-                <label htmlFor="nome">Nome: </label>
-                <input type="text" name="nome" id="nome" placeholder="Digite o seu nome"></input>
-
-                <label htmlFor="sobrenome">Sobrenome: </label>
-                <input type="text" name="sobrenome" id="sobrenome" placeholder="Digite o seu sobrenome"></input>
-
-                <label htmlFor="nascimento">Nascimento: </label>          
-                <input type="date" name="nascimento" id="nascimento"/>            
-           
-                <label htmlFor="titulo">Qual o seu gênero?</label>
                 <select>
                     <optgroup label="Titulo">
-                        <option>Feminino</option>
-                        <option>Masculino</option>
+                        <option>Homem</option>
+                        <option>Mulher</option>
+                        <option>Transgênero</option>
                         <option>Prefiro não dizer</option>
                         <option>Outro</option>
                         <input type="text" />
@@ -63,51 +56,24 @@ function TelaCadastro() {
            
             <fieldset>
                 <legend>Contatos</legend>
-
-                <label htmlFor="telefone">Telefone</label>
-                <input type="text" name="telefone" id="telefone" placeholder="Digite o seu telefone" />
-                
-                <label htmlFor="celular">Celular</label>
-                <input type="text" name="celular" id="celular" placeholder="Digite o seu celular" />
-                
-                <label htmlFor="email">E-mail</label>
-                <input type="email" name="email" id="email" placeholder="Digite o seu email" />
-                
-                <label htmlFor="dataCadastro">Data do Cadastro</label>
-                <input type="text" name="dataCadastro" id="dataCadastro" placeholder="Digite a data do seu aniversário"></input>
+                <Campo htmlFor={"telefone"} labelName={"Telefone:"} type={"tel"} name={"telefone"} id={"telefone"} placeholder={"Digite o seu telefone"}/>
+                <Campo htmlFor={"celular"} labelName={"Celular: "} type={"tel"} name={"celular"} id={"celular"} placeholder={"Digite o seu celular"}/>
+                <Campo htmlFor={"email"} labelName={"E-mail: "} type={"email"} name={"email"} id={"email"} placeholder={"Digite o seu e-mail"}/>
+                <Campo htmlFor={"datacadastro"} labelName={"Data do Cadastro: "} type={"date"} name={"datacadastro"} id={"datacadastro"}/>
             </fieldset>
 
 
             <fieldset>
                 <legend>Endereço</legend>
-
-                <label htmlFor="rua">Rua: </label>
-                <input type="text" name="rua" id="rua" placeholder="Digite o nome da rua"></input>
-
-                <label htmlFor="numero">Número: </label>
-                <input type="text" name="numero" id="numero" placeholder="Digite o número da rua"></input>
-
-                <label htmlFor="complemento">Complemento: </label>
-                <input type="text" name="complemento" id="complemento" placeholder="Digite o complemento"></input>
-
-                <label htmlFor="bairro">Bairro: </label>
-                <input type="text" name="bairro" id="bairro" placeholder="Digite o bairro"></input>
-
-                <label htmlFor="cep">CEP: </label>
-                <input type="number" name="cep" id="cep" placeholder="Digite o cep"></input>
-
-                <label htmlFor="cidade">Cidade: </label>
-                <input type="text" name="cidade" id="cidade" placeholder="Digite a cidade"></input>
-
-                <label htmlFor="estado">Estado: </label>
-                <input type="text" name="estado" id="estado" placeholder="Digite o estado"></input>
-                
-                <label htmlFor="referencia">Referência: </label>
-                <input type="text" name="referencia" id="referencia" placeholder="Digite uma refência"></input>
+                <Campo htmlFor={"rua"} labelName={"Rua: "} type={"text"} name={"rua"} id={"rua"} placeholder={"Digite o nome da rua"}/>
+                <Campo htmlFor={"numero"} labelName={"Número: "} type={"text"} name={"numero"} id={"numero"} placeholder={"Digite o número da rua"}/>
+                <Campo htmlFor={"complemento"} labelName={"Complemento: "} type={"text"} name={"complemento"} id={"complemento"} placeholder={"Digite o complemento do endereço"}/>
+                <Campo htmlFor={"bairro"} labelName={"Bairro: "} type={"text"} name={"bairro"} id={"bairro"} placeholder={"Digite o seu bairro"}/>
+                <Campo htmlFor={"cep"} labelName={"CEP: "} type={"text"} name={"cep"} id={"cep"} placeholder={"Digite o seu CEP"}/>
+                <Campo htmlFor={"cidade"} labelName={"Cidade: "} type={"text"} name={"cidade"} id={"cidade"} placeholder={"Digite a sua cidade"}/>
+                <Campo htmlFor={"estado"} labelName={"Estado: "} type={"text"} name={"estado"} id={"dataestado"} placeholder={"Digite o estado"}/>
+                <Campo htmlFor={"referencia"} labelName={"Referência: "} type={"text"} name={"referencia"} id={"referencia"} placeholder={"Digite o endereço de referência"}/>
             </fieldset>
-
-            <input type="password" name="senha" placeholder="Digite a sua senha" />
-            <input type="email" name="senha" placeholder="Digite o seu email" />
             <button type="submit">ENVIAR</button>
 
             {/* Passa para a próxima tela */} 

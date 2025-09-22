@@ -2,8 +2,8 @@
 import styles from "./CSS/telalogin.module.css"
 
 // Importações de componentes
-import Botao from "../../components/forms/Botao.jsx";
-import Campo from "../../components/forms/Campo.jsx";
+import Botao from "../components/forms/Botao.jsx";
+import Campo from "../components/forms/Campo.jsx";
 
 
 // Tela de LOGIN - para que usuários logem no sistema e vejam configurações específicas para cada tipo de perfil
@@ -19,7 +19,8 @@ function TelaLogin() {
                 dica="Informe sua senha"/>
                 <Botao msg="Fazer login" estilo={true}/>
             </form>
-            <p><a href="" target="blank">Esqueci minha senha</a></p>
+
+            <p><a href="#" target="blank">Esqueci minha senha</a></p>
             
             <p>Não tem uma conta?</p>
 

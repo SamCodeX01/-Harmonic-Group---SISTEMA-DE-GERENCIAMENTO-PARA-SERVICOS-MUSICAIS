@@ -2,7 +2,7 @@
 import styles from "./CSS/teladetelas.module.css"
 
 // Importações de componentes
-import BotaoDirecionavel from "../../components/forms/BotaoDirecionavel";
+import BotaoDirecionavel from "../components/forms/BotaoDirecionavel";
 
 
 // Tela criada para MOSTRAR TODAS AS TELAS JÁ CRIADAS (para facilitar)
