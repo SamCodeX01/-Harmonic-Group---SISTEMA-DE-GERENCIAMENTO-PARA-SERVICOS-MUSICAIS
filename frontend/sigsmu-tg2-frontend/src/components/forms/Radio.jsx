@@ -22,6 +22,8 @@ function Radio({children, selecionado, setSelecionado, name, grupo=1, arrayValor
                                         background: selecionado === ("i"+name+i) ? "red" : ""
                                     }
 
+                                    
+
                                     // style: teste
                                 })
                             }

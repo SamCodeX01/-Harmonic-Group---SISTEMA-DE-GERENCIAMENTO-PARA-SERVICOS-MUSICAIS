@@ -5,21 +5,15 @@ import styles from "./CSS/rotasgestor.module.css"
 import { Routes, Route } from "react-router-dom";
 
 // Importações de telas do gestor
-<<<<<<< HEAD
-import TelaInicio from "../pages_containers/Telas do Gestor/TelaInicio";
-import TelaSolicitacoesServico from "../pages_containers/Telas do Gestor/TelaSolicitacoesServico";
-import TelaBancoDeDados from "../pages_containers/Telas do Gestor/TelaBancoDeDados";
-import TelaPermissoes from "../pages_containers/Telas do Gestor/TelaPermissoes";
-import TelaHistorico from "../pages_containers/Telas do Gestor/TelaHistorico";
 import Header from "../components/_maiores/gestor/Header";
-=======
+
 import TelaInicio from "../pages_containers/telas-do-gestor/TelaInicio";
 import TelaSolicitacoesServico from "../pages_containers/telas-do-gestor/TelaSolicitacoesServico";
 import TelaBancoDeDados from "../pages_containers/telas-do-gestor/TelaBancoDeDados";
 import TelaPermissoes from "../pages_containers/telas-do-gestor/TelaPermissoes";
 import TelaHistorico from "../pages_containers/telas-do-gestor/TelaHistorico";
-import Header from "../components/cadastronobd/Header";
->>>>>>> 2282936ef8bc8701e1cb03a53ae3e78904ddb6a2
+
+import TelaDeCustos from "../pages_containers/telas-do-gestor/_telas-de-opcoes/TelaDeCustos";
 
 
 function RotasGestor() {
@@ -35,6 +29,12 @@ function RotasGestor() {
                 <Route path="/BancoDeDados" element={<TelaBancoDeDados />} />
                 <Route path="/Permissoes" element={<TelaPermissoes />} />
                 <Route path="/Historico" element={<TelaHistorico />} /> 
+
+                <Route path="/Custos" element={<TelaDeCustos />} /> 
+                <Route path="/Custos" element={<TelaDeCustos />} /> 
+                <Route path="/Custos" element={<TelaDeCustos />} /> 
+                <Route path="/Custos" element={<TelaDeCustos />} /> 
+                <Route path="/Custos" element={<TelaDeCustos />} /> 
             </Routes>
          </div>
     )

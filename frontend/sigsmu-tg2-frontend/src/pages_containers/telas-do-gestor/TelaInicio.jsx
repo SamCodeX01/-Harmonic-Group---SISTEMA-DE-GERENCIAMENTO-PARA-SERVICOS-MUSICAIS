@@ -4,6 +4,7 @@ import styles from "./CSS/telainicio.module.css"
 // Importações de componentes
 // import BotaoSimples from "../../components/forms/BotaoSimples";
 // import Radio from "../../components/forms/Radio";
+import Lado from "../../components/_maiores/gestor/indicadores/Lado";
 
 // Importações do React
 import { useState } from "react";
@@ -15,7 +16,8 @@ function TelaInicio() {
 
     return (
         <div className={styles.main}>
-            
+            <Lado arrayMsg={["Receitas", "Meta de Receitas"]} />
+            <Lado arrayMsg={["Despesas", "Meta de Despesas"]} />
         </div>
     )
 }
