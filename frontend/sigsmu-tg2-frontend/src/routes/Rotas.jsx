@@ -2,9 +2,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 // Importações das telas
-import TelaDeTeste from '../pages_containers/TelaDeTelas';
-import TelaLogin from '../pages_containers/Outras/TelaLogin';
-import TelaCadastro from '../pages_containers/Outras/TelaCadastro';
+import TelaLogin from '../pages_containers/telas-geral/TelaLogin';
+import TelaCadastro from '../pages_containers/telas-geral/TelaCadastro';
+
+import TelaPosLogin from '../pages_containers/telas-geral/TelaPosLogin';
 
 // Importações de rotas específicas
 import RotasGestor from './RotasGestor.jsx';
@@ -14,12 +15,14 @@ function Rotas() {
     return (
         <Router>
             <Routes>
-                <Route index element={<TelaDeTeste/>}/>
+                <Route index element={<TelaLogin/>}/>
                 
-                <Route path='/TelaLogin/' element={<TelaLogin/>}/>
+                {/*                   Rotas Gerais                  */}
+                <Route path='/TelaLogin/'    element={ <TelaLogin/>  }/>
                 <Route path='/TelaCadastro/' element={<TelaCadastro/>}/>
+                <Route path='/TelaPosLogin/' element={<TelaPosLogin/>}/>
 
-                {/* Rotas de Usuários */}
+                {/*                Rotas de Usuários                */}
                 <Route path='/RotasGestor/*' element={<RotasGestor />}/>
             </Routes>
         </Router>
