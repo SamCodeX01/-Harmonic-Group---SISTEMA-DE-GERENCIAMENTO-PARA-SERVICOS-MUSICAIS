@@ -1,5 +1,5 @@
 // Importações de estilos
-import css from "./CSS/rotasgestor.module.css"
+import css from "./CSS/rotas.module.css"
 
 // Importações do React
 import { Routes, Route } from "react-router-dom";

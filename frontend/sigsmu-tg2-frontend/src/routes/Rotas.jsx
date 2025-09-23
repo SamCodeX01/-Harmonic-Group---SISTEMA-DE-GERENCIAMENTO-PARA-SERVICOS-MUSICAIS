@@ -10,6 +10,7 @@ import TelaPosLogin from '../pages_containers/telas-geral/TelaPosLogin';
 
 // Importações de rotas específicas
 import RotasGestor from './RotasGestor.jsx';
+import RotasCliente from './RotasCliente.jsx';
 
 
 function Rotas() {
@@ -19,12 +20,13 @@ function Rotas() {
                 <Route index element={<TelaLogin/>}/>
                 
                 {/*                   Rotas Gerais                  */}
-                <Route path='/TelaLogin/'    element={ <TelaLogin/>  }/>
-                <Route path='/TelaCadastro/' element={<TelaCadastro/>}/>
-                <Route path='/TelaPosLogin/' element={<TelaPosLogin/>}/>
+                <Route path='/TelaLogin/'     element={ <TelaLogin/>  }/>
+                <Route path='/TelaCadastro/'  element={<TelaCadastro/>}/>
+                <Route path='/TelaPosLogin/'  element={<TelaPosLogin/>}/>
 
                 {/*                Rotas de Usuários                */}
-                <Route path='/RotasGestor/*' element={<RotasGestor />}/>
+                <Route path='/RotasGestor/*'  element={<RotasGestor />}/>
+                <Route path='/RotasCliente/*' element={<RotasCliente />}/>
             </Routes>
         </Router>
     )

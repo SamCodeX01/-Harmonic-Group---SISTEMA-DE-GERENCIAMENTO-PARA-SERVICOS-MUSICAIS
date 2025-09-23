@@ -28,7 +28,7 @@ function TelaLogin() {
                 <Botao 
                     msg="Fazer login" 
                     estilo={true}
-                    rota={"/RotasGestor/"}
+                    rota={"/TelaPosLogin/"}
                 />
             </form>
 

@@ -7,8 +7,6 @@ import Lado from "../_componentes-grandes/indicadores/Lado";
 
 // Tela de INÍCIO - para auxiliar o gestor com gráficos e análises de desempenho relativos a qualidade dos serviços prestados
 function TelaInicio() {
-    
-
     return (
         <div className={css.main}>
             <Lado arrayMsg={["Receitas", "Meta de Receitas"]} />
