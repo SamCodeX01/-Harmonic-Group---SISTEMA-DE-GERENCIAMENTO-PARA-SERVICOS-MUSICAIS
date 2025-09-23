@@ -1,0 +1,51 @@
+.main {
+    height: 90vh;
+    margin-top: 10px;
+    border: solid;
+}
+
+.main > form {
+    margin-top: 10px;
+}
+.main input {
+    text-indent: 2px;
+}
+.main legend {
+    font-weight: 600;
+}
+.main fieldset {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: start;
+    gap: 10px;
+
+    width: 50%;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+/* Joga label pra cima e input pra baixo */
+.main fieldset div * {
+    display: block;
+    width: 100%;
+}
+.main fieldset > div {
+    /* Permite que os campos aumentem de tamanho (1), não diminuam (0) e que tenham tamanho inicial de 200px */
+    flex: 1 0 200px;
+}
+
+.ultimo {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 10px;
+
+    width: 100%;
+}
+
+.tipolocal{
+    width: 33%;
+}
+
+.complemento {
+    flex: 1 0 50px;
+}

@@ -17,6 +17,11 @@
     width: 100%;
 }
 
+.main  > div {
+    /* border: 1px solid black; */
+    padding: 10px;
+}
+
 /* Altera o primeiro botão */
 .main > div, .button {
     width: 80%;
@@ -36,9 +41,23 @@
     height: 100px;
 }
 
+/* Todos os botões da página */
+.main button {
+    padding: 8px;
+}
+
 /* Último botão da página */
 .main button:nth-last-child(1) {
+    display: block;
     cursor: pointer;
+
     margin: 0 10%;
+    margin-left: auto;
     background-color: yellow;
+}
+
+
+
+.main span {
+    color: red;
 }
