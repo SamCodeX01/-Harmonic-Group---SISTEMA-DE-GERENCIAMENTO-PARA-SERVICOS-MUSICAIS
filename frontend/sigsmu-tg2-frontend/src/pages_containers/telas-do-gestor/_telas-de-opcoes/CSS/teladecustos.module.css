@@ -1,0 +1,37 @@
+.main {
+    border: solid black;
+    width: 700px;
+    margin: auto;
+    height: 90vh;
+}
+.main > div {
+    margin: 10px;
+}
+
+/* ========== */
+.botoes {
+    display: flex;
+    justify-content: space-around;
+    /* border: solid black; */
+}
+
+/* ========== */
+.transporte, .musico {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 10px;
+
+    border: solid black;
+    padding: 10px;
+}
+.transporte > div *, .musico > div * {
+    /* border: solid black; */
+    display: block !important;
+    margin: 0 30px;
+}
+
+/* ========== */
+.musico {
+    border: solid black;
+}

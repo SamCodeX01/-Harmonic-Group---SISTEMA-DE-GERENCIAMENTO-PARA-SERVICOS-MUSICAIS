@@ -6,7 +6,7 @@ import styles from "./CSS/telapermissoes.module.css"
 function TelaPermissoes() {
     return (
         <div className={styles.main}>
-            Permissoes
+            Em desenvolvimento...
         </div>
     )
 }

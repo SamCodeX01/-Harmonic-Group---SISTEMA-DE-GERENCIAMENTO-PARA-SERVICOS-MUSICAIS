@@ -1,0 +1,25 @@
+.main {
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+
+    width: 400px;
+    padding: 10px;
+    margin: auto;
+}
+
+.main fieldset {
+    padding: 10px;
+}
+
+.main fieldset > div {
+    width: 100%;
+    margin-bottom: 8px;
+    
+    color: white;
+    font-weight: 600;
+}
+
+.main fieldset > div:hover {
+    background-color: blue;
+}

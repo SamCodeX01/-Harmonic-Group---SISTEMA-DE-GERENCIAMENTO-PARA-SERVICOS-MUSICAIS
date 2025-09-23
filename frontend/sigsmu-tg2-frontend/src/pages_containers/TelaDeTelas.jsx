@@ -1,17 +1,27 @@
 // Importações de estilos
-import styles from "./CSS/teladetelas.module.css"
+import styles from "./teladetelas.module.css"
 
 // Importações de componentes
-import BotaoDirecionavel from "../components/forms/BotaoDirecionavel";
+
+import BotaoSimples from "../components/forms/BotaoSimples";
 
 
 // Tela criada para MOSTRAR TODAS AS TELAS JÁ CRIADAS (para facilitar)
 function TelaDeTelas() {
     return (
         <div className={styles.main}>
-            <BotaoDirecionavel msg="Tela de Login" estilo={true} rota="/TelaLogin/" />
-            <BotaoDirecionavel msg="Tela de Cadastro" estilo={true} rota="/TelaCadastro/" />
-            <BotaoDirecionavel msg="Tela de Alteração do Banco do Gestor" estilo={true} rota="/RotasGestor" />
+
+            <fieldset>
+                <legend>Geral</legend>
+                <BotaoSimples msg="Tela de Login" estilo={true} rota="/TelaLogin/" />
+                <BotaoSimples msg="Tela de Cadastro" estilo={true} rota="/TelaCadastro/" />
+            </fieldset>
+
+            <fieldset>
+                <legend>Gestor</legend>
+                <BotaoSimples msg="Telas do Gestor" estilo={true} rota="/RotasGestor" />
+            </fieldset>
+
         </div>
     )
 }

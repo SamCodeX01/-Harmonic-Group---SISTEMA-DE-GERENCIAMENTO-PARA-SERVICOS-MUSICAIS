@@ -1,15 +1,15 @@
-// Importações do React
-import { useNavigate } from "react-router-dom";
-
 // Importações de estilos
 import styles from "./CSS/botaosimples.module.css"
 
+// Importações do React
+import { useNavigate } from "react-router-dom";
+
 
 // Componente criado para FACILITAR A PASSAGEM DE PARÂMETROS para um botão comum
-function BotaoSimples({msg, estilo, rota=null, value=null, style=null}) {
+function BotaoSimples({msg, estilo, rota=null, style=null}) {
     const navigate = useNavigate()
 
-    // Retorna uma div para permitir manipulações futuras (button não funciona)
+    // Retorna uma div para permitir manipulações futuras (BUTTON não funciona)
     return (
         <div 
             className={`
@@ -24,8 +24,6 @@ function BotaoSimples({msg, estilo, rota=null, value=null, style=null}) {
                 // Se tiver rota
                 navigate(rota)
             }}
-
-            value={value}
 
             // Em uso (radio)
             style={style}

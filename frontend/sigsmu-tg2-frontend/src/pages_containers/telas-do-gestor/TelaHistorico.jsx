@@ -2,7 +2,7 @@
 import styles from "./CSS/telahistorico.module.css"
 
 // Importações de componentes
-import Cards from "../../components/historicoGestor/Cards";
+import Cards from "../../components/_maiores/gestor/historicoGestor/Cards";
 import { useState } from "react";
 
 
@@ -14,6 +14,7 @@ function TelaHistorico() {
         idSolicitacao: 1234,
         nomeCliente: "Guilherme",
         situacaoServico: "Em andamento",
+
         dataSolicitacao: "23/12/2022",
         tipoServico: "Aniversário",
         pacoteEscolhido: "Harmonic Duo"
@@ -21,8 +22,8 @@ function TelaHistorico() {
 
     return (
         <div className={styles.main}>
-            <Cards key={1} objCliente={dadosCliente} metodoSet={setDadosCliente} comBotao={true} />
-            <Cards key={2} objCliente={dadosCliente} comBotao={true} />
+            <Cards id={1} objCliente={dadosCliente} metodoSet={setDadosCliente} comBotao={true} />
+            <Cards id={2} objCliente={dadosCliente} metodoSet={setDadosCliente} comBotao={true} />
         </div>
     )
 }

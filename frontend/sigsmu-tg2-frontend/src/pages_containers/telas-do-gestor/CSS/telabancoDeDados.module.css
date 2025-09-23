@@ -1,5 +1,6 @@
 .main {
-    border: solid blue;
+    /* border: solid blue; */
+
     display: grid;
     grid-template: 1fr 3fr 3fr 2fr / 1fr 2fr ;
 
@@ -10,14 +11,19 @@
     height: 30px;
 }
 
+/* ========== */
 .schema {
+    display: flex;
+    text-align: center;
+    align-items: center;    
+
     /* background-color: aqua; */
     grid-area: 1 / 1 / -1 / 2;
     height: 100%;
 }
 
 
-
+/* ========== */
 .botoes {
     grid-area: 1 / 2 / 2 / -1;
 
@@ -28,56 +34,76 @@
     align-items: center;
     
     height: 100%;
-    border: 1px solid red;
 } 
 .botoes * {
-    border: solid black;
     height: fit-content;
-    flex: 0 0 170px
+    flex: 0 0 170px;
+}
+.botoes label > div {
+    width: 100%;
 }
 
 
+/* ========== */
 .seletorTabelas {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
+    align-items: center;
 
     grid-area: 2 / 2 / 3 / -1;
 
-    background-color: blue;
     height: 100%;
-} .seletorTabelas * {
+
+    /* background-color: blue;  */
+} 
+
+.seletorTabelas * {
     width: 350px;
+    padding: 5px;
+    background-color: brown;
+} 
+
+.seletorTabelas *:hover {
+    color: white;
 }
 
 
+/* ========== */
 .tabelaCampos {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: red;
     height: 100%;
     width: 100%;
-    
-
     grid-area: 3 / 2 / 4 / -1;
 }
 .tabelaCampos > div {
-    font-size: 1.5em;
 
-    min-width: 300px;
-    max-width: 430px;
+    /* font-size: 1.5em; */
 
+    width: 400px;
+    margin: auto;
     padding: 20px;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
-.tabelaCampos > div > button {
+
+.tabela > div {
     width: 100%;
-    background-color: red;
+}
+
+.campos {
+    display: flex;
+    flex-flow: row wrap;
+}
+.campos > * {
+    background-color: rgba(3, 3, 104, 0.496);
+    flex: 1 0 40px;
 }
 
 
+/* ========== */
 .inputGestor {
     grid-area: -2 / 2 / -1 / -1;
     height: 100%;
@@ -87,7 +113,6 @@
     width: 80%; 
     
 }
-
 .inputGestor > div {
     display: flex;
     gap: 20px;

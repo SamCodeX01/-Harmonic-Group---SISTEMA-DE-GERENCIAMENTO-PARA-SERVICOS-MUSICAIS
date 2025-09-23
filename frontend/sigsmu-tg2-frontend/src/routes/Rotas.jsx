@@ -1,12 +1,14 @@
+// Importações do React
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 // Importação das Telas
-import TelaDeTeste from '../pages_containers/TelaDeTelas.jsx';
-import TelaLogin from '../pages_containers/TelaLogin.jsx';
-import TelaCadastro from '../pages_containers/TelaCadastro.jsx';
+import TelaDeTeste from '../pages_containers/Outras/TelaDeTelas';
+import TelaLogin from '../pages_containers/Outras/TelaLogin';
+import TelaCadastro from '../pages_containers/Outras/TelaCadastro';
 
-// Importação das rotas específicas
+// Importações de rotas específicas
 import RotasGestor from './RotasGestor.jsx';
+
 
 function Rotas() {
     return (

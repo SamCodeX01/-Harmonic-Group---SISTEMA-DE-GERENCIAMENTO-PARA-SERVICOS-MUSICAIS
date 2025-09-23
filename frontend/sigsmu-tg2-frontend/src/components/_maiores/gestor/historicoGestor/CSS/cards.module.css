@@ -1,10 +1,8 @@
-.main {
+.mainComFlex {
     display: flex;
     flex-flow: row nowrap;
     gap: 10px;
 
-    width: 70%;
-    margin: auto;
     padding: 10px;
 } .main span {
     font-weight: 600;
@@ -12,18 +10,19 @@
 
 /* Necessária quando não há botão */
 .mainSemFlex {
-    width: 70%;
-    margin: auto;
     padding: 10px;
+}
+
+.main {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.459);
 }
 
 
 .secondary {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 
     width: 100%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.459);
 }
 
 .button {
