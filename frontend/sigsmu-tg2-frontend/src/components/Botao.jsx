@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 
 // Componente criado para FACILITAR A PASSAGEM DE PARÂMETROS para um botão comum
-function Botao({msg, estilo, rota=null, style=null}) {
+function Botao({msg, estilo, rota=null, style=null, value=null}) {
     const navigate = useNavigate()
 
     // Retorna uma div para permitir manipulações futuras (BUTTON não funciona)
@@ -27,6 +27,8 @@ function Botao({msg, estilo, rota=null, style=null}) {
 
             // Em uso (radio)
             style={style}
+
+            value={value}
         >
         {msg} </div>
     )
