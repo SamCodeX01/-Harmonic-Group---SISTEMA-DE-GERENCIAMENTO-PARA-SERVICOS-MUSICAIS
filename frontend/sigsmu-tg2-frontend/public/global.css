@@ -14,7 +14,7 @@ html {
 body {
  
 /*Fundo e cor base do texto */
-  background-color: #beb8f0;  
+  /* background-color: #beb8f0;   */
   color: #333; 
 
 /* Melhora a renderização das fontes  */
@@ -48,7 +48,7 @@ img {
 
 button, input, textarea, select {
   font: inherit; /* Faz com que herdem a fonte do body*/
-  border: none;
+  /* border: none; */
   background: none;
   outline: none; /* Cuidado com acessibilidade! Considere estilar o :focus */
 }

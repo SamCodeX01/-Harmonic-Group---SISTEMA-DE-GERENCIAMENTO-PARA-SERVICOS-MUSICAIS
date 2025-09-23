@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 // Importações das telas
 import TelaLogin from '../pages_containers/telas-geral/TelaLogin';
-import TelaCadastro from '../pages_containers/telas-geral/TelaCadastro';
+import TelaCadastro from '../pages_containers/telas-geral/TelaCadastro.jsx';
 
 import TelaPosLogin from '../pages_containers/telas-geral/TelaPosLogin';
 

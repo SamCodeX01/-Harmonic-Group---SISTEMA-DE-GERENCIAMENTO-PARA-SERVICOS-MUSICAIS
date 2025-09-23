@@ -83,8 +83,6 @@ function TelaBancoDeDados() {
                         {
                             
                             Object.entries(moldeBanco).map(([nome, valor]) => {
-                                // console.log("id -> " + valor[1])
-                                // console.log("tabelaSelecionada -> " + tabelaSelecionada)
                                 return (tabelaSelecionada != valor[1] ? <Botao msg={nome} /> : <></>)
                             })
                             
@@ -109,8 +107,8 @@ function TelaBancoDeDados() {
                     {
                         (tabelaSelecionada !== null &&
                             valoresRadio.split(",").map(campo => {
-                                return <Botao msg={campo[3] !== "_" ? campo : ""} />
-                
+                                if (campo[3] !== "_")
+                                    return <Botao msg={campo} />
                             })
                         )
                     }

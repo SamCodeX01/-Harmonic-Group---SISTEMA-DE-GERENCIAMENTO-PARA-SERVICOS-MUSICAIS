@@ -52,14 +52,12 @@
     align-items: center;
 
     grid-area: 2 / 2 / 3 / -1;
-
     height: 100%;
-
-    /* background-color: blue;  */
 } 
 
-.seletorTabelas * {
-    width: 350px;
+.seletorTabelas > label > div {
+    width: 250px;
+    /* flex: 1 0 350px; */
     padding: 5px;
     background-color: brown;
 } 

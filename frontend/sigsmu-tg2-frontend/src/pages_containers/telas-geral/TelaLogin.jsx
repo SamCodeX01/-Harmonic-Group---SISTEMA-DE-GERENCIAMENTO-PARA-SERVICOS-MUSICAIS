@@ -2,8 +2,8 @@
 import css from "./CSS/telalogin.module.css"
 
 // Importações de componentes
-import Botao from "../../components/forms/Botao.jsx";
-import Campo from "../../components/forms/Campo.jsx";
+import Botao from "../../components/Botao.jsx";
+import Campo from "../../components/Campo.jsx";
 
 
 // Tela de LOGIN - para que usuários logem no sistema e vejam configurações específicas para cada tipo de perfil
@@ -31,16 +31,19 @@ function TelaLogin() {
                     rota={"/RotasGestor/"}
                 />
             </form>
-            <p><a href="" target="blank">Esqueci minha senha</a></p>
-            
-            <p>Não tem uma conta?</p>
 
-            {/* Passa para a próxima tela */}
-            <Botao 
-                msg="Criar uma nova conta"
-                estilo={false} 
-                rota={"/TelaCadastro/"} 
-            />
+            <div>
+                <p><a href="" target="blank">Esqueci minha senha</a></p>
+                
+                <p>Não tem uma conta?</p>
+                
+                {/* Passa para a próxima tela */}
+                <Botao
+                    msg="Criar uma nova conta"
+                    estilo={false}
+                    rota={"/TelaCadastro/"}
+                />
+            </div>
 
         </div>
     )
