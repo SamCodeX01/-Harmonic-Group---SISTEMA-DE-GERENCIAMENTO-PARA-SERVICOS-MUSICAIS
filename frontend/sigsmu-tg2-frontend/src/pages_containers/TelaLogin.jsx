@@ -1,5 +1,5 @@
 // Importações de estilos
-import styles from "./CSS/telalogin.module.css"
+import css from "./CSS/telalogin.module.css"
 
 // Importações de componentes
 import Botao from "../../components/forms/Botao.jsx";
@@ -9,25 +9,26 @@ import Campo from "../../components/forms/Campo.jsx";
 // Tela de LOGIN - para que usuários logem no sistema e vejam configurações específicas para cada tipo de perfil
 function TelaLogin() {
     return (
-        <div className={styles.main}>
-            <img src="../imagens/sem_imagem.png" alt="Logo" className={styles.img}/>
+        <div className={css.main}>
+            <img src="../imagens/sem_imagem.png" alt="Logo" className={css.img}/>
             
-            <form action="post" className={styles.form}>
+            <form action="post" className={css.form}>
                 <Campo 
-                    tipo="email" 
-                    nome="login" 
-                    dica="Informe seu email"
+                    type="email" 
+                    name="login" 
+                    placeholder="Informe seu email"
                 />
 
                 <Campo 
-                    tipo="password" 
-                    nome="senha"
-                    dica="Informe sua senha"
+                    type="password" 
+                    name="senha"
+                    placeholder="Informe sua senha"
                 />
                 
-                <BotaoSimples 
+                <Botao 
                     msg="Fazer login" 
                     estilo={true}
+                    rota={"/RotasGestor/"}
                 />
             </form>
             <p><a href="" target="blank">Esqueci minha senha</a></p>
@@ -35,8 +36,8 @@ function TelaLogin() {
             <p>Não tem uma conta?</p>
 
             {/* Passa para a próxima tela */}
-            <BotaoSimples 
-                msg="Criar uma nova conta" 
+            <Botao 
+                msg="Criar uma nova conta"
                 estilo={false} 
                 rota={"/TelaCadastro/"} 
             />

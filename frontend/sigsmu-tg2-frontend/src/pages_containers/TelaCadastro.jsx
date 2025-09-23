@@ -1,5 +1,5 @@
 // Importações de estilos
-import styles from "./CSS/telacadastro.module.css"
+import css from "./CSS/telacadastro.module.css"
 
 // Importações de componentes
 import Campo from "../components/forms/Campo";
@@ -15,7 +15,7 @@ function TelaCadastro() {
     const [empresa, setEmpresa] = useState(false);
 
     return(
-        <form action="url" method="POST" className={styles.main}>
+        <form action="url" method="POST" className={css.main}>
             {/* Muda o valor de empresa quando selecionado (useState) */}
             <input type="radio" name="radio"  id="pessoaFisica" defaultChecked onChange={evt => setEmpresa(!empresa)} />         
             <label htmlFor="pessoaFisica">Pessoa Física</label>
@@ -28,10 +28,10 @@ function TelaCadastro() {
            {(empresa &&
                 <fieldset>
                     <legend>Para empresas</legend>
-                    <Campo name={"cnpj"} id={cnpj} labelName={"Cnpj:"} type={"number"} placeholder={"Digite o cnpj da sua empresa"}/>
-                    <Campo name={"inscricaoEstadual"}  id={inscricaoEstadual} labelName={"Inscrição Estadual:"} type={"number"} placeholder={"Digite a sua inscrição estadual"}/>
-                    <Campo name={"razaoSocial"}  id={razaoSocial} labelName={"Razão Social:"} type={"text"} placeholder={"Digite a razão social"}/>
-                    <Campo name={"nomeFantasia"}  id={nomeFantasia} labelName={"Nome Fantasia:"} type={"text"} placeholder={"Digite o nome fantasia"}/>
+                    <Campo type={"number"} name={"cnpj"} id={"icnpj"} labelName={"Cnpj:"} placeholder={"Digite o cnpj da sua empresa"}/>
+                    <Campo type={"number"} name={"inscricaoEstadual"}  id={"iinscricaoEstadual"} labelName={"Inscrição Estadual:"} placeholder={"Digite a sua inscrição estadual"}/>
+                    <Campo type={"text"} name={"razaoSocial"} id={"irazaoSocial"} labelName={"Razão Social:"} placeholder={"Digite a razão social"}/>
+                    <Campo type={"text"} name={"nomeFantasia"} id={"inomeFantasia"} labelName={"Nome Fantasia:"} placeholder={"Digite o nome fantasia"}/>
                 </fieldset>
             )}
                
@@ -42,6 +42,19 @@ function TelaCadastro() {
                 <Campo htmlFor={"nascimento"} labelName={"Nascimento: "} type={"date"} name={"nascimento"} id={"nascimento"} placeholder={"Digite o seu nome"}/>           
                 <label htmlFor="titulo">Como você se identifica?</label>
 
+                {/*    Campo Vazio    */}
+                <Campo htmlFor={"xxx"}/>
+
+                <label htmlFor="nome">Nome: </label>
+                <input type="text" name="nome" id="nome" placeholder="Digite o seu nome"></input>
+
+                <label htmlFor="sobrenome">Sobrenome: </label>
+                <input type="text" name="sobrenome" id="sobrenome" placeholder="Digite o seu sobrenome"></input>
+
+                <label htmlFor="nascimento">Nascimento: </label>          
+                <input type="date" name="nascimento" id="nascimento"/>            
+           
+                <label htmlFor="titulo">Qual o seu gênero?</label>
                 <select>
                     <optgroup label="Titulo">
                         <option>Homem</option>
@@ -80,8 +93,6 @@ function TelaCadastro() {
             {/* <br/><br/> */}
             {/* <Link to="/TelaLogin">AQUI</Link> */}
         </form>
-       
-       
     )
 }
 export default TelaCadastro;

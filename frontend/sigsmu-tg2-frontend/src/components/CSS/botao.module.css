@@ -1,0 +1,23 @@
+.main {
+    height: fit-content;
+    border-radius: 5px;
+    font-size: 1.2em;
+
+    width: fit-content;
+    padding: 7px 10px 0px 10px;
+    border: solid black;
+    text-align: center;
+}
+.main:hover {
+    /* text-decoration: underline; */
+    /* font-weight: 600; */
+    cursor: pointer;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.688);
+    background-color: rgb(108, 3, 3);
+}
+
+.cores {
+    background-color: rgb(25, 25, 189);
+    color: white;
+    padding: 8px;
+}
