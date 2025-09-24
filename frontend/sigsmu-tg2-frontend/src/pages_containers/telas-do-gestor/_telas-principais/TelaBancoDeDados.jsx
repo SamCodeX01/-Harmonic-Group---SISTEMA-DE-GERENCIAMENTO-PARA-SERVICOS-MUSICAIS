@@ -29,7 +29,7 @@ function TelaBancoDeDados() {
     const [campoSelecionado, setCampoSelecionado] = useState(null)
 
 
-    // NOME E EXIBIÇÃO DAS TABELAS
+    // Nome real e de exibição das tabelas
     const moldeBanco = {
         "nometabela0" : "Pacotes de Serviço",
         "nometabela1" : "Instrumento",
@@ -40,6 +40,7 @@ function TelaBancoDeDados() {
         "nometabela6"  : "Tipo de Local"
     }
 
+    // Campos 
     const campos = [
         ["pac_", "id", "nome", "valor", "qtdMusicos", "descricao"],
         ["ins_", "id", "nome"],

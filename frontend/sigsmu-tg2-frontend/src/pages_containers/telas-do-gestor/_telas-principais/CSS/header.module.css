@@ -11,5 +11,5 @@
 }
 
 .main input[type="radio"]:checked + label > div {
-    background: red;
+
 }

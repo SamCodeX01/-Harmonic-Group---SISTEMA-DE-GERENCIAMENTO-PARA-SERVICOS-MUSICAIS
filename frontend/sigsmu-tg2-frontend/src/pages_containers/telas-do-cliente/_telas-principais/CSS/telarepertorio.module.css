@@ -13,7 +13,10 @@
 
 .main select {
     display: block;
+    border-radius: 10px ;
+    padding: 2px;
 }
+
 
 /* Altera todos os SELECT */
 .selects * {

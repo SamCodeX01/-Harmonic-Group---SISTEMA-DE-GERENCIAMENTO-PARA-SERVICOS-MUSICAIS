@@ -1,9 +1,43 @@
+.main fieldset {
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.main legend {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+.main label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.main input,
+.main select,
+.main textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: 0.3s ease;
+}
+/* TUDO ACIMA FOI COPIA E COLA */
+
+
+
 .main {
     height: 90vh;
     margin-top: 10px;
     border: solid;
 }
-
 .main > form {
     margin-top: 10px;
 }
@@ -20,7 +54,7 @@
     gap: 10px;
 
     width: 50%;
-    margin: 10px auto;
+    margin: 30px auto;
     padding: 10px;
 }
 
