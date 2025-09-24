@@ -5,5 +5,11 @@
 }
 
 .main label > div:hover {
-    background-color: aqua;
+    background-color: aqua !important;
+}
+
+
+/*       Arruma os cards selecionados       */
+.main input[type="radio"]:checked + label * {
+    background-color: white;
 }

@@ -11,7 +11,7 @@ import Radio from "../../../components/Radio"
 
 // import HelpDoGestor from "../_componentes-grandes/cadastronobd/HelpDoGestor"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 // Tela de BANCO DE DADOS - para que gestores consigam cadastrar novos serviços/músicas/meios de pagamento/etc
@@ -22,21 +22,22 @@ function TelaBancoDeDados() {
 
     // Selecionar tabela
     const [tabelaSelecionada, setTabelaSelecionada] = useState(null)
-    const [valoresRadio, setValoresRadio] = useState(null)
+    // const [valoresRadio, setValoresRadio] = useState(null)
 
 
     const [evento, setEvento] = useState(null);
+    const [campoSelecionado, setCampoSelecionado] = useState(null)
 
 
     // NOME E EXIBIÇÃO DAS TABELAS
     const moldeBanco = {
-        "Pacotes de Serviço" : ["nometabela", "itable0"],
-        "Instrumento" : ["nometabela", "itable1"],
-        "Tipo de Serviço" : ["nometabela", "itable2"],
-        "Meios de Pagamento" : ["nometabela", "itable3"],
-        "Repertório / Músicas" : ["nometabela", "itable4"],
-        "Status / Andamento" : ["nometabela", "itable5"],
-        "Tipo de Local" : ["nometabela", "itable6"]
+        "nometabela0" : "Pacotes de Serviço",
+        "nometabela1" : "Instrumento",
+        "nometabela2" : "Tipo de Serviço",
+        "nometabela3" : "Meios de Pagamento",
+        "nometabela4" : "Repertório / Músicas",
+        "nometabela5" : "Status / Andamento",
+        "nometabela6"  : "Tipo de Local"
     }
 
     const campos = [
@@ -48,6 +49,15 @@ function TelaBancoDeDados() {
         ["stt_", "id", "situacao"],
         ["tip_", "id", "tipo"]
     ]
+    
+    const [index, setIndex] = useState(null)
+
+    // Muda o index de acordo com a tabela selecionada para chamar os campos
+    useEffect(() => {
+        if (tabelaSelecionada !== null)
+            setIndex( Object.keys(moldeBanco).findIndex(nomeTabela => nomeTabela === tabelaSelecionada.value) )
+
+    }, [tabelaSelecionada])
 
     return (
         <div className={css.main}>
@@ -60,7 +70,7 @@ function TelaBancoDeDados() {
 
             {/* Local em que o gestor poderá alternar entre modos de CADASTRO/ALTERAÇÃO/EXCLUSÃO de dados do banco */}
             <div className={css.botoes}>
-                <Radio selecionado={operacao} setSelecionado={setOperacao} name={"crud"} grupo={2} >
+                <Radio setSelecionado={setOperacao} name={"crud"} firstChecked={true}>
                     <Botao msg={"CADASTRAR"} rota={""} estilo={true} />
                     <Botao msg={"ALTERAR"} rota={""} estilo={true} />
                     <Botao msg={"EXCLUIR"} rota={""} estilo={true} />
@@ -72,21 +82,12 @@ function TelaBancoDeDados() {
             <div className={css.seletorTabelas}>
                 {
                     // Retorna cada tabela  exibe na tela
-                    <Radio 
-                        selecionado={tabelaSelecionada} 
-                        setSelecionado={setTabelaSelecionada} 
-                        name={"table"} 
-                        grupo={3} 
-                        arrayValoresRadio={campos}
-                        callbackValores={setValoresRadio}
-                    >
-                        {
-                            
-                            Object.entries(moldeBanco).map(([nome, valor]) => {
-                                return (tabelaSelecionada != valor[1] ? <Botao msg={nome} /> : <></>)
-                            })
-                            
-                        }
+                    <Radio setSelecionado={setTabelaSelecionada} name={"table"}>
+                    {
+                        Object.entries(moldeBanco).map(([nomeTabela, nomeExibicao]) => {
+                            return <Botao msg={nomeExibicao} value={nomeTabela} />
+                        })
+                    }
                     </Radio>
                 }
             </div>
@@ -94,27 +95,30 @@ function TelaBancoDeDados() {
 
             {/* Local em que os CAMPOS DA TABELA selecionada pelo gestor serão exibidos */}
             <div className={css.tabelaCampos} >
-                <div>
-                    <div className={css.tabela}>
-                    {
-                        Object.entries(moldeBanco).map(([nome, valor]) => {
-                            return (tabelaSelecionada !== null && tabelaSelecionada === valor[1] ? <Botao msg={nome}/> : "")
-                        })
-                    }
-                    </div>
+                {index != null &&
+                
+                    <div>
+                        {/* Exibe a tabela selecionada */}
+                        <Botao msg={moldeBanco[tabelaSelecionada.value]}/>
 
-                    <div className={css.campos}>
-                    {
-                        (tabelaSelecionada !== null &&
-                            valoresRadio.split(",").map(campo => {
-                                if (campo[3] !== "_")
-                                    return <Botao msg={campo} />
-                            })
-                        )
-                    }
+                        {/* {console.log("index -> " + index)} */}
+
+                        <section className={css.campos}>
+                            <Radio setSelecionado={setCampoSelecionado} name={"campo"} firstChecked={true}>
+                            {
+                                campos[index]
+                                .filter(campo => campo[3] != "_")
+                                .map(campo => {
+                                    return <Botao msg={campo} value={3}/>
+                                })
+                            }
+                            </Radio>
+                        </section>
+
                     </div>
-                </div>
+                }
             </div>
+            
 
 
             {/* Local em que o gestor poderá DAR INPUT de dados e manipular o banco */}

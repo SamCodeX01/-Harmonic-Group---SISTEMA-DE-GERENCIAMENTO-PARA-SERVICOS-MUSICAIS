@@ -1,5 +1,8 @@
+// Importações de estilos
 import css from "./CSS/lado.module.css"
 
+
+// Componente criado para replicar os lados da tela inicial do gestor
 function Lado({arrayMsg, outro="outro"}) {
     return (
         <section className={css.main}>

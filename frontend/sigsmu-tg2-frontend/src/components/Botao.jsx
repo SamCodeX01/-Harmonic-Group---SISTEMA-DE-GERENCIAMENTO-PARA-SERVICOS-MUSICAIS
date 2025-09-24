@@ -15,7 +15,8 @@ function Botao({msg, estilo, rota=null, style=null, value=null}) {
             className={`
                 ${css.main} 
                 ${estilo ? css.cores : ""}
-            `}
+            `} // Aplicação de .cores caso estilo (props) seja true 
+            
             
             onClick={evt => {
                 // Evita a propagação do evento (não afeta o pai)
@@ -25,9 +26,7 @@ function Botao({msg, estilo, rota=null, style=null, value=null}) {
                 navigate(rota)
             }}
 
-            // Em uso (radio)
             style={style}
-
             value={value}
         >
         {msg} </div>

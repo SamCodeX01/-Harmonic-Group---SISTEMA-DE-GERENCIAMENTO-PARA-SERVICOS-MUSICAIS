@@ -1,12 +1,12 @@
 // Importações de estilos
 import css from "./CSS/telasolicitacoesServico.module.css"
 
-// Importações do React
-import { useState } from "react"
-
 // Importações de componentes
 import Cards from "../_componentes-grandes/_compartilhados/Cards"
 import Radio from "../../../components/Radio"
+
+// Importações do React
+import { useState } from "react"
 
 
 // Tela de SOLICITAÇÕES DE SERVIÇO - para visualização das ordens de serviço geradas por solicitações de clientes
@@ -26,10 +26,10 @@ function TelaSolicitacoesServico() {
 
     return (
         <div className={css.main}>
-            <Radio selecionado={card} setSelecionado={setCard} name={"card"} >
-                <Cards id={0} objCliente={dadosCliente} metodoSet={setDadosCliente} idCardSelecionado={card} />
-                <Cards id={1} objCliente={dadosCliente} metodoSet={setDadosCliente} idCardSelecionado={card} />
-                <Cards id={2} objCliente={dadosCliente} metodoSet={setDadosCliente} idCardSelecionado={card} />
+            <Radio setSelecionado={setCard} name={"card"}>
+                <Cards id={0} objCliente={dadosCliente} metodoSet={setDadosCliente} idCardSelecionado={card ? card.id : null} />
+                <Cards id={1} objCliente={dadosCliente} metodoSet={setDadosCliente} idCardSelecionado={card ? card.id : null} />
+                <Cards id={2} objCliente={dadosCliente} metodoSet={setDadosCliente} idCardSelecionado={card ? card.id : null} />
             </Radio>
         </div>
     )

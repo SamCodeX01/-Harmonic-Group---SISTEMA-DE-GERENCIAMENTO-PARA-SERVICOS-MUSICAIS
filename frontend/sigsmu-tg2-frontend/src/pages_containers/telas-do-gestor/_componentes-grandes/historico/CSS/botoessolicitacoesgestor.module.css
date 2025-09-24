@@ -9,9 +9,9 @@
 
 .main > * {
     text-align: center;
-    background-color: brown;
-    color: black
+    background-color: brown !important;
+    color: black;
 }
 .main > *:hover {
-    color: white
+    color: white;
 }

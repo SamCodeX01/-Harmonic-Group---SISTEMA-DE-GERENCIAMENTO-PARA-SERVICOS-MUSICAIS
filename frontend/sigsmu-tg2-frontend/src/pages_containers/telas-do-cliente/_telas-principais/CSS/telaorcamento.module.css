@@ -49,3 +49,12 @@
 .complemento {
     flex: 1 0 50px;
 }
+
+
+/* Passa pra próxima tela */
+.main > div:nth-last-of-type(1) {
+    margin-left: auto;
+    margin-right: 250px;
+    background-color: aqua;
+    color: black;
+}

@@ -22,7 +22,7 @@ function Header() {
     return (
         <div className={css.main}>
         {
-            <Radio selecionado={botao} setSelecionado={setBotao} name={"header"} teste={teste}>
+            <Radio setSelecionado={setBotao} name={"header"} firstChecked={true}>
                 <Botao msg={"Início (indicadores)"} rota={"/RotasGestor/Inicio"} estilo={true} />
                 <Botao msg={"Solicitações de Serviço"} rota={"/RotasGestor/SolicitacoesServico"} estilo={true} />
                 <Botao msg={"Banco de Dados"} rota={"/RotasGestor/BancoDeDados"} estilo={true} />

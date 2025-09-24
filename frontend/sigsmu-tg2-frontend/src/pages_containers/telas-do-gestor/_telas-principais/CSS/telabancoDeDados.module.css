@@ -4,11 +4,10 @@
     display: grid;
     grid-template: 1fr 3fr 3fr 2fr / 1fr 2fr ;
 
-    height: 94vh;
+    height: 90vh;
 }
 .main > * {
     border: 1px solid black;
-    height: 30px;
 }
 
 /* ========== */
@@ -55,11 +54,11 @@
     height: 100%;
 } 
 
-.seletorTabelas > label > div {
+.seletorTabelas  label > div {
     width: 250px;
     /* flex: 1 0 350px; */
     padding: 5px;
-    background-color: brown;
+    background-color: rgba(165, 42, 42, 0.26);
 } 
 
 .seletorTabelas *:hover {
@@ -77,27 +76,34 @@
     width: 100%;
     grid-area: 3 / 2 / 4 / -1;
 }
+
+/* Div que junta a tabela e campos no meio */
 .tabelaCampos > div {
-
     /* font-size: 1.5em; */
-
     width: 400px;
-    margin: auto;
     padding: 20px;
     /* background-color: aqua; */
 }
-
-.tabela > div {
+.tabelaCampos > div > div {
     width: 100%;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: auto !important;
+} .tabelaCampos > div > div:hover {
+    background-color: initial;
 }
 
 .campos {
     display: flex;
     flex-flow: row wrap;
 }
-.campos > * {
-    background-color: rgba(3, 3, 104, 0.496);
+.campos div div {
+    width: 100%;
+    background-color: rgba(0, 0, 255, 0.248);
+}
+.campos > div {
     flex: 1 0 40px;
+    border-radius: 10px;
 }
 
 

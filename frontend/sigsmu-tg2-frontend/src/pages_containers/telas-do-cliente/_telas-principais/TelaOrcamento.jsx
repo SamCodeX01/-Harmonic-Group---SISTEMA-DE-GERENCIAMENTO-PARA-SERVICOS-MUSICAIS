@@ -1,6 +1,9 @@
 // Importações de estilos
 import css from "./CSS/telaorcamento.module.css"
 
+// Importações de componentes
+import Botao from "../../../components/Botao";
+
 
 // Tela responsável por iniciar os FORMULÁRIOS DE ORÇAMENTO para o cliente
 function TelaOrcamento() {
@@ -113,6 +116,8 @@ function TelaOrcamento() {
                 </fieldset>
 
             </form>
+
+            <Botao msg={"Próxima"} rota={"/RotasCliente/Repertorio"} estilo={true} />
 
         </div>
     )

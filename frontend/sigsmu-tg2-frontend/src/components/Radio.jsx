@@ -3,51 +3,43 @@ import React from "react";
 
 
 // Componente que serve para TRANSFORMAR BOTÕES normais em radio (e outros elementos)
-function Radio({children, selecionado, setSelecionado, name, grupo=1, arrayValoresRadio=null, callbackValores=null}) {
+function Radio({children, setSelecionado, name, firstChecked=false}) {
     return (
         <>
             { // Pega cada child do próprio elemento
-                React.Children.map(children, (child, i) => {
+            React.Children.map(children, (child, i) => {
 
-                    // Retorna uma label e um input invisível
-                    return (
-                        <>
-                            <label htmlFor={"i"+name+i}>
-                            {
-                                // Clona a child para poder fazer alterações (child.props -> somente leitura)
-                                React.cloneElement(child, {
+                // Retorna uma label e um input invisível
+                return (
+                    <div>
+                    
+                    <input 
+                        type="radio"
+                        name={name}
+                        id={"i"+name+i}
 
-                                    // Passa o style como parâmetro via props (o componente tem que ter a props)
-                                    style: {
-                                        background: selecionado === ("i"+name+i) ? "red" : ""
-                                    }
+                        // Recebe o valor do botão para si mesmo
+                        value={child.props.value}
 
-                                    
-
-                                    // style: teste
-                                })
+                        onChange={evt => {
+                            if (evt.currentTarget.checked) {
+                                // Retorna o evento (radio) para o pai
+                                setSelecionado(evt.currentTarget)
                             }
-                            </label>
+                        }}
 
-                            {/* Utiliza input radio para marcar somente um elemento */}
-                            <input 
-                                type="radio" 
-                                name={name + grupo} 
-                                id={"i"+name+i} 
-                                value={arrayValoresRadio !== null ? arrayValoresRadio[i] : ""}
+                        style={{display: "none"}}
+                        defaultChecked={i === 0 && firstChecked}
+                    />
 
-                                // retorna o evento pro pai
-                                onChange={evt => {
-                                    if (evt.currentTarget.checked) {
-                                        setSelecionado(evt.currentTarget.id)
-                                        callbackValores(evt.currentTarget.value)
-                                    }
-                                }}
-                                style={{display: "none"}}
-                            />
-                        </>
-                    )
-                })
+                    <label htmlFor={"i"+name+i}> {child} </label>
+
+                    {/*   COLAR NO CSS GLOBAL PARA ALTERAR A COR DOS BOTÕES SELECIONADOS   */}
+                    {/* .main input[type="radio"]:checked + label > div {background: red;} */}
+
+                    </div>
+                )
+            })
             }
         </>
     )

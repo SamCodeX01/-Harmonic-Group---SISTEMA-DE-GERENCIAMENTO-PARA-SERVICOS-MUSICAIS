@@ -7,12 +7,14 @@ import BotoesSolicitacoesGestor from "../historico/BotoesSolicitacoesGestor";
 
 // DESCRIÇÃO...
 function Cards({id, objCliente, metodoSet, comBotao=false, idCardSelecionado}) {
+    const idElemento = "icard"+id
 
     return (
         <div 
-            className={`${css.main} ${(comBotao ? css.mainComFlex : css.mainSemFlex)}`} 
-            id={id}
-            >
+            className={`
+                ${css.main} 
+                ${(comBotao ? css.mainComFlex : css.mainSemFlex)}
+            `}>
 
             <div className={css.secondary}>
 
@@ -27,13 +29,13 @@ function Cards({id, objCliente, metodoSet, comBotao=false, idCardSelecionado}) {
                     <p><span>Nome do pacote:</span> {objCliente.tipoServico} </p>
                     <p><span>Tipo de serviço:</span> {objCliente.pacoteEscolhido} </p>
                 </div>
+
             </div>
 
             {/* Mostra os botões correspondentes ao card selecionado */}
-            {idCardSelecionado === "icard"+id && <BotoesSolicitacoesGestor />}
+            {idCardSelecionado === idElemento && <BotoesSolicitacoesGestor />}
 
-            
-            { (comBotao && <button className={css.button}>Visualizar <br/> contrato</button>) }
+            {comBotao && <button className={css.button}>Visualizar <br/> contrato</button>}
 
         </div>
     )   

@@ -9,3 +9,7 @@
 .main * {
     height: fit-content; /*fit-content define que a altura de um elemento será ajustada dinamicamente para se encaixar perfeitamente no seu conteúdo.*/
 }
+
+.main input[type="radio"]:checked + label > div {
+    background: red;
+}
