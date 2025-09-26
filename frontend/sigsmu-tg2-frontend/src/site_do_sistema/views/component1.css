@@ -1,0 +1,141 @@
+.component1-container1 {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+ 
+.component1-component1 {
+  width: 100%;
+  height: 267px;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+ 
+.component1-rectangle1 {
+  top: 0px;
+  left: 0px;
+  width: 1728px;
+  height: 267px;
+  position: absolute;
+}
+ 
+.component1-logotipo300px1 {
+  top: 76px;
+  left: 168px;
+  width: 444px;
+  height: 146px;
+  position: absolute;
+}
+ 
+.component1-text1 {
+  top: 196.79283142089844px;
+  left: 750px;
+  color: rgba(0, 0, 0, 1);
+  width: 60px;
+  height: auto;
+  position: absolute;
+  text-align: left;
+  line-height: normal;
+}
+ 
+.component1-text2 {
+  top: 196.79283142089844px;
+  left: 842px;
+  color: rgba(0, 0, 0, 1);
+  width: 86px;
+  height: auto;
+  position: absolute;
+  text-align: left;
+  line-height: normal;
+}
+ 
+.component1-text3 {
+  top: 196.79283142089844px;
+  left: 948px;
+  color: rgba(0, 0, 0, 1);
+  width: 128px;
+  height: auto;
+  position: absolute;
+  text-align: left;
+  line-height: normal;
+}
+ 
+.component1-text4 {
+  top: 196.79283142089844px;
+  left: 1096px;
+  color: rgba(0, 0, 0, 1);
+  width: 83px;
+  height: auto;
+  position: absolute;
+  text-align: left;
+  line-height: normal;
+}
+ 
+.component1-text5 {
+  top: 196.79283142089844px;
+  left: 1199px;
+  color: rgba(0, 0, 0, 1);
+  width: 181px;
+  height: auto;
+  position: absolute;
+  text-align: left;
+  line-height: normal;
+}
+ 
+.component1-text6 {
+  top: 196.79283142089844px;
+  left: 655px;
+  color: rgba(219, 157, 18, 1);
+  width: 63px;
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  font-style: SemiBold;
+  text-align: left;
+  font-family: Montserrat;
+  font-weight: 600;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: underline;
+}
+ 
+.component1-link {
+  display: contents;
+}
+ 
+.component1-container2 {
+  right: 50px;
+  border: 1px solid #ffffff5c;
+  bottom: 30px;
+  display: flex;
+  z-index: 22;
+  position: fixed;
+  box-shadow: 5px 5px 10px 0px rgba(31, 31, 31, 0.4);
+  min-height: auto;
+  align-items: center;
+  padding-top: 8px;
+  padding-left: 12px;
+  border-radius: 8px;
+  padding-right: 12px;
+  padding-bottom: 8px;
+  backdrop-filter: blur(6px);
+  background-color: rgba(41, 41, 41, 0.41);
+}
+ 
+.component1-icon1 {
+  width: 24px;
+  margin-right: 4px;
+}
+ 
+.component1-text7 {
+  color: white;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}

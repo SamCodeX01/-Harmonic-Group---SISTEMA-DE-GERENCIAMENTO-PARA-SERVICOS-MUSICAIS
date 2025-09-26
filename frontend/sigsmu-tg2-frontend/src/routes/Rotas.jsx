@@ -13,13 +13,15 @@ import RotasGestor from './RotasGestor.jsx';
 import RotasCliente from './RotasCliente.jsx';
 
 import Site from '../pages_containers/Site.jsx';
-
+import IndexJs from '../site_do_sistema/index.js'
+import Index2jsx from '../site_do_sistema/index2.jsx'
 
 function Rotas() {
     return (
         <Router>
             <Routes>
-                <Route index element={<Site/>}/>
+                {/* <Route index element={<Site/>}/> */}
+                <Route index element={<Index2jsx/>}/>
                 
                 {/*                   Rotas Gerais                  */}
                 <Route path='/TelaLogin/'     element={ <TelaLogin/>  }/>
