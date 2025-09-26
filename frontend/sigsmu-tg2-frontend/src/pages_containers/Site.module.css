@@ -1,0 +1,795 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html{
+  scroll-behavior: smooth;
+}
+
+li{
+  font-size: 1.125rem;
+
+}
+/* FIRST MOBILE */
+@media(max-width: 1024px){
+
+  img{
+    border-radius: 50px;
+  }
+    header{
+      background-color: #00215E;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+    }
+    .material-symbols-outlined{
+      color: white;
+      padding: 2rem;
+    }
+    #fechar{
+      display: none;
+    }
+    nav{
+      display: block;
+    }
+    .logo{
+      display: none;
+    }
+    #logotipo{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+    }
+    #menu-links-mobile{
+      display: none;
+      margin-top: 0.45rem;
+    }
+    .menu-links-desktop{
+      display: none;
+    }
+    .menu-links-mobile-li{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.1rem;
+    }
+    .menu-links-mobile-li>a{
+      width: 100vw;
+      font-size: 2rem;
+      text-decoration: none;
+      border: 1px solid;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    li>a:hover{
+      background-color: #3f61a1;
+      color: white;
+    }  
+    .logo-mobile{
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+    }
+    #logo-mobile{
+      width: 80%;
+      margin-top: 40px;
+    }
+    .assistencia-tecnica2-mobile{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+    #assistencia-tecnica2-mobile{
+      width: 80%;
+    }
+    /*--------------------------HOME-MOBILE---------------------- */
+    main{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1em;
+    }
+    #home{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #E9FFF9;
+    }
+    #home>h2{
+      margin: 40px;
+    }
+    #imgHome{
+      margin: 30px;
+      width: 95%;
+    }
+    .home-texto{
+      font-size: 1.125rem;
+      line-height: 25px;
+      margin: 20px;
+    }
+
+    /*--------------------------QUEM-SOMOS-MOBILE----------------------- */
+    #quem-somos{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+    #quem-somos>h2{
+      margin: 20px;
+      margin-top: 60px;
+      margin-bottom: 50px;
+    }
+    #img-quem-somos{
+      width: 20rem;
+    }
+    .quem-somos-texto{
+      font-size: 1.125rem;
+      text-align: justify;
+      padding: 1.5rem;
+      line-height: 25px;
+      margin-top: 20px;
+    }
+
+    /*---------------------Missão-Visão-e-Valores-MOBILE----------------------- */
+    #missao-visao-valores{
+      background-color: #E9FFF9;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+    #missao-visao-valores>h2{
+      margin-top: 30px;
+    }
+    .MisVisVal{
+      font-size: 1.125rem;
+      text-align: justify;
+      padding: 2.5rem;
+      list-style-type: circle;
+    }
+   
+    .MisVisVal>li{
+      text-align: justify;
+      padding: 0.5rem;
+      list-style-type: circle;
+    }
+    /*--------------------------SERVIÇOS-MOBILE----------------------- */
+    #servicos{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    #servicos>h2{
+      margin-bottom: 30px;
+      margin-top: 50px;
+    }
+    #servicos>h3{
+      margin-bottom: 30px;
+      text-align: center;
+      margin: 20px;
+    }
+    .problemas{
+      width: 40vw;
+      height: 30vh;
+      border: solid 1px black;
+      margin-bottom: 1rem;
+    }
+    .problemas:hover{
+      transform: scale(1.10);
+    }
+    .div01,.div02,.div03,.div04,.div05{
+      display: flex;
+      gap: 1em;
+    }
+    /*--------------------------ACESSÓRIOS-MOBILE----------------------- */
+    #acessorios{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #E9FFF9;
+    }
+    #acessorios>h2{
+      margin-top: 30px;
+    }
+    #acessorios>p{
+      padding: 2rem;
+      line-height: 25px;
+    }
+    .lista-acessorios{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px
+    }
+    .lista-acessorios>li{
+      text-align: left;
+      padding: 10px;
+      list-style-type: none;
+      border-bottom: #00215E solid;
+    } 
+   
+    .lista-acessorios>li:hover{
+      transform: scale(1.1);
+      background-color: #3f61a1;
+      color: white;
+      border-radius: 20px;
+    } 
+    .lista-acessorios-img{
+      width: 20rem;
+      display: none;
+    }
+    /*--------------------------NOSSAS-LOJAS-MOBILE----------------------- */
+    #nossas-lojas{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    #nossas-lojas>h3{
+      text-align: center;
+      margin-bottom: 20px;
+      margin: 20px;
+    }
+    #nossas-lojas-conteiner{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    #nossas-lojas-conteiner>p{
+      margin: 20px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    #nossas-lojas-conteiner>h4{
+      margin-bottom: 25px;
+      margin-top: 20px;
+    }
+    #nossas-lojas>h2{
+      margin-top: 70px;
+      margin-bottom: 50px;
+    }
+    #nossas-lojas-lista{
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    #nossas-lojas-lista>li{
+      list-style-type: none;
+      margin-bottom: 30px;
+    }
+    .nossas-lojas-lista-imagem{
+      width: 70%;
+      margin-bottom: 5px;
+    }
+    .nossas-lojas-lista-imagem:hover{
+      transform: scale(1.098);
+    }
+
+    /*--------------------------CONTATO-MOBILE----------------------- */
+    
+  .seta-mobile:hover{
+      transform: scale(1.5);
+    } 
+    .icon-whatsapp{
+      width: 10%;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      margin-right: 15px;
+      margin-bottom: 100px;
+    }
+    .icon-whatsapp:hover{
+      transform: scale(1.2);
+      cursor: pointer;
+      transform-origin: center;
+      animation: rotate 1s linear infinite;
+    }
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    #footer-mobile{
+      background-color: #00215E;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column; 
+      height: 70vh;
+      width: 100vw;  
+      bottom: 0;    
+    }
+    #footer-mobile>h2{
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 60px;
+      text-decoration: underline;
+    }
+    #footer-mobile>p{
+      text-align: center;
+      margin: 20px;
+    }
+    .contato-div-img>img{
+      width: 4rem;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      transform: scale(1.1);
+      margin-left: 15px;
+    }
+    .contato-div-img>img:hover{
+      transform: scale(1.3);
+      cursor: pointer;
+    }
+    
+    #footer-mobile>p{
+      font-size: 1.125rem;
+      line-height: 20px;
+    }
+
+    /*MOBILE DISPLAYS NONE -> DESKTOP */
+  
+    #header-desktop{display: none;}
+    #imagem-home-desktop{display: none;}
+    #sessao-home-desktop{display: none;}
+    #sessao-quem-somos-desktop{display: none;}
+    #sessao-servicos-desktop{display: none;}
+    #sessao-acessorios-desktop{display: none;}
+    #sessao-nossas-lojas-desktop{display: none;}
+    #contato-desktop{display: none;}
+    #sessao-contato-desktop{display: none;}
+    #setaParaHome{display: none;}
+    /* FIM - DISPLAYS NONE */
+}
+
+
+ /* Para telas médias (tablets, por exemplo) */
+ @media screen and (min-width: 1024px) and (max-width: 1845px) {
+
+  
+    
+ }
+ 
+
+  /* Para telas grandes (desktops) */
+
+  @media(min-width: 1024px) {
+    
+    /*--------------------------HEADER----------------------- */
+
+    #header-desktop{
+      display: flex;
+      justify-content: space-between;
+      background-color: #00215E;
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      border-bottom: black solid 5px;
+      z-index: 100;
+    }
+  #header-desktop>nav{
+    padding: 5px;
+    margin-top: 5px;
+    }
+   #logo{
+    width: 15vw;
+    margin-left: 40px;
+    border-radius: 10px;
+   }
+    #menu-links-desktop{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style-type: none;
+      width: 100vw;
+    }
+    #menu-links-desktop>.menu-links-desktop-li{
+      margin-right: 20px;
+    }
+    #menu-links-desktop>li{
+      color: white;
+      text-decoration: none;
+      display: flex;
+      justify-content: space-around;
+    }
+    #menu-links-desktop>li>a{
+      color: white;
+      font-size: 1.2rem;
+      text-decoration: none;
+      
+    }
+    #menu-links-desktop>li>a:hover{
+      background-color: white;
+      color: #00215E;
+      border-radius: 20px;
+      padding: 5px;
+      transform: scale(1.2);
+    }
+    #imagem-home-desktop>img{
+      width: 100vw;
+    }
+    #whatsappFixo{
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      width: 5vw;
+    }
+    #whatsappFixo:hover{
+      transform: scale(2);
+      cursor: pointer;
+      transform-origin: center;
+      animation: rotate 1s linear infinite;
+    }
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    /*--------------------------HOME-DESKTOP------------------------- */
+    #home-desktop{
+      width: 100vw;
+    }
+    #imagem-home-desktop{
+      width: 100%;
+    }
+    #sessao-home-desktop{
+      background: linear-gradient(#2362d8a8,white,#2362d8a8 );
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+    }  
+    #sessao-home-desktop>h2{
+      margin-top: 150px;
+      margin-bottom: 80px;
+      font-size: 2rem;
+      text-decoration: underline;
+    }   
+    #sessao-home-container-1{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom: 50px;
+    }  
+    #sessao-home-container-1>p{
+      text-align: justify;
+      font-size: 1.5rem;
+      width: 40vw;
+      line-height: 35px;
+    }  
+    #sessao-home-container-1>img{
+      width: 25%;
+      border-radius: 50px;
+    }  
+    
+    /*-----------QUEM SOMOS e Missão,Visão e Valores--------------------- */
+   
+    #sessao-quem-somos-desktop{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: linear-gradient(white,#00215E,#3f61a1, white);
+      border-bottom: 1px solid;
+      width: 100vw;
+    }  
+    #sessao-quem-somos-desktop>h2{
+      margin-top: 150px;
+      margin-bottom: 50px;
+      font-size: 2rem;
+      color: white;
+      text-decoration: underline;
+    }
+    #sessao-quem-somos-desktop>h3{
+      font-size: 1.8rem;
+    }
+    #quem-somos-conteiner-1{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    #quem-somos-conteiner-1>p{
+      width: 40vw;
+      padding: 40px;
+      text-align: center;
+      font-size: 1.5rem;
+      line-height: 35px;
+      color: white;
+    }
+    #quem-somos-logo{
+      background-color: white;
+      width: 35vw;
+      height: auto;
+      border-radius: 50px;
+    }
+    #quem-somos-conteiner-2{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 40px;
+      margin-bottom: 100px;
+    } 
+    #quem-somos-conteiner-2>h3{
+      font-size: 2rem;
+      color: black;
+      text-decoration: underline;
+      margin-bottom: 50px;
+      margin-top: 100px;
+    }    
+    .MisVisVal{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      
+    } 
+    .MisVisVal>ul>li{
+      font-size: 1.5rem;
+      color: black;
+      line-height: 40px;
+      margin-left: 20px;
+    } 
+    
+    /*--------------------------SERVIÇOS-DESKTOP---------------------- */
+    #sessao-servicos-desktop{
+      background: linear-gradient(#2362d8a8,white );
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100vw;
+    }
+    #sessao-servicos-desktop>h2{
+      margin-top: 150px;
+      margin-bottom: 10px;
+      font-size: 2rem;
+      text-decoration: underline;
+    }
+    #sessao-servicos-desktop>p{
+      font-size: 1.5rem;
+      margin-top: 70px;
+      margin-bottom: 70px;
+      width: 40vw;
+    }
+    #sessao-servicos-desktop>ul{
+      margin-bottom: 50px;
+    }
+    #sessao-servicos-desktop>ul>li{
+      font-size: 2rem;
+      line-height: 40px;
+    }
+    .autoplay{
+      width: 500px;
+    }
+    .sessao-servicos-problemas{
+      margin: 20px;
+      border-radius: 50px;
+      width: 250px;
+    }
+
+    /*--------------------------ACESSÓRIOS-DESKTOP---------------------- */
+    #sessao-acessorios-desktop{
+      background: linear-gradient(#00215E,#3f61a1, white, #3f61a1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100vw;
+    }
+    #sessao-acessorios-desktop>h2{
+      font-size: 2rem;
+      text-decoration: underline;
+      color: white;
+      margin-top: 150px;
+      margin-bottom: 40px;
+    }
+    #sessao-acessorios-desktop>p{
+      color: white;
+      width: 50vw;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      font-size: 1.5rem;
+      text-align: justify;
+      line-height: 40px;
+    }
+    #sessao-acessorios-desktop>ul>li{
+      color: black;
+      font-size: 1.5rem;
+      line-height: 40px;
+    }
+    .autoplay{
+      /* border: 1px solid; */
+      width: 50vw;
+      margin: 20px;
+    }
+   
+    #sessao-acessorios-desktop>ul>li>.lista-acessorios-img{
+      display: none;
+    }
+    .lista-acessorios-img{
+      margin: 10px;
+      border-radius: 50px;
+    } 
+    #sessao-acessorios-desktop>#sessao-acessorios-texto2{
+      color: black;
+      text-align: center;
+    }
+    /*--------------------------NOSSAS-LOJAS-DESKTOP----------------------- */
+    #sessao-nossas-lojas-desktop{
+      background: linear-gradient(rgb(255, 255, 255),rgba(35, 98, 216, 0.659),#ffffff );
+      border-top: 1px solid;
+      width: 100vw;
+    }
+    #sessao-nossas-lojas-desktop>h2{
+      margin-top: 150px;
+      margin-bottom: 80px;
+      font-size: 2rem;
+      text-align: center;
+      text-decoration: underline;
+    }
+    .sessao-nossas-lojas-subtitulo{
+      margin-top: 80px;
+      margin-bottom: 80px;
+      font-size: 1.5rem;
+      text-align: center;
+      overflow-wrap: break-word;
+    }
+    #nossas-lojas-conteiner-1, #nossas-lojas-conteiner-2,
+    #nossas-lojas-conteiner-3, #nossas-lojas-conteiner-4{
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      padding: 20px;
+      margin-left: 80px;
+    }
+    .nossas-lojas-div-img{
+      width: 50%;
+      border-radius: 50px;
+    }
+    .nossas-lojas-img{
+      width: 100%;
+      border-radius: 50px;
+      border: 5px solid white;
+    }
+    .nossas-lojas-img:hover{
+      
+      transform: scale(1.1);
+    }
+    .nossas-lojas-div-texto{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 50vw;
+    }
+    h4{
+      font-size: 2rem;
+    }
+    .nossas-lojas-paragrafo{
+      font-size: 1.5rem;
+      
+      margin: 90px;
+      text-align: center;
+    }  
+
+    /*--------------------------CONTATO-DESKTOP----------------------- */
+    #sessao-contato-desktop{
+      background-color: rgb(0, 33, 94);
+      height: 60vh;
+      width: 100vw;
+    }
+    #sessao-contato-desktop>h2{
+      text-align: center;
+      color: white;
+      padding: 30px;
+      text-decoration: underline;
+    }
+    #sessao-contato-div-geral{
+      display: flex;
+      justify-content: center;
+   padding: 30px;
+    }
+    .sessao-contato-divs-filhas{
+      width: 50vw;
+      height: 20vh;
+      border: solid 1px white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50px;
+      margin-right: 10px;
+    }
+    #sessao-contato-divs-filhas{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    #sessao-contato-divs-filhas>p{
+      color: white;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-left: 10px;
+      margin-right: 10px;   
+      line-height: 30px;  
+    }
+    .sessao-contato-redes-sociais{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .sessao-contato-divs-filhas:hover{
+      transform: scale(1.02);
+    }
+    .sessao-contato-texto{
+      color: white;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-left: 10px;
+      margin-right: 10px;
+      line-height: 30px;  
+
+    }
+  .sessao-contato-img{
+    width: 4vw;
+    margin-right: 15px;
+  }
+  .sessao-contato-img:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+  #sessao-contato-desenvolvido-por{
+    text-align: center;
+    color: white;
+    font-size: 1.3rem;
+    padding: 25px;
+  }
+  #setaParaHome{
+    left: 0;
+    bottom: 0;
+    width: 4vw;
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
+  #setaParaHome:hover{
+    transform: scale(1.3);
+  }
+
+    /* DISPLAYS NONE NO MOBILE */
+
+    .header{display: none;}
+    .menu-links-mobile{display: none;}
+    .logo-mobile{display: none;}
+    .assistencia-tecnica2-mobile{display: none;}
+    #assistencia-tecnica2-mobile{display: none;}
+    main{display: none;}
+  }
+  
+ 

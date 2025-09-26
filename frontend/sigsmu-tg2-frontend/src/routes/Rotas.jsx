@@ -12,12 +12,14 @@ import TelaPosLogin from '../pages_containers/telas-geral/TelaPosLogin';
 import RotasGestor from './RotasGestor.jsx';
 import RotasCliente from './RotasCliente.jsx';
 
+import Site from '../pages_containers/Site.jsx';
+
 
 function Rotas() {
     return (
         <Router>
             <Routes>
-                <Route index element={<TelaLogin/>}/>
+                <Route index element={<Site/>}/>
                 
                 {/*                   Rotas Gerais                  */}
                 <Route path='/TelaLogin/'     element={ <TelaLogin/>  }/>
