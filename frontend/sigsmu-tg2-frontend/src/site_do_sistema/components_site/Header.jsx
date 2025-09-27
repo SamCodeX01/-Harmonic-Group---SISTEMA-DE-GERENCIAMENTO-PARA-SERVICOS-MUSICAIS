@@ -1,12 +1,12 @@
 import React from "react";
-import HeaderCss from"./header.module.css";
+import headercss from "./header.module.css";
 import apagarDepois from "../image.png"
 import logotipo from "../imagens_site/logotipo300px.png"
 
 function Header(){
 
 return(
-    <header className={HeaderCss.header}>
+    <header className={headercss.header}>
         <img src={logotipo} alt="" srcset="" />
         <nav>
             <ul>
@@ -19,7 +19,6 @@ return(
             </ul>
                 {/* <button style={{background:"#007bff", color:"white", padding: "15px"}} >Intranet</button> */}
         </nav>
-            {/* <img src={apagarDepois} alt="" srcset="" /> */}
     </header>
 );
 
