@@ -5,14 +5,12 @@ import { createRoot } from 'react-dom/client'
 
 // Importação das rotas
 import Rotas from './routes/Rotas.jsx'
-import Site from './pages_containers/Site.jsx'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     
-    {/* <Site/> */}
-    <Rotas />
+    <Rotas/>
 
   </StrictMode>,
 )

@@ -1,27 +1,22 @@
-// Importações do React
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
 
 // Importações das telas
 import TelaLogin from '../pages_containers/telas-geral/TelaLogin';
 import TelaCadastro from '../pages_containers/telas-geral/TelaCadastro.jsx';
-
 import TelaPosLogin from '../pages_containers/telas-geral/TelaPosLogin';
 
 // Importações de rotas específicas
 import RotasGestor from './RotasGestor.jsx';
 import RotasCliente from './RotasCliente.jsx';
-
-import Site from '../pages_containers/Site.jsx';
-import IndexJs from '../site_do_sistema/index.js'
-import Index2jsx from '../site_do_sistema/index2.jsx'
+// import Site from '../site_do_sistema/Site.jsx';
+import Site from '../site_do_sistema/Site.jsx';
 
 function Rotas() {
     return (
         <Router>
             <Routes>
-                {/* <Route index element={<Site/>}/> */}
-                <Route index element={<Index2jsx/>}/>
+                <Route index element={<Site/>}/>
                 
                 {/*                   Rotas Gerais                  */}
                 <Route path='/TelaLogin/'     element={ <TelaLogin/>  }/>

@@ -1,0 +1,50 @@
+
+
+/* 3. Adicione CSS para visualizar melhor:
+css */
+/* header.module.css */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #ddd;
+}
+
+.header img {
+    max-height: 80px; /* Controla o tamanho máximo */
+    width: auto;
+}
+
+.header nav ul li:nth-last-of-type(1) > a {
+    font-size: 1rem;
+    background:#007bff;
+    color:"white";
+    padding: 15px;
+    border-radius: 12px;
+}
+.header nav ul li:nth-last-of-type(1) > a:hover {
+    color: #ddd;
+    cursor: pointer;
+}
+
+.header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.header nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-style: bold;
+    font-weight: bold;
+}
+
+.header nav a:hover {
+    color: #007bff;
+}
