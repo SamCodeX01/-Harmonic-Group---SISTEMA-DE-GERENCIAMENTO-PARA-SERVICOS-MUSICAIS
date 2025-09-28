@@ -1,3 +1,31 @@
 .main{
     background-color: #18213D;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    width: 100vw;
+}
+
+.main p{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+.main button{
+    background-color:#DB9D12;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.main button:hover{
+    color: #fff;
+    /* text-decoration: underline; */
 }

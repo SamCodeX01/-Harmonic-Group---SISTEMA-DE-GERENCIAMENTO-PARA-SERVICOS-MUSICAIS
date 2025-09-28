@@ -10,6 +10,7 @@ css */
     padding: 1rem;
     background-color: #f8f9fa;
     border-bottom: 2px solid #ddd;
+    width: 100vw;
 }
 
 .header img {
@@ -20,13 +21,14 @@ css */
 .header nav ul li:nth-last-of-type(1) > a {
     font-size: 1rem;
     background:#007bff;
-    color:"white";
+    color: #ddd;
     padding: 15px;
     border-radius: 12px;
 }
 .header nav ul li:nth-last-of-type(1) > a:hover {
-    color: #ddd;
+    color:#DB9D12;
     cursor: pointer;
+    /* scale: (1.2); */
 }
 
 .header nav ul {
@@ -47,4 +49,6 @@ css */
 
 .header nav a:hover {
     color: #007bff;
+    text-decoration: underline;
+
 }
