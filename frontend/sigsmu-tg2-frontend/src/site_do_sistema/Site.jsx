@@ -6,18 +6,18 @@ import T04_Main from "./components_site/T04_Main.jsx";
 // import siteModule from "./site.module.css";
 
 function Site(){
+    
+    return(
 
-return(
-
-    <div>
-        {/* <h1>Bem-vindo ao Site do Sistema</h1>
-        <p>Este é o site principal do sistema.</p> */}
-        <T01_Header/>
-        <T02_Titulo/>
-        <T03_Carrossel/>
-        <T04_Main/>
-    </div>
-)
+        <div>
+            {/* <h1>Bem-vindo ao Site do Sistema</h1>
+            <p>Este é o site principal do sistema.</p> */}
+            {/* <T01_Header/> */}
+            <T02_Titulo/>
+            <T03_Carrossel/>
+            <T04_Main/>
+        </div>
+    )
 }
 
 export default Site;

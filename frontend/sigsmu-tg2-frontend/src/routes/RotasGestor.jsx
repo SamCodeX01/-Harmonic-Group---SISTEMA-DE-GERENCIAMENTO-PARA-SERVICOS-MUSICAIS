@@ -20,10 +20,13 @@ import TelaDeCustos from "../pages_containers/telas-do-gestor/telas-dos-botoes/T
 import TelaEnvioDevolutiva from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaEnvioDevolutiva";
 
 
-function RotasGestor() {
+function RotasGestor({nomeRota, setNomeRota}) {
+    setNomeRota("gestor")
+
     return (
         <div className={rotas.main}>
-            <T01_Header />
+            {nomeRota === "gestor" && <T01_Header />}
+                <Route path="/" element={<T02_Inicio />} />
 
             <Routes>
                 {/*                       Rotas Principais                       */}

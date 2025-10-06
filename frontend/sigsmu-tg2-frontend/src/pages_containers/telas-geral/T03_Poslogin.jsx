@@ -13,7 +13,7 @@ function T03_Poslogin() {
                 <legend>Direcionamento de Usuários</legend>
                 {/* <Botao msg="Telas do Cliente" estilo={true} rota="/RotasCliente" /> */}
                 <Botao msg="Telas do Musico" estilo={false} rota="" />
-                <Botao msg="Telas do Gestor" estilo={true} rota="/RotasGestor/Inicio" />
+                <Botao msg="Telas do Gestor" estilo={true} rota="/Intranet/RotasGestor/Inicio" />
             </fieldset>
         </div>
     )

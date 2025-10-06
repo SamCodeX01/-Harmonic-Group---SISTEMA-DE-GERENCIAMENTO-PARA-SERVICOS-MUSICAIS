@@ -4,13 +4,15 @@ import "./styles/global.css"
 import { createRoot } from 'react-dom/client'
 
 // Importação das rotas
-import Rotas from './routes/Rotas.jsx'
+import RotasCliente from './routes/RotasCliente.jsx'
+
+import App from './App.jsx'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     
-    <Rotas/>
+    <App/>
 
   </StrictMode>,
 )

@@ -18,6 +18,9 @@ css */
     width: auto;
 }
 
+
+/* =========== ANTIGO ===================== */
+
 .header nav ul li:nth-last-of-type(1) > a {
     font-size: 1rem;
     background:#007bff;
@@ -28,7 +31,7 @@ css */
 .header nav ul li:nth-last-of-type(1) > a:hover {
     color:#DB9D12;
     cursor: pointer;
-    /* scale: (1.2); */
+    scale: (1.2);
 }
 
 .header nav ul {
@@ -50,5 +53,47 @@ css */
 .header nav a:hover {
     color: #007bff;
     text-decoration: underline;
+}
 
+/* ================================ */
+
+
+/* === NOVO === */
+.header nav ul li {
+    font-weight: 700;
+}
+
+.header li > div {
+    display: inline;
+}
+.header li > div:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.header nav ul {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    list-style: none;
+    gap: 2rem;
+    /* margin: 0;
+    padding: 0; */
+}
+
+
+.header li:nth-last-child(1) > div {
+    text-decoration: none;
+    font-weight: bold;
+
+    font-size: 1rem;
+    background:#007bff;
+    color: #ddd;
+    padding: 15px;
+    border-radius: 12px;
+}
+.header li:nth-last-child(1) > div:hover {
+    text-decoration: underline;
+    color:#DB9D12;
 }

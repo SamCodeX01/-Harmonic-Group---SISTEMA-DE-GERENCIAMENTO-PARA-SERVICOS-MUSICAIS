@@ -28,7 +28,7 @@ function T01_Login() {
                 <Botao 
                     msg="Fazer login" 
                     estilo={true}
-                    rota={"/TelaPosLogin/"}
+                    rota={"/Intranet/TelaPosLogin"}
                 />
             </form>
 
@@ -41,7 +41,7 @@ function T01_Login() {
                 <Botao
                     msg="Criar uma nova conta"
                     estilo={false}
-                    rota={"/TelaCadastro/"}
+                    rota={"/Intranet/TelaCadastro"}
                 />
             </div>
 
