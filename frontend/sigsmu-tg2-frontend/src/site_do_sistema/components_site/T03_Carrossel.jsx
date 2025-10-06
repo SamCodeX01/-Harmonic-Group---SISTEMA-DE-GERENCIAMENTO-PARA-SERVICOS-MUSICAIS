@@ -4,16 +4,18 @@ import t03_carrossel from "./t03_carrossel.module.css";
 
 import flores from "../imagens_site/flores.jpg"
 import wedding from "../imagens_site/wedding.jpg"
-import foto_capa from "../imagens_site/foto_capa.jpg"
+// import foto_capa from "../imagens_site/foto_capa.jpg"
+import fotoCapa from "../imagens_site/foto-capa.png"
 
 function Carrossel(){
-    const images = [flores,wedding,foto_capa];
+    const images = [flores,wedding,fotoCapa];
 
     const [atual, setAtual] = useState(0);
 
     const nextSlide=()=>{
             setAtual((prev) => (prev + 1) % images.length);                   
-        }
+    }
+
     const prevSlide =()=>{
         setAtual((prev) => (prev - 1 + images.length) % images.length);
     }    
@@ -34,8 +36,8 @@ return(
         <div className={t03_carrossel.carrossel}>
             <img src={images[atual]} alt="slide" className={t03_carrossel.carrosselImagem} /> 
             
-            <button className={t03_carrossel["btn-prev"]} onClick={prevSlide}>&#10094;</button>
-            <button className={t03_carrossel["btn-next"]} onClick={nextSlide}>&#10095;</button>
+            {/* <button className={t03_carrossel["btn-prev"]} onClick={prevSlide}>&#10094;</button>
+            <button className={t03_carrossel["btn-next"]} onClick={nextSlide}>&#10095;</button> */}
         </div>
 
         <div className={t03_carrossel.dots}>
