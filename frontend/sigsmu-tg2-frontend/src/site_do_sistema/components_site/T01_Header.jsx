@@ -1,15 +1,15 @@
 import React from "react";
-import headercss from "./header.module.css";
+import t01_header from "./t01_header.module.css";
 import apagarDepois from "../image.png"
 import logotipo from "../imagens_site/logotipo300px.png"
 import { useNavigate } from "react-router-dom";
 
-function Header(){
+function T01_Header(){
 
 const navigate = useNavigate();
 
 return(
-    <header className={headercss.header}>
+    <header className={t01_header.header}>
         <img src={logotipo} alt="" srcset="" />
         <nav>
             <ul>
@@ -26,4 +26,4 @@ return(
 );
 
 }
-export default Header; 
+export default T01_Header; 

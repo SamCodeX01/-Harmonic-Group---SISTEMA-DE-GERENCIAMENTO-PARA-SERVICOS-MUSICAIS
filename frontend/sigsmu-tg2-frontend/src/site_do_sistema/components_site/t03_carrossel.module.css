@@ -1,0 +1,88 @@
+
+/* .flores{
+    width: 100vw;
+} */
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-top: 20px; */
+    background-color: #18213D;
+
+}
+
+/* Área principal do carrossel */
+.carrossel{
+    position: relative;
+    width: 800px;
+    /* height: 300px; */
+    height: 100%;
+    /* overflow: hidden; controla o que acontece com o conteúdo que ultrapassa os limites de um elemento (por exemplo, quando uma imagem é maior que a div que a contém). */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,1.3);
+}
+
+.imagem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.6s ease-in-out;
+    border-radius: 100x;
+}
+
+.btn {}
+
+.btn:hover {}
+
+/* Botões de navegação */
+
+.btn-prev, .btn-next{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 50%;
+    transition: background-color 0.3s, transform 0.2s;
+    user-select: none;
+}
+
+.btn-prev:hover,
+.btn-next:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+.btn-prev {
+  left: 10px;
+}
+
+.btn-next {
+  right: 10px;
+}
+
+/* Indicadores (bolinhas) */
+.dots {
+  margin-top: 12px;
+  background-color: black;
+}
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 4px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.dot:hover {
+  transform: scale(1.2);
+}
+
+.active {
+  background-color: #333;
+}
