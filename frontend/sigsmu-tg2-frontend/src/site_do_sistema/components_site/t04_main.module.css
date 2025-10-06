@@ -30,3 +30,9 @@
     height: 30px;
     border: 1px solid red;
 }
+
+.footer>p{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}

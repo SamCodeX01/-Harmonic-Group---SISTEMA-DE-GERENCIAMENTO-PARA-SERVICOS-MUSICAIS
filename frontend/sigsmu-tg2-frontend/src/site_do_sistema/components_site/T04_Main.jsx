@@ -2,12 +2,15 @@
 import t04_main from "./t04_main.module.css";
 import arabescoEsquerdo from "../imagens_site/arabesco-esquerda-inferior.png"
 import arabescoDireito from "../imagens_site/arabesco-direita-superior.png"
+import sobreOProdutor from "../imagens_site/sobre-o-produtor.png"
+import depoimentos from "../imagens_site/depoimentos.png"
+import footer from "../imagens_site/footer.png"
 
 function T04_Main(){
    
     return(
         <div>
-            <h1>Realize a sua festa com a gente!</h1>     
+            {/* <h1>Realize a sua festa com a gente!</h1>     
             <div className={t04_main.container}>
 
                 <div>
@@ -28,7 +31,13 @@ function T04_Main(){
                  <img className={t04_main.arabescoDireito} src={arabescoDireito} alt="" srcset="" />
                </div>
                 
-            </div>
+            </div> */}
+
+                <img src={sobreOProdutor} alt="" />
+                <img src={depoimentos} alt="" />
+                <img src={footer} alt="" />
+                <div className={t04_main.footer}><p>Copyright ©️ 2025. Harmonic Group. Todos os Direitos Reservados</p></div>
+
         </div>
     )    
 }

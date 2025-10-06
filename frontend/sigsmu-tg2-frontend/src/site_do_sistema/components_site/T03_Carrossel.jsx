@@ -32,7 +32,7 @@ return(
 
     <div className={t03_carrossel.container}>
         <div className={t03_carrossel.carrossel}>
-            <img src={images[atual]} alt="slide" className="carrossel-imagem" /> 
+            <img src={images[atual]} alt="slide" className={t03_carrossel.carrosselImagem} /> 
             
             <button className={t03_carrossel["btn-prev"]} onClick={prevSlide}>&#10094;</button>
             <button className={t03_carrossel["btn-next"]} onClick={nextSlide}>&#10095;</button>
