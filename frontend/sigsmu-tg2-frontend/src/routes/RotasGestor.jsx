@@ -1,17 +1,17 @@
 // Importações de estilos
-import css from "./CSS/rotas.module.css"
+import rotas from "./CSS/rotas.module.css"
 
 // Importações do React
 import { Routes, Route } from "react-router-dom";
 
 // Importações de telas do gestor
-import Header from "../pages_containers/telas-do-gestor/_telas-principais/Header";
+import T01_Header from "../pages_containers/telas-do-gestor/_telas-principais/T01_Header";
 
-import TelaInicio from "../pages_containers/telas-do-gestor/_telas-principais/TelaInicio";
-import TelaSolicitacoesServico from "../pages_containers/telas-do-gestor/_telas-principais/TelaSolicitacoesServico";
-import TelaBancoDeDados from "../pages_containers/telas-do-gestor/_telas-principais/TelaBancoDeDados";
-import TelaPermissoes from "../pages_containers/telas-do-gestor/_telas-principais/TelaPermissoes";
-import TelaHistorico from "../pages_containers/telas-do-gestor/_telas-principais/TelaHistorico";
+import T02_Inicio from "../pages_containers/telas-do-gestor/_telas-principais/T02_Inicio";
+import T03_SolicitacoesServico from "../pages_containers/telas-do-gestor/_telas-principais/T03_SolicitacoesServico";
+import T04_BancoDeDados from "../pages_containers/telas-do-gestor/_telas-principais/T04_BancoDeDados";
+import T05_Permissoes from "../pages_containers/telas-do-gestor/_telas-principais/T05_Permissoes";
+import T06_Historico from "../pages_containers/telas-do-gestor/_telas-principais/T06_Historico";
 
 import TelaAlteracaoContrato from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaAlteracaoContrato";
 import TelaAtribuicaoAutomatica from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaAtribuicaoAutomatica";
@@ -22,18 +22,16 @@ import TelaEnvioDevolutiva from "../pages_containers/telas-do-gestor/telas-dos-b
 
 function RotasGestor() {
     return (
-        <div className={css.main}>
-            <Header /> {/* COMPONENTE UTILIZADO EM TODAS AS TELAS DO GESTOR */}
+        <div className={rotas.main}>
+            <T01_Header />
 
             <Routes>
-                <Route index element={<TelaInicio />} /> 
-
                 {/*                       Rotas Principais                       */}
-                <Route path="/Inicio" element={<TelaInicio />} />
-                <Route path="/SolicitacoesServico" element={<TelaSolicitacoesServico />} />
-                <Route path="/BancoDeDados" element={<TelaBancoDeDados />} />
-                <Route path="/Permissoes" element={<TelaPermissoes />} />
-                <Route path="/Historico" element={<TelaHistorico />} /> 
+                <Route path="/Inicio" element={<T02_Inicio />} />
+                <Route path="/SolicitacoesServico" element={<T03_SolicitacoesServico />} />
+                <Route path="/BancoDeDados" element={<T04_BancoDeDados />} />
+                <Route path="/Permissoes" element={<T05_Permissoes />} />
+                <Route path="/Historico" element={<T06_Historico />} /> 
                 
                 {/*                    Rotas Opções do Gestor                    */}
                 <Route path="/AlteracaoContrato" element={<TelaAlteracaoContrato />} />

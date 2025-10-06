@@ -1,9 +1,7 @@
 // Importações de estilo
-import css from "./CSS/campostabela.module.css"
-// import buttoncss from "../forms/CSS/botaoselecionavel.module.css"
+import campostabela from "./CSS/campostabela.module.css"
 
-// Importações de componentes
-// import BotaoSelecionavel from "../forms/BotaoSelecionavel";
+// Importações do React
 import { useState } from "react";
 
 
@@ -16,7 +14,7 @@ function CamposTabela({campos, callback}) {
     const [campoSelecionado, setCampoSelecionado] = useState(campos[0])
 
     return (
-        <div className={css.main}>
+        <div className={campostabela.main}>
         {
             // campos.map((campo, i) => {
 

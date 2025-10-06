@@ -1,14 +1,14 @@
 // Importações de estilos
-import css from "./CSS/telaorcamento.module.css"
+import t02_orcamento from "./CSS/t02_orcamento.module.css"
 
 // Importações de componentes
 import Botao from "../../../components/Botao";
 
 
 // Tela responsável por iniciar os FORMULÁRIOS DE ORÇAMENTO para o cliente
-function TelaOrcamento() {
+function T02_Orcamento() {
     return (
-        <div className={css.main}>
+        <div className={t02_orcamento.main}>
             
             <form action="" method="post">
 
@@ -93,8 +93,8 @@ function TelaOrcamento() {
                         <input type="text" name="numero" id="inumero" />
                     </div>
 
-                    <section className={css.ultimo}>
-                        <div className={css.tipolocal}>
+                    <section className={t02_orcamento.ultimo}>
+                        <div className={t02_orcamento.tipolocal}>
                             <label htmlFor="iselect">Tipo local</label>
                             <select id="iselect">
                                 <option>Selecione um tipo</option>
@@ -107,7 +107,7 @@ function TelaOrcamento() {
                             </select>
                         </div>
 
-                        <div className={css.complemento}>
+                        <div className={t02_orcamento.complemento}>
                             <label htmlFor="icomplemento">Complemento</label>
                             <input type="text" name="complemento" id="icomplemento" />
                         </div>
@@ -122,4 +122,4 @@ function TelaOrcamento() {
         </div>
     )
 }
-export default TelaOrcamento;
+export default T02_Orcamento;

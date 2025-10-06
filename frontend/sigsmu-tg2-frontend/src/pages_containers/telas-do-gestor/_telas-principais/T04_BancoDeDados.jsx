@@ -1,5 +1,5 @@
 // Importações de estilos
-import css from "./CSS/telabancoDeDados.module.css"
+import t04_bancoDeDados from "./CSS/t04_bancoDeDados.module.css"
 
 // Importação de componentes
 import Botao from "../../../components/Botao"
@@ -15,7 +15,7 @@ import { useEffect, useState } from "react"
 
 
 // Tela de BANCO DE DADOS - para que gestores consigam cadastrar novos serviços/músicas/meios de pagamento/etc
-function TelaBancoDeDados() {
+function T04_BancoDeDados() {
 
     // Selecionar operação CRUD
     const [operacao, setOperacao] = useState("icrud0")
@@ -61,16 +61,16 @@ function TelaBancoDeDados() {
     }, [tabelaSelecionada])
 
     return (
-        <div className={css.main}>
+        <div className={t04_bancoDeDados.main}>
 
             {/* Local em que REGISTROS DO BANCO serão exibidos para o gestor */}
-            <div className={css.schema}>
+            <div className={t04_bancoDeDados.schema}>
                 Puxar os campos da tabela selecionada do banco e mostrar registros (em desenvolvimento)
             </div>
 
 
             {/* Local em que o gestor poderá alternar entre modos de CADASTRO/ALTERAÇÃO/EXCLUSÃO de dados do banco */}
-            <div className={css.botoes}>
+            <div className={t04_bancoDeDados.botoes}>
                 <Radio setSelecionado={setOperacao} name={"crud"} firstChecked={true}>
                     <Botao msg={"CADASTRAR"} rota={""} estilo={true} />
                     <Botao msg={"ALTERAR"} rota={""} estilo={true} />
@@ -80,7 +80,7 @@ function TelaBancoDeDados() {
 
 
             {/* Local em que as TABELAS serão ser exibidas para SELEÇÃO do gestor */}
-            <div className={css.seletorTabelas}>
+            <div className={t04_bancoDeDados.seletorTabelas}>
                 {
                     // Retorna cada tabela  exibe na tela
                     <Radio setSelecionado={setTabelaSelecionada} name={"table"}>
@@ -95,7 +95,7 @@ function TelaBancoDeDados() {
 
 
             {/* Local em que os CAMPOS DA TABELA selecionada pelo gestor serão exibidos */}
-            <div className={css.tabelaCampos} >
+            <div className={t04_bancoDeDados.tabelaCampos} >
                 {index != null &&
                 
                     <div>
@@ -104,7 +104,7 @@ function TelaBancoDeDados() {
 
                         {/* {console.log("index -> " + index)} */}
 
-                        <section className={css.campos}>
+                        <section className={t04_bancoDeDados.campos}>
                             <Radio setSelecionado={setCampoSelecionado} name={"campo"} firstChecked={true}>
                             {
                                 campos[index]
@@ -123,7 +123,7 @@ function TelaBancoDeDados() {
 
 
             {/* Local em que o gestor poderá DAR INPUT de dados e manipular o banco */}
-            <div className={css.inputGestor}>
+            <div className={t04_bancoDeDados.inputGestor}>
                 {/* <HelpDoGestor input={true} msg={"Dado a ser inserido:"} />
 
                 <HelpDoGestor 
@@ -141,4 +141,4 @@ function TelaBancoDeDados() {
         </div>
     )
 }
-export default TelaBancoDeDados;
+export default T04_BancoDeDados;

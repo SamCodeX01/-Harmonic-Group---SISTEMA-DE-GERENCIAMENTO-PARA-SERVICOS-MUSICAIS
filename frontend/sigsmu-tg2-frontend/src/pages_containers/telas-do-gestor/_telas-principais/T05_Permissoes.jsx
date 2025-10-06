@@ -1,13 +1,13 @@
 // Importações de estilos
-import css from "./CSS/telapermissoes.module.css"
+import t05_permissoes from "./CSS/t05_permissoes.module.css"
 
 
 // Tela de PERMISSÕES - para gerenciamento de permissões de usuários do sistema
-function TelaPermissoes() {
+function T05_Permissoes() {
     return (
-        <div className={css.main}>
+        <div className={t05_permissoes.main}>
             Em desenvolvimento...
         </div>
     )
 }
-export default TelaPermissoes;
+export default T05_Permissoes;

@@ -1,27 +1,28 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
 // Importações das telas
-import TelaLogin from '../pages_containers/telas-geral/TelaLogin';
-import TelaCadastro from '../pages_containers/telas-geral/TelaCadastro.jsx';
-import TelaPosLogin from '../pages_containers/telas-geral/TelaPosLogin';
+import Site from '../site_do_sistema/Site.jsx';
+import T01_Login from '../pages_containers/telas-geral/T01_Login.jsx';
+import T02_Cadastro from '../pages_containers/telas-geral/T02_Cadastro.jsx';
+import T03_Poslogin from '../pages_containers/telas-geral/T03_Poslogin.jsx';
 
 // Importações de rotas específicas
 import RotasGestor from './RotasGestor.jsx';
 import RotasCliente from './RotasCliente.jsx';
-// import Site from '../site_do_sistema/Site.jsx';
-import Site from '../site_do_sistema/Site.jsx';
+
+// Importações do React
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 
 function Rotas() {
     return (
         <Router>
             <Routes>
                 <Route index element={<Site/>}/>
+                <Route path='/Inicio'        element={ <Site/>  }/>
                 
                 {/*                   Rotas Gerais                  */}
-                <Route path='/TelaLogin/'     element={ <TelaLogin/>  }/>
-                <Route path='/TelaCadastro/'  element={<TelaCadastro/>}/>
-                <Route path='/TelaPosLogin/'  element={<TelaPosLogin/>}/>
+                <Route path='/TelaLogin'     element={ <T01_Login/>  }/>
+                <Route path='/TelaCadastro'  element={<T02_Cadastro/>}/>
+                <Route path='/TelaPosLogin'  element={<T03_Poslogin/>}/>
 
                 {/*                Rotas de Usuários                */}
                 <Route path='/RotasGestor/*'  element={<RotasGestor />}/>

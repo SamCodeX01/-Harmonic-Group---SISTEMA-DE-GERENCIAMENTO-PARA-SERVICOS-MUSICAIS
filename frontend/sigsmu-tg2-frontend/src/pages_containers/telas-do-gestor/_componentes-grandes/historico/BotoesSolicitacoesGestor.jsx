@@ -1,5 +1,5 @@
 // Importações de estilos
-import css from "./CSS/botoessolicitacoesgestor.module.css"
+import botoessolicitacoesgestor from "./CSS/botoessolicitacoesgestor.module.css"
 
 // Importações de componentes
 import Botao from "../../../../components/Botao";
@@ -8,7 +8,7 @@ import Botao from "../../../../components/Botao";
 // DESCRIÇÃO
 function BotoesSolicitacoesGestor() {
     return (
-        <div className={css.main} onClick={evt => {evt.stopPropagation()}}>
+        <div className={botoessolicitacoesgestor.main} onClick={evt => {evt.stopPropagation()}}>
             <Botao msg={"Atribuir Equipe Automático"} rota={"/RotasGestor/AtribuicaoAutomatica"} estilo={true} />
             <Botao msg={"Atribuir Equipe Manual"} rota={"/RotasGestor/AtribuicaoManual"} estilo={true} />
             <Botao msg={"Definir Custos"} rota={"/RotasGestor/Custos"} estilo={true} />

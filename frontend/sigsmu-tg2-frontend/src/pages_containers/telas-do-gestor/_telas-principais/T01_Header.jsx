@@ -1,5 +1,5 @@
 // Importações de estilos
-import css from "./CSS/header.module.css"
+import t01_header from "./CSS/t01_header.module.css"
 
 // Importações de componentes
 import Botao from "../../../components/Botao";
@@ -10,7 +10,7 @@ import { useState } from "react";
 
 
 // Componente utilizado como HEADER em todas as telas do gestor, direcionando para a tela que o gestor escolher
-function Header() {
+function T01_Header() {
 
     // Usado para pegar o botão selecionado
     const [botao, setBotao] = useState("iheader0")
@@ -20,7 +20,7 @@ function Header() {
             }
 
     return (
-        <div className={css.main}>
+        <div className={t01_header.main}>
         {
             <Radio setSelecionado={setBotao} name={"header"} firstChecked={true}>
                 <Botao msg={"Início (indicadores)"} rota={"/RotasGestor/Inicio"} estilo={true} />
@@ -33,4 +33,4 @@ function Header() {
         </div>
     )
 }
-export default Header;
+export default T01_Header;

@@ -1,10 +1,10 @@
 // Importações de estilos
-import css from "./CSS/rotas.module.css"
+import rotas from "./CSS/rotas.module.css"
 
 // Importações das telas
-import TelaInicio from "../pages_containers/telas-do-cliente/_telas-principais/TelaInicio";
-import TelaRepertorio from "../pages_containers/telas-do-cliente/_telas-principais/TelaRepertorio";
-import TelaOrcamento from "../pages_containers/telas-do-cliente/_telas-principais/TelaOrcamento";
+import T01_Inicio from "../pages_containers/telas-do-cliente/_telas-principais/T01_Inicio";
+import T03_Repertorio from "../pages_containers/telas-do-cliente/_telas-principais/T03_Repertorio";
+import T02_Orcamento from "../pages_containers/telas-do-cliente/_telas-principais/T02_Orcamento";
 
 // Importações do React
 import {Routes, Route} from "react-router-dom"
@@ -12,14 +12,11 @@ import {Routes, Route} from "react-router-dom"
 
 function RotasCliente() {
     return (
-        <div className={css.main}>
+        <div className={rotas.main}>
             <Routes>
-                <Route index element={<TelaOrcamento/>}/>
-                
                 {/*             Rotas Principais             */}
-                <Route path="/Inicio/" element={<TelaInicio/>}/>
-                <Route path="/Repertorio/" element={<TelaRepertorio/>}/>
-                <Route path="/Orcamento/" element={<TelaOrcamento/>}/>
+                <Route path="/Repertorio/" element={<T03_Repertorio/>}/>
+                <Route path="/Orcamento/" element={<T02_Orcamento/>}/>
             </Routes>
         </div>
     )

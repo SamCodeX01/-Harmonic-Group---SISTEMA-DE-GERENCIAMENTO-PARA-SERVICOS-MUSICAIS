@@ -1,5 +1,5 @@
 // Importações de estilos
-import css from "./CSS/telahistorico.module.css"
+import t06_historico from "./CSS/t06_historico.module.css"
 
 // Importações de componentes
 import Cards from "../_componentes-grandes/_compartilhados/Cards";
@@ -7,7 +7,7 @@ import { useState } from "react";
 
 
 // Tela de HISTÓRICO - para armazenar registros de serviços já realizados ou até mesmo cancelados
-function TelaHistorico() {
+function T06_Historico() {
 
     // Nem sei se precisa disso, pq é uma tela apenas de visualização, não alteração
     const [dadosCliente, setDadosCliente] = useState({
@@ -21,10 +21,10 @@ function TelaHistorico() {
     })
 
     return (
-        <div className={css.main}>
+        <div className={t06_historico.main}>
             <Cards id={1} objCliente={dadosCliente} metodoSet={setDadosCliente} comBotao={true} />
             <Cards id={2} objCliente={dadosCliente} metodoSet={setDadosCliente} comBotao={true} />
         </div>
     )
 }
-export default TelaHistorico;
+export default T06_Historico;

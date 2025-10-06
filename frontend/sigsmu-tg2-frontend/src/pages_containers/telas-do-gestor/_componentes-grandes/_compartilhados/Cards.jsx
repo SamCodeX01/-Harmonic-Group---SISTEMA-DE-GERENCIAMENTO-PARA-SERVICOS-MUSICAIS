@@ -1,5 +1,5 @@
 // Importações de estilos
-import css from "./CSS/cards.module.css"
+import cards from "./CSS/cards.module.css"
 
 // Importações de componentes
 import BotoesSolicitacoesGestor from "../historico/BotoesSolicitacoesGestor";
@@ -12,19 +12,19 @@ function Cards({id, objCliente, metodoSet, comBotao=false, idCardSelecionado}) {
     return (
         <div 
             className={`
-                ${css.main} 
-                ${(comBotao ? css.mainComFlex : css.mainSemFlex)}
+                ${cards.main} 
+                ${(comBotao ? cards.mainComFlex : cards.mainSemFlex)}
             `}>
 
-            <div className={css.secondary}>
+            <div className={cards.secondary}>
 
-                <div className={css.ladoEsquerdo}>
+                <div className={cards.ladoEsquerdo}>
                     <p><span>ID da solicitação:</span> {objCliente.idSolicitacao} </p>
                     <p><span>Nome do cliente:</span> {objCliente.nomeCliente} </p>
                     <p><span>Situação:</span> {objCliente.situacaoServico} </p>
                 </div>
 
-                <div className={css.ladoDireito}>
+                <div className={cards.ladoDireito}>
                     <p><span>Data da solicitação:</span> {objCliente.dataSolicitacao} </p>
                     <p><span>Nome do pacote:</span> {objCliente.tipoServico} </p>
                     <p><span>Tipo de serviço:</span> {objCliente.pacoteEscolhido} </p>
@@ -35,7 +35,7 @@ function Cards({id, objCliente, metodoSet, comBotao=false, idCardSelecionado}) {
             {/* Mostra os botões correspondentes ao card selecionado */}
             {idCardSelecionado === idElemento && <BotoesSolicitacoesGestor />}
 
-            {comBotao && <button className={css.button}>Visualizar <br/> contrato</button>}
+            {comBotao && <button className={cards.button}>Visualizar <br/> contrato</button>}
 
         </div>
     )   

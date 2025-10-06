@@ -1,5 +1,5 @@
 // Importações de estilos
-import css from "./CSS/botao.module.css"
+import botao from "./CSS/botao.module.css"
 
 // Importações do React
 import { useNavigate } from "react-router-dom";
@@ -13,8 +13,8 @@ function Botao({msg, estilo, rota=null, style=null, value=null}) {
     return (
         <div 
             className={`
-                ${css.main} 
-                ${estilo ? css.cores : ""}
+                ${botao.main} 
+                ${estilo ? botao.cores : ""}
             `} // Aplicação de .cores caso estilo (props) seja true 
             
             

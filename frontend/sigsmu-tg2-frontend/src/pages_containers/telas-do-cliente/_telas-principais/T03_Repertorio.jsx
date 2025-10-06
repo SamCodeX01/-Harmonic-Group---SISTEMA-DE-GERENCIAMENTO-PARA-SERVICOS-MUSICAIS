@@ -1,10 +1,10 @@
 // Importações de estilos
-import css from "./CSS/telarepertorio.module.css"
+import t03_repertorio from "./CSS/t03_repertorio.module.css"
 
 
-function TelaRepertorio() {
+function T03_Repertorio() {
     return (
-        <div className={css.main}>
+        <div className={t03_repertorio.main}>
             
             <div>
                 <h1>Repertório</h1>
@@ -24,7 +24,7 @@ function TelaRepertorio() {
             </div>
 
 
-            <div className={css.selects}>
+            <div className={t03_repertorio.selects}>
 
                 <label htmlFor="teste2">Entrada dos pais e parentes</label>
                 <select id="teste2">
@@ -51,7 +51,7 @@ function TelaRepertorio() {
                 </select>
             </div>
 
-            <div className={css.selects}>
+            <div className={t03_repertorio.selects}>
                 <label htmlFor="teste2">Entrada dos noivos</label>
                 <select id="teste2">
                     <option>Clique para escolher a música</option>
@@ -77,7 +77,7 @@ function TelaRepertorio() {
                 </select>
             </div>
             
-            <div className={css.selects}>
+            <div className={t03_repertorio.selects}>
 
                 <label htmlFor="teste2">Entrada da dama de honra</label>
                 <select id="teste2">
@@ -105,7 +105,7 @@ function TelaRepertorio() {
             </div>
 
 
-            <button className={css.button}>Adicionar mais momentos</button>
+            <button className={t03_repertorio.button}>Adicionar mais momentos</button>
 
 
             <div>
@@ -119,4 +119,4 @@ function TelaRepertorio() {
         </div>
     )
 }
-export default TelaRepertorio;
+export default T03_Repertorio;

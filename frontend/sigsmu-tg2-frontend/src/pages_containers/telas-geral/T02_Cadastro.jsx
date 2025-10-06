@@ -1,5 +1,5 @@
 // Importações de estilos
-import css from "./CSS/telacadastro.module.css"
+import t02_cadastro from "./CSS/t02_cadastro.module.css"
 
 // Importações de componentes
 import Campo from "../../components/Campo";
@@ -9,13 +9,13 @@ import { useState } from "react";
 
 
 // Tela de CADASTRO DE USUÁRIOS - para que usuários se cadastrem no sistema como clientes/músicos/gestores.
-function TelaCadastro() {
+function T02_Cadastro() {
 
     // Pega o empresa do radioButton para saber se é empresa ou não
     const [empresa, setEmpresa] = useState(false);
 
     return(
-        <form action="url" method="POST" className={css.main}>
+        <form action="url" method="POST" className={t02_cadastro.main}>
             {/* Muda o valor de empresa quando selecionado (useState) */}
             <input type="radio" name="radio"  id="pessoaFisica" defaultChecked onChange={evt => setEmpresa(!empresa)} />         
             <label htmlFor="pessoaFisica">Pessoa Física</label>
@@ -95,7 +95,7 @@ function TelaCadastro() {
         </form>
     )
 }
-export default TelaCadastro;
+export default T02_Cadastro;
 
 
 

@@ -1,5 +1,5 @@
 // Importações de estilos
-import css from "./CSS/telalogin.module.css"
+import t01_login from "./CSS/t01_login.module.css"
 
 // Importações de componentes
 import Botao from "../../components/Botao.jsx";
@@ -7,12 +7,12 @@ import Campo from "../../components/Campo.jsx";
 
 
 // Tela de LOGIN - para que usuários logem no sistema e vejam configurações específicas para cada tipo de perfil
-function TelaLogin() {
+function T01_Login() {
     return (
-        <div className={css.main}>
-            <img src="../imagens/sem_imagem.png" alt="Logo" className={css.img}/>
+        <div className={t01_login.main}>
+            <img src="../imagens/sem_imagem.png" alt="Logo" className={t01_login.img}/>
             
-            <form action="post" className={css.form}>
+            <form action="post" className={t01_login.form}>
                 <Campo 
                     type="email" 
                     name="login" 
@@ -48,4 +48,4 @@ function TelaLogin() {
         </div>
     )
 }
-export default TelaLogin;
+export default T01_Login;

@@ -1,5 +1,5 @@
 // Importações de estilos
-import css from "./CSS/tabelagestor.module.css"
+import tabelagestor from "./CSS/tabelagestor.module.css"
 
 // Importações de componentes
 // import Botao from "../forms/Botao";
@@ -11,12 +11,12 @@ function TabelaGestor({tabela, campos}) {
 
     return (
         <div>
-            {/* <Botao className={css.main} msg={tabela} />
-            <div className={css.campos}>
+            {/* <Botao className={tabelagestor.main} msg={tabela} />
+            <div className={tabelagestor.campos}>
                 {
                     campos.map((campo, i) => {
                         if (i != 0)
-                            return <Botao className={css.main} msg={campos[0] + campo} estilo={true} selecionavel={true} key={i} />
+                            return <Botao className={tabelagestor.main} msg={campos[0] + campo} estilo={true} selecionavel={true} key={i} />
                     })
                 }
             </div> */}

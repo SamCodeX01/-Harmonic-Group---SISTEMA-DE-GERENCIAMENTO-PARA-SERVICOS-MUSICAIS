@@ -1,5 +1,5 @@
 // Importações de estilos
-import css from "./CSS/telasolicitacoesServico.module.css"
+import t03_solicitacoesServico from "./CSS/t03_solicitacoesServico.module.css"
 
 // Importações de componentes
 import Cards from "../_componentes-grandes/_compartilhados/Cards"
@@ -10,7 +10,7 @@ import { useState } from "react"
 
 
 // Tela de SOLICITAÇÕES DE SERVIÇO - para visualização das ordens de serviço geradas por solicitações de clientes
-function TelaSolicitacoesServico() {
+function T03_SolicitacoesServico() {
     const [card, setCard] = useState(null)
 
     // Para testes
@@ -25,7 +25,7 @@ function TelaSolicitacoesServico() {
     })
 
     return (
-        <div className={css.main}>
+        <div className={t03_solicitacoesServico.main}>
             <Radio setSelecionado={setCard} name={"card"}>
                 <Cards id={0} objCliente={dadosCliente} metodoSet={setDadosCliente} idCardSelecionado={card ? card.id : null} />
                 <Cards id={1} objCliente={dadosCliente} metodoSet={setDadosCliente} idCardSelecionado={card ? card.id : null} />
@@ -34,4 +34,4 @@ function TelaSolicitacoesServico() {
         </div>
     )
 }
-export default TelaSolicitacoesServico;
+export default T03_SolicitacoesServico;
