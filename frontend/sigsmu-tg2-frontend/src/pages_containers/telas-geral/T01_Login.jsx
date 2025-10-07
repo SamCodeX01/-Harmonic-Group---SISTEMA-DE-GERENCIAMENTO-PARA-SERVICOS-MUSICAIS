@@ -1,6 +1,9 @@
 // Importações de estilos
 import t01_login from "./CSS/t01_login.module.css"
 
+// Importações de iamgens
+import logo1 from "./logo1.jpeg"
+
 // Importações de componentes
 import Botao from "../../components/Botao.jsx";
 import Campo from "../../components/Campo.jsx";
@@ -10,7 +13,8 @@ import Campo from "../../components/Campo.jsx";
 function T01_Login() {
     return (
         <div className={t01_login.main}>
-            <img src="../imagens/sem_imagem.png" alt="Logo" className={t01_login.img}/>
+            {/* <img src="../imagens/sem_imagem.png" alt="Logo" className={t01_login.img}/> */}
+            <img src={logo1} alt="Logo" className={t01_login.img}/>
             
             <form action="post" className={t01_login.form}>
                 <Campo 
