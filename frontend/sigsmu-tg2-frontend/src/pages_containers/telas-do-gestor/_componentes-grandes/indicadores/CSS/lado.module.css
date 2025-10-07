@@ -1,67 +1,113 @@
-:root {
-    --tamanhoDivPequena: 21px;
-    --margemDivPequena: 2px;
-}
-
+/* ====== SEÇÃO PRINCIPAL ====== */
 .main {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 5px;
-
-    width: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 15px;
+    flex: 1;
+    background-color: var(--corazul);
+    border-radius: 14px;
+    border: 1px solid #d1d5db;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    transition: all 0.2s ease-in-out;
 }
-.main > div {
-    flex: 1 0 40%;
+
+.main:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
 
+
+/* ====== LADO ESQUERDO ====== */
 .esquerda {
     display: flex;
-    flex-flow: column;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+}
 
-    /* Não sei pq nada funciona */
-    /* QLQR COISA BOTAR NA GRID */
-    justify-content: center;
-}
 .esquerda > div {
-    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--margemDivPequena);
 }
-.esquerda > div > div {
-    display: inline-block;
-    border: solid black;
-    width: calc(100% - var(--tamanhoDivPequena) - var(--margemDivPequena));
+
+.esquerda > div > div:first-child {
+    flex: 1;
+    background-color: #f9fafc;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
-.grafico {
+
+.esquerda > div > div:first-child:hover {
+    border-color: #196dba;
+}
+
+.divPequena {
+    width: var(--tamanhoDivPequena);
+    height: var(--tamanhoDivPequena);
     display: flex;
     justify-content: center;
     align-items: center;
-
-    border: solid black;
-    flex: 1 0 30px;
-    /* height: 100%; */
+    background-color: #db9d12;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 6px;
 }
 
+
+/* ====== GRÁFICO ====== */
+.grafico {
+    margin-top: 10px;
+    height: 120px;
+    background: linear-gradient(145deg, #f3f4f6, #ffffff);
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #374151;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+
+/* ====== LADO DIREITO ====== */
+.direita {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
 .direita > div {
-    border: solid black;
-    height: 50%;
+    flex: 1;
+    /* ============================================================================================================================ */
+    background-color: #d1d5db; 
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.direita > div:hover {
+    border-color: #196dba;
+    box-shadow: 0 2px 8px rgba(25, 109, 186, 0.1);
 }
 
 
-.esquerda, .direita {
-    display: inline-block;
-}
-
-
+/* ====== PARTE DE BAIXO ====== */
 .baixo {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: solid black;
-}
-
-.divPequena {
-    display: inline-block;
-    width: var(--tamanhoDivPequena) !important;
-    background-color: chocolate;
-    margin-left: var(--margemDivPequena);
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    background-color: #ffffff;
+    color: #1e1e1e;
+    font-weight: 500;
+    height: 120px;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.03);
 }

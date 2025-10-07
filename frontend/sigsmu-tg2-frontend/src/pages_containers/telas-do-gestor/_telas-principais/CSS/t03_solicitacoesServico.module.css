@@ -2,14 +2,19 @@
     display: flex;
     flex-flow: column;
     gap: 10px;
+
+    width: 80vw;
+    margin: auto;
+    padding: 20px;
 }
 
 .main label > div:hover {
-    background-color: aqua !important;
+    background-color: var(--corazul) !important;
 }
 
 
 /*       Arruma os cards selecionados       */
 .main input[type="radio"]:checked + label * {
     background-color: white;
+    color: black ;
 }

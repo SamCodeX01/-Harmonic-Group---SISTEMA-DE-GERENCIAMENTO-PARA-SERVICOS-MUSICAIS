@@ -1,0 +1,67 @@
+:root {
+    --tamanhoDivPequena: 21px;
+    --margemDivPequena: 2px;
+}
+
+.main {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 5px;
+
+    width: 100%;
+}
+.main > div {
+    flex: 1 0 40%;
+}
+
+.esquerda {
+    display: flex;
+    flex-flow: column;
+
+    /* Não sei pq nada funciona */
+    /* QLQR COISA BOTAR NA GRID */
+    justify-content: center;
+}
+.esquerda > div {
+    margin-bottom: 5px;
+}
+.esquerda > div > div {
+    display: inline-block;
+    border: solid black;
+    width: calc(100% - var(--tamanhoDivPequena) - var(--margemDivPequena));
+}
+.grafico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: solid black;
+    flex: 1 0 30px;
+    /* height: 100%; */
+}
+
+
+.direita > div {
+    border: solid black;
+    height: 50%;
+}
+
+
+.esquerda, .direita {
+    display: inline-block;
+}
+
+
+.baixo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid black;
+}
+
+.divPequena {
+    display: inline-block;
+    width: var(--tamanhoDivPequena) !important;
+    background-color: chocolate;
+    margin-left: var(--margemDivPequena);
+}

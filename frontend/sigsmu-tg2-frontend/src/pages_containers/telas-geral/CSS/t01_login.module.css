@@ -46,7 +46,14 @@
 .main > div * {
     text-align: center;
     width: 100%;
-} */
+/* <<<<<<< HEAD
+}
+
+
+.main > div > div {
+    background-color: aqua;
+=======
+} */ 
 
 .main {
     position: absolute;
@@ -57,6 +64,7 @@
     box-shadow: 0px 10px 30px rgba(24, 32, 61, 0.2);
     border-radius: 20px;
     background: #FFFFFF;
+    
     
     top: 50%;
     left: 50%;
@@ -177,4 +185,5 @@
 .main input:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(219, 157, 18, 0.2);
+/* >>>>>>> 0db31b7b78560fc12d38ccede2f0b00778ca539d */
 }

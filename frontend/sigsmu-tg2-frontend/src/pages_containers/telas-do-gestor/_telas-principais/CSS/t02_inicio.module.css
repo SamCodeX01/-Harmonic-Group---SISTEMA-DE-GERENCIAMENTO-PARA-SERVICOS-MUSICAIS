@@ -1,8 +1,22 @@
-.main {
+/* .main {
     display: flex;
     gap: 10px;
     
     height: 90vh;
     border: solid black;
     padding: 10px;
+} */
+
+.main {
+    display: flex;
+    gap: 20px;
+    height: 90vh;
+    padding: 20px;
+    background-color: var(--branco-fundo, #f3f4f6);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #1e1e1e;
 }
+/* 
+.main > section {
+    display: inline-block;
+} */
