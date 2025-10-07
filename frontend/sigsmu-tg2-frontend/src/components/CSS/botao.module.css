@@ -8,7 +8,8 @@
 }
 
 .cores {
-    background-color: var(--cordourado10) ;
+    /* background-color: var(--cordourado10) ; */
+    background-color: var(--corazul) ;
     color: var(--corletrasbotao) ;
     padding: 8px ; 
 }
