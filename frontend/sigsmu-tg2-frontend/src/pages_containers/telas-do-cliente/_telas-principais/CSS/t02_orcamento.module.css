@@ -1,9 +1,3 @@
-.main fieldset {
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 40px;
-}
-
 .main legend {
   font-size: 1.2rem;
   font-weight: bold;
@@ -34,6 +28,7 @@
 
 
 .main {
+    background-color: var(--corazul);
     height: 90vh;
     margin-top: 10px;
     border: solid;
@@ -48,13 +43,15 @@
     font-weight: 600;
 }
 .main fieldset {
+    background-color: var(--corbranco60);
     display: flex;
     flex-flow: row wrap;
     justify-content: start;
     gap: 10px;
 
+    border-radius: 8px;
     width: 50%;
-    margin: 30px auto;
+    margin: 20px auto;
     padding: 10px;
 }
 
@@ -88,7 +85,16 @@
 /* Passa pra próxima tela */
 .main > div:nth-last-of-type(1) {
     margin-left: auto;
-    margin-right: 250px;
-    background-color: aqua;
+    margin-right: 475px;
+    
     color: black;
+
+    background-color: var(--cordourado10);
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.main > div:nth-last-of-type(1):hover {
+    color: white;
+    text-decoration: underline;
 }

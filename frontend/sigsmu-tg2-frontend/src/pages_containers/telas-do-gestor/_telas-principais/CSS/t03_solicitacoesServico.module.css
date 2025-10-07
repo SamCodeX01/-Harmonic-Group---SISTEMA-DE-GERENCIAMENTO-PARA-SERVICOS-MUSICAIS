@@ -2,6 +2,10 @@
     display: flex;
     flex-flow: column;
     gap: 10px;
+
+    width: 80vw;
+    margin: auto;
+    padding: 20px;
 }
 
 .main label > div:hover {
