@@ -22,8 +22,12 @@ function Botao({msg, estilo, rota=null, style=null, value=null}) {
                 // Evita a propagação do evento (não afeta o pai)
                 evt.stopPropagation()
 
-                // Se tiver rota
-                navigate(rota)
+                if (rota != null) {
+                    navigate(rota)
+                } else {
+                    // Outras coisas do onClick() - talvez passar instruções via props
+                }
+                
             }}
 
             style={style}

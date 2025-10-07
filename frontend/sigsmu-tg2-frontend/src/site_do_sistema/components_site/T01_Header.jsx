@@ -15,7 +15,7 @@ function T01_Header(){
 
     return(
         <header className={t01_header.header}>
-            <img src={logotipo} alt="" srcset="" />
+            <img src={logotipo} alt="" srcSet="" />
             <nav>
                 <ul>
                     {/* <li onClick={ () => navigate("/Inicio") }><a href="">Home</a></li>

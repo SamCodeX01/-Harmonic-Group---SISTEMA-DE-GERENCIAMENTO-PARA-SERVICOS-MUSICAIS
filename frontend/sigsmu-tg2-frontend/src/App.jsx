@@ -3,13 +3,17 @@ import { useState } from 'react'
 import RotasCliente from './routes/RotasCliente';
 import Rotas from './routes/Rotas';
 
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+
+
 
 function App() {
-    const [nomeRota, setNomeRota] = useState()
-    
     return (
         // <RotasCliente nomeRota={nomeRota} setNomeRota={setNomeRota}/>   
+        // <RotasCliente />   
         <Rotas/>
     )
+
+    
 }
 export default App;

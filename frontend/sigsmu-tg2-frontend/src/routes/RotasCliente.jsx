@@ -15,26 +15,27 @@ import RotaIntranet from "./RotaIntranet.jsx";
 import Site from "../site_do_sistema/Site.jsx";
 import { useState } from "react";
 
-function RotasCliente({nomeRota, setNomeRota}) {
-    setNomeRota("cliente")
+function RotasCliente() {
+    // setNomeRota("cliente") {nomeRota, setNomeRota}
 
     return (
         <div className={rotas.main}>
-            <Router>
-                {nomeRota === "cliente" && <T01_Header/>}
+            {/* <Router> */}
+                {/* {nomeRota === "cliente" && <T01_Header/>} */}
+                <T01_Header/>
 
                 <Routes>
                     <Route index element={<Site/>}/>
                     <Route path='/Inicio'        element={ <Site/>  }/>
 
                     {/*                Rotas Principais                */}
-                    <Route path="/Orcamento/"  element={<T02_Orcamento/>}/>
-                    <Route path="/Repertorio/" element={<T03_Repertorio/>}/>
+                    <Route path="/Orcamento"  element={<T02_Orcamento/>}/>
+                    <Route path="/Repertorio" element={<T03_Repertorio/>}/>
 
                     {/*          Rota dos gestores e músicos          */}
-                    <Route path="/Intranet/*"  element={<RotaIntranet nomeRota={nomeRota} setNomeRota={setNomeRota}/>}/>
+                    <Route path="/Intranet/*"  element={<RotaIntranet />}/>
                 </Routes>
-            </Router>
+            {/* </Router> */}
         </div>
     )
 }

@@ -2,6 +2,7 @@
 import t02_orcamento from "./CSS/t02_orcamento.module.css"
 
 // Importações de componentes
+import T01_Header from '../../../site_do_sistema/components_site/T01_Header'
 import Botao from "../../../components/Botao";
 
 
@@ -9,6 +10,7 @@ import Botao from "../../../components/Botao";
 function T02_Orcamento() {
     return (
         <div className={t02_orcamento.main}>
+            {/* <T01_Header/> */}
             
             <form action="" method="post">
 
@@ -117,7 +119,7 @@ function T02_Orcamento() {
 
             </form>
 
-            <Botao msg={"Próxima"} rota={"/RotasCliente/Repertorio"} estilo={true} />
+            <Botao msg={"Próxima"} rota={"/Repertorio"} estilo={true} />
 
         </div>
     )

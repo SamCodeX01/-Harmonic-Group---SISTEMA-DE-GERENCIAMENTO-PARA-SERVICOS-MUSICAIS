@@ -4,48 +4,42 @@ import t04_bancoDeDados from "./CSS/t04_bancoDeDados.module.css"
 // Importação de componentes
 import Botao from "../../../components/Botao"
 import Radio from "../../../components/Radio"
+import HelpDoGestor from "../_componentes-grandes/cadastronobd/HelpDoGestor"
 
-
-// import CamposTabela from "../../components/_maiores/gestor/cadastronobd/CamposTabela"
-// import TabelaGestor from "../../components/_maiores/gestor/cadastronobd/TabelaGestor"
-
-// import HelpDoGestor from "../_componentes-grandes/cadastronobd/HelpDoGestor"
-
+// Importações do React
 import { useEffect, useState } from "react"
 
 
 // Tela de BANCO DE DADOS - para que gestores consigam cadastrar novos serviços/músicas/meios de pagamento/etc
 function T04_BancoDeDados() {
 
-    // Selecionar operação CRUD
+    // Selecionar operação CRUD - FAZER AINDA
     const [operacao, setOperacao] = useState("icrud0")
 
-    // Selecionar tabela
+    // Seleciona a tabela (evt)
     const [tabelaSelecionada, setTabelaSelecionada] = useState(null)
-    // const [valoresRadio, setValoresRadio] = useState(null)
 
-
-    const [evento, setEvento] = useState(null);
+    // Seleciona a campo (evt)
     const [campoSelecionado, setCampoSelecionado] = useState(null)
 
 
     // Nome real e de exibição das tabelas
     const moldeBanco = {
-        "nometabela0" : "Pacotes de Serviço",
-        "nometabela1" : "Instrumento",
-        "nometabela2" : "Tipo de Serviço",
-        "nometabela3" : "Meios de Pagamento",
-        "nometabela4" : "Repertório / Músicas",
-        "nometabela5" : "Status / Andamento",
-        "nometabela6"  : "Tipo de Local"
+        "PacoteServico" : "Pacotes de Serviço",
+        "Instrumento" : "Instrumento",
+        "Servico" : "Tipo de Serviço",
+        "MeioPagamento" : "Meios de Pagamento",
+        "Repertorio" : "Repertório / Músicas",
+        "StatusSolicitacao" : "Status / Andamento",
+        "TipoLocal"  : "Tipo de Local"
     }
 
     // Campos 
     const campos = [
         ["pac_", "id", "nome", "valor", "qtdMusicos", "descricao"],
         ["ins_", "id", "nome"],
-        ["pgt_", "id", "nome"],
         ["ser_", "id", "nome"],
+        ["pgt_", "id", "nome"],
         ["rep_", "id", "musica", "artista", "genero", "tempo", "tocamos"],
         ["stt_", "id", "situacao"],
         ["tip_", "id", "tipo"]
@@ -57,6 +51,7 @@ function T04_BancoDeDados() {
     useEffect(() => {
         if (tabelaSelecionada !== null)
             setIndex( Object.keys(moldeBanco).findIndex(nomeTabela => nomeTabela === tabelaSelecionada.value) )
+        setCampoSelecionado(null)
 
     }, [tabelaSelecionada])
 
@@ -110,7 +105,7 @@ function T04_BancoDeDados() {
                                 campos[index]
                                 .filter(campo => campo[3] != "_")
                                 .map(campo => {
-                                    return <Botao msg={campo} value={3}/>
+                                    return <Botao msg={campo} value={campos[index][0] + campo}/>
                                 })
                             }
                             </Radio>
@@ -124,18 +119,17 @@ function T04_BancoDeDados() {
 
             {/* Local em que o gestor poderá DAR INPUT de dados e manipular o banco */}
             <div className={t04_bancoDeDados.inputGestor}>
-                {/* <HelpDoGestor input={true} msg={"Dado a ser inserido:"} />
+                <HelpDoGestor input={true} msg={"Dado a ser inserido:"} />
+
+                <div>
+                    <HelpDoGestor msg={"Nome da tabela:"} evento={tabelaSelecionada} />
+                    <button onClick={() => {alert("Dado adicionado!")}}>EXECUTAR COMANDO</button>
+                </div>
 
                 <HelpDoGestor 
                     msg={"Campo a ser preenchido:"} 
-                    evento={evento} 
-                    prefixo={dados[tabelaSelecionada]} 
+                    evento={campoSelecionado} 
                 />
-                
-                <div>
-                    <HelpDoGestor msg={"Nome da tabela:"} tabela={tabelaSelecionada} />
-                    <button onClick={() => {alert("Dado adicionado!")}}>EXECUTAR COMANDO</button>
-                </div> */}
             </div>
 
         </div>

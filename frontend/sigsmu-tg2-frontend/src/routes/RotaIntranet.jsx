@@ -15,7 +15,7 @@ import RotasCliente from './RotasCliente.jsx';
 import { Routes, Route } from 'react-router-dom'
 
 
-function RotaIntranet({nomeRota, setNomeRota}) {
+function RotaIntranet() {
     // setNomeRota("intranet")
 
     return (
@@ -23,15 +23,13 @@ function RotaIntranet({nomeRota, setNomeRota}) {
                 <Route index element={<T01_Login/>}/>
                 
                 {/*                   Rotas Gerais                  */}
-                <Route path='/TelaLogin'     element={ <T01_Login/>  }/>
-                <Route path='/TelaCadastro'  element={<T02_Cadastro/>}/>
-                <Route path='/TelaPosLogin'  element={<T03_Poslogin/>}/>
+                <Route path='TelaLogin'     element={ <T01_Login/>  }/>
+                <Route path='TelaCadastro'  element={<T02_Cadastro/>}/>
+                <Route path='TelaPosLogin'  element={<T03_Poslogin/>}/>
 
                 {/*                Rotas de Usuários                */}
-                {/* <Route path='/RotasGestor/*'  element={<RotasGestor nomeRota={nomeRota} setNomeRota={setNomeRota}>
-                    <Route path="/Inicio" element={<T02_Inicio />} />
-                </Route>}/> */}
-                {/* <Route path='/RotasCliente/*' element={<RotasCliente />}/> */}
+                <Route path='RotasGestor/*'  element={<RotasGestor/>}/>
+                    
             </Routes>
 
 

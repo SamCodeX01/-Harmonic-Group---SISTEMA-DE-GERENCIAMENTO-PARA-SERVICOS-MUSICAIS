@@ -25,23 +25,23 @@ function RotasGestor({nomeRota, setNomeRota}) {
 
     return (
         <div className={rotas.main}>
-            {nomeRota === "gestor" && <T01_Header />}
-                <Route path="/" element={<T02_Inicio />} />
+            {/* {nomeRota === "gestor" && <T01_Header />} */}
+                <Route index element={<T02_Inicio />} />
 
             <Routes>
                 {/*                       Rotas Principais                       */}
-                <Route path="/Inicio" element={<T02_Inicio />} />
-                <Route path="/SolicitacoesServico" element={<T03_SolicitacoesServico />} />
-                <Route path="/BancoDeDados" element={<T04_BancoDeDados />} />
-                <Route path="/Permissoes" element={<T05_Permissoes />} />
-                <Route path="/Historico" element={<T06_Historico />} /> 
+                <Route path="Inicio" element={<T02_Inicio />} />
+                <Route path="SolicitacoesServico" element={<T03_SolicitacoesServico />} />
+                <Route path="BancoDeDados" element={<T04_BancoDeDados />} />
+                <Route path="Permissoes" element={<T05_Permissoes />} />
+                <Route path="Historico" element={<T06_Historico />} /> 
                 
                 {/*                    Rotas Opções do Gestor                    */}
-                <Route path="/AlteracaoContrato" element={<TelaAlteracaoContrato />} />
-                <Route path="/Custos" element={<TelaDeCustos />} /> 
-                <Route path="/AtribuicaoAutomatica" element={<TelaAtribuicaoAutomatica />} /> 
-                <Route path="/AtribuicaoManual" element={<TelaAtribuicaoManual />} /> 
-                <Route path="/Devolutiva" element={<TelaEnvioDevolutiva />} /> 
+                <Route path="AlteracaoContrato" element={<TelaAlteracaoContrato />} />
+                <Route path="Custos" element={<TelaDeCustos />} /> 
+                <Route path="AtribuicaoAutomatica" element={<TelaAtribuicaoAutomatica />} /> 
+                <Route path="AtribuicaoManual" element={<TelaAtribuicaoManual />} /> 
+                <Route path="Devolutiva" element={<TelaEnvioDevolutiva />} /> 
             </Routes>
          </div>
     )

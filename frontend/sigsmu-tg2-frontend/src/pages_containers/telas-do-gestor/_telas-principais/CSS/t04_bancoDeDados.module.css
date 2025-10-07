@@ -1,3 +1,13 @@
+.main label div {
+    /* background-color: aqua; */
+    border-radius: 10px;
+    border: 1px solid black;
+    color: black;
+    font-size: large;
+} .main div > div > div {
+    background-color: rgb(30, 116, 229);
+}
+
 .main {
     /* border: solid blue; */
 
