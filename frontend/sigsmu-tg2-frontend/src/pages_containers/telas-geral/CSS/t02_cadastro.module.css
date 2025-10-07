@@ -5,16 +5,22 @@
   border-radius: 12px; 
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.164);
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--corazul);
 }
 
 /* Campos agrupados */
 .main fieldset {
+  background-color: white;
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
 }
 
 .main legend {
+  background-color: var(--cordourado10);
+  border-radius: 10px;
+  padding: 3px;
+
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0 10px;
@@ -52,6 +58,7 @@
   display: inline-block;
   margin-right: 15px;
   font-weight: normal;
+  color: white;
 }
 
 /* Botão */
@@ -82,4 +89,8 @@
 
 .main a:hover {
   text-decoration: underline;
+}
+
+.main button {
+  background-color: var(--cordourado10);
 }
