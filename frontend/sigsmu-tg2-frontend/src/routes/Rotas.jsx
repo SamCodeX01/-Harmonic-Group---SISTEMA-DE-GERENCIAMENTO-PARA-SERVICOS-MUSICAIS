@@ -29,7 +29,6 @@ import TelaAtribuicaoAutomatica from "../pages_containers/telas-do-gestor/telas-
 import TelaAtribuicaoManual from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaAtribuicaoManual";
 import TelaDeCustos from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaDeCustos";
 import TelaEnvioDevolutiva from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaEnvioDevolutiva";
-import { useEffect, useState } from 'react';
 
 
 // Salvador de vidas - amo o useLocation(☺)
@@ -44,13 +43,14 @@ function ConfigurarHeader() {
         return <T01_HeaderGestor/>
 }
 
+
 function Rotas() {
     return (
         <Router>
             <ConfigurarHeader/>
 
             <Routes> 
-                {/*               Rotas do Cliente               */}
+                {/*               ROTAS DO CLIENTE               */}
                 <Route path='/'           element={<Site/>}/>
                 <Route path='/Inicio'     element={<Site/>}/>
 
@@ -58,13 +58,13 @@ function Rotas() {
                 <Route path="/Repertorio" element={<T03_Repertorio/>}/>
 
 
-                {/*                     Rotas Intranet                     */}
+                {/*                     ROTAS INTRANET                     */}
                 <Route path='/Intranet/TelaLogin'    element={<T01_Login/>}/>
                 <Route path='/Intranet/TelaCadastro' element={<T02_Cadastro/>}/>
                 <Route path='/Intranet/TelaPosLogin' element={<T03_Poslogin/>}/>
 
 
-                {/*                         Rotas do Gestor                         */}
+                {/*                         ROTAS DO GESTOR                         */}
                 <Route path="/Intranet/RotasGestor/Inicio"              element={<T02_Inicio />} />
                 <Route path="/Intranet/RotasGestor/SolicitacoesServico" element={<T03_SolicitacoesServico />} />
                 <Route path="/Intranet/RotasGestor/BancoDeDados"        element={<T04_BancoDeDados />} />
@@ -72,11 +72,11 @@ function Rotas() {
                 <Route path="/Intranet/RotasGestor/Historico"           element={<T06_Historico />} /> 
                 
                 {/*                    Rotas das Opções do Gestor                    */}
-                <Route path="AlteracaoContrato"    element={<TelaAlteracaoContrato />} />
-                <Route path="Custos"               element={<TelaDeCustos />} /> 
-                <Route path="AtribuicaoAutomatica" element={<TelaAtribuicaoAutomatica />} /> 
-                <Route path="AtribuicaoManual"     element={<TelaAtribuicaoManual />} /> 
-                <Route path="Devolutiva"           element={<TelaEnvioDevolutiva />} /> 
+                <Route path="/Intranet/RotasGestor/SolicitacoesServico/AlteracaoContrato"    element={<TelaAlteracaoContrato />} />
+                <Route path="/Intranet/RotasGestor/SolicitacoesServico/Custos"               element={<TelaDeCustos />} /> 
+                <Route path="/Intranet/RotasGestor/SolicitacoesServico/AtribuicaoAutomatica" element={<TelaAtribuicaoAutomatica />} /> 
+                <Route path="/Intranet/RotasGestor/SolicitacoesServico/AtribuicaoManual"     element={<TelaAtribuicaoManual />} /> 
+                <Route path="/Intranet/RotasGestor/SolicitacoesServico/Devolutiva"           element={<TelaEnvioDevolutiva />} /> 
             </Routes>
         </Router>
     )

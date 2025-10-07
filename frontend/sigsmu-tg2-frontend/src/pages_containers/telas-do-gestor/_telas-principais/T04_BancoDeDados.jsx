@@ -104,7 +104,7 @@ function T04_BancoDeDados() {
                             {
                                 campos[index]
                                 .filter(campo => campo[3] != "_")
-                                .map(campo => {
+                                .map(campo => { 
                                     return <Botao msg={campo} value={campos[index][0] + campo}/>
                                 })
                             }

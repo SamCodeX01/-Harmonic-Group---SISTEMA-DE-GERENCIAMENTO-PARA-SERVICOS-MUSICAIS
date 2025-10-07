@@ -1,3 +1,14 @@
+:root {
+    --corbranco60: #FFFFFF;
+    --corespaco30: #18203D;
+    --cordourado10: #DB9D12;
+    --corpreto: #1E1E1E;
+    --corazul: #196DBA;
+
+    --corletrasbotao: brown;
+    --corbotaoselecionado: red;
+}
+
 * {
     margin: 0%;
     padding: 0%;
@@ -5,6 +16,8 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/*              BOTÃO SELECIONADO              */
 input[type="radio"]:checked + label div {
-    background-color: red;
+    background-color: var(--corbotaoselecionado);
+    color: white;
 }

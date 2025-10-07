@@ -2,7 +2,7 @@
 import botao from "./CSS/botao.module.css"
 
 // Importações do React
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 
 
 // Componente criado para FACILITAR A PASSAGEM DE PARÂMETROS para um botão comum
@@ -23,9 +23,12 @@ function Botao({msg, estilo, rota=null, style=null, value=null}) {
                 evt.stopPropagation()
 
                 if (rota != null) {
-                    navigate(rota)
-                } else {
-                    // Outras coisas do onClick() - talvez passar instruções via props
+                    const rotaAtual = rota.split("/").filter(Boolean)
+
+                    if (rotaAtual[1] === "RotasGestor") // || rotaAtual[0] !== "Intranet" - NÃO USEI PQ VAI DAR ERRO EM ALGUMAS PARTES
+                        navigate(rota, {replace: true})
+                    else 
+                        navigate(rota)
                 }
                 
             }}

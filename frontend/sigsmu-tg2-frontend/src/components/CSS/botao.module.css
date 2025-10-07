@@ -8,7 +8,7 @@
 }
 
 .cores {
-    background-color: rgb(25, 25, 189) ;
-    color: white ;
+    background-color: var(--cordourado10) ;
+    color: var(--corletrasbotao) ;
     padding: 8px ; 
 }

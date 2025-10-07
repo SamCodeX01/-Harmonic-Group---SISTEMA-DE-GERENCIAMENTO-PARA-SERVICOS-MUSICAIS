@@ -32,9 +32,10 @@ function Cards({id, objCliente, metodoSet, comBotao=false, idCardSelecionado}) {
 
             </div>
 
-            {/* Mostra os botões correspondentes ao card selecionado */}
+            {/*       MOSTRA OS BOTÕES DO CARD SELECIONADO - TIPO 1       */}
             {idCardSelecionado === idElemento && <BotoesSolicitacoesGestor />}
 
+            {/*                MOSTRA UM BOTÃO À DIREITA DO CARD - TIPO 2                */}
             {comBotao && <button className={cards.button}>Visualizar <br/> contrato</button>}
 
         </div>
