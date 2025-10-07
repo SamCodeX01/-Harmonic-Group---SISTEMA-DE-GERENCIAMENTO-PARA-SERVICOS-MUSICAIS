@@ -47,3 +47,8 @@
     text-align: center;
     width: 100%;
 }
+
+
+.main > div > div {
+    background-color: aqua;
+}

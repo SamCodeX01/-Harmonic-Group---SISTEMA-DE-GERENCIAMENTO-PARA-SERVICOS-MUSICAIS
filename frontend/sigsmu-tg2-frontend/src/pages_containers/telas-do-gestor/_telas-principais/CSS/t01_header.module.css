@@ -3,8 +3,9 @@
     flex-flow: row nowrap;
     justify-content: space-between;
 
-    padding: 10px;
+    padding: 20px;
     gap: 15px;
+    background-color: var(--corespaco30);
 }
 .main * {
     height: fit-content; /*fit-content define que a altura de um elemento será ajustada dinamicamente para se encaixar perfeitamente no seu conteúdo.*/
