@@ -9,12 +9,15 @@ import HelpDoGestor from "../_componentes-grandes/cadastronobd/HelpDoGestor"
 // Importações do React
 import { useEffect, useState } from "react"
 
+// Importações do CRUD
+import { listarTiposLocais } from "../../../services/tipoLocalService"
+
 
 // Tela de BANCO DE DADOS - para que gestores consigam cadastrar novos serviços/músicas/meios de pagamento/etc
 function T04_BancoDeDados() {
 
-    // Selecionar operação CRUD - FAZER AINDA
-    const [operacao, setOperacao] = useState("icrud0")
+    // Seleciona a operação CRUD (evt)
+    const [operacao, setOperacao] = useState(null)
 
     // Seleciona a tabela (evt)
     const [tabelaSelecionada, setTabelaSelecionada] = useState(null)
@@ -46,6 +49,8 @@ function T04_BancoDeDados() {
     ]
     
     const [index, setIndex] = useState(null)
+    const [mensagemInputGestor, setMensagemInputGestor] = useState(null)
+
 
     // Muda o index de acordo com a tabela selecionada para chamar os campos
     useEffect(() => {
@@ -53,13 +58,33 @@ function T04_BancoDeDados() {
             setIndex( Object.keys(moldeBanco).findIndex(nomeTabela => nomeTabela === tabelaSelecionada.value) )
         setCampoSelecionado(null)
 
-    }, [tabelaSelecionada])
+        if (operacao !== null) {
+            switch(operacao.value) {
+                case "insert": setMensagemInputGestor("Registro a ser INSERIDO:");
+                    break;
+                case "update": setMensagemInputGestor("Dado a ser ATUALIZADO:");
+                    break;
+                case "delete": setMensagemInputGestor("Índice do registro que será DELETADO:");
+                    break;
+            }
+        } else setMensagemInputGestor("Registro a ser INSERIDO:");
 
+    }, [tabelaSelecionada, operacao])
+
+
+    // Retorno AQUI
     return (
         <div className={t04_bancoDeDados.main}>
 
             {/* Local em que REGISTROS DO BANCO serão exibidos para o gestor */}
             <div className={t04_bancoDeDados.schema}>
+                {/*                                                                                    sadasssssssssdfsdagsagfagfa */}
+                {/* {tabelaSelecionada !== null ? mBANCO : ""}  */}
+                {
+                    listarTiposLocais()
+                    .then(res => console.log(res.data))
+                    .catch(err => console.log(err))
+                }
                 Puxar os campos da tabela selecionada do banco e mostrar registros (em desenvolvimento)
             </div>
 
@@ -67,9 +92,9 @@ function T04_BancoDeDados() {
             {/* Local em que o gestor poderá alternar entre modos de CADASTRO/ALTERAÇÃO/EXCLUSÃO de dados do banco */}
             <div className={t04_bancoDeDados.botoes}>
                 <Radio setSelecionado={setOperacao} name={"crud"} firstChecked={true}>
-                    <Botao msg={"CADASTRAR"} rota={""} estilo={true} />
-                    <Botao msg={"ALTERAR"} rota={""} estilo={true} />
-                    <Botao msg={"EXCLUIR"} rota={""} estilo={true} />
+                    <Botao msg={"CADASTRAR"} rota={""} estilo={true} value={"insert"} />
+                    <Botao msg={"ALTERAR"} rota={""} estilo={true} value={"update"} />
+                    <Botao msg={"EXCLUIR"} rota={""} estilo={true} value={"delete"} />
                 </Radio>
             </div>
 
@@ -119,7 +144,9 @@ function T04_BancoDeDados() {
 
             {/* Local em que o gestor poderá DAR INPUT de dados e manipular o banco */}
             <div className={t04_bancoDeDados.inputGestor}>
-                <HelpDoGestor input={true} msg={"Dado a ser inserido:"} />
+
+
+                <HelpDoGestor input={true} msg={mensagemInputGestor} />
 
                 <div>
                     <HelpDoGestor msg={"Nome da tabela:"} evento={tabelaSelecionada} />
@@ -128,7 +155,7 @@ function T04_BancoDeDados() {
 
                 <HelpDoGestor 
                     msg={"Campo a ser preenchido:"} 
-                    evento={campoSelecionado} 
+                    evento={campoSelecionado}
                 />
             </div>
 
