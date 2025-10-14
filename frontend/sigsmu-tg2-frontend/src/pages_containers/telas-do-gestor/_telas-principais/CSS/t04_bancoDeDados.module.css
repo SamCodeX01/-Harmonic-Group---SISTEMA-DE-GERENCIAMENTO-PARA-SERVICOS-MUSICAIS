@@ -26,8 +26,10 @@
 /* ===== SCHEMA DO BANCO ===== */
 .schema {
     display: flex;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
+
     text-align: center;
     font-size: 0.95rem;
     color: #374151;
@@ -35,7 +37,6 @@
     background: linear-gradient(145deg, #f3f4f6, #ffffff);
     grid-area: 1 / 1 / -1 / 2;
 }
-
 
 
 /* ===== BOTÕES CRUD ===== */

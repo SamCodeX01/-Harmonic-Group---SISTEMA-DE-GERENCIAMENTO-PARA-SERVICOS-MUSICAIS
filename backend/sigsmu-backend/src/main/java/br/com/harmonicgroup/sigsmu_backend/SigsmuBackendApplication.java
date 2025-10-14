@@ -8,6 +8,7 @@ public class SigsmuBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SigsmuBackendApplication.class, args);
+		System.out.println("Tá Bão!");
 	}
 
 }

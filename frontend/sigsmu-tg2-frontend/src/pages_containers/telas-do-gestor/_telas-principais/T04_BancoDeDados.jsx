@@ -10,21 +10,72 @@ import HelpDoGestor from "../_componentes-grandes/cadastronobd/HelpDoGestor"
 import { useEffect, useState } from "react"
 
 // Importações do CRUD
-import { listarTiposLocais } from "../../../services/tipoLocalService"
+import { listarTiposLocal, adicionarTipoLocal } from "../../../services/TipoLocalService"
 
 
 // Tela de BANCO DE DADOS - para que gestores consigam cadastrar novos serviços/músicas/meios de pagamento/etc
 function T04_BancoDeDados() {
+
+    // Retorna os tipos de local do BANCO
+    const [tiposLocais, setTiposLocais] = useState()
+    useEffect(() => {
+        listarTiposLocal()
+            .then(res => setTiposLocais(res.data))
+            .catch(err => console.log(err))
+    }, [tiposLocais])
+
+    
+
+    // Mostra todos os registros do BANCO para a tabela selecionada
+    const retornarRegistros = () => {
+        switch (tabelaSelecionada.value) {
+            case "PacoteServico":     return tiposLocais
+            case "Instrumento":       return tiposLocais
+            case "Servico":           return tiposLocais
+            case "MeioPagamento":     return tiposLocais
+            case "Repertorio":        return tiposLocais
+            case "StatusSolicitacao": return tiposLocais
+            case "TipoLocal":         return tiposLocais
+        }
+    }
+
+    // Executa o comando INSERT no BANCO de acordo com a tabela e campos selecionados
+    const adicionarDados = () => {
+        console.log("adicionarDados(tabelaSelecionada.value) -> " + tabelaSelecionada.value)
+        switch (tabelaSelecionada.value) {
+            case "PacoteServico":     adicionarTipoLocal({"nome" : inputGestor})
+                break
+            case "Instrumento":       adicionarTipoLocal({"nome" : inputGestor})
+                break
+            case "Servico":           adicionarTipoLocal({"nome" : inputGestor})
+                break
+            case "MeioPagamento":     adicionarTipoLocal({"nome" : inputGestor})
+                break
+            case "Repertorio":        adicionarTipoLocal({"nome" : inputGestor})
+                break
+            case "StatusSolicitacao": adicionarTipoLocal({"nome" : inputGestor})
+                break
+            case "TipoLocal":         adicionarTipoLocal({"nome" : inputGestor})
+                break
+        }
+    }
+
 
     // Seleciona a operação CRUD (evt)
     const [operacao, setOperacao] = useState(null)
 
     // Seleciona a tabela (evt)
     const [tabelaSelecionada, setTabelaSelecionada] = useState(null)
+    // Serve para saber o índice da tabela selecionada
+    const [index, setIndex] = useState(null)
+    // Todos os retornos do BANCO
+    let retornosBanco = [tiposLocais]
 
     // Seleciona a campo (evt)
     const [campoSelecionado, setCampoSelecionado] = useState(null)
 
+    const [mensagemInputGestor, setMensagemInputGestor] = useState()
+    const [inputGestor, setInputGestor] = useState(null)
 
     // Nome real e de exibição das tabelas
     const moldeBanco = {
@@ -37,6 +88,7 @@ function T04_BancoDeDados() {
         "TipoLocal"  : "Tipo de Local"
     }
 
+
     // Campos 
     const campos = [
         ["pac_", "id", "nome", "valor", "qtdMusicos", "descricao"],
@@ -48,15 +100,19 @@ function T04_BancoDeDados() {
         ["tip_", "id", "tipo"]
     ]
     
-    const [index, setIndex] = useState(null)
-    const [mensagemInputGestor, setMensagemInputGestor] = useState(null)
 
 
     // Muda o index de acordo com a tabela selecionada para chamar os campos
     useEffect(() => {
+
         if (tabelaSelecionada !== null)
             setIndex( Object.keys(moldeBanco).findIndex(nomeTabela => nomeTabela === tabelaSelecionada.value) )
         setCampoSelecionado(null)
+
+    }, [tabelaSelecionada])
+
+    useEffect(() => {
+        setTabelaSelecionada(null)
 
         if (operacao !== null) {
             switch(operacao.value) {
@@ -69,7 +125,7 @@ function T04_BancoDeDados() {
             }
         } else setMensagemInputGestor("Registro a ser INSERIDO:");
 
-    }, [tabelaSelecionada, operacao])
+    }, [operacao])
 
 
     // Retorno AQUI
@@ -78,15 +134,14 @@ function T04_BancoDeDados() {
 
             {/* Local em que REGISTROS DO BANCO serão exibidos para o gestor */}
             <div className={t04_bancoDeDados.schema}>
-                {/*                                                                                    sadasssssssssdfsdagsagfagfa */}
-                {/* {tabelaSelecionada !== null ? mBANCO : ""}  */}
-                {
-                    listarTiposLocais()
-                    .then(res => console.log(res.data))
-                    .catch(err => console.log(err))
+
+                {tabelaSelecionada !== null &&
+                    retornarRegistros().map((registro, i) => {
+                        return <p key={i}> {registro.nome} A=A </p>
+                    })
                 }
-                Puxar os campos da tabela selecionada do banco e mostrar registros (em desenvolvimento)
-            </div>
+
+            </div> 
 
 
             {/* Local em que o gestor poderá alternar entre modos de CADASTRO/ALTERAÇÃO/EXCLUSÃO de dados do banco */}
@@ -114,26 +169,32 @@ function T04_BancoDeDados() {
             </div>
 
 
-            {/* Local em que os CAMPOS DA TABELA selecionada pelo gestor serão exibidos */}
+            {/* Local em que os CAMPOS DA TABELA selecionada e a TABELA SELECIONADA pelo gestor serão exibidos */}
             <div className={t04_bancoDeDados.tabelaCampos} >
-                {index != null &&
+                {index != null && tabelaSelecionada != null &&
                 
                     <div>
                         {/* Exibe a tabela selecionada */}
-                        <Botao msg={moldeBanco[tabelaSelecionada.value]}/>
+                        <Botao msg={tabelaSelecionada ? moldeBanco[tabelaSelecionada.value] : ""}/>
 
                         {/* {console.log("index -> " + index)} */}
 
                         <section className={t04_bancoDeDados.campos}>
-                            <Radio setSelecionado={setCampoSelecionado} name={"campo"} firstChecked={true}>
+
                             {
-                                campos[index]
-                                .filter(campo => campo[3] != "_")
-                                .map(campo => { 
-                                    return <Botao msg={campo} value={campos[index][0] + campo}/>
-                                })
+                                operacao !== null && operacao.value === "delete" ? 
+                                    <Botao msg={campos[index][1]} value={campos[index][0] + campos[index][1]}/>                   
+                                :
+                                <Radio setSelecionado={setCampoSelecionado} name={"campo"} firstChecked={true}>
+                                {
+                                    campos[index]
+                                    .filter(campo => campo[3] != "_")
+                                    .map(campo => { 
+                                        return <Botao msg={campo} value={campos[index][0] + campo}/>
+                                    })
+                                }
+                                </Radio>
                             }
-                            </Radio>
                         </section>
 
                     </div>
@@ -146,17 +207,33 @@ function T04_BancoDeDados() {
             <div className={t04_bancoDeDados.inputGestor}>
 
 
-                <HelpDoGestor input={true} msg={mensagemInputGestor} />
+                <HelpDoGestor input={true} msg={mensagemInputGestor} setInput={setInputGestor} />
 
                 <div>
                     <HelpDoGestor msg={"Nome da tabela:"} evento={tabelaSelecionada} />
-                    <button onClick={() => {alert("Dado adicionado!")}}>EXECUTAR COMANDO</button>
+                    <button onClick={() => { 
+                        if (campoSelecionado !== null) {
+                            adicionarDados()
+                            alert("Dado adicionado!")
+                        }
+                        else
+                            alert("Falta selecionar o campo!")
+                    }}>EXECUTAR COMANDO</button>
                 </div>
 
                 <HelpDoGestor 
-                    msg={"Campo a ser preenchido:"} 
+                    msg={"Campo:"} 
                     evento={campoSelecionado}
+                    campoDeleteId={tabelaSelecionada && operacao && operacao.value === "delete" ? campos[index][0] + campos[index][1] : ""}
                 />
+
+                
+                {/* {operacao.value !== "delete" && 
+                    <HelpDoGestor 
+                        msg={"Campo a ser preenchido:"} 
+                        evento={campoSelecionado}
+                    />
+                } */}
             </div>
 
         </div>
