@@ -3,7 +3,7 @@
     grid-template: 1fr 3fr 3fr 2fr / 1fr 2fr;
     height: 90vh;
     gap: 10px;
-    padding: 15px;
+    padding: 10px;
     background-color: var(--corazul);
     background-color: --br;
     color: #1e1e1e;
@@ -25,17 +25,36 @@
 
 /* ===== SCHEMA DO BANCO ===== */
 .schema {
+    position: relative;
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
 
     text-align: center;
-    font-size: 0.95rem;
-    color: #374151;
     padding: 10px 20px;
-    background: linear-gradient(145deg, #f3f4f6, #ffffff);
     grid-area: 1 / 1 / -1 / 2;
+}
+.schema > .txtVisualizar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    background-color: var(--corespaco30);
+    border: solid;
+    border-radius: 10px 10px 0 0;
+    color: white;
+    padding: 10px;
+} 
+.txtVisualizar h1 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-top: 8px;
+} 
+.txtVisualizar h2 {
+    font-size: 1.2em;
+    font-weight: 300;
+    margin-top: 8px;
 }
 
 
@@ -115,13 +134,15 @@ input[type="radio"]:checked + label div {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     grid-area: 3 / 2 / 4 / -1;
 }
 
 .tabelaCampos > div {
     width: 420px;
-    padding: 20px;
-    background-color: #ffffff;
+    padding: 10px;
+    background-color: white;
+
     border-radius: 12px;
     border: 1px solid #d1d5db;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -201,4 +222,10 @@ input[type="radio"]:checked + label div {
 .inputGestor button:hover {
     background-color: #135da3;
     transform: translateY(-2px);
+}
+
+.inputGestor input {
+    text-indent: 9px;
+    border-radius: 10px;
+    width: 300px;
 }

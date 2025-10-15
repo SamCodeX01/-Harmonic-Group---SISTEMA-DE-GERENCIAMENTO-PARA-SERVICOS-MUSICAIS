@@ -1,0 +1,29 @@
+.table {
+    /* border: solid; */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.389);
+    border-radius:  10px;
+    padding: 10px;
+}
+
+.table td, 
+.table th {
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.table > caption {
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 5px;
+}
+
+.thead th {
+    /* border: solid; */
+    background-color: var(--cordourado10);
+    color: var(--corespaco30);
+}
+
+.tbody  td {
+    border: 1px solid black;
+}
+

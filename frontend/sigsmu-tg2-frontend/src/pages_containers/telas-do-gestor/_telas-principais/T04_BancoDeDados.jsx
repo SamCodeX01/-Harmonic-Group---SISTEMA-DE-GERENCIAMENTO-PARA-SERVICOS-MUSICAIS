@@ -7,7 +7,7 @@ import Radio from "../../../components/Radio"
 
 // Importação de componentes grandes
 import HelpDoGestor from "../_componentes-grandes/cadastronobd/HelpDoGestor"
-import SelectDaTabela from "../_componentes-grandes/cadastronobd/SelectDaTabela"
+import SelectDaTabela from "../_componentes-grandes/cadastronobd/CRUD/SelectDaTabela"
 
 // Importações do React
 import { useEffect, useState } from "react"
@@ -19,22 +19,15 @@ import { listarTiposServico } from "../../../services/TipoServicoService"
 import { listarMeiosPagamento } from "../../../services/MeioPagamentoService"
 import { listarRepertorios } from "../../../services/RepertorioService"
 import { listarStatus } from "../../../services/StatusSolicitacaoService"
-import { listarTiposLocal } from "../../../services/TipoLocalService"
+import { listarTiposLocal, adicionarTipoLocal } from "../../../services/TipoLocalService"
 
 
 
 // Tela de BANCO DE DADOS - para que gestores consigam cadastrar novos serviços/músicas/meios de pagamento/etc
 function T04_BancoDeDados() {
 
-    
-
-    
-
-    
-
     // Executa o comando INSERT no BANCO de acordo com a tabela e campos selecionados
     const adicionarDados = () => {
-        console.log("adicionarDados(tabelaSelecionada.value) -> " + tabelaSelecionada.value)
         switch (tabelaSelecionada.value) {
             case "PacoteServico":     adicionarTipoLocal({"nome" : inputGestor})
                 break
@@ -54,14 +47,14 @@ function T04_BancoDeDados() {
     }
 
 
-    // Seleciona a operação CRUD (evt)
+    // Guarda a operação CRUD (evt)
     const [operacao, setOperacao] = useState(null)
 
-    // Seleciona a tabela (evt), seu índice (int) e os dados retornados do BANCO
+    // Guarda a tabela (evt) e seu índice (int)
     const [tabelaSelecionada, setTabelaSelecionada] = useState(null)
     const [index, setIndex] = useState(null)
 
-    // Seleciona a campo selecionado da tabela (evt)
+    // Guarda o campo selecionado da tabela (evt)
     const [campoSelecionado, setCampoSelecionado] = useState(null)
 
 
@@ -101,9 +94,6 @@ function T04_BancoDeDados() {
             setIndex( Object.keys(moldeBanco).findIndex(nomeTabela => nomeTabela === tabelaSelecionada.value) )
         setCampoSelecionado(null)
 
-        // PENSAR AQUI ////////////////////////////////////////////////////////
-        // Talvez chamar função de outro script
-
     }, [tabelaSelecionada])
 
     // Muda a mensagem de input do gestor
@@ -124,18 +114,21 @@ function T04_BancoDeDados() {
     }, [operacao])
 
 
-    // Retorno AQUI
+
     return (
         <div className={t04_bancoDeDados.main}>
 
             {/* Local em que REGISTROS DO BANCO serão exibidos para o gestor */}
             <div className={t04_bancoDeDados.schema}>
-                {/* <table> */}
                     <SelectDaTabela 
                         tabela={tabelaSelecionada != null ? tabelaSelecionada.value : null} 
                         campos={tabelaSelecionada != null ? campos[index] : null}
                     />
-                {/* </table> */}
+                    
+                    <div className={t04_bancoDeDados.txtVisualizar}>
+                        <h1> Visualização da Tabela </h1>
+                        <h2> (dados puxados do banco) </h2>
+                    </div>
             </div> 
 
 
@@ -149,7 +142,7 @@ function T04_BancoDeDados() {
             </div>
 
 
-            {/* Local em que as TABELAS serão ser exibidas para SELEÇÃO do gestor */}
+            {/* Local em que as TABELAS serão exibidas para SELEÇÃO do gestor */}
             <div className={t04_bancoDeDados.seletorTabelas}>
                 {
                     // Retorna cada tabela  exibe na tela
@@ -164,9 +157,9 @@ function T04_BancoDeDados() {
             </div>
 
 
-            {/* Local em que os CAMPOS DA TABELA selecionada e a TABELA SELECIONADA pelo gestor serão exibidos */}
+            {/* Local em que a TABELA SELECIONADA e seus CAMPOS serão exibidos para o gestor */}
             <div className={t04_bancoDeDados.tabelaCampos} >
-                {index != null && tabelaSelecionada != null &&
+                {index != null && tabelaSelecionada != null ?
                 
                     <div>
                         {/* Exibe a tabela selecionada */}
@@ -193,14 +186,13 @@ function T04_BancoDeDados() {
                         </section>
 
                     </div>
-                }
+                : <div> Nenhuma tabela selecionada </div> }
             </div>
             
 
 
             {/* Local em que o gestor poderá DAR INPUT de dados e manipular o banco */}
             <div className={t04_bancoDeDados.inputGestor}>
-
 
                 <HelpDoGestor input={true} msg={mensagemInputGestor} setInput={setInputGestor} />
 
@@ -213,7 +205,7 @@ function T04_BancoDeDados() {
                         }
                         else
                             alert("Falta selecionar o campo!")
-                    }}>EXECUTAR COMANDO</button>
+                    }}> EXECUTAR COMANDO </button>
                 </div>
 
                 <HelpDoGestor 

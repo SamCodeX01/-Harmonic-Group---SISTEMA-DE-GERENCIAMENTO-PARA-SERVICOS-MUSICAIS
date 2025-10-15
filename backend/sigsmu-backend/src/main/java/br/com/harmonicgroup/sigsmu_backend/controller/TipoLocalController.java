@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.harmonicgroup.sigsmu_backend.model.TipoLocal;
 import br.com.harmonicgroup.sigsmu_backend.service.TipoLocalService;
 
-@CrossOrigin(origins = "http://localhost:5173")
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/tipolocal")
 public class TipoLocalController {
     

@@ -14,7 +14,7 @@ function T01_Header() {
 
     // Usado para pegar o botão selecionado
     const [botao, setBotao] = useState("iheader0")
-    console.log("botao selecionado -> " + botao)
+    // console.log("botao selecionado -> " + botao)
 
     return (
         <div className={t01_header.main}>

@@ -15,6 +15,11 @@
 .main label div {
     border-radius: 10px;
     border: 2px solid black;
+    color: white;
+}
+.main label div:hover {
+    background-color: #fff;
+    color: black;
 }
 
 .main input[type="radio"]:checked + label > div {
