@@ -1,0 +1,48 @@
+.chatBot-container {
+  min-height: 100vh;
+  background: var(--corbranco60);
+}
+
+.page-header {
+  background: linear-gradient(135deg, var(--corespaco30) 0%, var(--corazul) 100%);
+  color: var(--corbranco60);
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--cordourado10);
+}
+
+.page-header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+}
+
+.page-header p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.main-content h2 {
+  color: var(--corespaco30);
+  margin-bottom: 1rem;
+}
+
+.main-content p {
+  color: var(--corpreto);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+:root {
+  --corbranco60: #FFFFFF;
+  --corespaco30: #18203D;
+  --cordourado10: #DB9D12;
+  --corpreto: #1E1E1E;
+  --corazul: #196DBA;
+}

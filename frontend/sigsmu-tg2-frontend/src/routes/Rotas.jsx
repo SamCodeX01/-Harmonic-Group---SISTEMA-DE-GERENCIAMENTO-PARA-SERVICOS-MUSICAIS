@@ -1,6 +1,8 @@
 // Importações do React
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
+//Teste apagar depois
+import T00_ChatBot from '../site_do_sistema/components_site/T00_ChatBot.jsx';
 
 // Rotas do Cliente (rota inicial)
 import Site from '../site_do_sistema/Site.jsx';
@@ -51,7 +53,8 @@ function Rotas() {
 
             <Routes> 
                 {/*               ROTAS DO CLIENTE               */}
-                <Route path='/'           element={<Site/>}/>
+                <Route path='/'           element={<T00_ChatBot/>}/>
+                {/* <Route path='/'           element={<Site/>}/> */}
                 <Route path='/Inicio'     element={<Site/>}/>
 
                 <Route path="/Orcamento"  element={<T02_Orcamento/>}/>

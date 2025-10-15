@@ -1,0 +1,392 @@
+/* Bot Flutuante */
+.bot-floating-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--corazul) 0%, var(--corespaco30) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--corbranco60);
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(25, 109, 186, 0.4);
+  transition: all 0.3s ease;
+  z-index: 10000;
+  border: 3px solid var(--corbranco60);
+  font-size: 28px;
+}
+
+.bot-floating-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 35px rgba(25, 109, 186, 0.6);
+  background: linear-gradient(135deg, var(--cordourado10) 0%, var(--corazul) 100%);
+}
+
+.notification-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  background: var(--cordourado10);
+  border-radius: 50%;
+  border: 2px solid var(--corbranco60);
+  animation: pulse 2s infinite;
+}
+
+/* Bot Expandido */
+.bot-assistant.expanded {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 400px;
+  height: 650px;
+  background: var(--corbranco60);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(30, 30, 30, 0.4);
+  display: flex;
+  flex-direction: column;
+  z-index: 10001;
+  overflow: hidden;
+  animation: slideInUp 0.3s ease-out;
+  border: 2px solid var(--corespaco30);
+}
+
+/* Cabeçalho */
+.bot-header {
+  background: linear-gradient(135deg, var(--corespaco30) 0%, var(--corazul) 100%);
+  color: var(--corbranco60);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  border-bottom: 3px solid var(--cordourado10);
+}
+
+.bot-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bot-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cordourado10);
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 10px var(--cordourado10);
+}
+
+.connection-info {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  color: var(--corbranco60);
+}
+
+.minimize-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: var(--corbranco60);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.minimize-button:hover {
+  background: var(--cordourado10);
+  transform: scale(1.1);
+}
+
+/* Área de Mensagens */
+.messages-container {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--corespaco30);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-icon {
+  margin-bottom: 20px;
+  opacity: 0.7;
+  font-size: 52px;
+}
+
+.empty-state h4 {
+  margin-bottom: 10px;
+  color: var(--corespaco30);
+  font-size: 1.3rem;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  color: var(--corazul);
+}
+
+/* Mensagens */
+.message {
+  display: flex;
+  margin-bottom: 20px;
+  animation: slideIn 0.3s ease-out;
+}
+
+.message.user {
+  flex-direction: row-reverse;
+}
+
+.message-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  flex-shrink: 0;
+  font-size: 18px;
+  border: 2px solid var(--corbranco60);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message.user .message-avatar {
+  background: var(--corazul);
+  color: var(--corbranco60);
+}
+
+.message.bot .message-avatar {
+  background: var(--corespaco30);
+  color: var(--corbranco60);
+}
+
+.message-content {
+  max-width: 75%;
+  background: var(--corbranco60);
+  padding: 15px 18px;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.message.user .message-content {
+  background: var(--corazul);
+  color: var(--corbranco60);
+  border-bottom-right-radius: 4px;
+  border: 1px solid var(--corazul);
+}
+
+.message.bot .message-content {
+  border-bottom-left-radius: 4px;
+  background: var(--corbranco60);
+  border: 1px solid var(--corespaco30);
+  color: var(--corpreto);
+}
+
+.message-text {
+  margin-bottom: 5px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.message-time {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  color: inherit;
+}
+
+/* Indicador de Digitação */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 0;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--corazul);
+  animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+/* Área de Input */
+.input-container {
+  padding: 20px;
+  border-top: 3px solid var(--corespaco30);
+  background: var(--corbranco60);
+  flex-shrink: 0;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.text-input {
+  flex: 1;
+  padding: 14px 18px;
+  border: 2px solid var(--corespaco30);
+  border-radius: 25px;
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: var(--corbranco60);
+  color: var(--corpreto);
+}
+
+.text-input:focus {
+  border-color: var(--corazul);
+  box-shadow: 0 0 0 3px rgba(25, 109, 186, 0.1);
+}
+
+.text-input::placeholder {
+  color: #64748b;
+}
+
+.send-button {
+  width: 50px;
+  height: 50px;
+  background: var(--corazul);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--corbranco60);
+  font-size: 18px;
+  border: 2px solid var(--corbranco60);
+}
+
+.send-button:hover:not(:disabled) {
+  background: var(--cordourado10);
+  transform: scale(1.05);
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.suggestions {
+  margin-top: 12px;
+  text-align: center;
+  color: var(--corespaco30);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* Animações */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  30% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .bot-floating-button {
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+  
+  .bot-assistant.expanded {
+    width: calc(100vw - 40px);
+    height: 70vh;
+    right: 20px;
+    left: 20px;
+    bottom: 20px;
+  }
+  
+  .message-content {
+    max-width: 80%;
+  }
+}
+
+/* Garantir que as variáveis CSS sejam aplicadas */
+:root {
+  --corbranco60: #FFFFFF;
+  --corespaco30: #18203D;
+  --cordourado10: #DB9D12;
+  --corpreto: #1E1E1E;
+  --corazul: #196DBA;
+}
