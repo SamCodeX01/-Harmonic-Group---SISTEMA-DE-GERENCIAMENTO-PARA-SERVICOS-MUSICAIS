@@ -1,6 +1,6 @@
 import api from "./api";
 
-export const listarTiposLocais = () => api.get("/tipolocal");
-export const adicionarTipoLocal = (dados) => api.post("/tipolocal", dados);
-export const atualizarTipoLocal = (id, dados) => api.patch(`/tipolocal/${id}`, dados);
-export const excluirTipoLocal = (id) => api.delete(`/tipolocal/${id}`);
+export const listarRepertorios = () => api.get("/repertorio");
+export const adicionarRepertorio = (dados) => api.post("/repertorio", dados);
+export const atualizarRepertorio = (id, dados) => api.patch(`/repertorio/${id}`, dados);
+export const excluirRepertorio = (id) => api.delete(`/repertorio/${id}`);

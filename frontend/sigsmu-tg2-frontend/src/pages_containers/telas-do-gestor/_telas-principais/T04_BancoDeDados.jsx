@@ -4,40 +4,33 @@ import t04_bancoDeDados from "./CSS/t04_bancoDeDados.module.css"
 // Importação de componentes
 import Botao from "../../../components/Botao"
 import Radio from "../../../components/Radio"
+
+// Importação de componentes grandes
 import HelpDoGestor from "../_componentes-grandes/cadastronobd/HelpDoGestor"
+import SelectDaTabela from "../_componentes-grandes/cadastronobd/SelectDaTabela"
 
 // Importações do React
 import { useEffect, useState } from "react"
 
-// Importações do CRUD
-import { listarTiposLocal, adicionarTipoLocal } from "../../../services/TipoLocalService"
+// Importações do CRUD API
+import { listarPacotesServico } from "../../../services/PacoteServicoService"
+import { listarInstrumentos } from "../../../services/InstrumentoService"
+import { listarTiposServico } from "../../../services/TipoServicoService"
+import { listarMeiosPagamento } from "../../../services/MeioPagamentoService"
+import { listarRepertorios } from "../../../services/RepertorioService"
+import { listarStatus } from "../../../services/StatusSolicitacaoService"
+import { listarTiposLocal } from "../../../services/TipoLocalService"
+
 
 
 // Tela de BANCO DE DADOS - para que gestores consigam cadastrar novos serviços/músicas/meios de pagamento/etc
 function T04_BancoDeDados() {
 
-    // Retorna os tipos de local do BANCO
-    const [tiposLocais, setTiposLocais] = useState()
-    useEffect(() => {
-        listarTiposLocal()
-            .then(res => setTiposLocais(res.data))
-            .catch(err => console.log(err))
-    }, [tiposLocais])
+    
 
     
 
-    // Mostra todos os registros do BANCO para a tabela selecionada
-    const retornarRegistros = () => {
-        switch (tabelaSelecionada.value) {
-            case "PacoteServico":     return tiposLocais
-            case "Instrumento":       return tiposLocais
-            case "Servico":           return tiposLocais
-            case "MeioPagamento":     return tiposLocais
-            case "Repertorio":        return tiposLocais
-            case "StatusSolicitacao": return tiposLocais
-            case "TipoLocal":         return tiposLocais
-        }
-    }
+    
 
     // Executa o comando INSERT no BANCO de acordo com a tabela e campos selecionados
     const adicionarDados = () => {
@@ -64,18 +57,18 @@ function T04_BancoDeDados() {
     // Seleciona a operação CRUD (evt)
     const [operacao, setOperacao] = useState(null)
 
-    // Seleciona a tabela (evt)
+    // Seleciona a tabela (evt), seu índice (int) e os dados retornados do BANCO
     const [tabelaSelecionada, setTabelaSelecionada] = useState(null)
-    // Serve para saber o índice da tabela selecionada
     const [index, setIndex] = useState(null)
-    // Todos os retornos do BANCO
-    let retornosBanco = [tiposLocais]
 
-    // Seleciona a campo (evt)
+    // Seleciona a campo selecionado da tabela (evt)
     const [campoSelecionado, setCampoSelecionado] = useState(null)
 
+
+    // Configura a mensagem a ser exibida no input do gestor e guarda sua resposta (input)
     const [mensagemInputGestor, setMensagemInputGestor] = useState()
     const [inputGestor, setInputGestor] = useState(null)
+
 
     // Nome real e de exibição das tabelas
     const moldeBanco = {
@@ -88,8 +81,7 @@ function T04_BancoDeDados() {
         "TipoLocal"  : "Tipo de Local"
     }
 
-
-    // Campos 
+    // Campos das tabelas
     const campos = [
         ["pac_", "id", "nome", "valor", "qtdMusicos", "descricao"],
         ["ins_", "id", "nome"],
@@ -109,8 +101,12 @@ function T04_BancoDeDados() {
             setIndex( Object.keys(moldeBanco).findIndex(nomeTabela => nomeTabela === tabelaSelecionada.value) )
         setCampoSelecionado(null)
 
+        // PENSAR AQUI ////////////////////////////////////////////////////////
+        // Talvez chamar função de outro script
+
     }, [tabelaSelecionada])
 
+    // Muda a mensagem de input do gestor
     useEffect(() => {
         setTabelaSelecionada(null)
 
@@ -134,13 +130,12 @@ function T04_BancoDeDados() {
 
             {/* Local em que REGISTROS DO BANCO serão exibidos para o gestor */}
             <div className={t04_bancoDeDados.schema}>
-
-                {tabelaSelecionada !== null &&
-                    retornarRegistros().map((registro, i) => {
-                        return <p key={i}> {registro.nome} A=A </p>
-                    })
-                }
-
+                {/* <table> */}
+                    <SelectDaTabela 
+                        tabela={tabelaSelecionada != null ? tabelaSelecionada.value : null} 
+                        campos={tabelaSelecionada != null ? campos[index] : null}
+                    />
+                {/* </table> */}
             </div> 
 
 
@@ -185,15 +180,15 @@ function T04_BancoDeDados() {
                                 operacao !== null && operacao.value === "delete" ? 
                                     <Botao msg={campos[index][1]} value={campos[index][0] + campos[index][1]}/>                   
                                 :
-                                <Radio setSelecionado={setCampoSelecionado} name={"campo"} firstChecked={true}>
-                                {
-                                    campos[index]
-                                    .filter(campo => campo[3] != "_")
-                                    .map(campo => { 
-                                        return <Botao msg={campo} value={campos[index][0] + campo}/>
-                                    })
-                                }
-                                </Radio>
+                                    <Radio setSelecionado={setCampoSelecionado} name={"campo"} firstChecked={true}>
+                                    {
+                                        campos[index]
+                                        .filter(campo => campo[3] != "_")
+                                        .map(campo => { 
+                                            return <Botao msg={campo} value={campos[index][0] + campo}/>
+                                        })
+                                    }
+                                    </Radio>
                             }
                         </section>
 

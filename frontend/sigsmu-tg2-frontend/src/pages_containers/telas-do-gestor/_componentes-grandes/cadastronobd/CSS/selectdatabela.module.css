@@ -1,0 +1,7 @@
+.body {
+    border: solid;
+}
+
+.main > tr {
+    border: 1px solid red;
+}
