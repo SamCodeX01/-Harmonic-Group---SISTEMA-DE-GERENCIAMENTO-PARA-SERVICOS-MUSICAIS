@@ -3,9 +3,6 @@ import "./styles/global.css"
 
 import { createRoot } from 'react-dom/client'
 
-// Importação das rotas
-import RotasCliente from './routes/RotasCliente.jsx'
-
 import App from './App.jsx'
 
 

@@ -745,3 +745,28 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+
+/* TELA DE TESTES */
+.telaTestes {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: red;
+  color: white;
+  right: 10px;
+  top: 10px;
+
+  border-radius: 50%;
+  padding: 15px 5px;
+}
+.telaTestes:hover {
+  background-color: orange;
+  color: blue;
+  cursor: pointer;
+}
+
+.main {position: relative;}

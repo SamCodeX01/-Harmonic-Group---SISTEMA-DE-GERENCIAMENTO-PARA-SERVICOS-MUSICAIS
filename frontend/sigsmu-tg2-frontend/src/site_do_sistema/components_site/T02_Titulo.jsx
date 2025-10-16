@@ -13,7 +13,7 @@ function T02_Titulo(){
         <main className={t02_titulo.main}>
                 {/* <img src={bgazulescuro} alt="" srcset=""/> */}
                 <p style={{color: "white"}}>Realize a festa dos seus sonhos e encante-se com músicas de qualidade!</p>
-                <button onClick={() => {navigate("/RotasCliente/Orcamento")}}>Faça um orçamento</button>
+                <button onClick={() => {navigate("/Orcamento")}}>Faça um orçamento</button>
         </main>
     );
 

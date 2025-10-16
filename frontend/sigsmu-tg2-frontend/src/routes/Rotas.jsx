@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 //Teste apagar depois
+import T00_TESTES from '../pages_containers/telas-geral/T00_TESTES.jsx';
 import T00_ChatBot from '../site_do_sistema/components_site/T00_ChatBot.jsx';
 
 // Rotas do Cliente (rota inicial)
@@ -52,19 +53,22 @@ function Rotas() {
             <ConfigurarHeader/>
 
             <Routes> 
-                {/*               ROTAS DO CLIENTE               */}
-                <Route path='/'           element={<T00_ChatBot/>}/>
-                {/* <Route path='/'           element={<Site/>}/> */}
-                <Route path='/Inicio'     element={<Site/>}/>
+                {/*   TELA PARA TESTES DE NOVAS FUNCIONALIDADES   */}
+                <Route path='/AreaDeTeste'     element={ <T00_ChatBot/> } />
+                {/* ///////////////////////////////////////////// */}
 
-                <Route path="/Orcamento"  element={<T02_Orcamento/>}/>
-                <Route path="/Repertorio" element={<T03_Repertorio/>}/>
+                {/*               ROTAS DO CLIENTE               */}
+                <Route path='/'           element={<Site/>} />
+                <Route path='/Inicio'     element={<Site/>} />
+
+                <Route path="/Orcamento"  element={<T02_Orcamento/>} />
+                <Route path="/Repertorio" element={<T03_Repertorio/>} />
 
 
                 {/*                     ROTAS INTRANET                     */}
-                <Route path='/Intranet/TelaLogin'    element={<T01_Login/>}/>
-                <Route path='/Intranet/TelaCadastro' element={<T02_Cadastro/>}/>
-                <Route path='/Intranet/TelaPosLogin' element={<T03_Poslogin/>}/>
+                <Route path='/Intranet/TelaLogin'    element={<T01_Login/>} />
+                <Route path='/Intranet/TelaCadastro' element={<T02_Cadastro/>} />
+                <Route path='/Intranet/TelaPosLogin' element={<T03_Poslogin/>} />
 
 
                 {/*                         ROTAS DO GESTOR                         */}

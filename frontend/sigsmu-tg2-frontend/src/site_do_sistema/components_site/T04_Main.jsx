@@ -12,8 +12,6 @@ import footer from "../imagens_site/footer.png"
 function T04_Main(){
    
 
-
-
     return(
         <div>
             {/* <h1>Realize a sua festa com a gente!</h1>     
