@@ -7,7 +7,9 @@ import Radio from "../../../components/Radio"
 
 // Importação de componentes grandes
 import HelpDoGestor from "../_componentes-grandes/cadastronobd/HelpDoGestor"
-import SelectDaTabela from "../_componentes-grandes/cadastronobd/CRUD/SelectDaTabela"
+
+import SelectDaTabela from "../_componentes-grandes/cadastronobd/CRUD/Select"
+import InsertRegistro from "../_componentes-grandes/cadastronobd/CRUD/Insert"
 
 // Importações do React
 import { useEffect, useState } from "react"
@@ -27,24 +29,24 @@ import { listarTiposLocal, adicionarTipoLocal } from "../../../services/TipoLoca
 function T04_BancoDeDados() {
 
     // Executa o comando INSERT no BANCO de acordo com a tabela e campos selecionados
-    const adicionarDados = () => {
-        switch (tabelaSelecionada.value) {
-            case "PacoteServico":     adicionarTipoLocal({"nome" : inputGestor})
-                break
-            case "Instrumento":       adicionarTipoLocal({"nome" : inputGestor})
-                break
-            case "Servico":           adicionarTipoLocal({"nome" : inputGestor})
-                break
-            case "MeioPagamento":     adicionarTipoLocal({"nome" : inputGestor})
-                break
-            case "Repertorio":        adicionarTipoLocal({"nome" : inputGestor})
-                break
-            case "StatusSolicitacao": adicionarTipoLocal({"nome" : inputGestor})
-                break
-            case "TipoLocal":         adicionarTipoLocal({"nome" : inputGestor})
-                break
-        }
-    }
+    // const adicionarDados = () => {
+    //     switch (tabelaSelecionada.value) {
+    //         case "PacoteServico":     adicionarTipoLocal({"nome" : inputGestor})
+    //             break
+    //         case "Instrumento":       adicionarTipoLocal({"nome" : inputGestor})
+    //             break
+    //         case "Servico":           adicionarTipoLocal({"nome" : inputGestor})
+    //             break
+    //         case "MeioPagamento":     adicionarTipoLocal({"nome" : inputGestor})
+    //             break
+    //         case "Repertorio":        adicionarTipoLocal({"nome" : inputGestor})
+    //             break
+    //         case "StatusSolicitacao": adicionarTipoLocal({"nome" : inputGestor})
+    //             break
+    //         case "TipoLocal":         adicionarTipoLocal({"nome" : inputGestor})
+    //             break
+    //     }
+    // }
 
 
     // Guarda a operação CRUD (evt)
@@ -120,24 +122,27 @@ function T04_BancoDeDados() {
 
             {/* Local em que REGISTROS DO BANCO serão exibidos para o gestor */}
             <div className={t04_bancoDeDados.schema}>
-                    <SelectDaTabela 
-                        tabela={tabelaSelecionada != null ? tabelaSelecionada.value : null} 
-                        campos={tabelaSelecionada != null ? campos[index] : null}
-                    />
-                    
-                    <div className={t04_bancoDeDados.txtVisualizar}>
-                        <h1> Visualização da Tabela </h1>
-                        <h2> (dados puxados do banco) </h2>
-                    </div>
+
+                <div className={t04_bancoDeDados.txtVisualizar}>
+                    <h1> Visualização da Tabela </h1>
+                    <h2> (dados puxados do banco) </h2>
+                </div>
+
+                {/* SELECT */}
+                <SelectDaTabela 
+                    tabela={tabelaSelecionada != null ? tabelaSelecionada.value : null} 
+                    campos={tabelaSelecionada != null ? campos[index] : null}
+                />
+                  
             </div> 
 
 
             {/* Local em que o gestor poderá alternar entre modos de CADASTRO/ALTERAÇÃO/EXCLUSÃO de dados do banco */}
             <div className={t04_bancoDeDados.botoes}>
                 <Radio setSelecionado={setOperacao} name={"crud"} firstChecked={true}>
-                    <Botao msg={"CADASTRAR"} rota={""} estilo={true} value={"insert"} />
-                    <Botao msg={"ALTERAR"} rota={""} estilo={true} value={"update"} />
-                    <Botao msg={"EXCLUIR"} rota={""} estilo={true} value={"delete"} />
+                    <Botao msg={"CADASTRAR"} rota={""} ativarEstilo={true} value={"insert"} />
+                    <Botao msg={"ALTERAR"} rota={""} ativarEstilo={true} value={"update"} />
+                    <Botao msg={"EXCLUIR"} rota={""} ativarEstilo={true} value={"delete"} />
                 </Radio>
             </div>
 
@@ -198,20 +203,38 @@ function T04_BancoDeDados() {
 
                 <div>
                     <HelpDoGestor msg={"Nome da tabela:"} evento={tabelaSelecionada} />
+                    
+                    {/* BOTÃO EXECUTAR COMANDO */}
                     <button onClick={() => { 
                         if (campoSelecionado !== null) {
-                            adicionarDados()
-                            alert("Dado adicionado!")
-                        }
-                        else
+                            switch (operacao ? operacao.value : null) {
+                                case "insert": 
+                                    <InsertRegistro 
+                                        tabela={tabelaSelecionada ? tabelaSelecionada.value : null}
+                                        input={inputGestor} 
+                                    />
+                                    alert("Registro adicionado!")
+                                    break
+                                case "update": 
+                                    alert("Registro atualizado!")
+                                    break
+                                case "delete": 
+                                    alert("Registro deletado!")
+                                    break
+                                default:
+                                    alert("Nenhuma operação selecionada!")
+                            }
+                        } 
+                        else 
                             alert("Falta selecionar o campo!")
                     }}> EXECUTAR COMANDO </button>
+
                 </div>
 
                 <HelpDoGestor 
                     msg={"Campo:"} 
                     evento={campoSelecionado}
-                    campoDeleteId={tabelaSelecionada && operacao && operacao.value === "delete" ? campos[index][0] + campos[index][1] : ""}
+                    // campoDeleteId={tabelaSelecionada && operacao && operacao.value === "delete" ? campos[index][0] + campos[index][1] : ""}
                 />
 
                 

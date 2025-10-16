@@ -3,15 +3,18 @@ import helpdogestor from "./CSS/helpdogestor.module.css"
 
 
 // DESCRIÇÃO
-function HelpDoGestor({input, msg, evento=null, campoDeleteId="", setInput}) {
+function HelpDoGestor({input, msg, evento=null, setInput}) {
+    
+    // Retorna o campo de INPUT DO GESTOR
     if (input)
     return (
         <fieldset className={helpdogestor.main} >
             <legend> {msg} </legend>
-            <input type="text" name="InputGestor" id="iInputGestor" onChange={evt => {setInput(evt.currentTarget.value)}} />
+            <input type="text" name="InputGestor" id="iInputGestor" onChange={evt => { setInput(evt.currentTarget.value) }} />
         </fieldset>
     )
 
+    // Retorna isso caso aja alguma tabela/campo selecionado
     if (evento !== null)
     return (
         <fieldset className={helpdogestor.main} >
@@ -20,10 +23,11 @@ function HelpDoGestor({input, msg, evento=null, campoDeleteId="", setInput}) {
         </fieldset>
     )
 
+    // No início, nenhuma tabela/campo está selecionado
     return (
         <fieldset className={helpdogestor.main} >
             <legend> {msg} </legend>
-            <div> {campoDeleteId} </div>
+            <div> ... </div>
         </fieldset>
     )
 }

@@ -6,7 +6,7 @@ import { replace, useNavigate } from "react-router-dom";
 
 
 // Componente criado para FACILITAR A PASSAGEM DE PARÂMETROS para um botão comum
-function Botao({msg, estilo, rota=null, style=null, value=null}) {
+function Botao({msg, ativarEstilo, rota=null, style=null, value=null}) {
     const navigate = useNavigate()
 
     // Retorna uma div para permitir manipulações futuras (BUTTON não funciona)
@@ -14,7 +14,7 @@ function Botao({msg, estilo, rota=null, style=null, value=null}) {
         <div 
             className={`
                 ${botao.main} 
-                ${estilo ? botao.cores : ""}
+                ${ativarEstilo ? botao.cores : ""}
             `} // Aplicação de .cores caso estilo (props) seja true 
             
             

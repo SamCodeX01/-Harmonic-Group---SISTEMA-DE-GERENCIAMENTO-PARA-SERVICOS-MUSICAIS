@@ -1,5 +1,5 @@
 // Importações de estilos
-import selectdatabela from "./CSS/selectdatabela.module.css"
+import selectCSS from "./CSS/select.module.css"
 
 // Importações do React
 import { useState, useEffect } from "react"
@@ -15,7 +15,7 @@ import { listarTiposLocal } from "../../../../../services/TipoLocalService"
 
 
 // Função que retona o resultado de um SELECT no banco quando uma tabela é selecionada
-function SelectDaTabela({tabela=null, campos=null}) { 
+function Select({tabela=null, campos=null}) { 
 
     const [pacotesServico, setPacotesServico]       = useState()
     const [instrumentos, setInstrumentos]           = useState()
@@ -96,11 +96,11 @@ function SelectDaTabela({tabela=null, campos=null}) {
     const retorno = tabela != null ? retornarRegistros() : null
 
     return (
-        <table className={selectdatabela.table}>
+        <table className={selectCSS.table}>
             <caption> {tabela ? tabela : ""} </caption>
 
             {/* Exibe os campos da tabela do BANCO */}
-            <thead className={selectdatabela.thead}>
+            <thead className={selectCSS.thead}>
                 <tr>
                 {
                     (campos != null &&
@@ -114,7 +114,7 @@ function SelectDaTabela({tabela=null, campos=null}) {
             
 
             {/* Exibe os dados retornados do BANCO */}
-            <tbody className={selectdatabela.tbody}>
+            <tbody className={selectCSS.tbody}>
             {
                 (retorno != null &&
                     retorno.map((obj, i) => {
@@ -132,4 +132,4 @@ function SelectDaTabela({tabela=null, campos=null}) {
         </table>
     )
 }
-export default SelectDaTabela;
+export default Select;

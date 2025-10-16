@@ -19,12 +19,12 @@ function T01_Header() {
     return (
         <div className={t01_header.main}>
         {
-            <Radio setSelecionado={setBotao} name={"header"} firstChecked={true}>
-                <Botao msg={"Início (indicadores)"} rota={"/Intranet/RotasGestor/Inicio"} estilo={true} />
-                <Botao msg={"Solicitações de Serviço"} rota={"/Intranet/RotasGestor/SolicitacoesServico"} estilo={true} />
-                <Botao msg={"Banco de Dados"} rota={"/Intranet/RotasGestor/BancoDeDados"} estilo={true} />
-                <Botao msg={"Gerencia de Permissões"} rota={"/Intranet/RotasGestor/Permissoes"} estilo={true} />
-                <Botao msg={"Histórico Geral"} rota={"/Intranet/RotasGestor/Historico"} estilo={true} />
+            <Radio setSelecionado={setBotao} name={"header"} firstChecked >
+                <Botao msg={"Início (indicadores)"} rota={"/Intranet/RotasGestor/Inicio"} ativarEstilo={true} />
+                <Botao msg={"Solicitações de Serviço"} rota={"/Intranet/RotasGestor/SolicitacoesServico"} ativarEstilo={true} />
+                <Botao msg={"Banco de Dados"} rota={"/Intranet/RotasGestor/BancoDeDados"} ativarEstilo={true} />
+                <Botao msg={"Gerencia de Permissões"} rota={"/Intranet/RotasGestor/Permissoes"} ativarEstilo={true} />
+                <Botao msg={"Histórico Geral"} rota={"/Intranet/RotasGestor/Historico"} ativarEstilo={true} />
             </Radio>
         }
         </div>
