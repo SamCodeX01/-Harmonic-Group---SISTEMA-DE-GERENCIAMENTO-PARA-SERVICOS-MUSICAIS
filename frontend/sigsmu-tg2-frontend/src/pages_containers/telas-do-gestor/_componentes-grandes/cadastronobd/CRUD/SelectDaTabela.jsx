@@ -29,58 +29,51 @@ function SelectDaTabela({tabela=null, campos=null}) {
         
         // Retorna os pacotes de serviço cadastrados no BANCO
         useEffect(() => {
-            if (pacotesServico)
-                listarPacotesServico()
-                    .then(res => setPacotesServico(res.data))
-                    .catch(err => console.log(err))
+            listarPacotesServico()
+                .then(res => setPacotesServico(res.data))
+                .catch(err => console.log(err))
         }, [pacotesServico])
 
         // Retorna os instrumentos cadastrados no BANCO
         useEffect(() => {
-            if (instrumentos)
-                listarInstrumentos()
-                    .then(res => setInstrumentos(res.data))
-                    .catch(err => console.log(err))
+            listarInstrumentos()
+                .then(res => setInstrumentos(res.data))
+                .catch(err => console.log(err))
         }, [instrumentos])
 
         // Retorna os tipos de serviço cadastrados no BANCO
         useEffect(() => {
-            if (servicos)
-                listarTiposServico()
-                    .then(res => setServicos(res.data))
-                    .catch(err => console.log(err))
+            listarTiposServico()
+                .then(res => setServicos(res.data))
+                .catch(err => console.log(err))
         }, [servicos])
 
         // Retorna os meios de pagamento cadastrados no BANCO
         useEffect(() => {
-            if (meiosPagamento)
-                listarMeiosPagamento()
-                    .then(res => setMeiosPagamento(res.data))
-                    .catch(err => console.log(err))
+            listarMeiosPagamento()
+                .then(res => setMeiosPagamento(res.data))
+                .catch(err => console.log(err))
         }, [meiosPagamento])
 
         // Retorna as músicas cadastradas no BANCO
         useEffect(() => {
-            if (repertorios)
-                listarRepertorios()
-                    .then(res => setRepertorios(res.data))
-                    .catch(err => console.log(err))
+            listarRepertorios()
+                .then(res => setRepertorios(res.data))
+                .catch(err => console.log(err))
         }, [repertorios])
 
         // Retorna os status cadastrados no BANCO
         useEffect(() => {
-            if (statusSolicitacao)
-                listarStatus()
-                    .then(res => setStatusSolicitacao(res.data))
-                    .catch(err => console.log(err))
+            listarStatus()
+                .then(res => setStatusSolicitacao(res.data))
+                .catch(err => console.log(err))
         }, [statusSolicitacao])
 
         // Retorna os tipos de local cadastrados no BANCO
         useEffect(() => {
-            // if (tiposLocal)
-                listarTiposLocal()
-                    .then(res => setTiposLocal(res.data))
-                    .catch(err => console.log(err))
+            listarTiposLocal()
+                .then(res => setTiposLocal(res.data))
+                .catch(err => console.log(err))
         }, [tiposLocal])
     }
 

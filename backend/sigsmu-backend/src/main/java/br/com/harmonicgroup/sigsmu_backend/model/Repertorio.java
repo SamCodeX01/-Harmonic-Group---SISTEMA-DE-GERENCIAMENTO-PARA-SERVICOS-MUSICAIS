@@ -1,7 +1,7 @@
 package br.com.harmonicgroup.sigsmu_backend.model;
 
 
-import br.com.harmonicgroup.sigsmu_backend.service.TipoLocalService;
+import br.com.harmonicgroup.sigsmu_backend.service.RepertorioService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,22 +12,22 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "TipoLocal")
-public class TipoLocal {
+@Table(name = "Repertorio")
+public class Repertorio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "tip_id")
+    @Column(name = "rep_id")
     private Integer id;
 
-    @Column(name = "tip_nome")
+    @Column(name = "rep_nome")
     private String nome;
 
 
     // Construtores
-    public TipoLocal(){}
+    public Repertorio(){}
 
-    public TipoLocal(Integer id, String nome){
+    public Repertorio(Integer id, String nome){
         this.id = id;
         this.nome = nome;
     }

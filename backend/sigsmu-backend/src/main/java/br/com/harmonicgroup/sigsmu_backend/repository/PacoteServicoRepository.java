@@ -3,8 +3,8 @@ package br.com.harmonicgroup.sigsmu_backend.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.harmonicgroup.sigsmu_backend.model.TipoLocal;
+import br.com.harmonicgroup.sigsmu_backend.model.PacoteServico;
 
 
 @Repository
-public interface TipoLocalRepository extends JpaRepository<TipoLocal, Integer> {}
+public interface PacoteServicoRepository extends JpaRepository<PacoteServico, Integer> {}

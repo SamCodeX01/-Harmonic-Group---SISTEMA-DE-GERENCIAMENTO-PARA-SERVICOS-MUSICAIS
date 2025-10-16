@@ -10,25 +10,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.harmonicgroup.sigsmu_backend.model.TipoLocal;
+import br.com.harmonicgroup.sigsmu_backend.model.Instrumento;
+import br.com.harmonicgroup.sigsmu_backend.service.InstrumentoService;
 import br.com.harmonicgroup.sigsmu_backend.service.TipoLocalService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
-@RequestMapping("/tipolocal")
-public class TipoLocalController {
+@RequestMapping("/instrumento")
+public class InstrumentoController {
     
     @Autowired
-    TipoLocalService tipoLocalService;
+    InstrumentoService instrumentoService;
 
     @GetMapping
-    public List<TipoLocal> listarTipoLocais() {
-        return tipoLocalService.listarTiposLocais();
+    public List<Instrumento> listarInstrumentos() {
+        return instrumentoService.listarInstrumentos();
     }
 
     @PostMapping
-    public void cadastrarTipoLocal(@RequestBody TipoLocal tipoLocal) {
-        tipoLocalService.cadastrarTipoLocal(tipoLocal);
+    public void cadastrarInstrumento(@RequestBody Instrumento instrumento) {
+        instrumentoService.cadastrarInstrumento(instrumento);
     }
 
 }

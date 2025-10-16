@@ -10,25 +10,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.harmonicgroup.sigsmu_backend.model.TipoLocal;
+import br.com.harmonicgroup.sigsmu_backend.model.MeioPagamento;
+import br.com.harmonicgroup.sigsmu_backend.service.MeioPagamentoService;
 import br.com.harmonicgroup.sigsmu_backend.service.TipoLocalService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
-@RequestMapping("/tipolocal")
-public class TipoLocalController {
+@RequestMapping("/meiopagamento")
+public class MeioPagamentoController {
     
     @Autowired
-    TipoLocalService tipoLocalService;
+    MeioPagamentoService meioPagamentoService;
 
     @GetMapping
-    public List<TipoLocal> listarTipoLocais() {
-        return tipoLocalService.listarTiposLocais();
+    public List<MeioPagamento> listarMeiosPagamento() {
+        return meioPagamentoService.listarMeiosPagamento();
     }
 
     @PostMapping
-    public void cadastrarTipoLocal(@RequestBody TipoLocal tipoLocal) {
-        tipoLocalService.cadastrarTipoLocal(tipoLocal);
+    public void cadastrarMeioPagamento(@RequestBody MeioPagamento meioPagamento) {
+        meioPagamentoService.cadastrarMeioPagamento(meioPagamento);
     }
 
 }
