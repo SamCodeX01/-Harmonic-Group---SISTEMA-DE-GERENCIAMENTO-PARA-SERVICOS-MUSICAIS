@@ -54,7 +54,8 @@ function Rotas() {
 
             <Routes> 
                 {/*   TELA PARA TESTES DE NOVAS FUNCIONALIDADES   */}
-                <Route path='/AreaDeTeste'     element={ <T00_ChatBot/> } />
+                {/* <Route path='/AreaDeTeste'     element={ <T00_ChatBot/> } /> */}
+                <Route path='/AreaDeTeste'     element={ <Site/> } />
                 {/* ///////////////////////////////////////////// */}
 
                 {/*               ROTAS DO CLIENTE               */}
