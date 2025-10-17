@@ -119,7 +119,7 @@ function T02_Orcamento() {
 
             </form>
 
-            <Botao msg={"Próxima"} rota={"/Repertorio"} estilo={true} />
+            <Botao msg={"Próxima"} rota={"/Repertorio"} ativarEstilo={true} />
 
         </div>
     )

@@ -16,7 +16,7 @@ function TabelaGestor({tabela, campos}) {
                 {
                     campos.map((campo, i) => {
                         if (i != 0)
-                            return <Botao className={tabelagestor.main} msg={campos[0] + campo} estilo={true} selecionavel={true} key={i} />
+                            return <Botao className={tabelagestor.main} msg={campos[0] + campo} ativarEstilo={true} selecionavel={true} key={i} />
                     })
                 }
             </div> */}

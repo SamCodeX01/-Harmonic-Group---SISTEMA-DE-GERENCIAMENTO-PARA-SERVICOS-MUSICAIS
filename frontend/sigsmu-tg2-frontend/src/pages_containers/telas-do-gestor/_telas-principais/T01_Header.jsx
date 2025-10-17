@@ -6,11 +6,20 @@ import Botao from "../../../components/Botao";
 import Radio from "../../../components/Radio";
 
 // Importações do React
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 
 // Componente utilizado como HEADER em todas as telas do gestor, direcionando para a tela que o gestor escolher
 function T01_Header() {
+    const path = useLocation()
+    const splitPath = path.pathname.split("/").filter(Boolean)
+    let botaoSelecionado
+
+    useEffect(() => {
+
+    }, [])
+
 
     // Usado para pegar o botão selecionado
     const [botao, setBotao] = useState("iheader0")

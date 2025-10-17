@@ -31,7 +31,7 @@ function T01_Login() {
                 
                 <Botao 
                     msg="Fazer login" 
-                    estilo={true}
+                    ativarEstilo={true}
                     rota={"/Intranet/TelaPosLogin"}
                 />
             </form>
@@ -44,7 +44,7 @@ function T01_Login() {
                 {/* Passa para a próxima tela */}
                 <Botao
                     msg="Criar uma nova conta"
-                    estilo={false}
+                    ativarEstilo={false}
                     rota={"/Intranet/TelaCadastro"}
                 />
             </div>

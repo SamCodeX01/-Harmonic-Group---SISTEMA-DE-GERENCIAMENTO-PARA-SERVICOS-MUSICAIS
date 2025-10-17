@@ -4,6 +4,8 @@ import React from "react";
 
 // Componente que serve para TRANSFORMAR BOTÕES normais em radio (e outros elementos)
 function Radio({children, setSelecionado, name, firstChecked=false}) {
+    let proprioBotao = null;
+    
     return (
         <>
             { // Pega cada child do próprio elemento
@@ -22,14 +24,18 @@ function Radio({children, setSelecionado, name, firstChecked=false}) {
                         value={child.props.value}
 
                         onChange={evt => {
-                            if (evt.currentTarget.checked) {
+                            proprioBotao = evt.currentTarget
+
+                            if (proprioBotao.checked) {
                                 // Retorna o evento (radio) para o pai
+                                console.log("botão selecionado -> " + (evt.currentTarget.checked ? evt.currentTarget.id : ""))
                                 setSelecionado(evt.currentTarget)
                             }
                         }}
 
                         style={{display: "none"}}
                         defaultChecked={i === 0 && firstChecked}
+                        // checked={selecionado && selecionado === proprioBotao ? true : false}
                     />
 
                     <label htmlFor={"i"+name+i}> {child} </label>
