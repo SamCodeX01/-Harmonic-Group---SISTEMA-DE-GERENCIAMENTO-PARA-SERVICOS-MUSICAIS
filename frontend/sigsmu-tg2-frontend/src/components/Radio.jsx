@@ -4,44 +4,51 @@ import React from "react";
 
 // Componente que serve para TRANSFORMAR BOTÕES normais em radio (e outros elementos)
 function Radio({children, setSelecionado, name, firstChecked=false}) {
-    let proprioBotao = null;
+    let esseBotao = null
+    let id = null
     
     return (
         <>
             { // Pega cada child do próprio elemento
             React.Children.map(children, (child, i) => {
+                id = "i"+name+i
 
                 // Retorna uma label e um input invisível
                 return (
                     <div>
-                    
-                    <input 
-                        type="radio"
-                        name={name}
-                        id={"i"+name+i}
+                        <input 
+                            type="radio"
+                            name={name}
+                            id={id}
 
-                        // Recebe o valor do botão para si mesmo
-                        value={child.props.value}
+                            // Recebe o valor do botão para si mesmo
+                            value={child ? child.props.value : null}
 
-                        onChange={evt => {
-                            proprioBotao = evt.currentTarget
+                            style={{display: "none"}}
+                            defaultChecked={i === 0 && firstChecked}
 
-                            if (proprioBotao.checked) {
-                                // Retorna o evento (radio) para o pai
-                                console.log("botão selecionado -> " + (evt.currentTarget.checked ? evt.currentTarget.id : ""))
-                                setSelecionado(evt.currentTarget)
-                            }
-                        }}
+                            onChange={evt => {
+                                esseBotao = evt.currentTarget
 
-                        style={{display: "none"}}
-                        defaultChecked={i === 0 && firstChecked}
-                        // checked={selecionado && selecionado === proprioBotao ? true : false}
-                    />
+                                if (esseBotao.checked) {
+                                    console.log("botão selecionado -> " + (esseBotao.checked ? esseBotao.id : ""))
 
-                    <label htmlFor={"i"+name+i}> {child} </label>
+                                    // Retorna o evento (radio checked) para o pai
+                                    setSelecionado(esseBotao)
+                                }
+                            }}
 
-                    {/*   COLAR NO CSS GLOBAL PARA ALTERAR A COR DOS BOTÕES SELECIONADOS   */}
-                    {/* .main input[type="radio"]:checked + label > div {background: red;} */}
+                            
+                            // checked={selecionado && selecionado === esseBotao ? true : false}
+                        />
+
+                        {/* Essa child é o componente <Botao/> que é uma div */}
+                        <label htmlFor={id}> {child} </label>
+                        {/* Aponta para o input[type="radio"] através da label */}
+
+
+                        {/*   COLAR NO CSS GLOBAL PARA ALTERAR A COR DOS BOTÕES SELECIONADOS   */}
+                        {/* .main input[type="radio"]:checked + label > div {background: red;} */}
 
                     </div>
                 )

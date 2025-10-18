@@ -52,10 +52,11 @@ function T04_BancoDeDados() {
 
 
     // Guarda a operação CRUD (evt)
-    const [operacaoCRUD, setOperacaoCRUD] = useState(null)
+    const [operacaoCRUD, setOperacaoCRUD] = useState({value: "insert"})
 
-    // Guarda a tabela (evt) e seu índice (int)
+    // Guarda a tabela (evt) e seu obj de valores
     const [tabelaSelecionada, setTabelaSelecionada] = useState(null)
+    const [objTabelaSelecionada, setObjTabelaSelecionada] = useState({msg_output: null})
 
     // Guarda o campo selecionado da tabela (evt)
     const [campoSelecionado, setCampoSelecionado] = useState(null)
@@ -110,7 +111,8 @@ function T04_BancoDeDados() {
         msg_output: "Tipo de Local"
     }
 
-    const tables = [
+    // Usado para percorrer e verificar o obj a ser utilizado
+    const objTabelas = [
         tablePacoteServico,
         tableInstrumento,
         tableServico,
@@ -144,16 +146,49 @@ function T04_BancoDeDados() {
 
     // Executa sempre que a tabela selecionada mudar
     useEffect(() => {
+        if (tabelaSelecionada) {
 
+            setObjTabelaSelecionada(
+                objTabelas.find(table => table.nome === tabelaSelecionada.value)
+            )
+            
+            // PENSO EM ADICIONAR O NOME DA TABELA NA PARTE DO GESTOR
+            
+        }
     }, [tabelaSelecionada])
 
 
     // Executa sempre que o campo selecionado mudar
     useEffect(() => {
 
+        // PENSO EM ADICIONAR OS CAMPOS DA TABELA NA PARTE DO GESTOR
+
     }, [campoSelecionado])
 
 
+    // Responsável por exibir os campos selecionáveis da tabela
+    const montarCampos = () => {
+        if (objTabelaSelecionada.msg_output != null) {
+
+            const prefixo = objTabelaSelecionada.prefixo 
+            const campos = objTabelaSelecionada.campos
+            
+            if (operacaoCRUD.value === "delete") {
+                return <Botao msg={campos[0]} value={prefixo+campos[0]}/>
+            } 
+            
+            return <>
+                <Radio setSelecionado={setCampoSelecionado} name={"campo"} firstChecked >
+                {
+                    campos.map((campo, i) => {
+                        if (campo !== "id")
+                            return <Botao msg={campo} value={prefixo+campo} />
+                    })
+                }
+                </Radio>
+            </>
+        }
+    }
 
 
     return (
@@ -167,6 +202,8 @@ function T04_BancoDeDados() {
                     <h2> (dados puxados do banco) </h2>
                 </div>
 
+                {/* TENHO QUE VER ESSA PARTE AINDA! ///////////////////////////////////////////////////////// */}
+
                 {/* SELECT */}
                 {/* <SelectDaTabela 
                     tabela={tabelaSelecionada != null ? tabelaSelecionada.value : null} 
@@ -176,7 +213,7 @@ function T04_BancoDeDados() {
             </div> 
 
 
-            {/* Local em que o gestor poderá alternar entre modos de CADASTRO/ALTERAÇÃO/EXCLUSÃO de dados do banco */}
+            {/* Local em que o gestor poderá alternar CADASTRO/ALTERAÇÃO/EXCLUSÃO de dados do banco */}
             <div className={t04_bancoDeDados.botoes}>
                 <Radio setSelecionado={setOperacaoCRUD} name={"crud"} firstChecked={true}>
                     <Botao msg={"CADASTRAR"} rota={""} ativarEstilo={true} value={"insert"} />
@@ -189,52 +226,33 @@ function T04_BancoDeDados() {
             {/* Local em que as TABELAS serão exibidas para SELEÇÃO do gestor */}
             <div className={t04_bancoDeDados.seletorTabelas}>
                 {
-                    // OQ PRETENDO É ADICIONAR O VALOR DE CADA TABELA COMO SENDO O OBJETO DELA MSM COM TODAS AS INFORMAÇÔES NECESSÁRIAS PARA MANIPULAÇOES FUTURAS
-
-                    // Retorna cada tabela  exibe na tela
-                    // <Radio setSelecionado={setTabelaSelecionada} name={"table"}>
-                    // {
-                    //     Object.entries(moldeBanco).map(([nomeTabela, nomeExibicao]) => {
-                    //         return <Botao msg={nomeExibicao} value={nomeTabela} />
-                    //     })
-                    // }
-                    // </Radio>
+                    // Retorna cada tabela e exibe na tela
+                    <Radio setSelecionado={setTabelaSelecionada} name={"table"}>
+                    {
+                        objTabelas.map((table, i) => {
+                            return <Botao msg={table.msg_output} value={table.nome} />
+                        })
+                    }
+                    </Radio>
                 }
             </div>
 
 
             {/* Local em que a TABELA SELECIONADA e seus CAMPOS serão exibidos para o gestor */}
             <div className={t04_bancoDeDados.tabelaCampos} >
-                {/* {index != null && tabelaSelecionada != null ?
-                
+                {tabelaSelecionada ?
                     <div>
-                        Exibe a tabela selecionada
-                        <Botao msg={tabelaSelecionada ? moldeBanco[tabelaSelecionada.value] : ""}/>
 
-                        {console.log("index -> " + index)}
+                        {/*       Exibe a tabela selecionada       */}
+                        <Botao msg={objTabelaSelecionada.msg_output}/>
 
-                        <section className={t04_bancoDeDados.campos}>
-
-                            {
-                                operacao !== null ? 
-                                    <Botao msg={campos[index][1]} value={campos[index][0] + campos[index][1]}/>                   
-                                :
-                                    // Não está funcionando o firstChecked com o .filter AQUI
-                                    <Radio setSelecionado={setCampoSelecionado} name={"campo"} setQtd={setQtdCampos} firstChecked>
-                                    {
-                                        campos[index]
-                                        .filter(campo => campo[3] != "_")
-                                        .map(campo => {
-                                            return campo !== "id" ? <Botao msg={campo} value={campo[index][0] + campo}/> : <></>
-                                        })
-                                    }
-                                    </Radio>
-                            }
+                        <section className={t04_bancoDeDados.campos}>                          
+                            {montarCampos()}
                         </section>
 
                     </div>
 
-                : <div> Nenhuma tabela selecionada </div> } */}
+                : <div> Nenhuma tabela selecionada </div> }
             </div>
             
 
