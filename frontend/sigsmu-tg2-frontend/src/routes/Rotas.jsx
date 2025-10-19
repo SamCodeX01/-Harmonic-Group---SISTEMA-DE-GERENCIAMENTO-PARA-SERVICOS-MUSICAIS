@@ -11,7 +11,7 @@ import T01_HeaderCliente from '../site_do_sistema/components_site/T01_Header.jsx
 import T01_Inicio from "../pages_containers/telas-do-cliente/_telas-principais/T01_Inicio";
 import T02_Orcamento from "../pages_containers/telas-do-cliente/_telas-principais/T02_Orcamento";
 import T03_Repertorio from "../pages_containers/telas-do-cliente/_telas-principais/T03_Repertorio";
-
+import T10_servicos from "../pages_containers/telas-do-cliente/_telas-principais/T10_Servicos"
 
 // Rotas Intranet
 import T01_Login from '../pages_containers/telas-geral/T01_Login.jsx';
@@ -47,6 +47,7 @@ function ConfigurarHeader() {
 }
 
 
+
 function Rotas() {
     return (
         <Router>
@@ -61,9 +62,10 @@ function Rotas() {
                 {/*               ROTAS DO CLIENTE               */}
                 <Route path='/'           element={<Site/>} />
                 <Route path='/Inicio'     element={<Site/>} />
-
+                <Route path='Servicos' elementos={<T10_servicos/>}/>    
                 <Route path="/Orcamento"  element={<T02_Orcamento/>} />
                 <Route path="/Repertorio" element={<T03_Repertorio/>} />
+                <Route path="/Servicos" element={<T10_servicos/>} />
 
 
                 {/*                     ROTAS INTRANET                     */}

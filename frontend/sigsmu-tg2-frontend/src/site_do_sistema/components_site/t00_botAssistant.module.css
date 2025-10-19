@@ -1,4 +1,17 @@
-/* Bot Flutuante */
+/* ============================================= */
+/* VARIÁVEIS CSS - PALETA DE CORES DO SISTEMA */
+/* ============================================= */
+:root {
+  --corbranco60: #FFFFFF;    /* Branco principal */
+  --corespaco30: #18203D;    /* Azul escuro/espacial */
+  --cordourado10: #DB9D12;   /* Dourado acento */
+  --corpreto: #1E1E1E;       /* Preto suave */
+  --corazul: #196DBA;        /* Azul principal */
+}
+
+/* ============================================= */
+/* BOT FLUTUANTE - BOTÃO INICIAL */
+/* ============================================= */
 .botFloatingButton {
   position: fixed;
   bottom: 30px;
@@ -19,12 +32,14 @@
   font-size: 28px;
 }
 
+/* Efeito hover no botão flutuante */
 .botFloatingButton:hover {
   transform: scale(1.1);
   box-shadow: 0 12px 35px rgba(25, 109, 186, 0.6);
   background: linear-gradient(135deg, var(--cordourado10) 0%, var(--corazul) 100%);
 }
 
+/* Ponto de notificação/animação */
 .notificationDot {
   position: absolute;
   top: 10px;
@@ -37,42 +52,47 @@
   animation: pulse 2s infinite;
 }
 
-/* Bot Expandido */
+/* ============================================= */
+/* CHATBOT EXPANDIDO - CONTAINER PRINCIPAL */
+/* ============================================= */
 .botAssistantExpanded {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 400px;
-  height: 650px;
-  background: var(--corbranco60);
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(30, 30, 30, 0.4);
+  bottom: 20px;
+  right: 20px;
+  width: 380px;
+  height: 500px; /* Altura fixa para controle do layout */
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  z-index: 10001;
+  z-index: 1000;
   overflow: hidden;
-  animation: slideInUp 0.3s ease-out;
-  border: 2px solid var(--corespaco30);
 }
 
-/* Cabeçalho */
+/* ============================================= */
+/* CABEÇALHO DO CHATBOT */
+/* ============================================= */
 .botHeader {
-  background: linear-gradient(135deg, var(--corespaco30) 0%, var(--corazul) 100%);
-  color: var(--corbranco60);
-  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-shrink: 0;
-  border-bottom: 3px solid var(--cordourado10);
+  flex-shrink: 0; /* Impede que o cabeçalho encolha */
+  height: 70px; /* Altura fixa */
+  box-sizing: border-box;
 }
 
+/* Container de informações do bot */
 .botInfo {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
+/* Status e título do bot */
 .botStatus {
   display: flex;
   align-items: center;
@@ -81,6 +101,7 @@
   font-size: 1.1rem;
 }
 
+/* Indicador de status (bolinha verde) */
 .statusIndicator {
   width: 10px;
   height: 10px;
@@ -90,12 +111,14 @@
   box-shadow: 0 0 10px var(--cordourado10);
 }
 
+/* Informação de conexão */
 .connectionInfo {
   font-size: 0.8rem;
   opacity: 0.9;
   color: var(--corbranco60);
 }
 
+/* Botão de minimizar */
 .minimizeButton {
   background: rgba(255, 255, 255, 0.2);
   border: none;
@@ -117,16 +140,19 @@
   transform: scale(1.1);
 }
 
-/* Área de Mensagens */
+/* ============================================= */
+/* ÁREA DE MENSAGENS */
+/* ============================================= */
 .messagesContainer {
-  flex: 1;
+  flex: 1; /* Ocupa todo o espaço disponível */
   padding: 20px;
-  overflow-y: auto;
+  overflow-y: auto; /* Scroll vertical quando necessário */
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   display: flex;
   flex-direction: column;
 }
 
+/* Estado vazio (quando não há mensagens) */
 .emptyState {
   text-align: center;
   padding: 40px 20px;
@@ -155,17 +181,21 @@
   color: var(--corazul);
 }
 
-/* Mensagens */
+/* ============================================= */
+/* MENSAGENS INDIVIDUAIS */
+/* ============================================= */
 .message {
   display: flex;
   margin-bottom: 20px;
   animation: slideIn 0.3s ease-out;
 }
 
+/* Mensagem do usuário (alinhada à direita) */
 .messageUser {
   flex-direction: row-reverse;
 }
 
+/* Avatar das mensagens */
 .messageAvatar {
   width: 40px;
   height: 40px;
@@ -180,16 +210,19 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Avatar do usuário */
 .messageUser .messageAvatar {
   background: var(--corazul);
   color: var(--corbranco60);
 }
 
+/* Avatar do bot */
 .messageBot .messageAvatar {
   background: var(--corespaco30);
   color: var(--corbranco60);
 }
 
+/* Conteúdo da mensagem */
 .messageContent {
   max-width: 75%;
   background: var(--corbranco60);
@@ -199,6 +232,7 @@
   border: 1px solid #e2e8f0;
 }
 
+/* Conteúdo da mensagem do usuário */
 .messageUser .messageContent {
   background: var(--corazul);
   color: var(--corbranco60);
@@ -206,6 +240,7 @@
   border: 1px solid var(--corazul);
 }
 
+/* Conteúdo da mensagem do bot */
 .messageBot .messageContent {
   border-bottom-left-radius: 4px;
   background: var(--corbranco60);
@@ -213,19 +248,23 @@
   color: var(--corpreto);
 }
 
+/* Texto da mensagem */
 .messageText {
   margin-bottom: 5px;
   line-height: 1.5;
   font-size: 0.95rem;
 }
 
+/* Timestamp da mensagem */
 .messageTime {
   font-size: 0.75rem;
   opacity: 0.7;
   color: inherit;
 }
 
-/* Indicador de Digitação */
+/* ============================================= */
+/* INDICADOR DE DIGITAÇÃO (QUANDO O BOT ESTÁ ESCREVENDO) */
+/* ============================================= */
 .typingIndicator {
   display: flex;
   align-items: center;
@@ -244,12 +283,14 @@
 .typingIndicator span:nth-child(1) { animation-delay: -0.32s; }
 .typingIndicator span:nth-child(2) { animation-delay: -0.16s; }
 
-/* Área de Input */
+/* ============================================= */
+/* ÁREA DE INPUT (DIGITAÇÃO) */
+/* ============================================= */
 .inputContainer {
   padding: 20px;
   border-top: 3px solid var(--corespaco30);
   background: var(--corbranco60);
-  flex-shrink: 0;
+  flex-shrink: 0; /* Impede que o input encolha */
 }
 
 .inputWrapper {
@@ -306,6 +347,7 @@
   transform: none;
 }
 
+/* Sugestões de perguntas (texto abaixo do input) */
 .suggestions {
   margin-top: 12px;
   text-align: center;
@@ -314,7 +356,11 @@
   font-style: italic;
 }
 
-/* Animações */
+/* ============================================= */
+/* ANIMAÇÕES */
+/* ============================================= */
+
+/* Animação de entrada das mensagens */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -326,6 +372,7 @@
   }
 }
 
+/* Animação de entrada do chatbot (não utilizada atualmente) */
 @keyframes slideInUp {
   from {
     opacity: 0;
@@ -337,6 +384,7 @@
   }
 }
 
+/* Animação de pulsação para indicadores */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
@@ -348,6 +396,7 @@
   }
 }
 
+/* Animação dos pontos de digitação */
 @keyframes typing {
   0%, 60%, 100% {
     transform: scale(0.8);
@@ -359,9 +408,11 @@
   }
 }
 
-/* Responsivo */
+/* ============================================= */
+/* DESIGN RESPONSIVO */
+/* ============================================= */
 @media (max-width: 480px) {
-  .bot-floating-button {
+  .botFloatingButton {
     bottom: 20px;
     right: 20px;
     width: 60px;
@@ -369,7 +420,7 @@
     font-size: 24px;
   }
   
-  .bot-assistant.expanded {
+  .botAssistantExpanded {
     width: calc(100vw - 40px);
     height: 70vh;
     right: 20px;
@@ -377,16 +428,7 @@
     bottom: 20px;
   }
   
-  .message-content {
+  .messageContent {
     max-width: 80%;
   }
-}
-
-/* Garantir que as variáveis CSS sejam aplicadas */
-:root {
-  --corbranco60: #FFFFFF;
-  --corespaco30: #18203D;
-  --cordourado10: #DB9D12;
-  --corpreto: #1E1E1E;
-  --corazul: #196DBA;
 }

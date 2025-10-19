@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import Radio from "../../components/Radio"
 import Botao from "../../components/Botao"
 
-
 function T01_Header(){
 
     const navigate = useNavigate();
