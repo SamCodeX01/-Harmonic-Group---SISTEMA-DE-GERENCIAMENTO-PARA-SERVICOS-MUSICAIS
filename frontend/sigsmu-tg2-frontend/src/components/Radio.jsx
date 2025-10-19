@@ -22,16 +22,17 @@ function Radio({children, setSelecionado, name, firstChecked=false}) {
                             id={id}
 
                             // Recebe o valor do botão para si mesmo
-                            value={child ? child.props.value : null}
+                            value={child ? child.props.value : ""}
 
                             style={{display: "none"}}
                             defaultChecked={i === 0 && firstChecked}
 
                             onChange={evt => {
+                                child.onChange
                                 esseBotao = evt.currentTarget
 
                                 if (esseBotao.checked) {
-                                    console.log("botão selecionado -> " + (esseBotao.checked ? esseBotao.id : ""))
+                                    // console.log("botão selecionado -> " + (esseBotao.checked ? esseBotao.id : ""))
 
                                     // Retorna o evento (radio checked) para o pai
                                     setSelecionado(esseBotao)

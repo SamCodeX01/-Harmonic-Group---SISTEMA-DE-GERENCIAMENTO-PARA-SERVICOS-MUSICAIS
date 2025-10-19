@@ -20,16 +20,16 @@ public class StatusSolicitacao {
     @Column(name = "stt_id")
     private Integer id;
 
-    @Column(name = "stt_nome")
-    private String nome;
+    @Column(name = "stt_situacao")
+    private String situacao;
 
 
     // Construtores
     public StatusSolicitacao(){}
 
-    public StatusSolicitacao(Integer id, String nome){
+    public StatusSolicitacao(Integer id, String situacao){
         this.id = id;
-        this.nome = nome;
+        this.situacao = situacao;
     }
 
 

@@ -15,8 +15,9 @@ import { listarTiposLocal } from "../../../../../services/TipoLocalService"
 
 
 // Função que retona o resultado de um SELECT no banco quando uma tabela é selecionada
-function Select({tabela=null, campos=null}) { 
+function Select({tabela=null, campos=null, prefixo="", mostrarPrefixo=false}) { 
 
+    // Armazena o retorno de cada tabela do banco
     const [pacotesServico, setPacotesServico]       = useState()
     const [instrumentos, setInstrumentos]           = useState()
     const [servicos, setServicos]                   = useState()
@@ -25,7 +26,7 @@ function Select({tabela=null, campos=null}) {
     const [statusSolicitacao, setStatusSolicitacao] = useState()
     const [tiposLocal, setTiposLocal]               = useState()
 
-    { // Retorno de cada tabela do BANCO (useStates)  
+    { // Retorna cada tabela do BANCO (useStates)  
         
         // Retorna os pacotes de serviço cadastrados no BANCO
         useEffect(() => {
@@ -92,28 +93,27 @@ function Select({tabela=null, campos=null}) {
             }
     }
 
-    // Guarda o retorno do BANCO
+    // Guarda apenas o retorno da tabela selecionada
     const retorno = tabela != null ? retornarRegistros() : null
 
     return (
         <table className={selectCSS.table}>
             <caption> {tabela ? tabela : ""} </caption>
 
-            {/* Exibe os campos da tabela do BANCO */}
+            {/* Exibe os campos da tabela (nome do campo) */}
             <thead className={selectCSS.thead}>
                 <tr>
                 {
                     (campos != null &&
                     campos.map((nomeCampo, i) => {
                         if (nomeCampo[3] !== "_")
-                            return <th key={i}> {campos[0] + nomeCampo} </th>
+                            return <th key={i}> { (mostrarPrefixo ? prefixo : "") + nomeCampo} </th>
                     }))
                 }
                 </tr>
             </thead> 
             
-
-            {/* Exibe os dados retornados do BANCO */}
+            {/* Exibe os dados retornados (registros) */}
             <tbody className={selectCSS.tbody}>
             {
                 (retorno != null &&

@@ -1,7 +1,3 @@
-// Importações de estilos
-import { useEffect } from "react"
-import insertCSS from "./CSS/insert.module.css"
-
 // Importações do CRUD API
 import { adicionarPacoteServico } from "../../../../../services/PacoteServicoService"
 import { adicionarInstrumento } from "../../../../../services/InstrumentoService"
@@ -11,37 +7,60 @@ import { adicionarRepertorio } from "../../../../../services/RepertorioService"
 import { adicionarStatus } from "../../../../../services/StatusSolicitacaoService"
 import { adicionarTipoLocal } from "../../../../../services/TipoLocalService"
 
+// Importações do React
+import { useEffect } from "react"
 
-function Insert({tabela=null, input}) {
 
-    const adicionarDados = () => {
-        console.log("input -> " + input)
-        switch (tabela) {
-            case "PacoteServico":     adicionarTipoLocal({"nome" : input})
-                break
-            case "Instrumento":       adicionarTipoLocal({"nome" : input})
-                break
-            case "Servico":           adicionarTipoLocal({"nome" : input})
-                break
-            case "MeioPagamento":     adicionarTipoLocal({"nome" : input})
-                break
-            case "Repertorio":        adicionarTipoLocal({"nome" : input})
-                break
-            case "StatusSolicitacao": adicionarTipoLocal({"nome" : input})
-                break
-            case "TipoLocal":         adicionarTipoLocal({"nome" : input})
-                break
-            default:
-                break
-        }
+function Insert(tabela, campos, input) {
+
+    const inputDividido = input.split(",")
+    const body = {}
+    
+    campos // Varre os campos que vieram como parâmetro
+        .filter((campo) => campo !== "id")
+        .forEach((campo, i) => {
+
+            // Verificação anti "out of index" e cria o novo atributo do obj
+            if (i < inputDividido.length)
+                body[ String(campo) ] = inputDividido[i]
+        })
+
+
+    // Exibe todos os atributos e valores do obj criado
+    console.log(`TABLE -> ` + tabela)
+    Object.entries(body).forEach(([key, value]) => {
+        console.log(`CHAVE  -> ` + key)
+        console.log(`valor  -> ` + value)
+    }) // Para verificação apenas!
+
+
+    switch (tabela) { // De acordo com a tabela, chama a função correspondente
+        case "PacoteServico":     adicionarPacoteServico(body)
+            break
+        case "Instrumento":       adicionarInstrumento(body)
+            break
+        case "Servico":           adicionarTipoServico(body)
+            break
+        case "MeioPagamento":     adicionarMeioPagamento(body)
+            break
+        case "Repertorio":        adicionarRepertorio(body)
+            break
+        case "StatusSolicitacao": adicionarStatus(body)
+            break
+        case "TipoLocal":         adicionarTipoLocal(body)
+
+            // console.log("body -> " + body.nome)
+            
+
+            // console.log("VALOR -> " + body2[campos[1]])
+            // console.log("tabela -> " + tabela)
+            // console.log("input -> " + input)
+            // console.log("campos -> " + campos)
+
+            break
     }
 
-    useEffect(() => {
-        adicionarDados()
-    }, [tabela])
+    alert("Registro adicionado!")
 
-    return(
-        <></>
-    )
 }
 export default Insert;

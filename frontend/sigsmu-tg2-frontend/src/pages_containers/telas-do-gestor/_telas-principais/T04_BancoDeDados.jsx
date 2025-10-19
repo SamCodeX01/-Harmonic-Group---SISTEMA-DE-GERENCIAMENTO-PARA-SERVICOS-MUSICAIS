@@ -8,8 +8,8 @@ import Radio from "../../../components/Radio"
 // Importação de componentes grandes
 import HelpDoGestor from "../_componentes-grandes/cadastronobd/HelpDoGestor"
 
-import SelectDaTabela from "../_componentes-grandes/cadastronobd/CRUD/Select"
-import InsertRegistro from "../_componentes-grandes/cadastronobd/CRUD/Insert"
+import Select from "../_componentes-grandes/cadastronobd/CRUD/Select"
+import Insert from "../_componentes-grandes/cadastronobd/CRUD/Insert"
 
 // Importações do React
 import { use, useEffect, useState } from "react"
@@ -106,7 +106,7 @@ function T04_BancoDeDados() {
     }
     const tableTipoLocal = {
         nome: "TipoLocal",
-        campos: ["id", "tipo"],
+        campos: ["id", "nome"],
         prefixo: "tip_",
         msg_output: "Tipo de Local"
     }
@@ -125,9 +125,10 @@ function T04_BancoDeDados() {
 
     // Executa sempre que a operação CRUD mudar
     useEffect(() => {
-        setTabelaSelecionada(null)
 
-        if (operacaoCRUD !== null) {
+        // Reseta o campo para não dar erro
+        setCampoSelecionado(null)
+
             switch(operacaoCRUD.value) {
                 case "insert": 
                     setMensagemInputGestor("Registro a ser INSERIDO:");
@@ -136,11 +137,9 @@ function T04_BancoDeDados() {
                     setMensagemInputGestor("Dado a ser ATUALIZADO:");
                     break;
                 case "delete": 
-                    setMensagemInputGestor("Índice do registro que será DELETADO:");
+                    setMensagemInputGestor("Registro a ser DELETADO:");
                     break;
             }
-        } else setMensagemInputGestor("Registro a ser INSERIDO:");
-
     }, [operacaoCRUD])
 
 
@@ -148,12 +147,17 @@ function T04_BancoDeDados() {
     useEffect(() => {
         if (tabelaSelecionada) {
 
-            setObjTabelaSelecionada(
-                objTabelas.find(table => table.nome === tabelaSelecionada.value)
-            )
+            const obj = objTabelas.find(table => table.nome === tabelaSelecionada.value)
+            setObjTabelaSelecionada(obj)
             
-            // PENSO EM ADICIONAR O NOME DA TABELA NA PARTE DO GESTOR
-            
+            if (obj.campos.length === 2 && operacaoCRUD.value != "delete") {
+                setCampoSelecionado({value: obj.prefixo + obj.campos[1]})
+            } else if (operacaoCRUD.value != "delete") {
+                setCampoSelecionado(null)
+            } else {
+                setCampoSelecionado({value: obj.prefixo + obj.campos[0]})
+            }
+
         }
     }, [tabelaSelecionada])
 
@@ -162,6 +166,10 @@ function T04_BancoDeDados() {
     useEffect(() => {
 
         // PENSO EM ADICIONAR OS CAMPOS DA TABELA NA PARTE DO GESTOR
+
+
+
+
 
     }, [campoSelecionado])
 
@@ -202,13 +210,13 @@ function T04_BancoDeDados() {
                     <h2> (dados puxados do banco) </h2>
                 </div>
 
-                {/* TENHO QUE VER ESSA PARTE AINDA! ///////////////////////////////////////////////////////// */}
-
-                {/* SELECT */}
-                {/* <SelectDaTabela 
-                    tabela={tabelaSelecionada != null ? tabelaSelecionada.value : null} 
-                    campos={tabelaSelecionada != null ? campos[index] : null}
-                /> */}
+                {/* CRUD_SELECT */}
+                <Select 
+                    tabela={tabelaSelecionada != null ? objTabelaSelecionada.nome : null} 
+                    campos={tabelaSelecionada != null ? objTabelaSelecionada.campos : null}
+                    prefixo={tabelaSelecionada != null ? objTabelaSelecionada.prefixo : null}
+                    mostrarPrefixo={true}
+                />
                   
             </div> 
 
@@ -259,42 +267,51 @@ function T04_BancoDeDados() {
             {/* Local em que o gestor poderá DAR INPUT de dados e manipular o banco */}
             <div className={t04_bancoDeDados.inputGestor}>
 
-                {/* <HelpDoGestor input={true} msg={mensagemInputGestor} setInput={setInputGestor} />
+                <HelpDoGestor input={true} msg={mensagemInputGestor} setInput={setInputGestor} />
 
                 <div>
                     <HelpDoGestor msg={"Nome da tabela:"} evento={tabelaSelecionada} />
                     
-                    BOTÃO EXECUTAR COMANDO
+                    {/* BOTÃO EXECUTAR COMANDO */}
                     <button onClick={() => { 
-                        if (campoSelecionado !== null) {
-                            switch (operacao ? operacao.value : null) {
-                                case "insert": 
-                                    <InsertRegistro 
-                                        tabela={tabelaSelecionada ? tabelaSelecionada.value : null}
-                                        input={inputGestor} 
-                                    />
-                                    alert("Registro adicionado!")
+                        const operacao = operacaoCRUD.value
+
+                        if ( tabelaSelecionada && inputGestor && (campoSelecionado || operacao === "insert") ) {
+
+                            switch (operacaoCRUD.value) {
+                                case "insert":
+                                    {/* CRUD_INSERT */} Insert(
+                                        objTabelaSelecionada.nome,
+                                        objTabelaSelecionada.campos,
+                                        inputGestor
+                                    )
                                     break
+
                                 case "update": 
+                                    {/* CRUD_UPDATE */}
+
                                     alert("Registro atualizado!")
                                     break
+
                                 case "delete": 
+                                    {/* CRUD_DELETE */}
+
                                     alert("Registro deletado!")
                                     break
-                                default:
-                                    alert("Nenhuma operação selecionada!")
                             }
-                        } 
-                        else 
-                            alert("Falta selecionar o campo!")
-                    }}> EXECUTAR COMANDO </button>
+                        } else {
+                            if (!tabelaSelecionada)     alert("Falta selecionar a tabela!")
+                            else if (!inputGestor)      alert("Falta informar o input a ser executado!")
+                            else if (!campoSelecionado) alert("Falta selecionar o campo!")
+                        }
 
+                    }}> EXECUTAR COMANDO </button>
                 </div>
 
                 <HelpDoGestor 
                     msg={"Campo:"} 
                     evento={campoSelecionado}
-                /> */}
+                />
 
             </div>
 

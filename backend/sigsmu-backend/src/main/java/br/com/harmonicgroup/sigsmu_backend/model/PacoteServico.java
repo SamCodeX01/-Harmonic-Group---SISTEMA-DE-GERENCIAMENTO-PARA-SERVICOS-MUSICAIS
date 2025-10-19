@@ -23,13 +23,25 @@ public class PacoteServico {
     @Column(name = "pac_nome")
     private String nome;
 
+    @Column(name = "pac_valor")
+    private String valor;
+
+    @Column(name = "pac_qtdMusicos")
+    private String qtdMusicos;
+
+    @Column(name = "pac_descricao")
+    private String descricao;
+
 
     // Construtores
     public PacoteServico(){}
 
-    public PacoteServico(Integer id, String nome){
+    public PacoteServico(Integer id, String nome, String valor, String qtdMusicos, String descricao){
         this.id = id;
         this.nome = nome;
+        this.valor = valor;
+        this.qtdMusicos = qtdMusicos;
+        this.descricao = descricao;
     }
 
 

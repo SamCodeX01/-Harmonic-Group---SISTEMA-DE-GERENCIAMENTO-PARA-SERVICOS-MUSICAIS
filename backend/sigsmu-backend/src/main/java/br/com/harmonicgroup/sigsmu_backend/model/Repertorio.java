@@ -20,16 +20,32 @@ public class Repertorio {
     @Column(name = "rep_id")
     private Integer id;
 
-    @Column(name = "rep_nome")
-    private String nome;
+    @Column(name = "rep_musica")
+    private String musica;
+
+    @Column(name = "rep_artista")
+    private String artista;
+
+    @Column(name = "rep_genero")
+    private String genero;
+
+    @Column(name = "rep_tempo")
+    private String tempo;
+
+    @Column(name = "rep_tocamos")
+    private String tocamos;
 
 
     // Construtores
     public Repertorio(){}
 
-    public Repertorio(Integer id, String nome){
+    public Repertorio(Integer id, String musica, String artista, String genero, String tempo, String tocamos){
         this.id = id;
-        this.nome = nome;
+        this.musica = musica;
+        this.artista = artista;
+        this.genero = genero;
+        this.tempo = tempo;
+        this.tocamos = tocamos;
     }
 
 
