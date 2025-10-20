@@ -11,7 +11,8 @@ import T01_HeaderCliente from '../site_do_sistema/components_site/T01_Header.jsx
 import T01_Inicio from "../pages_containers/telas-do-cliente/_telas-principais/T01_Inicio";
 import T02_Orcamento from "../pages_containers/telas-do-cliente/_telas-principais/T02_Orcamento";
 import T03_Repertorio from "../pages_containers/telas-do-cliente/_telas-principais/T03_Repertorio";
-import T10_servicos from "../pages_containers/telas-do-cliente/_telas-principais/T10_Servicos"
+
+import T10_servicos from "../site_do_sistema/components_site/T10_Servicos.jsx" //
 
 // Rotas Intranet
 import T01_Login from '../pages_containers/telas-geral/T01_Login.jsx';

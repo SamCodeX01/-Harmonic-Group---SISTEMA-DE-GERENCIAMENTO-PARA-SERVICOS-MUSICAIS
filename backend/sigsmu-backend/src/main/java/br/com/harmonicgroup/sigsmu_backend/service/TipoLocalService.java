@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import br.com.harmonicgroup.sigsmu_backend.model.Instrumento;
 import br.com.harmonicgroup.sigsmu_backend.model.TipoLocal;
+import br.com.harmonicgroup.sigsmu_backend.model.UpdateDTO;
 import br.com.harmonicgroup.sigsmu_backend.repository.TipoLocalRepository;
 
 @Service
@@ -21,6 +24,21 @@ public class TipoLocalService {
 
     public void cadastrarTipoLocal(TipoLocal tipoLocal) {
         tipoLocalRepository.save(tipoLocal);
+    }
+
+    public void atualizarTipoLocal(UpdateDTO body, Integer id) {
+        TipoLocal atual = tipoLocalRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Tipo de local não encontrado!"));
+
+        switch (body.getCampo()) {
+            case "nome": atual.setNome( body.getNovoValor() );
+                break;
+        }
+        tipoLocalRepository.save(atual);
+    }
+
+    public void excluirTipoLocal(Integer id) {
+        tipoLocalRepository.deleteById(id);
     }
 
 }

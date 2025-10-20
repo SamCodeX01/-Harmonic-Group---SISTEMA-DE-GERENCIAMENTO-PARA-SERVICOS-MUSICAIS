@@ -8,48 +8,18 @@ import Radio from "../../../components/Radio"
 // Importação de componentes grandes
 import HelpDoGestor from "../_componentes-grandes/cadastronobd/HelpDoGestor"
 
+// Importação das funções CRUD
 import Select from "../_componentes-grandes/cadastronobd/CRUD/Select"
 import Insert from "../_componentes-grandes/cadastronobd/CRUD/Insert"
-
+import Update from "../_componentes-grandes/cadastronobd/CRUD/Update"
+import Delete from "../_componentes-grandes/cadastronobd/CRUD/Delete"
+ 
 // Importações do React
 import { use, useEffect, useState } from "react"
-
-// Importações do CRUD API
-import { listarPacotesServico } from "../../../services/PacoteServicoService"
-import { listarInstrumentos } from "../../../services/InstrumentoService"
-import { listarTiposServico } from "../../../services/TipoServicoService"
-import { listarMeiosPagamento } from "../../../services/MeioPagamentoService"
-import { listarRepertorios } from "../../../services/RepertorioService"
-import { listarStatus } from "../../../services/StatusSolicitacaoService"
-import { listarTiposLocal, adicionarTipoLocal } from "../../../services/TipoLocalService"
-
 
 
 // Tela de BANCO DE DADOS - para que gestores consigam cadastrar novos serviços/músicas/meios de pagamento/etc
 function T04_BancoDeDados() {
-
-    // Executa o comando INSERT no BANCO de acordo com a tabela e campos selecionados
-    // const adicionarDados = () => {
-    //     switch (tabelaSelecionada.value) {
-    //         case "PacoteServico":     adicionarTipoLocal({"nome" : inputGestor})
-    //             break
-    //         case "Instrumento":       adicionarTipoLocal({"nome" : inputGestor})
-    //             break
-    //         case "Servico":           adicionarTipoLocal({"nome" : inputGestor})
-    //             break
-    //         case "MeioPagamento":     adicionarTipoLocal({"nome" : inputGestor})
-    //             break
-    //         case "Repertorio":        adicionarTipoLocal({"nome" : inputGestor})
-    //             break
-    //         case "StatusSolicitacao": adicionarTipoLocal({"nome" : inputGestor})
-    //             break
-    //         case "TipoLocal":         adicionarTipoLocal({"nome" : inputGestor})
-    //             break
-    //     }
-    // }
-
-
-
 
     // Guarda a operação CRUD (evt)
     const [operacaoCRUD, setOperacaoCRUD] = useState({value: "insert"})
@@ -166,10 +136,6 @@ function T04_BancoDeDados() {
     useEffect(() => {
 
         // PENSO EM ADICIONAR OS CAMPOS DA TABELA NA PARTE DO GESTOR
-
-
-
-
 
     }, [campoSelecionado])
 
@@ -288,15 +254,18 @@ function T04_BancoDeDados() {
                                     break
 
                                 case "update": 
-                                    {/* CRUD_UPDATE */}
-
-                                    alert("Registro atualizado!")
+                                    {/* CRUD_UPDATE */} Update (
+                                        objTabelaSelecionada.nome,
+                                        campoSelecionado.value,
+                                        inputGestor
+                                    ) // ID puxado pelo input
                                     break
 
                                 case "delete": 
-                                    {/* CRUD_DELETE */}
-
-                                    alert("Registro deletado!")
+                                    {/* CRUD_DELETE */} Delete(
+                                        objTabelaSelecionada.nome,
+                                        inputGestor
+                                    )
                                     break
                             }
                         } else {

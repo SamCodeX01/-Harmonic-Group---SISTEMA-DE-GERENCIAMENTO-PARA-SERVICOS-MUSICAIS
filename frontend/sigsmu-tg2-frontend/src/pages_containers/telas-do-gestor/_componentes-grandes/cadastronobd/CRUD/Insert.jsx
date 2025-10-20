@@ -17,13 +17,13 @@ function Insert(tabela, campos, input) {
     const body = {}
     
     campos // Varre os campos que vieram como parâmetro
-        .filter((campo) => campo !== "id")
-        .forEach((campo, i) => {
+    .filter((campo) => campo !== "id")
+    .forEach((campo, i) => {
 
-            // Verificação anti "out of index" e cria o novo atributo do obj
-            if (i < inputDividido.length)
-                body[ String(campo) ] = inputDividido[i]
-        })
+        // Verificação anti "out of index" e cria o novo atributo do obj
+        if (i < inputDividido.length)
+            body[ String(campo) ] = inputDividido[i]
+    })
 
 
     // Exibe todos os atributos e valores do obj criado
@@ -48,18 +48,8 @@ function Insert(tabela, campos, input) {
         case "StatusSolicitacao": adicionarStatus(body)
             break
         case "TipoLocal":         adicionarTipoLocal(body)
-
-            // console.log("body -> " + body.nome)
-            
-
-            // console.log("VALOR -> " + body2[campos[1]])
-            // console.log("tabela -> " + tabela)
-            // console.log("input -> " + input)
-            // console.log("campos -> " + campos)
-
             break
     }
-
     alert("Registro adicionado!")
 
 }
