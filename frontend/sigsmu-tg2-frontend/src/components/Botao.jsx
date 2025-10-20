@@ -23,7 +23,7 @@ function Botao({msg, ativarEstilo, rota=null, style=null, value=null}) {
                 evt.stopPropagation()
 
                 if (rota != null) {
-                    const rotaAtual = rota.split("/").filter(Boolean)
+                    const rotaAtual = rota.split("/").filter(Boolean)//
 
                     if (rotaAtual[1] === "RotasGestor") // || rotaAtual[0] !== "Intranet" - NÃO USEI PQ VAI DAR ERRO EM ALGUMAS PARTES
                         navigate(rota, {replace: true})

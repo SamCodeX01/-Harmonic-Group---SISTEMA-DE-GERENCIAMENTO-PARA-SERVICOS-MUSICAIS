@@ -1,0 +1,6 @@
+
+.footer>p{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}

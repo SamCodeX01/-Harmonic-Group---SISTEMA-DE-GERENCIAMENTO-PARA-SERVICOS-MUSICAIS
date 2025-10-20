@@ -24,12 +24,12 @@ function T01_Header(){
                     <li><a href="">Seja Parceiro</a></li>
                     <li onClick={ () => navigate("/TelaLogin") }><a href="">Intranet</a></li> */}
                     
-                    <li> <Botao msg={"Home"}          rota={"/Inicio"} />                 </li>
-                    <li> <Botao msg={"Serviços"}      rota={""} />                        </li>
+                    <li> <Botao msg={"Home"}          rota={"/Inicio"} />    </li>
+                    <li> <Botao msg={"Serviços"}      rota={"/Servicos"} />  </li>
                     <li> <Botao msg={"Orçamentos"}    rota={"/Orcamento"} /> </li>
-                    <li> <Botao msg={"Contatos"}      rota={""} />                        </li>
-                    <li> <Botao msg={"Seja Parceiro"} rota={""} />                        </li>
-                    <li> <Botao msg={"Intranet"}      rota={"/Intranet/TelaLogin"} />              </li>
+                    <li> <Botao msg={"Contatos"}      rota={""} />           </li>
+                    <li> <Botao msg={"Seja Parceiro"} rota={""} />           </li>
+                    <li> <Botao msg={"Intranet"}      rota={"/Intranet/TelaLogin"} /> </li>
                 </ul>
                     {/* <button style={{background:"#007bff", color:"white", padding: "15px"}} >Intranet</button> */}
             </nav>

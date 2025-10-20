@@ -33,6 +33,7 @@ import TelaAtribuicaoAutomatica from "../pages_containers/telas-do-gestor/telas-
 import TelaAtribuicaoManual from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaAtribuicaoManual";
 import TelaDeCustos from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaDeCustos";
 import TelaEnvioDevolutiva from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaEnvioDevolutiva";
+import AgrupamentoOpcoes from '../components/AgrupamentoOpcoes.jsx';
 
 
 // Salvador de vidas - amo o useLocation(☺)
@@ -47,8 +48,6 @@ function ConfigurarHeader() {
         return <T01_HeaderGestor/>
 }
 
-
-
 function Rotas() {
     return (
         <Router>
@@ -57,16 +56,15 @@ function Rotas() {
             <Routes> 
                 {/*   TELA PARA TESTES DE NOVAS FUNCIONALIDADES   */}
                 {/* <Route path='/AreaDeTeste'     element={ <T00_ChatBot/> } /> */}
-                <Route path='/AreaDeTeste'     element={ <Site/> } />
+                <Route path='/AreaDeTeste'     element={ <T00_TESTES/> } />
                 {/* ///////////////////////////////////////////// */}
 
                 {/*               ROTAS DO CLIENTE               */}
-                <Route path='/'           element={<Site/>} />
+                <Route path='/'           element={<Site/>} errorElement={<div>vvv</div>}/>
                 <Route path='/Inicio'     element={<Site/>} />
-                <Route path='Servicos' elementos={<T10_servicos/>}/>    
+                <Route path='/Servicos'   element={<T10_servicos/>}/>    
                 <Route path="/Orcamento"  element={<T02_Orcamento/>} />
                 <Route path="/Repertorio" element={<T03_Repertorio/>} />
-                <Route path="/Servicos" element={<T10_servicos/>} />
 
 
                 {/*                     ROTAS INTRANET                     */}
@@ -88,6 +86,7 @@ function Rotas() {
                 <Route path="/Intranet/RotasGestor/SolicitacoesServico/AtribuicaoAutomatica" element={<TelaAtribuicaoAutomatica />} /> 
                 <Route path="/Intranet/RotasGestor/SolicitacoesServico/AtribuicaoManual"     element={<TelaAtribuicaoManual />} /> 
                 <Route path="/Intranet/RotasGestor/SolicitacoesServico/Devolutiva"           element={<TelaEnvioDevolutiva />} /> 
+                
             </Routes>
         </Router>
     )
