@@ -21,6 +21,18 @@ import { use, useEffect, useState } from "react"
 // Tela de BANCO DE DADOS - para que gestores consigam cadastrar novos serviços/músicas/meios de pagamento/etc
 function T04_BancoDeDados() {
 
+
+
+
+
+    // FALTA DESMARCAR (DESCOLORIR) OS BOTÕES NÃO MAIS SELECIONADOS
+    // FALTA VALIDAR AS ENTRADAS PRO BANCO (DADOS + ID / DADOS / ID) - adicionar alerts específicos
+    // CRIAR CAMPO SOMENTE PARA ID EM DELETE
+
+
+
+
+
     // Guarda a operação CRUD (evt)
     const [operacaoCRUD, setOperacaoCRUD] = useState({value: "insert"})
 
@@ -98,6 +110,7 @@ function T04_BancoDeDados() {
 
         // Reseta o campo para não dar erro
         setCampoSelecionado(null)
+        setTabelaSelecionada(null)
 
             switch(operacaoCRUD.value) {
                 case "insert": 
@@ -176,13 +189,15 @@ function T04_BancoDeDados() {
                     <h2> (dados puxados do banco) </h2>
                 </div>
 
-                {/* CRUD_SELECT */}
-                <Select 
-                    tabela={tabelaSelecionada != null ? objTabelaSelecionada.nome : null} 
-                    campos={tabelaSelecionada != null ? objTabelaSelecionada.campos : null}
-                    prefixo={tabelaSelecionada != null ? objTabelaSelecionada.prefixo : null}
-                    mostrarPrefixo={true}
-                />
+                
+                {/* CRUD_SELECT */} {tabelaSelecionada ?
+                    <Select 
+                        tabela={objTabelaSelecionada.nome} 
+                        campos={objTabelaSelecionada.campos}
+                        prefixo={objTabelaSelecionada.prefixo}
+                        mostrarPrefixo={true}
+                    />
+                : <div> Selecione alguma tabela para vizualizá-la </div>}
                   
             </div> 
 
@@ -258,7 +273,7 @@ function T04_BancoDeDados() {
                                         objTabelaSelecionada.nome,
                                         campoSelecionado.value,
                                         inputGestor
-                                    ) // ID puxado pelo input
+                                    ) // ID puxado pelo input internamente
                                     break
 
                                 case "delete": 

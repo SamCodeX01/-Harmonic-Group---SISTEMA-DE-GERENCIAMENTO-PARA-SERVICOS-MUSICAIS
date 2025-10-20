@@ -1,11 +1,23 @@
 // Importações de estilos
 import t03_repertorio from "./CSS/t03_repertorio.module.css"
 
+// Importações do CRUD API
+import { listarTiposServico } from "../../../../../services/TipoServicoService"
 
 function T03_Repertorio() {
     return (
         <div className={t03_repertorio.main}>
             
+            {/* VER DEPOIS / VER DEPOIS / VER DEPOIS / VER DEPOIS / VER DEPOIS */}
+            {/* func campo(msg, )
+            puxarRetorno() => {
+                if (msg === "Pré definições")
+                    retorno = listarTiposServico()
+                else
+                    retorno = LISTA DE SUGESTÕES (dá pra fazer um ifelse - se servico == tal ou tal ou tal... chama o obj especifico referente ao servico, contendo como valor(es) as musicas sugeridas para aquele tipo de servico)
+            } */}
+
+
             <div>
                 <h1>Repertório</h1>
 
