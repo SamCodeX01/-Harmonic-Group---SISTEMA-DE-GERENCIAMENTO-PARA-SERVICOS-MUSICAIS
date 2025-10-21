@@ -3,10 +3,10 @@ import campo from "./CSS/campo.module.css"
 
 
 // Componente criado para JUNTAR LABEL+INPUT para melhor organização do código
-function Campo({type, name, placeholder, labelName, id, htmlFor}) {
+function Campo({msg, type, name, id, placeholder=null}) {
     return (
         <div>
-            <label htmlFor={htmlFor}> {labelName} </label>
+            <label htmlFor={id}> {msg} </label>
             <input type={type} name={name} placeholder={placeholder} className={campo.main} id={id}/>
         </div>
     )

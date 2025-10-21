@@ -4,6 +4,7 @@ import t02_orcamento from "./CSS/t02_orcamento.module.css"
 // Importações de componentes
 import T01_Header from '../../../site_do_sistema/components_site/T01_Header'
 import Botao from "../../../components/Botao";
+import Campo from "../../../components/Campo";
 
 
 // Tela responsável por iniciar os FORMULÁRIOS DE ORÇAMENTO para o cliente
@@ -14,55 +15,26 @@ function T02_Orcamento() {
             
             <form action="" method="post">
 
-                <fieldset>
+                <fieldset className={t02_orcamento.informacoescontato}>
                     <legend>Informações de contato</legend>
-
-                    <div>
-                        <label htmlFor="iname">Nome completo</label>
-                        <input type="text" name="name" id="iname" />
-                    </div>
-                    
-                    <div>
-                        <label htmlFor="iemail">Email</label>
-                        <input type="email" name="email" id="iemail" />
-                    </div>
-                    
-                    <div>
-                        <label htmlFor="iphonenumber">Celular</label>
-                        <input type="number" name="phonenumber" id="iphonenumber" />
-                    </div>
+                    <Campo msg={"Nome completo"}   type={"text"}   name={"name"}        id={"iname"} />
+                    <Campo msg={"CPF"}   type={"text"}   name={"cpf"}        id={"icpf"} />
+                    <Campo msg={"Email"}           type={"email"}  name={"email"}       id={"iemail"} />
+                    <Campo msg={"Celular"}         type={"number"} name={"phonenumber"} id={"iphonenumber"} />
+                    <Campo msg={"Data nascimento"} type={"date"}   name={"borndate"}    id={"iborndate"} />
+                    <Campo msg={"Endereço"}        type={"text"}   name={"address"}     id={"iaddress"} />
                 </fieldset>
 
-                <fieldset>
+                <fieldset className={t02_orcamento.sobreevento}>
                     <legend>Sobre o evento</legend>
-
-                    <div>
-                        <label htmlFor="ipacote">Nome do pacote</label>
-                        <input type="text" name="pacote" id="ipacote" />
-                    </div>
-                    
-                    <div>
-                        <label htmlFor="idata">Data do evento</label>
-                        <input type="date" name="data" id="idata" />
-                    </div>
-                    
-                    <div>
-                        <label htmlFor="iqtdconvidados">Número de convidados</label>
-                        <input type="number" name="qtdconvidados" id="iqtdconvidados" />
-                    </div>
-
-                    <div>
-                        <label htmlFor="ihorainicio">Horário de início</label>
-                        <input type="time" name="horainicio" id="ihorainicio" />
-                    </div>
-
-                    <div>
-                        <label htmlFor="ihoratermino">Horário de término</label>
-                        <input type="time" name="horatermino" id="ihoratermino" />
-                    </div>
+                    <Campo msg={"Nome do pacote"}       type={"text"}   name={"pacote"}        id={"ipacote"} />
+                    <Campo msg={"Data do evento"}       type={"date"}   name={"data"}          id={"idata"} />
+                    <Campo msg={"Número de convidados"} type={"number"} name={"qtdconvidados"} id={"iqtdconvidados"} />
+                    <Campo msg={"Horário de início"}    type={"time"}   name={"horainicio"}    id={"ihorainicio"} />
+                    <Campo msg={"Horário de término"}   type={"time"}   name={"horatermino"}   id={"ihoratermino"} /> 
                 </fieldset>
 
-                <fieldset>
+                <fieldset className={t02_orcamento.sobrelocalevento}>
                     <legend>Sobre o local do evento</legend>
 
                     <div>

@@ -27,6 +27,7 @@
 
 
 
+
 .main {
     background-color: var(--corazul);
     height: 90vh;
@@ -49,13 +50,29 @@
     background-color: var(--corbranco60);
     display: flex;
     flex-flow: row wrap;
-    justify-content: start;
+    /* justify-content: center; */
+    /* align-items: center; */
     gap: 10px;
 
     border-radius: 8px;
     width: 50%;
     margin: 20px auto;
     padding: 10px;
+}
+
+.informacoescontato > div > p {
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 35px;
+    text-indent: 10px;
+}
+
+.sobreevento {
+
+}
+
+.sobrelocalevento {
+
 }
 
 /* Joga label pra cima e input pra baixo */

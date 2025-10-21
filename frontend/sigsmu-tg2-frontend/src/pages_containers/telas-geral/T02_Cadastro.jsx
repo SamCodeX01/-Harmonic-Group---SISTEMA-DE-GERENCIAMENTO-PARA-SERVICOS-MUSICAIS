@@ -28,31 +28,27 @@ function T02_Cadastro() {
            {(empresa &&
                 <fieldset>
                     <legend>Para empresas</legend>
-                    <Campo type={"number"} name={"cnpj"} id={"icnpj"} labelName={"Cnpj:"} placeholder={"Digite o cnpj da sua empresa"}/>
-                    <Campo type={"number"} name={"inscricaoEstadual"}  id={"iinscricaoEstadual"} labelName={"Inscrição Estadual:"} placeholder={"Digite a sua inscrição estadual"}/>
-                    <Campo type={"text"} name={"razaoSocial"} id={"irazaoSocial"} labelName={"Razão Social:"} placeholder={"Digite a razão social"}/>
-                    <Campo type={"text"} name={"nomeFantasia"} id={"inomeFantasia"} labelName={"Nome Fantasia:"} placeholder={"Digite o nome fantasia"}/>
+                    <Campo msg={"Cnpj:"} type={"number"} name={"cnpj"} id={"icnpj"} placeholder={"Digite o cnpj da sua empresa"}/>
+                    <Campo msg={"Inscrição Estadual:"} type={"number"} name={"inscricaoEstadual"} id={"iinscricaoEstadual"}  placeholder={"Digite a sua inscrição estadual"}/>
+                    <Campo msg={"Razão Social:"} type={"text"} name={"razaoSocial"} id={"irazaoSocial"} placeholder={"Digite a razão social"}/>
+                    <Campo msg={"Nome Fantasia:"} type={"text"} name={"nomeFantasia"} id={"inomeFantasia"} placeholder={"Digite o nome fantasia"}/>
                 </fieldset>
             )}
                
             <fieldset>
                 <legend>Cadastro</legend>
-                <Campo htmlFor={"nome"} labelName={"Nome:"} type={"text"} name={"nome"} id={"nome"} placeholder={"Digite o seu nome"}/>
-                <Campo htmlFor={"sobrenome"} labelName={"Sobrenome:"} type={"text"} name={"sobrenome"} id={"sobrenome"} placeholder={"Digite o seu sobrenome"}/>
-                <Campo htmlFor={"nascimento"} labelName={"Nascimento: "} type={"date"} name={"nascimento"} id={"nascimento"} placeholder={"Digite o seu nome"}/>           
+                <Campo msg={"Nome:"} type={"text"} name={"nome"} id={"inome"} placeholder={"Digite o seu nome completo"}/>
+                <Campo msg={"Nascimento: "} type={"date"} name={"nascimento"} id={"inascimento"} placeholder={"Digite o seu nome"}/>           
                 <label htmlFor="titulo">Como você se identifica?</label>
 
                 {/*    Campo Vazio    */}
                 <Campo htmlFor={"xxx"}/>
 
                 <label htmlFor="nome">Nome: </label>
-                <input type="text" name="nome" id="nome" placeholder="Digite o seu nome"></input>
-
-                <label htmlFor="sobrenome">Sobrenome: </label>
-                <input type="text" name="sobrenome" id="sobrenome" placeholder="Digite o seu sobrenome"></input>
+                <input type="text" name="nome" id="nome" placeholder="Digite o seu nome completo"></input>
 
                 <label htmlFor="nascimento">Nascimento: </label>          
-                <input type="date" name="nascimento" id="nascimento"/>            
+                <input type="date" name="nascimento" id="nascimento"/>
            
                 <label htmlFor="titulo">Qual o seu gênero?</label>
                 <select>
@@ -69,23 +65,23 @@ function T02_Cadastro() {
            
             <fieldset>
                 <legend>Contatos</legend>
-                <Campo htmlFor={"telefone"} labelName={"Telefone:"} type={"tel"} name={"telefone"} id={"telefone"} placeholder={"Digite o seu telefone"}/>
-                <Campo htmlFor={"celular"} labelName={"Celular: "} type={"tel"} name={"celular"} id={"celular"} placeholder={"Digite o seu celular"}/>
-                <Campo htmlFor={"email"} labelName={"E-mail: "} type={"email"} name={"email"} id={"email"} placeholder={"Digite o seu e-mail"}/>
-                <Campo htmlFor={"datacadastro"} labelName={"Data do Cadastro: "} type={"date"} name={"datacadastro"} id={"datacadastro"}/>
+                <Campo htmlFor={"telefone"} msg={"Telefone:"} type={"tel"} name={"telefone"} id={"telefone"} placeholder={"Digite o seu telefone"}/>
+                <Campo htmlFor={"celular"} msg={"Celular: "} type={"tel"} name={"celular"} id={"celular"} placeholder={"Digite o seu celular"}/>
+                <Campo htmlFor={"email"} msg={"E-mail: "} type={"email"} name={"email"} id={"email"} placeholder={"Digite o seu e-mail"}/>
+                <Campo htmlFor={"datacadastro"} msg={"Data do Cadastro: "} type={"date"} name={"datacadastro"} id={"datacadastro"}/>
             </fieldset>
 
 
             <fieldset>
                 <legend>Endereço</legend>
-                <Campo htmlFor={"rua"} labelName={"Rua: "} type={"text"} name={"rua"} id={"rua"} placeholder={"Digite o nome da rua"}/>
-                <Campo htmlFor={"numero"} labelName={"Número: "} type={"text"} name={"numero"} id={"numero"} placeholder={"Digite o número da rua"}/>
-                <Campo htmlFor={"complemento"} labelName={"Complemento: "} type={"text"} name={"complemento"} id={"complemento"} placeholder={"Digite o complemento do endereço"}/>
-                <Campo htmlFor={"bairro"} labelName={"Bairro: "} type={"text"} name={"bairro"} id={"bairro"} placeholder={"Digite o seu bairro"}/>
-                <Campo htmlFor={"cep"} labelName={"CEP: "} type={"text"} name={"cep"} id={"cep"} placeholder={"Digite o seu CEP"}/>
-                <Campo htmlFor={"cidade"} labelName={"Cidade: "} type={"text"} name={"cidade"} id={"cidade"} placeholder={"Digite a sua cidade"}/>
-                <Campo htmlFor={"estado"} labelName={"Estado: "} type={"text"} name={"estado"} id={"dataestado"} placeholder={"Digite o estado"}/>
-                <Campo htmlFor={"referencia"} labelName={"Referência: "} type={"text"} name={"referencia"} id={"referencia"} placeholder={"Digite o endereço de referência"}/>
+                <Campo htmlFor={"rua"} msg={"Rua: "} type={"text"} name={"rua"} id={"rua"} placeholder={"Digite o nome da rua"}/>
+                <Campo htmlFor={"numero"} msg={"Número: "} type={"text"} name={"numero"} id={"numero"} placeholder={"Digite o número da rua"}/>
+                <Campo htmlFor={"complemento"} msg={"Complemento: "} type={"text"} name={"complemento"} id={"complemento"} placeholder={"Digite o complemento do endereço"}/>
+                <Campo htmlFor={"bairro"} msg={"Bairro: "} type={"text"} name={"bairro"} id={"bairro"} placeholder={"Digite o seu bairro"}/>
+                <Campo htmlFor={"cep"} msg={"CEP: "} type={"text"} name={"cep"} id={"cep"} placeholder={"Digite o seu CEP"}/>
+                <Campo htmlFor={"cidade"} msg={"Cidade: "} type={"text"} name={"cidade"} id={"cidade"} placeholder={"Digite a sua cidade"}/>
+                <Campo htmlFor={"estado"} msg={"Estado: "} type={"text"} name={"estado"} id={"dataestado"} placeholder={"Digite o estado"}/>
+                <Campo htmlFor={"referencia"} msg={"Referência: "} type={"text"} name={"referencia"} id={"referencia"} placeholder={"Digite o endereço de referência"}/>
             </fieldset>
             <button type="submit">ENVIAR</button>
 
