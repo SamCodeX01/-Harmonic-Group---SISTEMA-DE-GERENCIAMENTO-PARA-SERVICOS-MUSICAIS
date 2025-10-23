@@ -5,9 +5,9 @@ function AgrupamentoOpcoes({obj}){
 
     return(
             <div>
-                <label htmlFor="teste1">Pré definições</label> <br />
+                {/* <label htmlFor="teste1">Pré definições</label> <br /> */}
                     <select id="teste1">
-                        <option>Selecione o tipo de evento</option>
+                        <option>{}Selecione o tipo de evento</option>
 
                         <optgroup label="Eventos">
                             <option>{obj.Musicas_Sugeridas[0]}</option>

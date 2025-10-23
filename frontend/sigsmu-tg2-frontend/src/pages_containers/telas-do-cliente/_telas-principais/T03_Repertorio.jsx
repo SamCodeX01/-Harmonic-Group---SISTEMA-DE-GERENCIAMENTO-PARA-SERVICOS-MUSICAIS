@@ -2,7 +2,7 @@
 import t03_repertorio from "./CSS/t03_repertorio.module.css"
 
 // Importações do CRUD API
-import { listarTiposServico } from "../../../../../services/TipoServicoService"
+//import { listarTiposServico } from "../../../../../services/TipoServicoService"
 
 function T03_Repertorio() {
     return (

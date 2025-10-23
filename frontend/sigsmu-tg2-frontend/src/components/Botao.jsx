@@ -25,9 +25,9 @@ function Botao({msg, ativarEstilo, rota=null, style=null, value=null}) {
                 if (rota != null) {
                     const rotaAtual = rota.split("/").filter(Boolean)//
 
-                    if (rotaAtual[1] === "RotasGestor") // || rotaAtual[0] !== "Intranet" - NÃO USEI PQ VAI DAR ERRO EM ALGUMAS PARTES
-                        navigate(rota, {replace: true})
-                    else 
+                    // if (rotaAtual[1] === "RotasGestor") // || rotaAtual[0] !== "Intranet" - NÃO USEI PQ VAI DAR ERRO EM ALGUMAS PARTES
+                    //     navigate(rota, {replace: true})
+                    // else 
                         navigate(rota)
                 }
                 
