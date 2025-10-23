@@ -58,21 +58,21 @@ function TelaDeCustos() {
 
                 {mostrarTransporte && 
                     <div className={css.transporte}>
-                        <Campo labelName={"Combustível"} />
-                        <Campo labelName={"Preço por litro"} />
-                        <Campo labelName={"Distância a percorrer"} />
-                        <Campo labelName={"Pedágio"} />
-                        <Campo labelName={"Consumo médio do carro"} />
+                        <Campo msg={"Combustível"} />
+                        <Campo msg={"Preço por litro"} />
+                        <Campo msg={"Distância a percorrer"} />
+                        <Campo msg={"Pedágio"} />
+                        <Campo msg={"Consumo médio do carro"} />
                     </div>
                 }
 
                 {mostrarMusico && 
                     <div className={css.musico}>
-                        <Campo labelName={"Cache dos músicos"} />
-                        <Campo labelName={"Alimentação"} />
-                        <Campo labelName={"Aluguel de equipamentos"} />
-                        <Campo labelName={"Demonstração"} />
-                        <Campo labelName={"Passagem do músico"} />
+                        <Campo msg={"Cache dos músicos"} />
+                        <Campo msg={"Alimentação"} />
+                        <Campo msg={"Aluguel de equipamentos"} />
+                        <Campo msg={"Demonstração"} />
+                        <Campo msg={"Passagem do músico"} />
                     </div>
                 }
 
