@@ -17,23 +17,9 @@ function T01_Login() {
             <img src={logo1} alt="Logo" className={t01_login.img}/>
             
             <form action="post" className={t01_login.form}>
-                <Campo 
-                    type="email" 
-                    name="login" 
-                    placeholder="Informe seu email"
-                />
-
-                <Campo 
-                    type="password" 
-                    name="senha"
-                    placeholder="Informe sua senha"
-                />
-                
-                <Botao 
-                    msg="Fazer login" 
-                    ativarEstilo={true}
-                    rota={"/Intranet/TelaPosLogin"}
-                />
+                <Campo type="email" name="login" placeholder="Informe seu email"/>
+                <Campo type="password" name="senha" placeholder="Informe sua senha"/>
+                <Botao msg="Fazer login" ativarEstilo={true} rota={"/Intranet/TelaPosLogin"}/>
             </form>
 
             <div>
@@ -42,11 +28,7 @@ function T01_Login() {
                 <p>Não tem uma conta?</p>
                 
                 {/* Passa para a próxima tela */}
-                <Botao
-                    msg="Criar uma nova conta"
-                    ativarEstilo={false}
-                    rota={"/Intranet/TelaCadastro"}
-                />
+                <Botao msg="Criar uma nova conta" ativarEstilo={false} rota={"/Intranet/TelaCadastro"}/>
             </div>
 
         </div>

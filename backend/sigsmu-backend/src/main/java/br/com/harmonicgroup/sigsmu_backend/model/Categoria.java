@@ -1,7 +1,6 @@
 package br.com.harmonicgroup.sigsmu_backend.model;
 
-
-import br.com.harmonicgroup.sigsmu_backend.service.InstrumentoService;
+import br.com.harmonicgroup.sigsmu_backend.service.CategoriaService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,24 +11,25 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Instrumento")
-public class Instrumento {
+@Table(name = "Categoria")
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ins_id")
+    @Column(name = "cat_id")
     private Integer id;
 
-    @Column(name = "ins_nome")
+    @Column(name = "cat_nome")
     private String nome;
+    
 
 
     // Construtores
-    public Instrumento(){}
-
-    public Instrumento(Integer id, String nome){
+    public Categoria(){};
+    
+    public Categoria(Integer id, String nome){
         this.id = id;
         this.nome = nome;
-    }
+    };
 
 }
