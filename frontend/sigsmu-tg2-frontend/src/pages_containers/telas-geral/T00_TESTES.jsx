@@ -1,5 +1,6 @@
 import React from "react";
 import AgrupamentoOpcoes from "../../components/AgrupamentoOpcoes";
+import EventoItem from "../../components/EventoItem";
 
 function T00_TESTES() {
         const entradaPaisPadrinhos = {
@@ -12,10 +13,9 @@ function T00_TESTES() {
 
     return (
         <>
-            
-        <AgrupamentoOpcoes obj={entradaPaisPadrinhos}/>
-        <AgrupamentoOpcoes obj={entradaNoivo}/>
-      
+            <EventoItem/>
+            <AgrupamentoOpcoes obj={entradaPaisPadrinhos}/>
+            <AgrupamentoOpcoes obj={entradaNoivo}/>
         </>
     )
 }
