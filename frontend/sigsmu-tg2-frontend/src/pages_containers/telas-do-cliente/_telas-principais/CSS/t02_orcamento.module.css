@@ -1,120 +1,139 @@
-.main legend {
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 0 10px;
-}
-
-.main label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-.main input,
-.main select,
-.main textarea {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  box-sizing: border-box;
-  transition: 0.3s ease;
-}
-/* TUDO ACIMA FOI COPIA E COLA */
-
-
-
-
 .main {
     background-color: var(--corazul);
-    height: 90vh;
-    margin-top: 10px;
-    border: solid;
+    min-height: 100vh;
+    padding: 20px 0;
 }
+
 .main > form {
     margin-top: 10px;
 }
-.main input {
-    text-indent: 2px;
-}
+
+/* LEGENDAS */
 .main legend {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 8px 15px;
     background-color: var(--cordourado10);
     border-radius: 10px;
-    padding: 3px;
-    font-weight: 600;
+    color: var(--corbranco60);
 }
+
+/* LABELS */
+.main label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--corpreto);
+}
+
+/* INPUTS E SELECTS */
+.main input,
+.main select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: 0.3s ease;
+    text-indent: 2px;
+}
+
+.main input:focus,
+.main select:focus {
+    outline: none;
+    border-color: var(--cordourado10);
+    box-shadow: 0 0 5px rgba(219, 157, 18, 0.3);
+}
+
+/* FIELDSETS */
 .main fieldset {
     background-color: var(--corbranco60);
     display: flex;
     flex-flow: row wrap;
-    /* justify-content: center; */
-    /* align-items: center; */
-    gap: 10px;
-
-    border-radius: 8px;
-    width: 50%;
+    gap: 15px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 1200px;
     margin: 20px auto;
-    padding: 10px;
+    padding: 20px;
+    border: 2px solid var(--corespaco30);
 }
 
-.informacoescontato > div > p {
-    border: 1px solid black;
-    border-radius: 10px;
-    height: 35px;
-    text-indent: 10px;
-}
-
-.sobreevento {
-
-}
-
-.sobrelocalevento {
-
-}
-
-/* Joga label pra cima e input pra baixo */
-.main fieldset div * {
-    display: block;
-    width: 100%;
-}
+/* CONTAINERS DOS CAMPOS */
 .main fieldset > div {
-    /* Permite que os campos aumentem de tamanho (1), não diminuam (0) e que tenham tamanho inicial de 200px */
+    flex: 1 0 250px;
+    min-width: 0;
+}
+
+/* SEÇÃO ULTIMO (TIPO LOCAL + COMPLEMENTO) */
+.ultimo {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 15px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.tipolocal {
     flex: 1 0 200px;
 }
 
-.ultimo {
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 10px;
-
-    width: 100%;
-}
-
-.tipolocal{
-    width: 33%;
-}
-
 .complemento {
-    flex: 1 0 50px;
+    flex: 2 0 250px;
+}
+
+/* BOTÃO PRÓXIMA */
+.botaoContainer {
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* FOOTER */
+.footerImagem {
+    width: 100%;
+    margin-top: 40px;
+}
+.footer{
+    background-color: blueviolet;
 }
 
 
-/* Passa pra próxima tela */
-.main > div:nth-last-of-type(1) {
-    margin-left: auto;
-    margin-right: 475px;
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .main fieldset {
+        width: 95%;
+        padding: 15px;
+    }
     
-    color: black;
-
-    background-color: var(--cordourado10);
-    border-radius: 10px;
-    border: 1px solid black;
+    .main fieldset > div {
+        flex: 1 0 100%;
+    }
+    
+    .ultimo {
+        flex-direction: column;
+    }
+    
+    .tipolocal,
+    .complemento {
+        flex: 1 0 100%;
+    }
 }
 
-.main > div:nth-last-of-type(1):hover {
-    color: white;
-    text-decoration: underline;
+@media (max-width: 480px) {
+    .main fieldset {
+        width: 98%;
+        padding: 10px;
+    }
+    
+    .main legend {
+        font-size: 1.1rem;
+        padding: 6px 12px;
+    }
 }

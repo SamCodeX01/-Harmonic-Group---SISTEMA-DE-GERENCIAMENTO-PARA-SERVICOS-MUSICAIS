@@ -2,10 +2,11 @@
 import t02_orcamento from "./CSS/t02_orcamento.module.css"
 
 // Importações de componentes
-import T01_Header from '../../../site_do_sistema/components_site/T01_Header'
+import T09_Footer from '../../../site_do_sistema/components_site/T09_Footer'
 import Botao from "../../../components/Botao";
 import Campo from "../../../components/Campo";
 
+import footerImg from "../../../site_do_sistema/imagens_site/footer.png"
 
 // Tela responsável por iniciar os FORMULÁRIOS DE ORÇAMENTO para o cliente
 function T02_Orcamento() {
@@ -92,6 +93,10 @@ function T02_Orcamento() {
             </form>
 
             <Botao msg={"Próxima"} rota={"/Repertorio"} ativarEstilo={true} />
+
+            <img className={t02_orcamento.footerImagem} src={footerImg} alt="" />
+
+              <T09_Footer/>
 
         </div>
     )

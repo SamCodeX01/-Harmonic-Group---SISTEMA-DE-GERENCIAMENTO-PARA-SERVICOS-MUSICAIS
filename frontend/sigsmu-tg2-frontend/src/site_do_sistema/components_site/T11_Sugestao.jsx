@@ -5,8 +5,7 @@ import EventoItem from "../../components/EventoItem";
 import T10_Servicos from "./T10_Servicos";
 import t11_sugestaoCss from "./t11_sugestao.module.css"
 import t10_servicos from "./t10_servicos.module.css"
-
-
+import footerImg from "../../site_do_sistema/imagens_site/footer.png"
 
 
 function T11_Sugestao() {
@@ -200,8 +199,7 @@ return(
             {/* {renderizarEvento()} */}
             {/* <EventoItem evento={cerimoniaCivil}/> */}
             {/* <img className={t10_servicos.imagemPacotes} src={footer} alt=""/> */}
-            <img className={t10_servicos.imagemPacotes} src={footer} alt=""/>
-            
+            <img className={t11_sugestaoCss.footerImg} src={footerImg} alt="" />
         <T09_Footer/>
     </div>
     )
