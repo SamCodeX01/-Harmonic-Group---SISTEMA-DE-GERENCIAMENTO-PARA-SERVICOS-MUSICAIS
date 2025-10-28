@@ -1,27 +1,112 @@
-.eventoContainer{
-    margin: 20px 0px;
+.eventoContainer {
+    margin: 20px 0;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background: white;
-    height: 200px;
-    background-color: white;
 }
 
-.eventoHeader{
+.eventoHeader {
     margin-bottom: 20px;
-    /* text-align: center; */
+    text-align: center;
 }
 
-.eventoTitulo{
-    font-size: ;
-    margin-bottom: ;
+.eventoTitulo {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
-.eventoDescricao{
-    color: ;
-    line-height: ;
 
+.eventoDescricao {
+    color: #666;
+    line-height: 1.5;
 }
-.partesContainer{
 
+.partesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.parteItem {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.parteCabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.parteCabecalho:hover {
+    background-color: var(--corazul);
+}
+
+.parteCabecalho:hover .parteTitulo {
+    color: #ffffff;
+}
+
+.parteCabecalho:hover .icone {
+    color: #ffffff;
+}
+
+.parteTitulo {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.icone {
+    font-size: 1rem;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.parteConteudo {
+    padding: 20px;
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+}
+
+.parteDescricao {
+    color: #666;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.musicasLista {
+    margin-top: 15px;
+}
+
+.musicasLista h4 {
+    margin-bottom: 10px;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.musicasLista ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.musicaItem {
+    padding: 8px 0;
+    color: #444;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.musicaItem:last-child {
+    border-bottom: none;
+}
+
+.imagemPacotes {
+    width: 100%;
+    margin: 10px 0;
 }

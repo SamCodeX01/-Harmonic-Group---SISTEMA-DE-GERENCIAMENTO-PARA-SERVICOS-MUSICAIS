@@ -5,7 +5,7 @@ function AgrupamentoOpcoes({obj}){
 
     return(
             <div>
-                {/* <label htmlFor="teste1">Pré definições</label> <br /> */}
+                {/* <label htmlFor="teste1">Pré definições</label> <br />
                     <select id="teste1">
                         <option>{}Selecione o tipo de evento</option>
 
@@ -14,8 +14,8 @@ function AgrupamentoOpcoes({obj}){
                             <option>2</option>
                             <option>2</option>
                         
-                        </optgroup>
-                    </select>
+                        </optgroup> */}
+                    {/* </select> */}
             </div>
         )
 }

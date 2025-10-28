@@ -11,7 +11,7 @@ import T01_HeaderCliente from '../site_do_sistema/components_site/T01_Header.jsx
 import T01_Inicio from "../pages_containers/telas-do-cliente/_telas-principais/T01_Inicio";
 import T02_Orcamento from "../pages_containers/telas-do-cliente/_telas-principais/T02_Orcamento";
 import T03_Repertorio from "../pages_containers/telas-do-cliente/_telas-principais/T03_Repertorio";
-
+import T11_Sugestao from "../site_do_sistema/components_site/T11_Sugestao.jsx" //
 import T10_servicos from "../site_do_sistema/components_site/T10_Servicos.jsx" //
 
 // Rotas Intranet
@@ -34,6 +34,7 @@ import TelaAtribuicaoManual from "../pages_containers/telas-do-gestor/telas-dos-
 import TelaDeCustos from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaDeCustos";
 import TelaEnvioDevolutiva from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaEnvioDevolutiva";
 import AgrupamentoOpcoes from '../components/AgrupamentoOpcoes.jsx';
+import EventoItem from '../components/EventoItem.jsx';
 
 
 // Salvador de vidas - amo o useLocation(☺)
@@ -57,12 +58,14 @@ function Rotas() {
                 {/*   TELA PARA TESTES DE NOVAS FUNCIONALIDADES   */}
                 {/* <Route path='/AreaDeTeste'     element={ <T00_ChatBot/> } /> */}
                 <Route path='/AreaDeTeste'     element={ <T00_TESTES/> } />
+                {/* <Route path='/AreaDeTeste'     element={ <EventoItem/> } /> */}
                 {/* ///////////////////////////////////////////// */}
 
                 {/*               ROTAS DO CLIENTE               */}
                 <Route path='/'           element={<Site/>} errorElement={<div>vvv</div>}/>
                 <Route path='/Inicio'     element={<Site/>} />
                 <Route path='/Servicos'   element={<T10_servicos/>}/>    
+                <Route path='/Sugestao'   element={<T11_Sugestao/>}/>    
                 <Route path="/Orcamento"  element={<T02_Orcamento/>} />
                 <Route path="/Repertorio" element={<T03_Repertorio/>} />
 

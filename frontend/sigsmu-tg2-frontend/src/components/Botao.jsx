@@ -30,7 +30,6 @@ function Botao({msg, ativarEstilo, rota=null, style=null, value=null}) {
                     // else 
                         navigate(rota)
                 }
-                
             }}
 
             style={style}

@@ -1,21 +1,32 @@
 import React from "react";
-import AgrupamentoOpcoes from "../../components/AgrupamentoOpcoes";
+// import AgrupamentoOpcoes from "../../components/AgrupamentoOpcoes";
 import EventoItem from "../../components/EventoItem";
 
 function T00_TESTES() {
-        const entradaPaisPadrinhos = {
-        Musicas_Sugeridas: ["musica1","musica2","musica3"]
+       // Crie um evento de exemplo para testar
+    const eventoTeste = {
+        titulo: "🎩 Cerimônia Civil - EXEMPLO",
+        descricao: "Este é um evento de teste para demonstrar o componente",
+        partes: {
+            acolhidaConvidados: {
+                titulo: "🎶 Acolhida dos Convidados",
+                descricao: "Música de fundo enquanto os convidados chegam",
+                musicas: ["Perfect - Ed Sheeran", "A Thousand Years - Christina Perri", "Say You Won't Let Go - James Arthur"]
+            },
+            entradaNoiva: {
+                titulo: "👰‍♀️ Entrada da Noiva", 
+                descricao: "Momento emocionante da entrada da noiva",
+                musicas: ["Can't Help Falling In Love - Kina Grannis", "Make You Feel My Love - Adele"]
             }
-    const entradaNoivo = {
-        Musicas_Sugeridas: ["musica4","musica5","musica6"]
-            }
-
+        }
+    };
 
     return (
         <>
-            <EventoItem/>
-            <AgrupamentoOpcoes obj={entradaPaisPadrinhos}/>
-            <AgrupamentoOpcoes obj={entradaNoivo}/>
+            <EventoItem evento={eventoTeste}/>
+
+            {/* <AgrupamentoOpcoes obj={entradaPaisPadrinhos}/>  */}
+            {/* <AgrupamentoOpcoes obj={entradaNoivo}/>  */}
         </>
     )
 }
