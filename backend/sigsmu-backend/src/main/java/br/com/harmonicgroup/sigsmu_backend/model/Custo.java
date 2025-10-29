@@ -11,45 +11,45 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Custo")
+@Table(name = "custo")
 public class Custo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ges_cpf")
+    @Column(name = "cus_id")
     private Integer id;
 
-    @Column(name = "ges_nome")
+    @Column(name = "cus_combustivel")
     private String combustivel;
     
-    @Column(name = "ges_data_cadastro")
+    @Column(name = "cus_precoLitro")
     private String precoLitro;
 
-    @Column(name = "ges_senha")
+    @Column(name = "cus_distancia")
     private String distancia;
 
-    @Column(name = "ges_senha")
+    @Column(name = "cus_pedagio")
     private String pedagio;
 
-    @Column(name = "ges_senha")
+    @Column(name = "cus_consumoMedioVeiculo")
     private String consumoMedioVeiculo;
 
-    @Column(name = "ges_senha")
+    @Column(name = "cus_cacheMusicos")
     private String cacheMusicos;
 
-    @Column(name = "ges_senha")
+    @Column(name = "cus_alimentacao")
     private String alimentacao;
 
-    @Column(name = "ges_senha")
+    @Column(name = "cus_aluguelEquipamentos")
     private String aluguelEquipamentos;
 
-    @Column(name = "ges_senha")
+    @Column(name = "cus_demonstracao")
     private String demonstracao;
 
-    @Column(name = "ges_senha")
+    @Column(name = "cus_passagemMusico")
     private String passagemMusico;
 
-    @Column(name = "ges_senha")
+    @Column(name = "cus_desconto")
     private String desconto;
 
 

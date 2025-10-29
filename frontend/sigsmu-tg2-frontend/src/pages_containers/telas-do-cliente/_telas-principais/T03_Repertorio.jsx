@@ -64,59 +64,6 @@ function T03_Repertorio() {
                 </select>
             </div>
 
-            <div className={t03_repertorio.selects}>
-                <label htmlFor="teste2">Entrada dos noivos</label>
-                <select id="teste2">
-                    <option>Clique para escolher a música</option>
-
-                    <optgroup label="Rock">
-                        <option>musica1</option>
-                        <option>musica2</option>
-                        <option>musica3</option>
-                    </optgroup>
-
-                    <optgroup label="Sertanejo">
-                        <option>musica4</option>
-                        <option>musica5</option>
-                        <option>musica6</option>
-                    </optgroup>
-
-                    <optgroup label="Pisadinha">
-                        <option>musica7</option>
-                        <option>musica8</option>
-                        <option>musica9</option>
-                    </optgroup>
-
-                </select>
-            </div>
-            
-            <div className={t03_repertorio.selects}>
-
-                <label htmlFor="teste2">Entrada da dama de honra</label>
-                <select id="teste2">
-                    <option>Clique para escolher a música</option>
-
-                    <optgroup label="Rock">
-                        <option>musica1</option>
-                        <option>musica2</option>
-                        <option>musica3</option>
-                    </optgroup>
-
-                    <optgroup label="Sertanejo">
-                        <option>musica4</option>
-                        <option>musica5</option>
-                        <option>musica6</option>
-                    </optgroup>
-
-                    <optgroup label="Pisadinha">
-                        <option>musica7</option>
-                        <option>musica8</option>
-                        <option>musica9</option>
-                    </optgroup>
-
-                </select>
-            </div>
-
 
             <button className={t03_repertorio.button}>Adicionar mais momentos</button>
 

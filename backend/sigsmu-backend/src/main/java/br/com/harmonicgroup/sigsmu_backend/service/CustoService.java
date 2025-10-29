@@ -25,16 +25,16 @@ public class CustoService {
         custoRepository.save(custo);
     }
 
-    public void atualizarCusto(UpdateDTO body, Integer id) {
-        Custo atual = custoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Custo não encontrado!"));
+    // public void atualizarCusto(UpdateDTO body, Integer id) {
+    //     Custo atual = custoRepository.findById(id)
+    //         .orElseThrow(() -> new RuntimeException("Custo não encontrado!"));
 
-        switch (body.getCampo()) {
-            case "nome": atual.setNome( body.getNovoValor() );
-                break;
-        }
-        custoRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "nome": atual.setNome( body.getNovoValor() );
+    //             break;
+    //     }
+    //     custoRepository.save(atual);
+    // }
 
     public void excluirCusto(Integer id) {
         custoRepository.deleteById(id);

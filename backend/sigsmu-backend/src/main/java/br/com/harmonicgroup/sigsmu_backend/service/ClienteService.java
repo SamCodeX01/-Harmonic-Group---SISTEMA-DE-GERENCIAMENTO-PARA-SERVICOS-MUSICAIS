@@ -25,16 +25,16 @@ public class ClienteService {
         clienteRepository.save(cliente);
     }
 
-    public void atualizarCliente(UpdateDTO body, String cpf) {
-        Cliente atual = clienteRepository.findById(cpf)
-            .orElseThrow(() -> new RuntimeException("Cliente não encontrado!"));
+    // public void atualizarCliente(UpdateDTO body, String cpf) {
+    //     Cliente atual = clienteRepository.findById(cpf)
+    //         .orElseThrow(() -> new RuntimeException("Cliente não encontrado!"));
 
-        switch (body.getCampo()) {
-            case "nome": atual.setNome( body.getNovoValor() );
-                break;
-        }
-        clienteRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "nome": atual.setNome( body.getNovoValor() );
+    //             break;
+    //     }
+    //     clienteRepository.save(atual);
+    // }
 
     public void excluirCliente(String cpf) {
         clienteRepository.deleteById(cpf);

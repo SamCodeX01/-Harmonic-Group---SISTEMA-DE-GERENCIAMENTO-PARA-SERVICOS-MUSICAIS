@@ -25,16 +25,16 @@ public class EnsaioService {
         ensaioRepository.save(ensaio);
     }
 
-    public void atualizarEnsaio(UpdateDTO body, Integer id) {
-        Ensaio atual = ensaioRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Ensaio não encontrado!"));
+    // public void atualizarEnsaio(UpdateDTO body, Integer id) {
+    //     Ensaio atual = ensaioRepository.findById(id)
+    //         .orElseThrow(() -> new RuntimeException("Ensaio não encontrado!"));
 
-        switch (body.getCampo()) {
-            case "nome": atual.setNome( body.getNovoValor() );
-                break;
-        }
-        ensaioRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "nome": atual.setNome( body.getNovoValor() );
+    //             break;
+    //     }
+    //     ensaioRepository.save(atual);
+    // }
 
     public void excluirEnsaio(Integer id) {
         ensaioRepository.deleteById(id);

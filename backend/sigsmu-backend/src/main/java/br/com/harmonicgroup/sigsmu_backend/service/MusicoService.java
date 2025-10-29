@@ -25,16 +25,16 @@ public class MusicoService {
         musicoRepository.save(musico);
     }
 
-    public void atualizarMusico(UpdateDTO body, String cpf) {
-        Musico atual = musicoRepository.findById(cpf)
-            .orElseThrow(() -> new RuntimeException("Músico não encontrado!"));
+    // public void atualizarMusico(UpdateDTO body, String cpf) {
+    //     Musico atual = musicoRepository.findById(cpf)
+    //         .orElseThrow(() -> new RuntimeException("Músico não encontrado!"));
 
-        switch (body.getCampo()) {
-            case "nome": atual.setNome( body.getNovoValor() );
-                break;
-        }
-        musicoRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "nome": atual.setNome( body.getNovoValor() );
+    //             break;
+    //     }
+    //     musicoRepository.save(atual);
+    // }
 
     public void excluirMusico(String cpf) {
         musicoRepository.deleteById(cpf);

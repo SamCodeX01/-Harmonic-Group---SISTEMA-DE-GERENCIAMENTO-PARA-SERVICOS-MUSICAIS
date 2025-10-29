@@ -25,16 +25,16 @@ public class SolicitacaoServicoService {
         solicitacaoServicoRepository.save(solicitacaoServico);
     }
 
-    public void atualizarSolicitacaoServico(UpdateDTO body, Integer id) {
-        SolicitacaoServico atual = solicitacaoServicoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Solicitacao de servico não encontrada!"));
+    // public void atualizarSolicitacaoServico(UpdateDTO body, Integer id) {
+    //     SolicitacaoServico atual = solicitacaoServicoRepository.findById(id)
+    //         .orElseThrow(() -> new RuntimeException("Solicitacao de servico não encontrada!"));
 
-        switch (body.getCampo()) {
-            case "nome": atual.setNome( body.getNovoValor() );
-                break;
-        }
-        solicitacaoServicoRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "nome": atual.setNome( body.getNovoValor() );
+    //             break;
+    //     }
+    //     solicitacaoServicoRepository.save(atual);
+    // }
 
     public void excluirSolicitacaoServico(Integer id) {
         solicitacaoServicoRepository.deleteById(id);

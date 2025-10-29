@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "TipoLocal")
+@Table(name = "tipo_local")
 public class TipoLocal {
 
     @Id
@@ -20,16 +20,16 @@ public class TipoLocal {
     @Column(name = "tip_id")
     private Integer id;
 
-    @Column(name = "tip_nome")
-    private String nome;
+    @Column(name = "tip_tipo")
+    private String tipo;
 
 
     // Construtores
     public TipoLocal(){}
 
-    public TipoLocal(Integer id, String nome){
+    public TipoLocal(Integer id, String tipo){
         this.id = id;
-        this.nome = nome;
+        this.tipo = tipo;
     }
 
 

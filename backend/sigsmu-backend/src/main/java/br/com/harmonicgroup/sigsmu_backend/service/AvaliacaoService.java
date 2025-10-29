@@ -25,16 +25,16 @@ public class AvaliacaoService {
         avaliacaoRepository.save(avaliacao);
     }
 
-    public void atualizarAvaliacao(UpdateDTO body, Integer id) {
-        Avaliacao atual = avaliacaoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Avaliação não encontrada!"));
+    // public void atualizarAvaliacao(UpdateDTO body, Integer id) {
+    //     Avaliacao atual = avaliacaoRepository.findById(id)
+    //         .orElseThrow(() -> new RuntimeException("Avaliação não encontrada!"));
 
-        switch (body.getCampo()) {
-            case "nome": atual.setNome( body.getNovoValor() );
-                break;
-        }
-        avaliacaoRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "nome": atual.setNome( body.getNovoValor() );
+    //             break;
+    //     }
+    //     avaliacaoRepository.save(atual);
+    // }
 
     public void excluirAvaliacao(Integer id) {
         avaliacaoRepository.deleteById(id);

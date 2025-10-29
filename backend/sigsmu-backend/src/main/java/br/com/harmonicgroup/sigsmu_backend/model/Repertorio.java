@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Repertorio")
+@Table(name = "repertorio")
 public class Repertorio {
 
     @Id
@@ -47,6 +47,5 @@ public class Repertorio {
         this.tempo = tempo;
         this.tocamos = tocamos;
     }
-
 
 }

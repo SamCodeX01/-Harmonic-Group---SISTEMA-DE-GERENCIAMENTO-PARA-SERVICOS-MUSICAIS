@@ -11,32 +11,40 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Ensaio")
+@Table(name = "ensaio")
 public class Ensaio {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ges_cpf")
-    private String cpf;
+    @Column(name = "ens_id")
+    private Integer id;
 
-    @Column(name = "ges_nome")
-    private String nome;
+    @Column(name = "ens_local")
+    private String local;
     
-    @Column(name = "ges_data_cadastro")
-    private String dataCadastro;
+    @Column(name = "ens_status")
+    private String status;
 
-    @Column(name = "ges_senha")
-    private String senha;
+    @Column(name = "ens_dataHoraInicio")
+    private String dataHoraInicio;
+    
+    @Column(name = "ens_dataHoraTermino")
+    private String dataHoraTermino;
+    
+    @Column(name = "ens_observacoes")
+    private String observacoes;
 
 
     // Construtores
     public Ensaio(){};
     
-    public Ensaio(String cpf, String nome, String dataCadastro, String senha){
-        this.cpf = cpf;
-        this.nome = nome;
-        this.dataCadastro = dataCadastro;
-        this.senha = senha;
+    public Ensaio(Integer id, String local, String status, String dataHoraInicio, String dataHoraTermino, String observacoes){
+        this.id = id;
+        this.local = local;
+        this.status = status;
+        this.dataHoraInicio = dataHoraInicio;
+        this.dataHoraTermino = dataHoraTermino;
+        this.observacoes = observacoes;
     };
 
-} e
+}

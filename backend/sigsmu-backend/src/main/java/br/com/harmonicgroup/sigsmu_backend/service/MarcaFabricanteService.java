@@ -25,16 +25,16 @@ public class MarcaFabricanteService {
         marcaFabricanteRepository.save(meioPagamento);
     }
 
-    public void atualizarMarcaFabricante(UpdateDTO body, Integer id) {
-        MarcaFabricante atual = marcaFabricanteRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Marca do fabricante não encontrada!"));
+    // public void atualizarMarcaFabricante(UpdateDTO body, Integer id) {
+    //     MarcaFabricante atual = marcaFabricanteRepository.findById(id)
+    //         .orElseThrow(() -> new RuntimeException("Marca do fabricante não encontrada!"));
 
-        switch (body.getCampo()) {
-            case "nome": atual.setNome( body.getNovoValor() );
-                break;
-        }
-        marcaFabricanteRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "nome": atual.setNome( body.getNovoValor() );
+    //             break;
+    //     }
+    //     marcaFabricanteRepository.save(atual);
+    // }
 
     public void excluirMarcaFabricante(Integer id) {
         marcaFabricanteRepository.deleteById(id);

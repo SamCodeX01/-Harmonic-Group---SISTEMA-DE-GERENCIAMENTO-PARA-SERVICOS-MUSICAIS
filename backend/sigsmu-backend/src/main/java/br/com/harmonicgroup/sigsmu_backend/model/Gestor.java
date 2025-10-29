@@ -1,5 +1,6 @@
 package br.com.harmonicgroup.sigsmu_backend.model;
 
+import br.com.harmonicgroup.sigsmu_backend.service.GestorService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Gestor")
+@Table(name = "gestor")
 public class Gestor {
     
     @Id

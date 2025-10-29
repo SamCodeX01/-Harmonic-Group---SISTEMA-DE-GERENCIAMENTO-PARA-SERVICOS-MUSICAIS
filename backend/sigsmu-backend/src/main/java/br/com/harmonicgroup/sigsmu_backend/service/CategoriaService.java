@@ -25,16 +25,16 @@ public class CategoriaService {
         categoriaRepository.save(categoria);
     }
 
-    public void atualizarCategoria(UpdateDTO body, Integer id) {
-        Categoria atual = categoriaRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Categoria não encontrada!"));
+    // public void atualizarCategoria(UpdateDTO body, Integer id) {
+    //     Categoria atual = categoriaRepository.findById(id)
+    //         .orElseThrow(() -> new RuntimeException("Categoria não encontrada!"));
 
-        switch (body.getCampo()) {
-            case "nome": atual.setNome( body.getNovoValor() );
-                break;
-        }
-        categoriaRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "nome": atual.setNome( body.getNovoValor() );
+    //             break;
+    //     }
+    //     categoriaRepository.save(atual);
+    // }
 
     public void excluirCategoria(Integer id) {
         categoriaRepository.deleteById(id);

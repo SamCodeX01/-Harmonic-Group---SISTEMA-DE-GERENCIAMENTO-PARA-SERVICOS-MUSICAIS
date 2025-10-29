@@ -1,6 +1,6 @@
 package br.com.harmonicgroup.sigsmu_backend.model;
 
-import br.com.harmonicgroup.sigsmu_backend.service.InstrumentoService;
+import br.com.harmonicgroup.sigsmu_backend.service.MusicoService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,30 +11,38 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Instrumento")
+@Table(name = "musico")
 public class Musico {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ges_cpf")
+    @Column(name = "mus_cpf")
     private String cpf;
 
-    @Column(name = "ges_nome")
+    @Column(name = "mus_nome")
     private String nome;
     
-    @Column(name = "ges_data_cadastro")
-    private String dataCadastro;
+    @Column(name = "mus_dataNasc")
+    private String dataNasc;
 
-    @Column(name = "ges_senha")
+    @Column(name = "mus_endereco")
+    private String endereco;
+    
+    @Column(name = "mus_dataCadastro")
+    private String dataCadastro;
+    
+    @Column(name = "mus_senha")
     private String senha;
 
 
     // Construtores
-    public Gestor(){};
+    public Musico(){};
     
-    public Gestor(String cpf, String nome, String dataCadastro, String senha){
+    public Musico(String cpf, String nome, String dataNasc, String endereco, String dataCadastro, String senha){
         this.cpf = cpf;
         this.nome = nome;
+        this.dataNasc = dataNasc;
+        this.endereco = endereco;
         this.dataCadastro = dataCadastro;
         this.senha = senha;
     };

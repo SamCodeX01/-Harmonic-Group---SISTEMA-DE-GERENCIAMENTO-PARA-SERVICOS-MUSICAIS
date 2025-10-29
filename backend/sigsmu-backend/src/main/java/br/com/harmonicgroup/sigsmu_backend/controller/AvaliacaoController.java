@@ -13,40 +13,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.harmonicgroup.sigsmu_backend.model.Instrumento;
-import br.com.harmonicgroup.sigsmu_backend.model.MeioPagamento;
-import br.com.harmonicgroup.sigsmu_backend.model.Repertorio;
-import br.com.harmonicgroup.sigsmu_backend.model.UpdateDTO;
-import br.com.harmonicgroup.sigsmu_backend.service.MeioPagamentoService;
-import br.com.harmonicgroup.sigsmu_backend.service.RepertorioService;
-import br.com.harmonicgroup.sigsmu_backend.service.TipoLocalService;
+import br.com.harmonicgroup.sigsmu_backend.model.Avaliacao;
+import br.com.harmonicgroup.sigsmu_backend.service.AvaliacaoService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
-@RequestMapping("/meiopagamento")
+@RequestMapping("/avaliacao")
 public class AvaliacaoController {
     
     @Autowired
-    RepertorioService repertorioService;
+    AvaliacaoService avaliacaoService;
 
     @GetMapping
-    public List<Repertorio> listarRepertorio() {
-        return repertorioService.listarRepertorio();
+    public List<Avaliacao> listarAvaliacoes() {
+        return avaliacaoService.listarAvaliacoes();
     }
 
     @PostMapping
-    public void cadastrarRepertorio(@RequestBody Repertorio repertorio) {
-        repertorioService.cadastrarRepertorio(repertorio);
+    public void cadastrarRepertorio(@RequestBody Avaliacao avaliacao) {
+        avaliacaoService.cadastrarAvaliacao(avaliacao);
     }
     
-    @PatchMapping("/{id}")
-    public void atualizarRepertorio(@RequestBody UpdateDTO body, @PathVariable Integer id) {
-        repertorioService.atualizarRepertorio(body, id);
-    }
+    // @PatchMapping("/{id}")
+    // public void atualizarRepertorio(@RequestBody UpdateDTO body, @PathVariable Integer id) {
+    //     avaliacaoService.atualizarAvaliacao(body, id);
+    // }
     
     @DeleteMapping("/{id}")
     public void excluirRepertorio(@PathVariable Integer id) {
-        repertorioService.excluirRepertorio(id);
+        avaliacaoService.excluirAvaliacao(id);
     }
 
-}e
+}

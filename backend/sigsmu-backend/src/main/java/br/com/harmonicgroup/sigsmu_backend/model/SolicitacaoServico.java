@@ -1,6 +1,6 @@
 package br.com.harmonicgroup.sigsmu_backend.model;
 
-import br.com.harmonicgroup.sigsmu_backend.service.InstrumentoService;
+import br.com.harmonicgroup.sigsmu_backend.service.SolicitacaoServicoService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,32 +11,44 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Instrumento")
+@Table(name = "solicitacao_servico")
 public class SolicitacaoServico {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ges_cpf")
-    private String cpf;
+    @Column(name = "sol_id")
+    private Integer id;
 
-    @Column(name = "ges_nome")
-    private String nome;
+    @Column(name = "sol_localEvento")
+    private String localEvento;
     
-    @Column(name = "ges_data_cadastro")
-    private String dataCadastro;
+    @Column(name = "sol_dataHoraEvento")
+    private String dataHoraEvento;
 
-    @Column(name = "ges_senha")
-    private String senha;
+    @Column(name = "sol_qtdConvidados")
+    private String qtdConvidados;
+    
+    @Column(name = "sol_dataSolicitacao")
+    private String dataSolicitacao;
+    
+    @Column(name = "sol_eOrcamento")
+    private String eOrcamento;
+    
+    @Column(name = "sol_dataAprovacao")
+    private String dataAprovacao;
 
 
     // Construtores
-    public Gestor(){};
+    public SolicitacaoServico(){};
     
-    public Gestor(String cpf, String nome, String dataCadastro, String senha){
-        this.cpf = cpf;
-        this.nome = nome;
-        this.dataCadastro = dataCadastro;
-        this.senha = senha;
+    public SolicitacaoServico(Integer id, String localEvento, String dataHoraEvento, String qtdConvidados, String dataSolicitacao, String eOrcamento, String dataAprovacao){
+        this.id = id;
+        this.localEvento = localEvento;
+        this.dataHoraEvento = dataHoraEvento;
+        this.qtdConvidados = qtdConvidados;
+        this.dataSolicitacao = dataSolicitacao;
+        this.eOrcamento = eOrcamento;
+        this.dataAprovacao = dataAprovacao;
     };
 
 }
