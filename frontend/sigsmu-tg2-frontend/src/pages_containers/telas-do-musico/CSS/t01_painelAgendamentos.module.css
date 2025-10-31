@@ -1,0 +1,578 @@
+/* CSS/t01_painelAgendamentos.module.css */
+:root {
+  --corazul: #196DBA;
+  --corbranco60: #FFFFFF;
+  --cordourado10: #DB9D12;
+}
+
+.musicianDashboard {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding: 24px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboardContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboardHeader {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.dashboardTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--corazul);
+  margin: 0 0 12px 0;
+}
+
+.dashboardSubtitle {
+  color: #64748b;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.filtersContainer {
+  background-color: var(--corbranco60);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(25, 109, 186, 0.1);
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 2px solid var(--corazul);
+}
+
+.filtersGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .filtersGrid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterLabel {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--corazul);
+  margin-bottom: 8px;
+}
+
+.filterInput,
+.filterSelect {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  background-color: var(--corbranco60);
+}
+
+.filterInput:focus,
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--corazul);
+  box-shadow: 0 0 0 3px rgba(25, 109, 186, 0.1);
+}
+
+.filterButton {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--cordourado10);
+  color: var(--corbranco60);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  align-self: flex-end;
+}
+
+.filterButton:hover {
+  background-color: #c28d10;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(219, 157, 18, 0.3);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.statCard {
+  background: linear-gradient(135deg, var(--corazul) 0%, #1a5fa3 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(25, 109, 186, 0.2);
+  padding: 24px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  border: 2px solid var(--corbranco60);
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(25, 109, 186, 0.3);
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--corbranco60);
+}
+
+.statNumberTotal {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--corbranco60);
+}
+
+.statNumberConfirmed {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--corbranco60);
+}
+
+.statNumberPending {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--corbranco60);
+}
+
+.statNumberValue {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--corbranco60);
+}
+
+.statLabel {
+  color: var(--corbranco60);
+  margin: 8px 0 0 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.agendamentosContainer {
+  background-color: var(--corbranco60);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(25, 109, 186, 0.1);
+  overflow: hidden;
+  border: 2px solid var(--corazul);
+}
+
+.agendamentosHeader {
+  padding: 20px 24px;
+  border-bottom: 2px solid var(--corazul);
+  background: linear-gradient(135deg, var(--corazul) 0%, #1a5fa3 100%);
+}
+
+.agendamentosTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--corbranco60);
+  margin: 0;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.agendamentosTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableHeader {
+  background-color: rgba(25, 109, 186, 0.1);
+}
+
+.tableHeaderCell {
+  padding: 16px 24px;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--corazul);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--corazul);
+}
+
+.tableRow {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tableRow:hover {
+  background-color: rgba(25, 109, 186, 0.05);
+  transform: scale(1.01);
+}
+
+.tableRowEven {
+  background-color: rgba(25, 109, 186, 0.02);
+}
+
+.tableRowEven:hover {
+  background-color: rgba(25, 109, 186, 0.08);
+}
+
+.tableCell {
+  padding: 20px 24px;
+  font-size: 0.9rem;
+}
+
+.dateTimeCell {
+  white-space: nowrap;
+}
+
+.dateMain {
+  font-weight: 600;
+  color: var(--corazul);
+  margin: 0;
+  font-size: 1rem;
+}
+
+.timeSub {
+  color: #64748b;
+  margin: 6px 0 0 0;
+  font-size: 0.8rem;
+}
+
+.localMain {
+  font-weight: 600;
+  color: var(--corazul);
+  margin: 0;
+}
+
+.eventType {
+  color: #64748b;
+  margin: 6px 0 0 0;
+  font-size: 0.8rem;
+}
+
+.instruments {
+  color: var(--cordourado10);
+  margin: 6px 0 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.clientName {
+  color: var(--corazul);
+  margin: 0;
+  font-weight: 500;
+}
+
+.valueAmount {
+  font-weight: 700;
+  color: var(--cordourado10);
+  margin: 0;
+  white-space: nowrap;
+  font-size: 1rem;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 2px solid transparent;
+}
+
+.statusConfirmed {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+  border-color: #16a34a;
+}
+
+.statusPending {
+  background-color: rgba(219, 157, 18, 0.1);
+  color: var(--cordourado10);
+  border-color: var(--cordourado10);
+}
+
+.statusCancelled {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border-color: #dc2626;
+}
+
+.actionsCell {
+  white-space: nowrap;
+}
+
+.actionsGroup {
+  display: flex;
+  gap: 12px;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+  border-radius: 6px;
+}
+
+.actionButtonContract {
+  color: var(--corazul);
+  padding: 8px 16px;
+  background-color: rgba(25, 109, 186, 0.1);
+}
+
+.actionButtonContract:hover {
+  background-color: var(--corazul);
+  color: var(--corbranco60);
+  transform: translateY(-2px);
+}
+
+.actionButtonConfirm {
+  color: var(--cordourado10);
+  padding: 8px 16px;
+  background-color: rgba(219, 157, 18, 0.1);
+}
+
+.actionButtonConfirm:hover {
+  background-color: var(--cordourado10);
+  color: var(--corbranco60);
+  transform: translateY(-2px);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 24px;
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.emptyState::before {
+  content: "🎵";
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modalContainer {
+  background-color: var(--corbranco60);
+  border-radius: 16px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px rgba(25, 109, 186, 0.2);
+  border: 3px solid var(--corazul);
+}
+
+.modalHeader {
+  padding: 24px;
+  border-bottom: 3px solid var(--corazul);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, var(--corazul) 0%, #1a5fa3 100%);
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--corbranco60);
+  margin: 0;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--corbranco60);
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.modalClose:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.modalContent {
+  padding: 32px;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 640px) {
+  .detailsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.detailGroup {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: rgba(25, 109, 186, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid var(--corazul);
+}
+
+.detailGroupOdd {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  background-color: rgba(219, 157, 18, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid var(--cordourado10);
+}
+
+.detailLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--corazul);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detailLabelOdd {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cordourado10);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detailValue {
+  color: #1e293b;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.detailValueLarge {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--cordourado10);
+  margin: 0;
+}
+
+.contractButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, var(--corazul) 0%, #1a5fa3 100%);
+  color: var(--corbranco60);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.contractButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(25, 109, 186, 0.4);
+}
+
+.modalFooter {
+  padding: 24px;
+  border-top: 2px solid var(--corazul);
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  background-color: rgba(25, 109, 186, 0.05);
+}
+
+.secondaryButton {
+  padding: 12px 24px;
+  background-color: var(--corbranco60);
+  color: var(--corazul);
+  border: 2px solid var(--corazul);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background-color: var(--corazul);
+  color: var(--corbranco60);
+  transform: translateY(-2px);
+}
+
+.primaryButton {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--cordourado10) 0%, #c28d10 100%);
+  color: var(--corbranco60);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(219, 157, 18, 0.4);
+}

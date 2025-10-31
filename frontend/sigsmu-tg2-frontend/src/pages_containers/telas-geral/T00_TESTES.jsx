@@ -1,6 +1,7 @@
 import React from "react";
 // import AgrupamentoOpcoes from "../../components/AgrupamentoOpcoes";
 import EventoItem from "../../components/EventoItem";
+import T01_PainelAgendamentos from "../telas-do-musico/T01_PainelAgendamentos"; 
 
 function T00_TESTES() {
        // Crie um evento de exemplo para testar
@@ -23,7 +24,9 @@ function T00_TESTES() {
 
     return (
         <>
-            <EventoItem evento={eventoTeste}/>
+            {/* <EventoItem evento={eventoTeste}/> */}
+            <T01_PainelAgendamentos/>
+            
 
             {/* <AgrupamentoOpcoes obj={entradaPaisPadrinhos}/>  */}
             {/* <AgrupamentoOpcoes obj={entradaNoivo}/>  */}

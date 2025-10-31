@@ -7,7 +7,6 @@ import Campo from "../../components/Campo";
 // Importações do React
 import { useState } from "react";
 
-
 // Tela de CADASTRO DE USUÁRIOS - para que usuários se cadastrem no sistema como clientes/músicos/gestores.
 function T02_Cadastro() {
 

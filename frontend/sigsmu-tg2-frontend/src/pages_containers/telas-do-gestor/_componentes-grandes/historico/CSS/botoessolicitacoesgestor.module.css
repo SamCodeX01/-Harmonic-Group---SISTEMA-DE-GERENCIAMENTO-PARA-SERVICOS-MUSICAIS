@@ -1,17 +1,334 @@
+/* CSS/botoessolicitacoesgestor.module.css */
+:root {
+  --corazul: #196DBA;
+  --corbranco60: #FFFFFF;
+  --cordourado10: #DB9D12;
+}
+
 .main {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    gap: 10px;
-
-    padding: 5px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px;
+  background-color: rgba(25, 109, 186, 0.05);
+  border-radius: 12px;
+  border: 2px solid var(--corazul);
+  margin-top: 16px;
+  transition: all 0.3s ease;
 }
 
-.main > * {
-    text-align: center;
-    background-color: brown !important;
-    color: black;
+.botao {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, var(--corazul) 0%, #1a5fa3 100%);
+  color: var(--corbranco60);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
 }
-.main > *:hover {
-    color: white;
+
+.botao::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.botao:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(25, 109, 186, 0.4);
+  background: linear-gradient(135deg, #1a5fa3 0%, var(--corazul) 100%);
+}
+
+.botao:hover::before {
+  left: 100%;
+}
+
+.botao:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(25, 109, 186, 0.6);
+  background: linear-gradient(135deg, #155493 0%, #196DBA 100%);
+}
+
+.botao:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(25, 109, 186, 0.3), 0 6px 15px rgba(25, 109, 186, 0.4);
+}
+
+.botao:disabled {
+  background: linear-gradient(135deg, #cccccc 0%, #999999 100%);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.botao:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.botaoVerMais {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, var(--cordourado10) 0%, #c28d10 100%);
+  color: var(--corbranco60);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.botaoVerMais::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.botaoVerMais:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(219, 157, 18, 0.4);
+  background: linear-gradient(135deg, #c28d10 0%, var(--cordourado10) 100%);
+}
+
+.botaoVerMais:hover::before {
+  left: 100%;
+}
+
+.botaoVerMais:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(219, 157, 18, 0.6);
+  background: linear-gradient(135deg, #b0830e 0%, var(--cordourado10) 100%);
+}
+
+.botaoVerMais:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(219, 157, 18, 0.3), 0 6px 15px rgba(219, 157, 18, 0.4);
+}
+
+.botaoVerMais:disabled {
+  background: linear-gradient(135deg, #cccccc 0%, #999999 100%);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.botaoVerMais:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Estados de loading para os botões */
+.botaoLoading {
+  position: relative;
+  color: transparent;
+}
+
+.botaoLoading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--corbranco60);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.botaoVerMaisLoading {
+  position: relative;
+  color: transparent;
+}
+
+.botaoVerMaisLoading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--corbranco60);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Efeito de ripple para clique */
+.botaoRipple {
+  position: relative;
+  overflow: hidden;
+}
+
+.botaoRipple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.botaoRipple:active::after {
+  width: 100px;
+  height: 100px;
+}
+
+/* Estados específicos para cada botão */
+.botaoAtribuirEquipes {
+  background: linear-gradient(135deg, var(--corazul) 0%, #1a5fa3 100%);
+}
+
+.botaoGerenciarEnsaio {
+  background: linear-gradient(135deg, #2d5aa0 0%, #1a4a8a 100%);
+}
+
+.botaoDefinirCustos {
+  background: linear-gradient(135deg, #259d6e 0%, #1e7d55 100%);
+}
+
+.botaoAlterarContrato {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.botaoEnviarDevolutiva {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+}
+
+/* Efeitos de clique com feedback visual */
+.botaoClickEffect {
+  animation: clickPulse 0.3s ease;
+}
+
+@keyframes clickPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 6px 15px rgba(25, 109, 186, 0.4);
+  }
+  50% {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(25, 109, 186, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 6px 15px rgba(25, 109, 186, 0.4);
+  }
+}
+
+.botaoVerMaisClickEffect {
+  animation: clickPulseGold 0.3s ease;
+}
+
+@keyframes clickPulseGold {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 6px 15px rgba(219, 157, 18, 0.4);
+  }
+  50% {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(219, 157, 18, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 6px 15px rgba(219, 157, 18, 0.4);
+  }
+}
+
+/* Tooltip para botões */
+.botaoTooltip {
+  position: relative;
+}
+
+.botaoTooltip:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  margin-bottom: 8px;
+  z-index: 1000;
+}
+
+.botaoTooltip:hover::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #1e293b;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    padding: 16px;
+  }
+  
+  .botao, .botaoVerMais {
+    min-width: 100%;
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+  
+  .botaoTooltip:hover::before,
+  .botaoTooltip:hover::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    gap: 8px;
+    padding: 12px;
+  }
+  
+  .botao, .botaoVerMais {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
 }
