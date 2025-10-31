@@ -28,8 +28,8 @@ function T01_Header(){
                     <li> <Botao msg={"Serviços"}      rota={"/Servicos"} />  </li>
                     <li> <Botao msg={"Sugestão de Músicas"}  rota={"/Sugestao"} />  </li>
                     <li> <Botao msg={"Orçamentos"}    rota={"/Orcamento"} /> </li>
-                    <li> <Botao msg={"Contatos"}      rota={""} />           </li>
-                    <li> <Botao msg={"Seja Parceiro"} rota={""} />           </li>
+                    <li> <Botao msg={"Contatos"}      rota={"/Contatos"} />           </li>
+                    <li> <Botao msg={"Seja Parceiro"} rota={"/SejaParceiro"} />           </li>
                     <li> <Botao msg={"Intranet"}      rota={"/Intranet/TelaLogin"} /> </li>
                  </ul> 
 

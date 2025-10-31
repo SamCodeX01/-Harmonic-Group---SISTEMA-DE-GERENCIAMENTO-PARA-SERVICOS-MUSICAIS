@@ -1,0 +1,269 @@
+/* CSS/sejaParceiro.module.css */
+:root {
+  --corazul: #196DBA;
+  --corbranco60: #FFFFFF;
+  --cordourado10: #DB9D12;
+}
+
+.parceiroContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.heroSection {
+  background: linear-gradient(135deg, var(--corazul) 0%, #1a5fa3 100%);
+  padding: 80px 20px;
+  text-align: center;
+  color: var(--corbranco60);
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.contentWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.sectionTitle {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--corazul);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.benefitsSection {
+  margin-bottom: 80px;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.benefitCard {
+  background: var(--corbranco60);
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(25, 109, 186, 0.1);
+  border: 2px solid var(--corazul);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.benefitCard:hover {
+  transform: translateY(-5px);
+}
+
+.benefitIcon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.benefitTitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--corazul);
+  margin-bottom: 15px;
+}
+
+.benefitText {
+  color: #374151;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.requirementsSection {
+  margin-bottom: 80px;
+}
+
+.requirementsList {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.requirementItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 30px;
+  background: var(--corbranco60);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(25, 109, 186, 0.1);
+  border: 2px solid var(--corazul);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.requirementItem:hover {
+  transform: translateX(10px);
+}
+
+.requirementNumber {
+  background: linear-gradient(135deg, var(--cordourado10) 0%, #c28d10 100%);
+  color: var(--corbranco60);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.requirementContent {
+  flex: 1;
+}
+
+.requirementTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--corazul);
+  margin-bottom: 8px;
+}
+
+.requirementText {
+  color: #374151;
+  line-height: 1.6;
+}
+
+.applicationSection {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.applicationCard {
+  background: var(--corbranco60);
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(25, 109, 186, 0.1);
+  border: 2px solid var(--corazul);
+}
+
+.applicationTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--corazul);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.applicationText {
+  color: #374151;
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+}
+
+.applicationForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--corazul);
+  margin-bottom: 8px;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: var(--corbranco60);
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--corazul);
+  box-shadow: 0 0 0 3px rgba(25, 109, 186, 0.1);
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submitButton {
+  padding: 16px 32px;
+  background: linear-gradient(135deg, var(--cordourado10) 0%, #c28d10 100%);
+  color: var(--corbranco60);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(219, 157, 18, 0.4);
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+  
+  .requirementItem {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .applicationCard {
+    padding: 30px 20px;
+  }
+  
+  .benefitsGrid {
+    grid-template-columns: 1fr;
+  }
+}

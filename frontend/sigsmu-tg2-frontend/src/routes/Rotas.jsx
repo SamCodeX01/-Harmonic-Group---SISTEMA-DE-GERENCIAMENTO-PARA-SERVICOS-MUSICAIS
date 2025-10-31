@@ -13,6 +13,8 @@ import T02_Orcamento from "../pages_containers/telas-do-cliente/_telas-principai
 import T03_Repertorio from "../pages_containers/telas-do-cliente/_telas-principais/T03_Repertorio";
 import T11_Sugestao from "../site_do_sistema/components_site/T11_Sugestao.jsx" //
 import T10_servicos from "../site_do_sistema/components_site/T10_Servicos.jsx" //
+import T12_Contatos from "../site_do_sistema/components_site/T12_Contatos.jsx"
+import T13_SejaParceiro from "../site_do_sistema/components_site/T13_SejaParceiro.jsx"
 
 // Rotas Intranet
 import T01_Login from '../pages_containers/telas-geral/T01_Login.jsx';
@@ -68,6 +70,8 @@ function Rotas() {
                 <Route path='/Sugestao'   element={<T11_Sugestao/>}/>    
                 <Route path="/Orcamento"  element={<T02_Orcamento/>} />
                 <Route path="/Repertorio" element={<T03_Repertorio/>} />
+                <Route path="/Contatos" element={<T12_Contatos/>} />
+                <Route path="/SejaParceiro" element={<T13_SejaParceiro/>}/>
 
 
                 {/*                     ROTAS INTRANET                     */}
