@@ -30,7 +30,7 @@ public class AvaliacaoController {
     }
 
     @PostMapping
-    public void cadastrarRepertorio(@RequestBody Avaliacao avaliacao) {
+    public void cadastrarAvaliacao(@RequestBody Avaliacao avaliacao) {
         avaliacaoService.cadastrarAvaliacao(avaliacao);
     }
     
@@ -40,7 +40,7 @@ public class AvaliacaoController {
     // }
     
     @DeleteMapping("/{id}")
-    public void excluirRepertorio(@PathVariable Integer id) {
+    public void excluirAvaliacao(@PathVariable Integer id) {
         avaliacaoService.excluirAvaliacao(id);
     }
 

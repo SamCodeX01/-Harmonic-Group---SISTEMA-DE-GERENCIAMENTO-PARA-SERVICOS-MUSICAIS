@@ -13,40 +13,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.harmonicgroup.sigsmu_backend.model.Instrumento;
-import br.com.harmonicgroup.sigsmu_backend.model.MeioPagamento;
-import br.com.harmonicgroup.sigsmu_backend.model.Repertorio;
+import br.com.harmonicgroup.sigsmu_backend.model.Ensaio;
 import br.com.harmonicgroup.sigsmu_backend.model.UpdateDTO;
-import br.com.harmonicgroup.sigsmu_backend.service.MeioPagamentoService;
-import br.com.harmonicgroup.sigsmu_backend.service.RepertorioService;
-import br.com.harmonicgroup.sigsmu_backend.service.TipoLocalService;
+import br.com.harmonicgroup.sigsmu_backend.service.EnsaioService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
-@RequestMapping("/meiopagamento")
+@RequestMapping("/ensaio")
 public class EnsaioController {
     
     @Autowired
-    RepertorioService repertorioService;
+    EnsaioService ensaioService;
 
     @GetMapping
-    public List<Repertorio> listarRepertorio() {
-        return repertorioService.listarRepertorio();
+    public List<Ensaio> listarEnsaios() {
+        return ensaioService.listarEnsaios();
     }
 
     @PostMapping
-    public void cadastrarRepertorio(@RequestBody Repertorio repertorio) {
-        repertorioService.cadastrarRepertorio(repertorio);
+    public void cadastrarEnsaio(@RequestBody Ensaio ensaio) {
+        ensaioService.cadastrarEnsaio(ensaio);
     }
     
-    @PatchMapping("/{id}")
-    public void atualizarRepertorio(@RequestBody UpdateDTO body, @PathVariable Integer id) {
-        repertorioService.atualizarRepertorio(body, id);
-    }
+    // @PatchMapping("/{id}")
+    // public void atualizarRepertorio(@RequestBody UpdateDTO body, @PathVariable Integer id) {
+    //     repertorioService.atualizarRepertorio(body, id);
+    // }
     
     @DeleteMapping("/{id}")
-    public void excluirRepertorio(@PathVariable Integer id) {
-        repertorioService.excluirRepertorio(id);
+    public void excluirEnsaio(@PathVariable Integer id) {
+        ensaioService.excluirEnsaio(id);
     }
 
-}e
+}

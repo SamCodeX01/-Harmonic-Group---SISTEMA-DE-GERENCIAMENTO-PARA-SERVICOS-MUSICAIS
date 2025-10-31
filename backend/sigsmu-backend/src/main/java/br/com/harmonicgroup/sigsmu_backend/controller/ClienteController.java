@@ -13,40 +13,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.harmonicgroup.sigsmu_backend.model.Instrumento;
-import br.com.harmonicgroup.sigsmu_backend.model.MeioPagamento;
-import br.com.harmonicgroup.sigsmu_backend.model.Repertorio;
+import br.com.harmonicgroup.sigsmu_backend.model.Cliente;
 import br.com.harmonicgroup.sigsmu_backend.model.UpdateDTO;
-import br.com.harmonicgroup.sigsmu_backend.service.MeioPagamentoService;
-import br.com.harmonicgroup.sigsmu_backend.service.RepertorioService;
-import br.com.harmonicgroup.sigsmu_backend.service.TipoLocalService;
+import br.com.harmonicgroup.sigsmu_backend.service.ClienteService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
-@RequestMapping("/meiopagamento")
+@RequestMapping("/cliente")
 public class ClienteController {
     
     @Autowired
-    RepertorioService repertorioService;
+    ClienteService clienteService;
 
     @GetMapping
-    public List<Repertorio> listarRepertorio() {
-        return repertorioService.listarRepertorio();
+    public List<Cliente> listarClientes() {
+        return clienteService.listarClientes();
     }
 
     @PostMapping
-    public void cadastrarRepertorio(@RequestBody Repertorio repertorio) {
-        repertorioService.cadastrarRepertorio(repertorio);
+    public void cadastrarCliente(@RequestBody Cliente cliente) {
+        clienteService.cadastrarCliente(cliente);
     }
     
-    @PatchMapping("/{id}")
-    public void atualizarRepertorio(@RequestBody UpdateDTO body, @PathVariable Integer id) {
-        repertorioService.atualizarRepertorio(body, id);
-    }
+    // @PatchMapping("/{id}")
+    // public void atualizarRepertorio(@RequestBody UpdateDTO body, @PathVariable Integer id) {
+    //     repertorioService.atualizarRepertorio(body, id);
+    // }
     
     @DeleteMapping("/{id}")
-    public void excluirRepertorio(@PathVariable Integer id) {
-        repertorioService.excluirRepertorio(id);
+    public void excluirCliente(@PathVariable String cpf) {
+        clienteService.excluirCliente(cpf);
     }
 
-}e
+}

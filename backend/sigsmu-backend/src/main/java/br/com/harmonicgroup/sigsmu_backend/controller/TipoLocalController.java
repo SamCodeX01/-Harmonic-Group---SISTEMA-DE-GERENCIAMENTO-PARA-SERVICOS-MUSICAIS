@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.harmonicgroup.sigsmu_backend.model.Instrumento;
 import br.com.harmonicgroup.sigsmu_backend.model.TipoLocal;
 import br.com.harmonicgroup.sigsmu_backend.model.UpdateDTO;
 import br.com.harmonicgroup.sigsmu_backend.service.TipoLocalService;
@@ -27,8 +26,8 @@ public class TipoLocalController {
     TipoLocalService tipoLocalService;
 
     @GetMapping
-    public List<TipoLocal> listarTipoLocais() {
-        return tipoLocalService.listarTiposLocais();
+    public List<TipoLocal> listarTiposLocal() {
+        return tipoLocalService.listarTiposLocal();
     }
 
     @PostMapping
@@ -36,10 +35,10 @@ public class TipoLocalController {
         tipoLocalService.cadastrarTipoLocal(tipoLocal);
     }
     
-    @PatchMapping("/{id}")
-    public void atualizarTipoLocal(@RequestBody UpdateDTO body, @PathVariable Integer id) {
-        tipoLocalService.atualizarTipoLocal(body, id);
-    }
+    // @PatchMapping("/{id}")
+    // public void atualizarTipoLocal(@RequestBody UpdateDTO body, @PathVariable Integer id) {
+    //     tipoLocalService.atualizarTipoLocal(body, id);
+    // }
     
     @DeleteMapping("/{id}")
     public void excluirTipoLocal(@PathVariable Integer id) {

@@ -1,69 +1,67 @@
-.main {
-    width: 60vw;
-    margin: auto;
-    border: solid;
-
-    padding: 10px;
-    margin-top: 10px;
-    font-size: large;
-}
-.main h1 {
-    margin-bottom: 10px;
+.eventosContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 20px 0;
+    padding: 20px;
 }
 
-.main select {
-    display: block;
-    border-radius: 10px ;
-    padding: 2px;
-}
-
-
-/* Altera todos os SELECT */
-.selects * {
+.imagemPacotes {
     width: 100%;
+    margin: 10px 0;
 }
 
-.main  > div {
-    /* border: 1px solid black; */
-    padding: 10px;
+.tituloContainer {
+    text-align: center;
+    padding: 50px 20px;
+    background: var(--corazul); /* #18203D */
+    color: var(--corbranco60); /* #FFFFFF */
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+.tituloContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--cordourado10); /* #DB9D12 */
 }
 
-/* Altera o primeiro botão */
-.main > div, .button {
-    width: 80%;
-    margin: 0 10%;
+
+.tituloPrincipal {
+    font-size: 2.8rem;
     margin-bottom: 20px;
-}
-.button {
-    background-color: rgba(185, 4, 4, 0.734);
-    color: wheat;
-    cursor: pointer;
+    font-weight: 700;
+    color: var(--corbranco60); /* #FFFFFF */
 }
 
-/* Input text */
-.main input {
-    display: block;
+.subtitulo {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 300;
+    color: var(--corbranco60); /* #FFFFFF */
+}
+
+.eventosContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--corbranco60); /* #FFFFFF */
+}
+
+.imagemPacotes {
     width: 100%;
-    height: 100px;
+    margin: 10px 0;
 }
 
-/* Todos os botões da página */
-.main button {
-    padding: 8px;
-}
-
-/* Último botão da página */
-.main button:nth-last-child(1) {
-    display: block;
-    cursor: pointer;
-
-    margin: 0 10%;
-    margin-left: auto;
-    background-color: yellow;
-}
-
-
-
-.main span {
-    color: red;
+.footerImg{
+    width: 100vw;
 }

@@ -35,10 +35,10 @@ public class InstrumentoController {
         instrumentoService.cadastrarInstrumento(instrumento);
     }
 
-    @PatchMapping("/{id}")
-    public void atualizarInstrumento(@RequestBody UpdateDTO body, @PathVariable Integer id) {
-        instrumentoService.atualizarInstrumento(body, id);
-    }
+    // @PatchMapping("/{id}")
+    // public void atualizarInstrumento(@RequestBody UpdateDTO body, @PathVariable Integer id) {
+    //     instrumentoService.atualizarInstrumento(body, id);
+    // }
     
     @DeleteMapping("/{id}")
     public void excluirInstrumento(@PathVariable Integer id) {

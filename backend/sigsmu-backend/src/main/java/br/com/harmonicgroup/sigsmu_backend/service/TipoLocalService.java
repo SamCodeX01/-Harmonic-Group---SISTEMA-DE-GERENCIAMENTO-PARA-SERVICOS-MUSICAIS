@@ -15,7 +15,7 @@ public class TipoLocalService {
     @Autowired
     TipoLocalRepository tipoLocalRepository;
 
-    public List<TipoLocal> listarTiposLocais() {
+    public List<TipoLocal> listarTiposLocal() {
         return tipoLocalRepository.findAll();
     }
 

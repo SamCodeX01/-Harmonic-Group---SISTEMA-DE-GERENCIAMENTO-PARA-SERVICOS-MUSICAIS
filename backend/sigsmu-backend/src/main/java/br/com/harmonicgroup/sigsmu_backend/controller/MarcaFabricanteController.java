@@ -13,40 +13,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.harmonicgroup.sigsmu_backend.model.Instrumento;
-import br.com.harmonicgroup.sigsmu_backend.model.MeioPagamento;
-import br.com.harmonicgroup.sigsmu_backend.model.Repertorio;
+import br.com.harmonicgroup.sigsmu_backend.model.MarcaFabricante;
 import br.com.harmonicgroup.sigsmu_backend.model.UpdateDTO;
-import br.com.harmonicgroup.sigsmu_backend.service.MeioPagamentoService;
-import br.com.harmonicgroup.sigsmu_backend.service.RepertorioService;
-import br.com.harmonicgroup.sigsmu_backend.service.TipoLocalService;
+import br.com.harmonicgroup.sigsmu_backend.service.MarcaFabricanteService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
-@RequestMapping("/meiopagamento")
+@RequestMapping("/marcafabricante")
 public class MarcaFabricanteController {
     
     @Autowired
-    RepertorioService repertorioService;
+    MarcaFabricanteService marcaFabricanteService;
 
     @GetMapping
-    public List<Repertorio> listarRepertorio() {
-        return repertorioService.listarRepertorio();
+    public List<MarcaFabricante> listarMarcasFabricante() {
+        return marcaFabricanteService.listarMarcasFabricante();
     }
 
     @PostMapping
-    public void cadastrarRepertorio(@RequestBody Repertorio repertorio) {
-        repertorioService.cadastrarRepertorio(repertorio);
+    public void cadastrarMarcaFabricante(@RequestBody MarcaFabricante marcaFabricante) {
+        marcaFabricanteService.cadastrarMarcaFabricante(marcaFabricante);
     }
     
-    @PatchMapping("/{id}")
-    public void atualizarRepertorio(@RequestBody UpdateDTO body, @PathVariable Integer id) {
-        repertorioService.atualizarRepertorio(body, id);
-    }
+    // @PatchMapping("/{id}")
+    // public void atualizarRepertorio(@RequestBody UpdateDTO body, @PathVariable Integer id) {
+    //     repertorioService.atualizarRepertorio(body, id);
+    // }
     
     @DeleteMapping("/{id}")
-    public void excluirRepertorio(@PathVariable Integer id) {
-        repertorioService.excluirRepertorio(id);
+    public void excluirMarcaFabricante(@PathVariable Integer id) {
+        marcaFabricanteService.excluirMarcaFabricante(id);
     }
 
-}e
+}

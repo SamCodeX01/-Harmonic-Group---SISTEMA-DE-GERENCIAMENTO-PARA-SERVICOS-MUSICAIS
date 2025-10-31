@@ -1,82 +1,75 @@
-// Importações de estilos
-import t03_repertorio from "./CSS/t03_repertorio.module.css"
+import React, { useEffect, useState } from "react";
+// import T09_Footer from "./T09_Footer";
+// import footer from "../imagens_site/footer.png"
 
-// Importações do CRUD API
-//import { listarTiposServico } from "../../../../../services/TipoServicoService"
+import EventoItem from "../../../components/EventoItem"
+import getConfig from "./T03_repertorio_config";
 
+import t11_sugestaoCss from "./CSS/t03_repertorio.module.css"
+// import footerImg from "../../site_do_sistema/imagens_site/footer.png"
+
+// TERMINAR   TERMINAR   TERMINAR   TERMINAR  TERMINAR  TERMINAR  TERMINAR
 function T03_Repertorio() {
+
+    const [nomeServicoSelecionado, setNomeServicoSelecionado] = useState()
+    const [dadosServico, setDadosServico] = useState()
+
+    useEffect(() => {
+        if (nomeServicoSelecionado)
+            setDadosServico( getConfig( nomeServicoSelecionado ) )
+
+    }, [nomeServicoSelecionado])
+
     return (
-        <div className={t03_repertorio.main}>
-            
-            {/* VER DEPOIS / VER DEPOIS / VER DEPOIS / VER DEPOIS / VER DEPOIS */}
-            
-            {/* func campo(msg, )
-            puxarRetorno() => {
-                if (msg === "Pré definições")
-                    retorno = listarTiposServico()
-                else
-                    retorno = LISTA DE SUGESTÕES (dá pra fazer um ifelse - se servico == tal ou tal ou tal... chama o obj especifico referente ao servico, contendo como valor(es) as musicas sugeridas para aquele tipo de servico)
-            } */}
+        <div>            
+            {/* TÍTULO ESTILIZADO */}
+            <div className={t11_sugestaoCss.tituloContainer}>
+                <h1 className={t11_sugestaoCss.tituloPrincipal}>🎵 Nossas Sugestões Musicais</h1>
+                <p className={t11_sugestaoCss.subtitulo}>
+                    Descubra playlists perfeitas para cada momento especial do seu evento
+                </p>
+            </div>
 
-
-            <div>
-                <h1>Repertório</h1>
-
-                <label htmlFor="teste1">Pré definições</label> 
-                <select id="teste1">
-                    <option>Selecione o tipo de evento</option>
-
-                    <optgroup label="Eventos">
-                        <option>Casamento</option>
-                        <option>Aniversário</option>
-                        <option>Formatura</option>
-                    </optgroup>
-
+                <select onChange={evt => setNomeServicoSelecionado( evt.currentTarget.value ) }>
+                    <option value={"casamento"}>casamento</option>
+                    <option value={"aniversario"}>aniversario</option>
+                    <option value={"formatura"}>formatura</option>
+                    <option value={"corporativo"}>corporativo</option>
                 </select>
-                <span>esse campo faz aparecer os selects abaixo de acordo com a opção escolhida</span>
-            </div>
+
+                {/* MOSTRAR TODOS OS EVENTOS UM EMBAIXO DO OUTRO */}
+                <div className={t11_sugestaoCss.eventosContainer}>
+                    <EventoItem evento={ getConfig( nomeServicoSelecionado ) }/>
 
 
-            <div className={t03_repertorio.selects}>
 
-                <label htmlFor="teste2">Entrada dos pais e parentes</label>
-                <select id="teste2">
-                    <option>Clique para escolher a música</option>
+                </div>
 
-                    <optgroup label="Rock">
-                        <option>musica1</option>
-                        <option>musica2</option>
-                        <option>musica3</option>
-                    </optgroup>
-
-                    <optgroup label="Sertanejo">
-                        <option>musica1</option>
-                        <option>musica2</option>
-                        <option>musica3</option>
-                    </optgroup>
-
-                    <optgroup label="Pisadinha">
-                        <option>musica1</option>
-                        <option>musica2</option>
-                        <option>musica3</option>
-                    </optgroup>
-
-                </select>
-            </div>
-
-
-            <button className={t03_repertorio.button}>Adicionar mais momentos</button>
-
-
-            <div>
-                <label htmlFor="teste3">Observações:</label>
-                <input type="text" name="obs" id="iobs" placeholder="Digite uma mensagem..."/>
-            </div>
-
-
-            <button>Solicitar Orçamento</button>
-
+                {/* {renderizarEvento()} */}
+                {/* <EventoItem evento={cerimoniaCivil}/> */}
+                {/* <img className={t10_servicos.imagemPacotes} src={footer} alt=""/> */}
+                {/* <img className={t11_sugestaoCss.footerImg} src={footerImg} alt="" /> */}
+            {/* <T09_Footer/> */}
         </div>
     )
 }
 export default T03_Repertorio;
+
+
+
+/*
+https://www.casamentos.com.br/artigos/musicas-para-casamento-civil--c6417
+
+Ordem de músicas clássicas para entrada de casamento
+
+Para a entrada dos Pais e Padrinhos: Jesus Alegria dos Homens
+Para a entrada do Noivo: Clarins de Roma
+Anúncio da Noiva: Clarinada da Rainha ou a de Mahler
+Entrada da Noiva: Marcha Nupcial de Mendelssohn
+Entrada da Dama e Pajem com as alianças: Minueto de Bach em Sol Maior
+Benção das Alianças (Católico): Ave Maria de Gounod Música de Louvor (Evangélico): Agnus Dei – Michael W.Smith
+Assinaturas: Clair de Lune – Debussy
+Cumprimentos dos Padrinhos: Nessum Dorma – Turandot
+Saída dos Padrinhos: Con te Partiro – Andrea Bocelli
+Saída do Casal: Nona Sinfonia de Beethoven – Ode à Alegria
+*/

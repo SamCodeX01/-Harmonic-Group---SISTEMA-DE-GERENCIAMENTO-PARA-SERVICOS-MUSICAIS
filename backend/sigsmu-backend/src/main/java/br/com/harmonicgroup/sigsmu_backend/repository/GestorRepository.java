@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import br.com.harmonicgroup.sigsmu_backend.model.Gestor;
 
+
 @Repository
 public interface GestorRepository extends JpaRepository<Gestor, String> {}
