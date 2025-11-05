@@ -42,6 +42,12 @@ import React, { useState } from "react";
 import t03_solicitacoesServico from "./CSS/t03_solicitacoesServico.module.css";
 import BotoesSolicitacoesGestor from "../_componentes-grandes/historico/BotoesSolicitacoesGestor";
 
+// nome/cell/email - cliente
+const dadosRetornados = 3p
+
+const solicitacoes = [{},{}]
+const solicitacoes2 = {}
+
 // Dados mockados para demonstração
 const mockSolicitacoes = [
   {

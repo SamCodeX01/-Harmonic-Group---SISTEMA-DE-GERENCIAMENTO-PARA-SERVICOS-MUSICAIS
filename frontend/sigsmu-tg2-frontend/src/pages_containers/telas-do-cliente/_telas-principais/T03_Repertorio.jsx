@@ -40,9 +40,6 @@ function T03_Repertorio() {
                 {/* MOSTRAR TODOS OS EVENTOS UM EMBAIXO DO OUTRO */}
                 <div className={t11_sugestaoCss.eventosContainer}>
                     <EventoItem evento={ getConfig( nomeServicoSelecionado ) }/>
-
-
-
                 </div>
 
                 {/* {renderizarEvento()} */}

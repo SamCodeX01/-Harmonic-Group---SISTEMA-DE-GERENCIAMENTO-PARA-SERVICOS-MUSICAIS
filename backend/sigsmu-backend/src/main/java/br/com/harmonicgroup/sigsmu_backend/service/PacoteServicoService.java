@@ -23,22 +23,22 @@ public class PacoteServicoService {
         pacoteServicoRepository.save(pacoteServico);
     }
 
-    public void atualizarPacoteServico(UpdateDTO body, Integer id) {
-        PacoteServico atual = pacoteServicoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Pacote de servico não encontrado!"));
+    // public void atualizarPacoteServico(UpdateDTO body, Integer id) {
+    //     PacoteServico atual = pacoteServicoRepository.findById(id)
+    //         .orElseThrow(() -> new RuntimeException("Pacote de servico não encontrado!"));
 
-        switch (body.getCampo()) {
-            case "nome": atual.setNome( body.getNovoValor() );
-                break;
-            case "valor": atual.setValor( body.getNovoValor() );
-                break;
-            case "qtdMusicos": atual.setQtdMusicos( body.getNovoValor() );
-                break;
-            case "descricao": atual.setDescricao( body.getNovoValor() );
-                break;
-        }
-        pacoteServicoRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "nome": atual.setNome( body.getNovoValor() );
+    //             break;
+    //         case "valor": atual.setValor( body.getNovoValor() );
+    //             break;
+    //         case "qtdMusicos": atual.setQtdMusicos( body.getNovoValor() );
+    //             break;
+    //         case "descricao": atual.setDescricao( body.getNovoValor() );
+    //             break;
+    //     }
+    //     pacoteServicoRepository.save(atual);
+    // }
 
     public void excluirPacoteServico(Integer id) {
         pacoteServicoRepository.deleteById(id);

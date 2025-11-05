@@ -35,10 +35,10 @@ public class PacoteServicoController {
         pacoteServicoService.cadastrarPacoteServico(pacoteServico);
     }
     
-    @PatchMapping("/{id}")
-    public void atualizarPacoteServico(@RequestBody UpdateDTO body, @PathVariable Integer id) {
-        pacoteServicoService.atualizarPacoteServico(body, id);
-    }
+    // @PatchMapping("/{id}")
+    // public void atualizarPacoteServico(@RequestBody UpdateDTO body, @PathVariable Integer id) {
+    //     pacoteServicoService.atualizarPacoteServico(body, id);
+    // }
     
     @DeleteMapping("/{id}")
     public void excluirPacoteServico(@PathVariable Integer id) {

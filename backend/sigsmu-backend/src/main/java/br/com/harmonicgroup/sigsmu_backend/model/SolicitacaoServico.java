@@ -6,6 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -36,6 +39,15 @@ public class SolicitacaoServico {
     
     @Column(name = "sol_dataAprovacao")
     private String dataAprovacao;
+
+
+    // Associações
+    @OneToOne(mappedBy = "solicitacaoServico")
+    private Avaliacao avaliacao;
+
+    @ManyToOne
+    @JoinColumn(name = "cli_cpf")
+    private Cliente cliente;
 
 
     // Construtores

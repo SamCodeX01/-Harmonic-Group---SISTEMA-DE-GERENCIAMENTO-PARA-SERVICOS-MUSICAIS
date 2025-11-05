@@ -1,11 +1,14 @@
 package br.com.harmonicgroup.sigsmu_backend.model;
 
+import java.util.List;
+
 import br.com.harmonicgroup.sigsmu_backend.service.ClienteService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -33,6 +36,10 @@ public class Cliente {
     
     @Column(name = "cli_endereco")
     private String endereco;
+
+
+    @OneToMany(mappedBy = "cliente")
+    private List<SolicitacaoServico> solicitacaoServico;
 
 
     // Construtores
