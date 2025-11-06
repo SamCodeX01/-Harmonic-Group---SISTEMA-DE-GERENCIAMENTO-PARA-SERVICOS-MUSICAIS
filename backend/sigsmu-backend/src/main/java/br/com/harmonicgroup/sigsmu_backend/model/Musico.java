@@ -1,11 +1,14 @@
 package br.com.harmonicgroup.sigsmu_backend.model;
 
+import java.util.List;
+
 import br.com.harmonicgroup.sigsmu_backend.service.MusicoService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -33,6 +36,13 @@ public class Musico {
     
     @Column(name = "mus_senha")
     private String senha;
+
+    // Associativas
+    @OneToMany(mappedBy = "musico")
+    private List<AssInstrumentosDoMusico> instrumentosDoMusico;
+
+    @OneToMany(mappedBy = "musico")
+    private List<AssGrupoDoServico> grupoDoServico;
 
 
     // Construtores

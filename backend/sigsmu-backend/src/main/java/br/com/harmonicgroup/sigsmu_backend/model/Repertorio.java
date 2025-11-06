@@ -1,12 +1,15 @@
 package br.com.harmonicgroup.sigsmu_backend.model;
 
 
+import java.util.List;
+
 import br.com.harmonicgroup.sigsmu_backend.service.RepertorioService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -34,6 +37,10 @@ public class Repertorio {
 
     @Column(name = "rep_tocamos")
     private String tocamos;
+
+    // Associativas
+    @OneToMany(mappedBy = "repertorio")
+    private List<AssMusicasEscolhidas> musicasEscolhidas;
 
 
     // Construtores
