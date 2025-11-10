@@ -224,7 +224,6 @@ return(
     </div>
   );
 
-        <T09_Footer/>
     </div>
     )
 

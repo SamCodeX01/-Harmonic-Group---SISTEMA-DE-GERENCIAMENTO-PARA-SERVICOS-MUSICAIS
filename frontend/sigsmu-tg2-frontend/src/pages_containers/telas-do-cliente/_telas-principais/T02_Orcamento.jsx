@@ -96,8 +96,6 @@ function T02_Orcamento() {
 
             <img className={t02_orcamento.footerImagem} src={footerImg} alt="" />
 
-              <T09_Footer/>
-
         </div>
     )
 }

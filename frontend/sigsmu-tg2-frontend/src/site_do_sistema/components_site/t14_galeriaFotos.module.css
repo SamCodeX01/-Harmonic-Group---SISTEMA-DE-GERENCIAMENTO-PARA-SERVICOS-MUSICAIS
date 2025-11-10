@@ -1,0 +1,430 @@
+/* CSS/galeria.module.css */
+:root {
+  --corbranco60: #FFFFFF;
+  --corespaco30: #18203D;
+  --cordourado10: #DB9D12;
+  --corpreto: #1E1E1E;
+  --corazul: #196DBA;
+}
+/* Adicione estas classes ao seu CSS existente */
+
+.imagemReal {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.galeriaItem:hover .imagemReal {
+  transform: scale(1.05);
+}
+
+.modalImagemContainer {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--cordourado10);
+}
+
+.modalImagemReal {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modalNomeArquivo {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 10px;
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border-left: 3px solid var(--cordourado10);
+}
+.galeriaContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f1425 0%, var(--corespaco30) 100%);
+}
+
+.heroSection {
+  background: linear-gradient(135deg, var(--corespaco30) 0%, #196DBA 100%);
+  padding: 100px 20px;
+  text-align: center;
+  color: var(--corbranco60);
+  position: relative;
+  overflow: hidden;
+}
+
+.heroSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(219, 157, 18, 0.1) 0%, transparent 70%);
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, var(--corbranco60) 0%, var(--cordourado10) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  color: var(--corbranco60);
+}
+
+.contentWrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.filtrosContainer {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.filtrosTitulo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--corbranco60);
+  margin-bottom: 25px;
+}
+
+.filtrosGrid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.filtroBotao {
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--corbranco60);
+  border: 2px solid transparent;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.filtroBotao:hover {
+  background: rgba(219, 157, 18, 0.2);
+  border-color: var(--cordourado10);
+  transform: translateY(-2px);
+}
+
+.filtroBotaoAtivo {
+  background: linear-gradient(135deg, var(--cordourado10) 0%, #c28d10 100%);
+  color: var(--corbranco60);
+  border-color: var(--cordourado10);
+  box-shadow: 0 4px 15px rgba(219, 157, 18, 0.3);
+}
+
+.galeriaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.galeriaItem {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.galeriaItem:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  border-color: var(--cordourado10);
+}
+
+.imagemWrapper {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.imagemPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--corespaco30) 0%, var(--corazul) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.imagemPlaceholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 0%, rgba(219, 157, 18, 0.1) 100%);
+}
+
+.imagemTexto {
+  color: var(--corbranco60);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 2;
+}
+
+.imagemOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(24, 32, 61, 0.9) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.galeriaItem:hover .imagemOverlay {
+  opacity: 1;
+}
+
+.imagemInfo {
+  color: var(--corbranco60);
+}
+
+.imagemTitulo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--corbranco60);
+}
+
+.imagemCategoria {
+  font-size: 0.9rem;
+  color: var(--cordourado10);
+  background: rgba(219, 157, 18, 0.2);
+  padding: 4px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--cordourado10);
+}
+
+.imagemIcone {
+  align-self: flex-end;
+  font-size: 1.5rem;
+  color: var(--corbranco60);
+  background: rgba(219, 157, 18, 0.9);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.semImagens {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--corbranco60);
+}
+
+.semImagens h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--corbranco60);
+}
+
+.semImagens p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modalContainer {
+  background: linear-gradient(135deg, var(--corespaco30) 0%, #0f1425 100%);
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  border: 2px solid var(--cordourado10);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modalHeader {
+  padding: 20px 30px;
+  background: rgba(24, 32, 61, 0.8);
+  border-bottom: 1px solid rgba(219, 157, 18, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalTitulo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--corbranco60);
+  margin: 0;
+}
+
+.modalFechar {
+  background: none;
+  border: none;
+  color: var(--corbranco60);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.modalFechar:hover {
+  background: rgba(219, 157, 18, 0.2);
+  color: var(--cordourado10);
+}
+
+.modalContent {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.modalImagemPlaceholder {
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(135deg, var(--corespaco30) 0%, var(--corazul) 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--cordourado10);
+}
+
+.modalImagemTexto {
+  color: var(--corbranco60);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 20px;
+}
+
+.modalInfo {
+  color: var(--corbranco60);
+}
+
+.modalCategoria {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: var(--cordourado10);
+}
+
+.modalDescricao {
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .galeriaGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .filtrosGrid {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  
+  .modalContent {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .modalImagemPlaceholder {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .galeriaGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .heroSection {
+    padding: 60px 20px;
+  }
+  
+  .contentWrapper {
+    padding: 40px 15px;
+  }
+  
+  .modalContainer {
+    margin: 10px;
+  }
+  
+  .modalHeader {
+    padding: 15px 20px;
+  }
+  
+  .modalContent {
+    padding: 20px;
+  }
+}

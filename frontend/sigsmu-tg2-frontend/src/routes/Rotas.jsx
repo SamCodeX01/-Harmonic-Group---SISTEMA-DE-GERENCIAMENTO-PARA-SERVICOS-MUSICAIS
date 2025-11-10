@@ -11,10 +11,12 @@ import T01_HeaderCliente from '../site_do_sistema/components_site/T01_Header.jsx
 import T01_Inicio from "../pages_containers/telas-do-cliente/_telas-principais/T01_Inicio";
 import T02_Orcamento from "../pages_containers/telas-do-cliente/_telas-principais/T02_Orcamento";
 import T03_Repertorio from "../pages_containers/telas-do-cliente/_telas-principais/T03_Repertorio";
+import T09_Footer from '../site_do_sistema/components_site/T09_Footer.jsx';
 import T11_Sugestao from "../site_do_sistema/components_site/T11_Sugestao.jsx" //
 import T10_servicos from "../site_do_sistema/components_site/T10_Servicos.jsx" //
 import T12_Contatos from "../site_do_sistema/components_site/T12_Contatos.jsx"
 import T13_SejaParceiro from "../site_do_sistema/components_site/T13_SejaParceiro.jsx"
+import T14_GaleriaFotos from "../site_do_sistema/components_site/T14_GaleriaFotos.jsx"
 
 // Rotas Intranet
 import T01_Login from '../pages_containers/telas-geral/T01_Login.jsx';
@@ -50,6 +52,16 @@ function ConfigurarHeader() {
     else if (nomeRota[1] === "RotasGestor")
         return <T01_HeaderGestor/>
 }
+function ConfigurarFooter() {
+    const location = useLocation()
+    const path = location.pathname
+    const nomeRota = path.split("/").filter(Boolean)
+
+    if (nomeRota[0] !== "Intranet")
+        return <T09_Footer/>
+  // else if (nomeRota[1] === "RotasGestor")
+       // return <T01_HeaderGestor/>
+}
 
 function Rotas() {
     return (
@@ -67,6 +79,7 @@ function Rotas() {
                 <Route path='/'           element={<Site/>} errorElement={<div>vvv</div>}/>
                 <Route path='/Inicio'     element={<Site/>} />
                 <Route path='/Servicos'   element={<T10_servicos/>}/>    
+                <Route path='/galeria'   element={<T14_GaleriaFotos/>}/>    
                 <Route path='/Sugestao'   element={<T11_Sugestao/>}/>    
                 <Route path="/Orcamento"  element={<T02_Orcamento/>} />
                 <Route path="/Repertorio" element={<T03_Repertorio/>} />
@@ -93,8 +106,10 @@ function Rotas() {
                 <Route path="/Intranet/RotasGestor/SolicitacoesServico/AtribuicaoAutomatica" element={<TelaAtribuicaoAutomatica />} /> 
                 <Route path="/Intranet/RotasGestor/SolicitacoesServico/AtribuicaoManual"     element={<TelaAtribuicaoManual />} /> 
                 <Route path="/Intranet/RotasGestor/SolicitacoesServico/Devolutiva"           element={<TelaEnvioDevolutiva />} /> 
-                
+              
             </Routes>
+              
+            <ConfigurarFooter/>
         </Router>
     )
 }

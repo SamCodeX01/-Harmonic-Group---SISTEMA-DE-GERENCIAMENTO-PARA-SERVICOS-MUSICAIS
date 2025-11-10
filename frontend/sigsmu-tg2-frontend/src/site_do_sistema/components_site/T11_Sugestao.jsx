@@ -200,7 +200,6 @@ return(
             {/* <EventoItem evento={cerimoniaCivil}/> */}
             {/* <img className={t10_servicos.imagemPacotes} src={footer} alt=""/> */}
             <img className={t11_sugestaoCss.footerImg} src={footerImg} alt="" />
-        <T09_Footer/>
     </div>
     )
 

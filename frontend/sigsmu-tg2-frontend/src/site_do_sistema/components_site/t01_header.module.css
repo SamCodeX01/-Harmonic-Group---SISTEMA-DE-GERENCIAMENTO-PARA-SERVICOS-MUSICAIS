@@ -3,14 +3,20 @@
 /* 3. Adicione CSS para visualizar melhor:
 css */
 /* header.module.css */
+.containerHeader{
+    position: relative;
+    height: 100px;
+}
 .header {
     display: flex;
+    position: fixed;
     align-items: center;
     justify-content: space-evenly;
     padding: 1rem;
     background-color: #f8f9fa;
     border-bottom: 2px solid #ddd;
     width: 100vw;
+    z-index: 999;
 }
 
 .header img {
