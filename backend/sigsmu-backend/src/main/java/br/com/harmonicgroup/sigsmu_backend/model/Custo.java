@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -51,6 +52,10 @@ public class Custo {
 
     @Column(name = "cus_desconto")
     private String desconto;
+
+    // Associativas
+    @OneToOne(mappedBy = "custo")
+    private SolicitacaoServico solicitacaoServico;
 
 
     // Construtores

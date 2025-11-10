@@ -37,9 +37,9 @@ public class Cliente {
     @Column(name = "cli_endereco")
     private String endereco;
 
-
+    // Associativas
     @OneToMany(mappedBy = "cliente")
-    private List<SolicitacaoServico> solicitacaoServico;
+    private List<SolicitacaoServico> solicitacoesServico;
 
 
     // Construtores
