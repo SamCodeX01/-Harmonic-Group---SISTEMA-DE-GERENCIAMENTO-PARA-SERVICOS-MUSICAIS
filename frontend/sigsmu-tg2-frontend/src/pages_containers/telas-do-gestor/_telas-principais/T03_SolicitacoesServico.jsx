@@ -43,7 +43,7 @@ import t03_solicitacoesServico from "./CSS/t03_solicitacoesServico.module.css";
 import BotoesSolicitacoesGestor from "../_componentes-grandes/historico/BotoesSolicitacoesGestor";
 
 // nome/cell/email - cliente
-const dadosRetornados = 3p
+const dadosRetornados = 3
 
 const solicitacoes = [{},{}]
 const solicitacoes2 = {}
