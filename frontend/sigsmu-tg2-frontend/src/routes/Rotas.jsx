@@ -37,8 +37,13 @@ import TelaAtribuicaoAutomatica from "../pages_containers/telas-do-gestor/telas-
 import TelaAtribuicaoManual from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaAtribuicaoManual";
 import TelaDeCustos from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaDeCustos";
 import TelaEnvioDevolutiva from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaEnvioDevolutiva";
-import AgrupamentoOpcoes from '../components/AgrupamentoOpcoes.jsx';
+// import AgrupamentoOpcoes from '../components/AgrupamentoOpcoes.jsx';
 import EventoItem from '../components/EventoItem.jsx';
+
+
+// Rotas do músico
+import T01_painelAgendamentos from '../pages_containers/telas-do-musico/T01_PainelAgendamentos.jsx';
+import T02_CadastroInstrumentos from '../pages_containers/telas-do-musico/T02_CadastroInstrumentos.jsx';
 
 
 // Salvador de vidas - amo o useLocation(☺)
@@ -91,6 +96,11 @@ function Rotas() {
                 <Route path='/Intranet/TelaLogin'    element={<T01_Login/>} />
                 <Route path='/Intranet/TelaCadastro' element={<T02_Cadastro/>} />
                 <Route path='/Intranet/TelaPosLogin' element={<T03_Poslogin/>} />
+
+
+                {/*                        ROTAS DO MÚSICO                        */}
+                <Route path="/Intranet/RotasMusico/Inicio"               element={<T01_painelAgendamentos />} />
+                <Route path="/Intranet/RotasMusico/CadastroInstrumentos" element={<T02_CadastroInstrumentos />} /> 
 
 
                 {/*                         ROTAS DO GESTOR                         */}

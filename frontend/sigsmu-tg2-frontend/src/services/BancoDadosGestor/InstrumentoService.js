@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "../api";
 
 export const listarInstrumentos = () => api.get("/instrumento");
 export const adicionarInstrumento = (body) => api.post("/instrumento", body);

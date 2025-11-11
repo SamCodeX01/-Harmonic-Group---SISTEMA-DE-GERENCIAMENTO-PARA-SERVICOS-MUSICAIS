@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "../api";
 
 export const listarTiposLocal = () => api.get("/tipolocal");
 export const adicionarTipoLocal = (body) => api.post("/tipolocal", body);

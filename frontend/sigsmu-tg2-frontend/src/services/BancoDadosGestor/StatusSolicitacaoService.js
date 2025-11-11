@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "../api";
 
 export const listarStatus = () => api.get("/statussolicitacao");
 export const adicionarStatus = (body) => api.post("/statussolicitacao", body);

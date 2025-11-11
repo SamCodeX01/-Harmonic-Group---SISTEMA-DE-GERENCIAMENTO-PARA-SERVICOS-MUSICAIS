@@ -1,0 +1,44 @@
+INSERT INTO instrumento(ins_id, ins_nome)
+VALUES 
+(1, 'clarinete'),
+(2, 'violao'),
+(3, 'flauta')
+
+INSERT INTO meio_pagamento(pgt_id, pgt_nome)
+VALUES 
+(1, 'cartão'),
+(2, 'pix'),
+(3, 'dinheiro físico')
+
+INSERT INTO pacote_servico(pac_nome)
+VALUES 
+()
+
+INSERT INTO repertorio(rep_id, rep_nome)
+VALUES 
+(1, 'SkyLab'),
+(2, 'Bob Marley'),
+(3, 'Pablo Vitar')
+
+INSERT INTO status_solicitacao(stt_id, stt_nome)
+VALUES 
+(1, 'em análise'),
+(2, 'concluído'),
+(3, 'cancelado'),
+(4, 'aguardando resposta')
+
+INSERT INTO tipo_local(tip_id, tip_nome)
+VALUES 
+(1, 'montanha'),
+(2, 'arena'),
+(3, 'restaurante')
+
+INSERT INTO tipo_servico(ser_id, ser_nome)
+VALUES 
+(1, 'casamento'),
+(2, 'aniversario'),
+(3, 'formatura'),
+(4, 'corporativo')
+
+
+SELECT * FROM pacote_servico

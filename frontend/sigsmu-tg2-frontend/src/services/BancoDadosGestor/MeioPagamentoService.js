@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "../api";
 
 export const listarMeiosPagamento = () => api.get("/meiopagamento");
 export const adicionarMeioPagamento = (body) => api.post("/meiopagamento", body);

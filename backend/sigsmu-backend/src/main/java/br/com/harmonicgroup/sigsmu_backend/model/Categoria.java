@@ -25,6 +25,7 @@ public class Categoria {
     @Column(name = "cat_nome")
     private String nome;
     
+    
     //Associativas
     @OneToMany(mappedBy = "categoria")
     private List<Instrumento> instrumentos;

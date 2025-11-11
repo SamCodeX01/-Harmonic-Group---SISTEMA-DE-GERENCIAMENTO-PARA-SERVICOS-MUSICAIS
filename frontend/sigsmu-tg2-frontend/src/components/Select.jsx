@@ -1,25 +1,32 @@
 import React from "react";
 
-function AgrupamentoOpcoes({obj}){
-
+function Select({listaOpcoes, setValue, label, selectLabel=null, firstGeneric=false}){
+    
+    const primeiroItem = listaOpcoes[0]
 
     return(
-            <div>
-                {/* <label htmlFor="teste1">Pré definições</label> <br />
-                    <select id="teste1">
-                        <option>{}Selecione o tipo de evento</option>
+        <div>
+            <label htmlFor=""> {label} </label>
 
-                        <optgroup label="Eventos">
-                            <option>{obj.Musicas_Sugeridas[0]}</option>
-                            <option>2</option>
-                            <option>2</option>
-                        
-                        </optgroup> */}
-                    {/* </select> */}
-            </div>
-        )
+            <select onChange={evt => setValue(evt.currentTarget.value)}>
+
+                {firstGeneric && <option> {primeiroItem} </option>}
+
+                <optgroup label={selectLabel}>
+                {
+                    listaOpcoes
+                    .filter(item => item !== primeiroItem)
+                    .map((item, i) => {
+                        return <option key={i} value={item}> {item} </option>
+                    })
+                }
+                </optgroup>
+
+            </select>
+        </div>
+    )
 }
-export default AgrupamentoOpcoes;
+export default Select;
 
 /*
 https://www.casamentos.com.br/artigos/musicas-para-casamento-civil--c6417

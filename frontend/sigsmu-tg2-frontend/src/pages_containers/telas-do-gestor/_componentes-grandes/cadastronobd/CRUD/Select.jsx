@@ -5,13 +5,13 @@ import selectCSS from "./CSS/select.module.css"
 import { useState, useEffect } from "react"
 
 // Importações do CRUD API
-import { listarPacotesServico } from "../../../../../services/PacoteServicoService"
-import { listarInstrumentos } from "../../../../../services/InstrumentoService"
-import { listarTiposServico } from "../../../../../services/TipoServicoService"
-import { listarMeiosPagamento } from "../../../../../services/MeioPagamentoService"
-import { listarRepertorios } from "../../../../../services/RepertorioService"
-import { listarStatus } from "../../../../../services/StatusSolicitacaoService"
-import { listarTiposLocal } from "../../../../../services/TipoLocalService"
+import { listarPacotesServico } from "../../../../../services/BancoDadosGestor/PacoteServicoService"
+import { listarInstrumentos } from "../../../../../services/BancoDadosGestor/InstrumentoService"
+import { listarTiposServico } from "../../../../../services/BancoDadosGestor/TipoServicoService"
+import { listarMeiosPagamento } from "../../../../../services/BancoDadosGestor/MeioPagamentoService"
+import { listarRepertorios } from "../../../../../services/BancoDadosGestor/RepertorioService"
+import { listarStatus } from "../../../../../services/BancoDadosGestor/StatusSolicitacaoService"
+import { listarTiposLocal } from "../../../../../services/BancoDadosGestor/TipoLocalService"
 
 
 // Função que retona o resultado de um SELECT no banco quando uma tabela é selecionada

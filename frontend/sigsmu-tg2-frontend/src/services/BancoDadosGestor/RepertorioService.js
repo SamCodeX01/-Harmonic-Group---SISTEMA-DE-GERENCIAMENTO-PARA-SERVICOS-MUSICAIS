@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "../api";
 
 export const listarRepertorios = () => api.get("/repertorio");
 export const adicionarRepertorio = (body) => api.post("/repertorio", body);

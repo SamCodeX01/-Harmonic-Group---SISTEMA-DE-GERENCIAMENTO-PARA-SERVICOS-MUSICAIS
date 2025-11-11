@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "../api";
 
 export const listarPacotesServico = () => api.get("/pacoteservico");
 export const adicionarPacoteServico = (body) => api.post("/pacoteservico", body);

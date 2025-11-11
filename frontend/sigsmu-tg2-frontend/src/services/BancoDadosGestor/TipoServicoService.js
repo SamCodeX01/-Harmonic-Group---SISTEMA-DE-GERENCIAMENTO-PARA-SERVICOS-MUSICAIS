@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "../api";
 
 export const listarTiposServico = () => api.get("/tiposervico");
 export const adicionarTipoServico = (body) => api.post("/tiposervico", body);

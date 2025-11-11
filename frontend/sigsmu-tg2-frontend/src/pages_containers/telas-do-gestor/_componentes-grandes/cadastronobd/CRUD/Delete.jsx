@@ -1,11 +1,11 @@
 // Importações do CRUD API
-import { excluirPacoteServico } from "../../../../../services/PacoteServicoService"
-import { excluirInstrumento } from "../../../../../services/InstrumentoService"
-import { excluirTipoServico } from "../../../../../services/TipoServicoService"
-import { excluirMeioPagamento } from "../../../../../services/MeioPagamentoService"
-import { excluirRepertorio } from "../../../../../services/RepertorioService"
-import { excluirStatus } from "../../../../../services/StatusSolicitacaoService"
-import { excluirTipoLocal } from "../../../../../services/TipoLocalService"
+import { excluirPacoteServico } from "../../../../../services/BancoDadosGestor/PacoteServicoService"
+import { excluirInstrumento } from "../../../../../services/BancoDadosGestor/InstrumentoService"
+import { excluirTipoServico } from "../../../../../services/BancoDadosGestor/TipoServicoService"
+import { excluirMeioPagamento } from "../../../../../services/BancoDadosGestor/MeioPagamentoService"
+import { excluirRepertorio } from "../../../../../services/BancoDadosGestor/RepertorioService"
+import { excluirStatus } from "../../../../../services/BancoDadosGestor/StatusSolicitacaoService"
+import { excluirTipoLocal } from "../../../../../services/BancoDadosGestor/TipoLocalService"
 
 function Delete(tabela, id) {
 

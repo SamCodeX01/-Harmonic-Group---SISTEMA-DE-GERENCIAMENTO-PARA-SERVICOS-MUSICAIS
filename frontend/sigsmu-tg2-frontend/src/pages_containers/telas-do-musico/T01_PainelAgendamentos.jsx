@@ -1,6 +1,7 @@
 // components/MusicianDashboard.jsx
 import React, { useState, useEffect } from 'react';
 import t01_painelAgendaCss from './CSS/t01_painelAgendamentos.module.css';
+import Botao from '../../components/Botao';
 
 // Dados mockados para demonstração
 const mockAgendamentos = [
@@ -408,6 +409,13 @@ const T01_painelAgendamentos = () => {
           </div>
         )}
       </div>
+
+        <Botao
+          msg={"cadastro de instrumentos"}
+          rota={"/Intranet/RotasMusico/CadastroInstrumentos"}
+          ativarEstilo
+        />
+
     </div>
   );
 };
