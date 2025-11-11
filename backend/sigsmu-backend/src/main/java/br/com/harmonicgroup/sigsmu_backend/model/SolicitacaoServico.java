@@ -31,8 +31,11 @@ public class SolicitacaoServico {
     @Column(name = "sol_dataEvento")
     private String dataEvento;
 
-    @Column(name = "sol_horaEvento")
-    private String horaEvento;
+    @Column(name = "sol_horarioInicio")
+    private String horarioInicio;
+
+    @Column(name = "sol_horarioTermino")
+    private String horarioTermino;
 
     @Column(name = "sol_qtdConvidados")
     private String qtdConvidados;
@@ -95,11 +98,12 @@ public class SolicitacaoServico {
     // Construtores
     public SolicitacaoServico(){};
     
-    public SolicitacaoServico(Integer id, String localEvento, String dataEvento, String horaEvento, String qtdConvidados, String dataSolicitacao, String eOrcamento, String dataAprovacao){
+    public SolicitacaoServico(Integer id, String localEvento, String dataEvento, String horarioInicio, String horarioTermino, String qtdConvidados, String dataSolicitacao, String eOrcamento, String dataAprovacao){
         this.id = id;
         this.localEvento = localEvento;
         this.dataEvento = dataEvento;
-        this.horaEvento = horaEvento;
+        this.horarioInicio = horarioInicio;
+        this.horarioTermino = horarioTermino;
         this.qtdConvidados = qtdConvidados;
         this.dataSolicitacao = dataSolicitacao;
         this.eOrcamento = eOrcamento;

@@ -1,27 +1,16 @@
 import React from "react";
 
-function Select({listaOpcoes, setValue, label, selectLabel=null, firstGeneric=false}){
-    
-    const primeiroItem = listaOpcoes[0]
-
+function Select({msg, setValue, listaOpcoes, values=null}){
     return(
         <div>
-            <label htmlFor=""> {label} </label>
+            <label htmlFor={"i"+msg}> {msg} </label>
 
-            <select onChange={evt => setValue(evt.currentTarget.value)}>
-
-                {firstGeneric && <option> {primeiroItem} </option>}
-
-                <optgroup label={selectLabel}>
-                {
-                    listaOpcoes
-                    .filter(item => item !== primeiroItem)
-                    .map((item, i) => {
-                        return <option key={i} value={item}> {item} </option>
-                    })
-                }
-                </optgroup>
-
+            <select key={"i"+msg} onChange={evt => setValue(evt.currentTarget.value)}>
+            {
+                listaOpcoes.map((item, i) => {
+                    return <option key={i} value={values ? values[i] : item}> {item} </option>
+                })
+            }
             </select>
         </div>
     )
