@@ -1,28 +1,48 @@
-import React, { useEffect, useState } from "react";
-// import T09_Footer from "./T09_Footer";
-// import footer from "../imagens_site/footer.png"
+// Importações de estilos
+import t11_sugestaoCss from "./CSS/t03_repertorio.module.css"
+
+// Importações de componentes
+import Select from "../../../components/Select";
+
+// Importações do React
+import React, { use, useEffect, useState } from "react";
 
 import EventoItem from "../../../components/EventoItem"
 import getConfig from "./T03_repertorio_config";
+import Botao from "../../../components/Botao";
 
-import t11_sugestaoCss from "./CSS/t03_repertorio.module.css"
+// import T09_Footer from "./T09_Footer";
+// import footer from "../imagens_site/footer.png"
 // import footerImg from "../../site_do_sistema/imagens_site/footer.png"
 
 // TERMINAR   TERMINAR   TERMINAR   TERMINAR  TERMINAR  TERMINAR  TERMINAR
 function T03_Repertorio() {
 
-    const [nomeServicoSelecionado, setNomeServicoSelecionado] = useState()
-    const [dadosServico, setDadosServico] = useState()
-
     useEffect(() => {
-        if (nomeServicoSelecionado)
-            setDadosServico( getConfig( nomeServicoSelecionado ) )
+        const dadosDeOrcamento = getConfig("get")
 
-    }, [nomeServicoSelecionado])
+        setTimeout(() => {
+            console.log("infoCliente -> ", dadosDeOrcamento);
+        }, 1000);
+
+    }, [])
+    
+
+    const [servico, setServico] = useState("casamento") // string por enquanto (->id)
+    const [musicasSelecionadas, setMusicasSelecionadas] = useState() // strings
+    
+    // TRAZER POR MEIO DO BANCO DEPOIS
+    const opcoesServicos = [
+        "casamento",
+        "aniversario",
+        "formatura",
+        "corporativo"
+    ]
 
     return (
-        <div>            
-            {/* TÍTULO ESTILIZADO */}
+        <div className={t11_sugestaoCss.main}>            
+            
+            {/* título estilizado */}
             <div className={t11_sugestaoCss.tituloContainer}>
                 <h1 className={t11_sugestaoCss.tituloPrincipal}>🎵 Nossas Sugestões Musicais</h1>
                 <p className={t11_sugestaoCss.subtitulo}>
@@ -30,22 +50,32 @@ function T03_Repertorio() {
                 </p>
             </div>
 
-                <select onChange={evt => setNomeServicoSelecionado( evt.currentTarget.value ) }>
-                    <option value={"casamento"}>casamento</option>
-                    <option value={"aniversario"}>aniversario</option>
-                    <option value={"formatura"}>formatura</option>
-                    <option value={"corporativo"}>corporativo</option>
-                </select>
+            <Select
+                msg={"Informe o tipo de serviço:"}
+                setValue={setServico}
+                listaOpcoes={opcoesServicos}
+                // values={}
+            />                
 
-                {/* MOSTRAR TODOS OS EVENTOS UM EMBAIXO DO OUTRO */}
-                <div className={t11_sugestaoCss.eventosContainer}>
-                    <EventoItem evento={ getConfig( nomeServicoSelecionado ) }/>
-                </div>
+            {/* mostra todos os eventos em forma de lista */}
+            <div className={t11_sugestaoCss.eventosContainer}>
+                <EventoItem evento={ getConfig(servico) } setMusicas={setMusicasSelecionadas} />
+            </div>
 
-                {/* {renderizarEvento()} */}
-                {/* <EventoItem evento={cerimoniaCivil}/> */}
-                {/* <img className={t10_servicos.imagemPacotes} src={footer} alt=""/> */}
-                {/* <img className={t11_sugestaoCss.footerImg} src={footerImg} alt="" /> */}
+
+            {/* TESTE */}
+            <Botao msg={"SOLICITAR"}
+                executarComando={() => {
+                    console.log("Cadastro concluído!")
+                }}
+            />
+
+            {/* rota -> mensagem de obg */}
+
+            {/* {renderizarEvento()} */}
+            {/* <EventoItem evento={cerimoniaCivil}/> */}
+            {/* <img className={t10_servicos.imagemPacotes} src={footer} alt=""/> */}
+            {/* <img className={t11_sugestaoCss.footerImg} src={footerImg} alt="" /> */}
             {/* <T09_Footer/> */}
         </div>
     )

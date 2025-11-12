@@ -11,15 +11,18 @@ import footerImg from "../../../site_do_sistema/imagens_site/footer.png"
 import { useEffect, useState } from "react";
 
 // Importação dos serviços
-import { adicionarCliente } from "../../../services/TelaOrcamento/ClienteService";
-
 import { listarTiposLocal } from "../../../services/TelaOrcamento/TipoLocalService";
 import { listarPacotesServico } from "../../../services/TelaOrcamento/PacoteServicoService";
+import { adicionarCliente } from "../../../services/TelaOrcamento/ClienteService";
+import { adicionarSolicitacaoServico } from "../../../services/TelaOrcamento/SolicitacaoServicoService"
+
+import getConfig from "./T03_repertorio_config";
 
 
 // Tela responsável por iniciar os FORMULÁRIOS DE ORÇAMENTO para o cliente
 function T02_Orcamento() {
 
+    // Dados retornados do Banco
     const [tiposLocal,     setTiposLocal]     = useState(null)
     const [pacotesServico, setPacotesServico] = useState(null)
 
@@ -46,25 +49,25 @@ function T02_Orcamento() {
         }
     };
 
+    // Chama as 2 funções acima somente uma vez
     useEffect(() => {
         carregarTiposLocal();
         carregarPacotesServico();
     }, [])
 
 
-
     // Informações passadas pelo cliente (FORMS)
-    const [infoCliente,                setInfoCliente]     = useState(null) //ok?
-    const [infoLocalEvento,            setInfoLocalEvento] = useState(null) //ok?
-    const [infoSolicitacao,            setInfoSolicitacao] = useState(null) //ok?
+    const [infoCliente,     setInfoCliente]     = useState(null) // obj ?
+    const [infoLocalEvento, setInfoLocalEvento] = useState(null) // string
+    const [infoSolicitacao, setInfoSolicitacao] = useState(null) // obj ?
 
     // Itens e valores de TipoLocal (passados pro Select)
     const [opcoesTipoLocal, setOpcoesTipoLocal] = useState()
-    const [idsTipoLocal, setIdsTipoLocal] = useState()
+    const [idsTipoLocal,    setIdsTipoLocal]    = useState()
 
     // Itens e valores de PacoteServico (passados pro Select)
     const [opcoesPacoteServico, setOpcoesPacoteServico] = useState()
-    const [idsPacoteServico, setIdsPacoteServico] = useState()
+    const [idsPacoteServico,    setIdsPacoteServico]    = useState()
 
 
 
@@ -131,6 +134,16 @@ function T02_Orcamento() {
     }, [pacotesServico])
 
 
+    useEffect(() => {
+
+        // // AQUI!!!
+        // console.log("infoCliente -> " + infoCliente.nome)
+
+        // Guarda os valores no .js do repertório (esquema)
+        getConfig([infoCliente, infoSolicitacao])
+        
+    }, [infoSolicitacao])
+
     return (
         <div className={t02_orcamento.main}>
             
@@ -193,8 +206,8 @@ function T02_Orcamento() {
                 executarComando={() => {
 
                     // TESTE
-                    console.log("tipoLocal ID -> " + tipoLocal)
-                    console.log("pacote ID -> " + pacote)
+                    // console.log("tipoLocal ID -> " + tipoLocal)
+                    // console.log("pacote ID -> " + pacote)
 
                     // Obj do Cliente
                     setInfoCliente({
@@ -231,7 +244,6 @@ function T02_Orcamento() {
                         "pacoteServico"   : {"id"  : pacote},
                         "tipoLocal"       : {"id"  : tipoLocal}
                     })
-
                 }}
             />
 

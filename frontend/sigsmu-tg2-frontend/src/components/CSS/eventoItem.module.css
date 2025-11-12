@@ -38,33 +38,33 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: #f8f9fa;
+    background-color: var(--corazul);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .parteCabecalho:hover {
-    background-color: var(--corazul);
+    background-color: var(--cordourado10);
 }
 
 .parteCabecalho:hover .parteTitulo {
-    color: #ffffff;
+    color: var(--corespaco30);
 }
 
 .parteCabecalho:hover .icone {
-    color: #ffffff;
+    color: var(--corespaco30);
 }
 
 .parteTitulo {
     margin: 0;
     font-size: 1.2rem;
-    color: #333;
+    color: white;
     transition: color 0.3s ease;
 }
 
 .icone {
     font-size: 1rem;
-    color: #666;
+    color: white;
     transition: color 0.3s ease;
 }
 

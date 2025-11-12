@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import eventoItemCss from "../components/CSS/eventoItem.module.css"
 
-function EventoItem({ evento }) {
+function EventoItem({ evento, setMusicas }) {
     const [partesAbertas, setPartesAbertas] = useState({});
+
+    // Onde as músicas serão guardadas
+    let musicasSelecionadas = {}
 
     // Função para alternar entre abrir/fechar uma parte
     const toggleParte = (key) => {
@@ -29,7 +32,8 @@ function EventoItem({ evento }) {
             </div>
 
             <div className={eventoItemCss.partesContainer}>
-                {Object.entries(evento.partes).map(([key, parte]) => (
+                {Object.entries(evento.partes).map(([key, parte], index) => (
+                    
                     <div key={key} className={eventoItemCss.parteItem}>
                         {/* CABEÇALHO DA PARTE - CLICÁVEL */}
                         <div 
@@ -43,25 +47,29 @@ function EventoItem({ evento }) {
                                 {partesAbertas[key] ? '▲' : '▼'}
                             </span>
                         </div>
+                        
 
                         {/* CONTEÚDO DA PARTE - APENAS SE ESTIVER ABERTA */}
-                        {partesAbertas[key] && (
-                            <div className={eventoItemCss.parteConteudo}>
-                                <p className={eventoItemCss.parteDescricao}>{parte.descricao}</p>
+                        <div className={eventoItemCss.parteConteudo} style={{"display": `${partesAbertas[key] ? "" : "none"}`}}>
+                            <p className={eventoItemCss.parteDescricao}>{parte.descricao}</p>
 
-                                {/* Mostrar as músicas */}
-                                <div className={eventoItemCss.musicasLista}>
-                                    <h4>Músicas Sugeridas: </h4>
-                                    <ul>
-                                        {parte.musicas && parte.musicas.map((musica, index) => (
-                                            <li key={index} className={eventoItemCss.musicaItem}>
+                            {/* Mostrar as músicas */}
+                            <div className={eventoItemCss.musicasLista}>
+                                <h4>Músicas Sugeridas: </h4>
+                                <select onChange={evt => {
+                                    musicasSelecionadas["musica"+(index+1)] = evt.currentTarget.value
+                                    setMusicas(musicasSelecionadas)
+                                }}>
+                                    {
+                                        parte.musicas && parte.musicas.map((musica, i) => (
+                                            <option key={i} className={eventoItemCss.musicaItem} value={musica}>
                                                 {musica}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                                            </option>
+                                        ))
+                                    }
+                                </select>
                             </div>
-                        )}
+                        </div>
                     </div>
                 ))}
             </div>    
