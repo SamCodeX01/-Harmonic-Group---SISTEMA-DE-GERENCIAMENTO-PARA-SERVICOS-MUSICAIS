@@ -18,7 +18,7 @@ import lombok.Data;
 public class MarcaFabricante {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mar_cpf")
     private Integer id;
 

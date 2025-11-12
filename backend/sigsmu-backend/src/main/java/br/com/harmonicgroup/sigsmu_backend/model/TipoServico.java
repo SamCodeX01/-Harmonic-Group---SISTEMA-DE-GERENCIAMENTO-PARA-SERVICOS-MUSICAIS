@@ -19,7 +19,7 @@ import lombok.Data;
 public class TipoServico {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ser_id")
     private Integer id;
 

@@ -19,7 +19,7 @@ import lombok.Data;
 public class Repertorio {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rep_id")
     private Integer id;
 

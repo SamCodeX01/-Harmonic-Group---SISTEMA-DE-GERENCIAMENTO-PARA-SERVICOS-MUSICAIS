@@ -18,7 +18,7 @@ import lombok.Data;
 public class Ensaio {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ens_id")
     private Integer id;
 

@@ -1,0 +1,21 @@
+DELETE FROM ass_grupo_do_servico        WHERE 
+DELETE FROM ass_instrumentos_do_musico  WHERE 
+DELETE FROM ass_instrumentos_escolhidos WHERE 
+DELETE FROM ass_musicas_escolhidas      WHERE 
+
+DELETE FROM cliente                     WHERE cli_cpf = 
+DELETE FROM avaliacao                   WHERE ava_id  = 
+DELETE FROM solicitacao_servico         WHERE sol_id  = 
+DELETE FROM pacote_servico              WHERE pac_id  = 
+DELETE FROM tipo_servico                WHERE ser_id  = 
+DELETE FROM tipo_local                  WHERE tip_id  = 
+DELETE FROM meio_pagamento              WHERE pgt_id  = 
+DELETE FROM custo                       WHERE cus_id  = 
+DELETE FROM repertorio                  WHERE rep_id  = 
+DELETE FROM gestor                      WHERE ges_cpf = 
+DELETE FROM ensaio                      WHERE ens_id  = 
+DELETE FROM musico                      WHERE mus_cpf = 
+DELETE FROM instrumento                 WHERE ins_id  = 
+DELETE FROM categoria                   WHERE cat_id  = 
+DELETE FROM marca_fabricante            WHERE mar_id  = 
+DELETE FROM status_solicitacao          WHERE stt_id  = 

@@ -1,44 +1,127 @@
-INSERT INTO instrumento(ins_id, ins_nome)
-VALUES 
-(1, 'clarinete'),
-(2, 'violao'),
-(3, 'flauta')
-
-INSERT INTO meio_pagamento(pgt_id, pgt_nome)
-VALUES 
-(1, 'cartão'),
-(2, 'pix'),
-(3, 'dinheiro físico')
-
-INSERT INTO pacote_servico(pac_nome)
+???
+INSERT INTO cliente()
 VALUES 
 ()
+DROP TABLE cliente
+SELECT * FROM cliente
 
-INSERT INTO repertorio(rep_id, rep_nome)
+???
+INSERT INTO avaliacao()
 VALUES 
-(1, 'SkyLab'),
-(2, 'Bob Marley'),
-(3, 'Pablo Vitar')
+()
+DROP TABLE avaliacao
+SELECT * FROM avaliacao
 
-INSERT INTO status_solicitacao(stt_id, stt_nome)
+???
+INSERT INTO solicitacao_servico()
 VALUES 
-(1, 'em análise'),
-(2, 'concluído'),
-(3, 'cancelado'),
-(4, 'aguardando resposta')
+()
+DROP TABLE solicitacao_servico
+SELECT * FROM solicitacao_servico
 
-INSERT INTO tipo_local(tip_id, tip_nome)
+???
+INSERT INTO pacote_servico()
 VALUES 
-(1, 'montanha'),
-(2, 'arena'),
-(3, 'restaurante')
-
-INSERT INTO tipo_servico(ser_id, ser_nome)
-VALUES 
-(1, 'casamento'),
-(2, 'aniversario'),
-(3, 'formatura'),
-(4, 'corporativo')
-
-
+()
+DROP TABLE pacote_servico
 SELECT * FROM pacote_servico
+
+-- 100%
+INSERT INTO tipo_servico(ser_nome)
+VALUES 
+('casamento'),
+('aniversario'),
+('formatura'),
+('corporativo')
+DROP TABLE tipo_servico
+SELECT * FROM tipo_servico
+
+-- 100%
+INSERT INTO tipo_local(tip_nome)
+VALUES 
+('montanha'),
+('arena'),
+('restaurante')
+DROP TABLE tipo_local
+SELECT * FROM tipo_local
+
+-- 100%
+INSERT INTO meio_pagamento(pgt_nome)
+VALUES 
+('cartão'),
+('pix'),
+('dinheiro físico')
+DROP TABLE meio_pagamento
+SELECT * FROM meio_pagamento
+
+???
+INSERT INTO custo()
+VALUES 
+()
+DROP TABLE custo
+SELECT * FROM custo
+
+-- 20%
+INSERT INTO repertorio(rep_musica)
+VALUES 
+('SkyLab'),
+('Bob Marley'),
+('Pablo Vitar')
+DROP TABLE repertorio
+SELECT * FROM repertorio
+
+???
+INSERT INTO gestor(ges_cpf, ges_nome, ges_dataCadastro, ges_senha)
+VALUES 
+('')
+DROP TABLE gestor
+SELECT * FROM gestor
+
+???
+INSERT INTO ensaio()
+VALUES 
+()
+DROP TABLE ensaio
+SELECT * FROM ensaio
+
+???
+INSERT INTO musico()
+VALUES 
+()
+DROP TABLE musico
+SELECT * FROM musico
+
+-- 50%
+INSERT INTO instrumento(ins_nome)
+VALUES 
+('clarinete'),
+('violao'),
+('flauta'),
+('piano'),
+('guitarra')
+DROP TABLE instrumento
+SELECT * FROM instrumento
+
+???
+INSERT INTO categoria()
+VALUES 
+()
+DROP TABLE categoria
+SELECT * FROM categoria
+
+???
+INSERT INTO marca_fabricante()
+VALUES 
+()
+DROP TABLE marca_fabricante
+SELECT * FROM marca_fabricante
+
+-- 100%
+INSERT INTO status_solicitacao(stt_nome)
+VALUES 
+('em análise'),
+('concluído'),
+('cancelado'),
+('aguardando resposta')
+DROP TABLE status_solicitacao
+SELECT * FROM status_solicitacao

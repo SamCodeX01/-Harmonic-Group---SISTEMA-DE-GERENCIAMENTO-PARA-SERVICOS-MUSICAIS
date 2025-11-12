@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 public class AssMusicasEscolhidas {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne

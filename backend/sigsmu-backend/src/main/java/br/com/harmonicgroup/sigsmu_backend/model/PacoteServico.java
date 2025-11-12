@@ -21,7 +21,7 @@ import lombok.Data;
 public class PacoteServico {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pac_id")
     private Integer id;
 

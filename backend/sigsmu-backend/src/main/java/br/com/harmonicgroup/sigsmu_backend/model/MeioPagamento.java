@@ -19,7 +19,7 @@ import lombok.Data;
 public class MeioPagamento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pgt_id")
     private Integer id;
 

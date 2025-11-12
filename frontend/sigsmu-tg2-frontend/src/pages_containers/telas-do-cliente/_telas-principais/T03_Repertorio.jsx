@@ -66,7 +66,7 @@ function T03_Repertorio() {
             {/* TESTE */}
             <Botao msg={"SOLICITAR"}
                 executarComando={() => {
-                    console.log("Cadastro concluído!")
+                    alert("Cadastro concluído!")
                 }}
             />
 

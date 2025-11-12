@@ -21,7 +21,7 @@ import lombok.Data;
 public class SolicitacaoServico {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sol_id")
     private Integer id;
 

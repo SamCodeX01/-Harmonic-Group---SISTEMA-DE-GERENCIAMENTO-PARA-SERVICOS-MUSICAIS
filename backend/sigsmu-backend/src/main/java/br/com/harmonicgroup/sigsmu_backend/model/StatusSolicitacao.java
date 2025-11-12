@@ -19,7 +19,7 @@ import lombok.Data;
 public class StatusSolicitacao {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "stt_id")
     private Integer id;
 

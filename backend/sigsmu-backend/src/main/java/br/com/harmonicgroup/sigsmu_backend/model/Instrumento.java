@@ -21,7 +21,7 @@ import lombok.Data;
 public class Instrumento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ins_id")
     private Integer id;
 

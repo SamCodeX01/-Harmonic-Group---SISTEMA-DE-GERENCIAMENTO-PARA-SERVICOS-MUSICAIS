@@ -16,7 +16,7 @@ import lombok.Data;
 public class Custo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cus_id")
     private Integer id;
 
