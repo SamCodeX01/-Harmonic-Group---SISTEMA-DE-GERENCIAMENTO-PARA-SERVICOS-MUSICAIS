@@ -175,11 +175,7 @@ function getConfig(servico) {
         case "aniversario" : return festaAniversario
         case "formatura"   : return festaFormatura
         case "corporativo" : return eventoCorporativo
-
-        case "get" : getData()
-        break
-        default    : setData(servico[0], servico[1])
-        break
+        default            : return "ERRO - tenho que testar"
     }
 
     // cerimoniaCivil
@@ -190,18 +186,3 @@ function getConfig(servico) {
 
 }
 export default getConfig;
-
-const setData = (infoCliente, infoSolicitacao) => {
-
-    // Informações passadas pelo cliente na tela de orçamento (FORMS)
-    orcamentoData["infoCliente"]     = infoCliente // obj
-    orcamentoData["infoSolicitacao"] = infoSolicitacao // obj
-
-    // AQUI!!!
-    // if (orcamentoData.infoCliente)
-    //     console.log("infoCliente -> " + orcamentoData.infoCliente.nome)
-}
-
-const getData = () => {
-    return orcamentoData
-}

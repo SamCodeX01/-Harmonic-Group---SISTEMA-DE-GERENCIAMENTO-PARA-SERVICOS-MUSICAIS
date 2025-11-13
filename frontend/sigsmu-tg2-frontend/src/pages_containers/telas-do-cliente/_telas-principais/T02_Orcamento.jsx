@@ -13,10 +13,8 @@ import { useEffect, useState } from "react";
 // Importação dos serviços
 import { listarTiposLocal } from "../../../services/TelaOrcamento/TipoLocalService";
 import { listarPacotesServico } from "../../../services/TelaOrcamento/PacoteServicoService";
-import { adicionarCliente } from "../../../services/TelaOrcamento/ClienteService";
-import { adicionarSolicitacaoServico } from "../../../services/TelaOrcamento/SolicitacaoServicoService"
 
-import getConfig from "./T03_repertorio_config";
+import { dadosCliente, dadosSolicitacao } from "../../../services/globalData";
 
 
 // Tela responsável por iniciar os FORMULÁRIOS DE ORÇAMENTO para o cliente
@@ -58,14 +56,15 @@ function T02_Orcamento() {
 
     // Informações passadas pelo cliente (FORMS)
     const [infoCliente,     setInfoCliente]     = useState(null) // obj ?
-    const [infoLocalEvento, setInfoLocalEvento] = useState(null) // string
+    const [infoLocalEvento, setInfoLocalEvento] = useState("") // string   TENHO QUE VER
     const [infoSolicitacao, setInfoSolicitacao] = useState(null) // obj ?
 
-    // Itens e valores de TipoLocal (passados pro Select)
+
+    // Itens e valores (ids) de TipoLocal (passados pro Select)
     const [opcoesTipoLocal, setOpcoesTipoLocal] = useState()
     const [idsTipoLocal,    setIdsTipoLocal]    = useState()
 
-    // Itens e valores de PacoteServico (passados pro Select)
+    // Itens e valores (ids) de PacoteServico (passados pro Select)
     const [opcoesPacoteServico, setOpcoesPacoteServico] = useState()
     const [idsPacoteServico,    setIdsPacoteServico]    = useState()
 
@@ -98,6 +97,7 @@ function T02_Orcamento() {
 
 
     // Define as opções a serem exibidas para escolha do cliente e seus valores (ids)
+    // Tive que fazer dessa forma para não estragar o componente Select em outras telas
     useEffect(() => {
         if (tiposLocal) {
 
@@ -116,6 +116,7 @@ function T02_Orcamento() {
     }, [tiposLocal])
 
     // Define as opções a serem exibidas para escolha do cliente e seus valores (ids)
+    // Tive que fazer dessa forma para não estragar o componente Select em outras telas
     useEffect(() => {
         if (pacotesServico) {
 
@@ -134,15 +135,16 @@ function T02_Orcamento() {
     }, [pacotesServico])
 
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Passa os dados para o arquivo .js global
     useEffect(() => {
+        if (infoSolicitacao) {
 
-        // // AQUI!!!
-        // console.log("infoCliente -> " + infoCliente.nome)
-
-        // Guarda os valores no .js do repertório (esquema)
-        getConfig([infoCliente, infoSolicitacao])
-        
+            dadosCliente.set(infoCliente)
+            dadosSolicitacao.set(infoSolicitacao)
+        }
     }, [infoSolicitacao])
+
 
     return (
         <div className={t02_orcamento.main}>
@@ -172,7 +174,6 @@ function T02_Orcamento() {
                         values={idsPacoteServico}
                     />
                     }
-
                     <Campo msg={"Data do evento"}       type={"date"}   name={"data"}          id={"idata"}          setValue={setDataEvento}    />
                     <Campo msg={"Número de convidados"} type={"number"} name={"qtdconvidados"} id={"iqtdconvidados"} setValue={setQtdConvidados} />
                     <Campo msg={"Horário de início"}    type={"time"}   name={"horainicio"}    id={"ihorainicio"}    setValue={setHoraInicio}    />
@@ -188,7 +189,6 @@ function T02_Orcamento() {
                     <Campo msg={"Rua / Logradouro"} type={"text"} name={"rua"}    id={"irua"}    setValue={setRua}       /> 
                     <Campo msg={"Número"}           type={"text"} name={"numero"} id={"inumero"} setValue={setNumero}    /> 
                     
-
                     { opcoesTipoLocal &&
                     <Select
                         msg={"Tipo local"}
@@ -241,9 +241,16 @@ function T02_Orcamento() {
                         "eOrcamento"      : "true",
                         "dataAprovacao"   : "",
                         "cliente"         : {"cpf" : cpf},
-                        "pacoteServico"   : {"id"  : pacote},
-                        "tipoLocal"       : {"id"  : tipoLocal}
+                        "pacoteServico"   : {"id"  : Number(pacote)},
+                        "tipoLocal"       : {"id"  : Number(tipoLocal)}
                     })
+
+                    
+                    console.log("=========================================")
+                    console.log("cpf ID -> " + cpf)
+                    console.log("pacote ID -> " + pacote)
+                    console.log("tipoLocal ID -> " + tipoLocal)
+                    console.log("=========================================")
                 }}
             />
 

@@ -1,3 +1,3 @@
 import api from "../api";
 
-export const adicionarSolicitacaoServico = () => api.post("/solicitacaoservico");
+export const adicionarSolicitacaoServico = (body) => api.post("/solicitacaoservico", body);

@@ -1,5 +1,7 @@
 package br.com.harmonicgroup.sigsmu_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.harmonicgroup.sigsmu_backend.service.CustoService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -54,6 +56,7 @@ public class Custo {
     private String desconto;
 
     // Associativas
+    @JsonIgnore
     @OneToOne(mappedBy = "custo")
     private SolicitacaoServico solicitacaoServico;
 

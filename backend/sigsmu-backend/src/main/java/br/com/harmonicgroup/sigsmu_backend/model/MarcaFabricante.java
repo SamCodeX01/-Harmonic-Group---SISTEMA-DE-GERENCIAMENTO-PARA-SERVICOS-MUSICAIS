@@ -2,6 +2,8 @@ package br.com.harmonicgroup.sigsmu_backend.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.harmonicgroup.sigsmu_backend.service.MarcaFabricanteService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,6 +28,7 @@ public class MarcaFabricante {
     private String nome;
 
     //Associativas
+    @JsonIgnore
     @OneToMany(mappedBy = "marcaFabricante")
     private List<Instrumento> instrumentos;
 

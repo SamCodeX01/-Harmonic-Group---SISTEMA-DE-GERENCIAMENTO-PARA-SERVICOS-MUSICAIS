@@ -2,6 +2,8 @@ package br.com.harmonicgroup.sigsmu_backend.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.harmonicgroup.sigsmu_backend.service.GestorService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,6 +31,7 @@ public class Gestor {
     private String senha;
 
     // Associativas
+    @JsonIgnore
     @OneToMany(mappedBy = "gestor")
     private List<SolicitacaoServico> solicitacoesServico;
 

@@ -3,6 +3,8 @@ package br.com.harmonicgroup.sigsmu_backend.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.harmonicgroup.sigsmu_backend.service.TipoServicoService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,6 +29,7 @@ public class TipoServico {
     private String nome;
 
     // Associativas
+    @JsonIgnore
     @OneToMany(mappedBy = "tipoServico")
     private List<PacoteServico> pacotesServico;
 

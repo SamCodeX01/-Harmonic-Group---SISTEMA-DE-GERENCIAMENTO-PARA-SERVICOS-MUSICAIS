@@ -7,9 +7,17 @@ import Select from "../../../components/Select";
 // Importações do React
 import React, { use, useEffect, useState } from "react";
 
+// Importações dos serviços
+import { dadosCliente, dadosSolicitacao } from "../../../services/globalData";
+import { adicionarCliente } from "../../../services/TelaOrcamento/ClienteService";
+import { adicionarSolicitacaoServico } from "../../../services/TelaOrcamento/SolicitacaoServicoService"
+
 import EventoItem from "../../../components/EventoItem"
 import getConfig from "./T03_repertorio_config";
 import Botao from "../../../components/Botao";
+
+
+
 
 // import T09_Footer from "./T09_Footer";
 // import footer from "../imagens_site/footer.png"
@@ -18,14 +26,11 @@ import Botao from "../../../components/Botao";
 // TERMINAR   TERMINAR   TERMINAR   TERMINAR  TERMINAR  TERMINAR  TERMINAR
 function T03_Repertorio() {
 
-    useEffect(() => {
-        const dadosDeOrcamento = getConfig("get")
-
-        setTimeout(() => {
-            console.log("infoCliente -> ", dadosDeOrcamento);
-        }, 1000);
-
-    }, [])
+    // Contém todos os dados informados pelo cliente até então
+    const dadosTelaOrcamento = {
+        cliente     : dadosCliente.get(),
+        solicitacao : dadosSolicitacao.get()
+    }
     
 
     const [servico, setServico] = useState("casamento") // string por enquanto (->id)
@@ -67,6 +72,20 @@ function T03_Repertorio() {
             <Botao msg={"SOLICITAR"}
                 executarComando={() => {
                     alert("Cadastro concluído!")
+                    
+                    // Object.entries(dadosTelaOrcamento.cliente).map(([txt, valor]) => {
+                    //     console.log(txt + " -> " + valor)
+                    // }) // Mostra os dados do cliente
+
+                    console.log("===========================")
+
+                    Object.entries(dadosTelaOrcamento.solicitacao).map(([txt, valor]) => {
+                        console.log(txt + " -> " + valor)
+                    }) // Mostra os dados da solicitação de serviço
+
+                    adicionarCliente(dadosTelaOrcamento.cliente)
+                    adicionarSolicitacaoServico(dadosTelaOrcamento.solicitacao)
+                    
                 }}
             />
 

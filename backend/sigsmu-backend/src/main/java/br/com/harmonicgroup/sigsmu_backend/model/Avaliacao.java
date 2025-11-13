@@ -1,5 +1,7 @@
 package br.com.harmonicgroup.sigsmu_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.harmonicgroup.sigsmu_backend.service.AvaliacaoService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,6 +32,7 @@ public class Avaliacao {
     private String descricao;
 
     //Associativas
+    @JsonIgnore
     @OneToOne(mappedBy = "avaliacao")
     private SolicitacaoServico solicitacaoServico;
 

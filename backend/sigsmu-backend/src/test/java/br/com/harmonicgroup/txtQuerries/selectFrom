@@ -5,6 +5,7 @@ SELECT * FROM ass_musicas_escolhidas
 
 SELECT * FROM cliente
 SELECT * FROM avaliacao
+
 SELECT * FROM solicitacao_servico
 SELECT * FROM pacote_servico
 SELECT * FROM tipo_servico

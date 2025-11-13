@@ -2,6 +2,8 @@ package br.com.harmonicgroup.sigsmu_backend.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.harmonicgroup.sigsmu_backend.service.ClienteService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,6 +37,7 @@ public class Cliente {
     private String endereco;
 
     // Associativas
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<SolicitacaoServico> solicitacoesServico;
 

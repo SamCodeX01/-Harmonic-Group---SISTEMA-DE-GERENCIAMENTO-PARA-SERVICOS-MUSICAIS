@@ -1,19 +1,18 @@
+// Importações do React
 import { useState } from "react"
 
-// Vou criar vários useStates aqui para conter o valor de cada entidade (menos as de tela específica como BD).
-// Quando for adicionar valor, uso setState; Quando quiser recuperar em alguma tela, uso getState 
+////////////////////////////////////////////////////////////////
+let // Variáveis que armazenam os dados preenchidos pelo cliente
+    infoCliente, 
+    infoSolicitacao
+; 
 
-const [infoClientes, setInfoClientes] = useState()
-const [infoOutro, setInfoOutro] = useState()
-
-const dataCliente = {
-    get : infoClientes,
-    set : setInfoClientes
+export const dadosCliente = {
+    get : ()     => { return infoCliente },
+    set : (dado) => { infoCliente = dado }
 }
 
-const dataOutro = {
-    get : infoOutro,
-    set : setInfoOutro
+export const dadosSolicitacao = {
+    get : ()     => { return infoSolicitacao },
+    set : (dado) => { infoSolicitacao = dado }
 }
-
-export { dataCliente, dataOutro }
