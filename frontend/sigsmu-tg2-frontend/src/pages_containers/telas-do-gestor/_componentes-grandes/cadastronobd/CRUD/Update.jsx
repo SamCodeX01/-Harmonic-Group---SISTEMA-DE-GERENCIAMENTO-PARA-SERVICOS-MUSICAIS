@@ -5,7 +5,7 @@ import { atualizarTipoServico } from "../../../../../services/BancoDadosGestor/T
 import { atualizarMeioPagamento } from "../../../../../services/BancoDadosGestor/MeioPagamentoService"
 import { atualizarRepertorio } from "../../../../../services/BancoDadosGestor/RepertorioService"
 import { atualizarStatus } from "../../../../../services/BancoDadosGestor/StatusSolicitacaoService"
-import { atualizarTipoLocal } from "../../../../../services/BancoDadosGestor/TipoLocalService"
+import {atualizarTipoLocal} from "../../../../../services/BancoDadosGestor/TipoLocalService"
     
 function Update(tabela, campo, input) {
 
