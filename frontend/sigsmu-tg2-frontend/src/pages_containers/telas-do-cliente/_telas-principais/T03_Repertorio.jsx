@@ -8,7 +8,7 @@ import Select from "../../../components/Select";
 import React, { use, useEffect, useState } from "react";
 
 // Importações dos serviços
-import { dadosCliente, dadosSolicitacao } from "../../../services/globalData";
+import { dadosCliente, dadosSolicitacao } from "../../../services/GlobalData";
 import { adicionarCliente } from "../../../services/TelaOrcamento/ClienteService";
 import { adicionarSolicitacaoServico } from "../../../services/TelaOrcamento/SolicitacaoServicoService"
 
