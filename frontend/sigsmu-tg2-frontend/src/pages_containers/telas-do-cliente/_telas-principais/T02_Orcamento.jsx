@@ -14,8 +14,7 @@ import { useEffect, useState } from "react";
 import { listarTiposLocal } from "../../../services/TelaOrcamento/TipoLocalService";
 import { listarPacotesServico } from "../../../services/TelaOrcamento/PacoteServicoService";
 
-import { dadosCliente, dadosSolicitacao } from "../../../services/globalData";
-
+import { dadosCliente, dadosSolicitacao } from "../../../services/GlobalData";
 
 // Tela responsável por iniciar os FORMULÁRIOS DE ORÇAMENTO para o cliente
 function T02_Orcamento() {
