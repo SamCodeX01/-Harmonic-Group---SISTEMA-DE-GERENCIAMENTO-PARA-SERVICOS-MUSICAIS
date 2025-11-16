@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 
 import t03_carrossel from "./t03_carrossel.module.css";
+import globaLData from "../../services/GlobalData"
 
 import flores from "../imagens_site/flores.jpg"
 import wedding from "../imagens_site/wedding.jpg"
