@@ -1,6 +1,4 @@
-import api from "../api";
-
-export const listarTiposLocal = () => api.get("/tipolocal");
-export const adicionarTipoLocal = (body) => api.post("/tipolocal", body);
-export const atualizarTipoLocal = (id, body) => api.patch(`/tipolocal/${id}`, body);
-export const excluirTipoLocal = (id) => api.delete(`/tipolocal/${id}`);
+﻿export const adicionarTipoLocal = async (body) => ({ success: true });
+export const atualizarTipoLocal = async (id, body) => ({ success: true });
+export const listarTiposLocal = async () => [];
+export const excluirTipoLocal = async (id) => ({ success: true });
