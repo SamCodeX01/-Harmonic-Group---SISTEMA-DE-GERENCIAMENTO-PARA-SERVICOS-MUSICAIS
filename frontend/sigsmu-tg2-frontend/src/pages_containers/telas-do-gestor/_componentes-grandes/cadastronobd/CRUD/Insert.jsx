@@ -1,11 +1,11 @@
 // Importações do CRUD API
-import { adicionarPacoteServico } from "../../../../../services/BancoDadosGestor/PacoteServicoService.js"
-import { adicionarInstrumento } from "../../../../../services/BancoDadosGestor/InstrumentoService.js"
-import { adicionarTipoServico } from "../../../../../services/BancoDadosGestor/TipoServicoService.js"
-import { adicionarMeioPagamento } from "../../../../../services/BancoDadosGestor/MeioPagamentoService.js"
-import { adicionarRepertorio } from "../../../../../services/BancoDadosGestor/RepertorioService.js"
-import { adicionarStatus } from "../../../../../services/BancoDadosGestor/StatusSolicitacaoService.js"
-import { adicionarTipoLocal } from "../../../../../services/BancoDadosGestor/TipoLocalService.js"
+import { adicionarPacoteServico } from "../../../../../../services/BancoDadosGestor/PacoteServicoService.js"
+import { adicionarInstrumento } from "../../../../../../services/BancoDadosGestor/InstrumentoService.js"
+import { adicionarTipoServico } from "../../../../../../services/BancoDadosGestor/TipoServicoService.js"
+import { adicionarMeioPagamento } from "../../../../../../services/BancoDadosGestor/MeioPagamentoService.js"
+import { adicionarRepertorio } from "../../../../../../services/BancoDadosGestor/RepertorioService.js"
+import { adicionarStatus } from "../../../../../../services/BancoDadosGestor/StatusSolicitacaoService.js"
+import { adicionarTipoLocal } from "../../../../../../services/BancoDadosGestor/TipoLocalService.js"
 
 // Importações do React
 import { useEffect } from "react"
