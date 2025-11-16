@@ -5,13 +5,13 @@ import selectCSS from "./CSS/select.module.css"
 import { useState, useEffect } from "react"
 
 // Importações do CRUD API
-import { listarPacotesServico } from "../../../../../../services/BancoDadosGestor/PacoteServicoService.js"
-import { listarInstrumentos } from "../../../../../../services/BancoDadosGestor/InstrumentoService.js"
-import { listarTiposServico } from "../../../../../../services/BancoDadosGestor/TipoServicoService.js"
-import { listarMeiosPagamento } from "../../../../../../services/BancoDadosGestor/MeioPagamentoService.js"
-import { listarRepertorios } from "../../../../../../services/BancoDadosGestor/RepertorioService.js"
-import { listarStatus } from "../../../../../../services/BancoDadosGestor/StatusSolicitacaoService.js"
-import { listarTiposLocal } from "../../../../../../services/BancoDadosGestor/TipoLocalService.js"
+import { listarPacotesServico } from "@services/BancoDadosGestor/PacoteServicoService.js"
+import { listarInstrumentos } from "@services/BancoDadosGestor/InstrumentoService.js"
+import { listarTiposServico } from "@services/BancoDadosGestor/TipoServicoService.js"
+import { listarMeiosPagamento } from "@services/BancoDadosGestor/MeioPagamentoService.js"
+import { listarRepertorios } from "@services/BancoDadosGestor/RepertorioService.js"
+import { listarStatus } from "@services/BancoDadosGestor/StatusSolicitacaoService.js"
+import { listarTiposLocal } from "@services/BancoDadosGestor/TipoLocalService.js"
 
 
 // Função que retona o resultado de um SELECT no banco quando uma tabela é selecionada
