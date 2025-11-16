@@ -1,6 +1,6 @@
 // components/SejaParceiro.jsx
 import React from 'react';
-import sejaParceiroCss from './t13_SejaParceiro.module.css';
+import sejaParceiroCss from './t13_sejaParceiro.module.css';
 
 const SejaParceiro = () => {
   return (
