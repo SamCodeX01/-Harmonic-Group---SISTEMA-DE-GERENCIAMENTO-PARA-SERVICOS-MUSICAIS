@@ -212,7 +212,6 @@ const BotAssistant = () => {
 
     'corporativo': 'Para eventos corporativos, oferecemos jazz, bossa nova e MPB para coquetéis, ou bandas versáteis para confraternizações! 💼',
     'empresarial': 'Para eventos corporativos, oferecemos jazz, bossa nova e MPB para coquetéis, ou bandas versáteis para confraternizações! 💼',
-    'empresa': 'Para eventos corporativos, oferecemos jazz, bossa nova e MPB para coquetéis, ou bandas versáteis para confraternizações! 💼',
 
     'jantar': 'Para jantares privados, recomendamos música suave como jazz, piano ou violão! Cria uma atmosfera sofisticada. 🍷',
     'jantares': 'Para jantares privados, recomendamos música suave como jazz, piano ou violão! Cria uma atmosfera sofisticada. 🍷',
