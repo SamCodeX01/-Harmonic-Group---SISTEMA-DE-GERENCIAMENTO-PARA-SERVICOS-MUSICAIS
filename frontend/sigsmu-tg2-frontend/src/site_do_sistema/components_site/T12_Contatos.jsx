@@ -1,6 +1,6 @@
 // components/Contatos.jsx
 import React from 'react';
-import contatosCss from './T12_Contatos.module.css';
+import contatosCss from './t12_contatos.module.css';
 
 const Contatos = () => {
   return (
