@@ -1,11 +1,11 @@
 // Importações do CRUD API
-import { atualizarPacoteServico } from "../../../../../services/BancoDadosGestor/PacoteServicoService"
-import { atualizarInstrumento } from "../../../../../services/BancoDadosGestor/InstrumentoService"
-import { atualizarTipoServico } from "../../../../../services/BancoDadosGestor/TipoServicoService"
-import { atualizarMeioPagamento } from "../../../../../services/BancoDadosGestor/MeioPagamentoService"
-import { atualizarRepertorio } from "../../../../../services/BancoDadosGestor/RepertorioService"
-import { atualizarStatus } from "../../../../../services/BancoDadosGestor/StatusSolicitacaoService"
-import {atualizarTipoLocal} from "../../../../../services/BancoDadosGestor/TipoLocalService"
+import { atualizarPacoteServico } from "../../../../../services/BancoDadosGestor/PacoteServicoService.js"
+import { atualizarInstrumento } from "../../../../../services/BancoDadosGestor/InstrumentoService.js"
+import { atualizarTipoServico } from "../../../../../services/BancoDadosGestor/TipoServicoService.js"
+import { atualizarMeioPagamento } from "../../../../../services/BancoDadosGestor/MeioPagamentoService.js"
+import { atualizarRepertorio } from "../../../../../services/BancoDadosGestor/RepertorioService.js"
+import { atualizarStatus } from "../../../../../services/BancoDadosGestor/StatusSolicitacaoService.js"
+import {atualizarTipoLocal} from "../../../../../services/BancoDadosGestor/TipoLocalService.js"
     
 function Update(tabela, campo, input) {
 
