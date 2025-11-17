@@ -1,7 +1,14 @@
 // components/MusicianDashboard.jsx
-import React, { useState, useEffect } from 'react';
+
+// Importações de estilos
 import t01_painelAgendaCss from './CSS/t01_painelAgendamentos.module.css';
-import Botao from '../../components/Botao';
+
+// Importações de componentes
+import Botao from 'components/Botao.jsx';
+
+// Importações do React
+import React, { useState, useEffect } from 'react';
+
 
 // Dados mockados para demonstração
 const mockAgendamentos = [

@@ -38,9 +38,16 @@
 // export default T03_SolicitacoesServico;
 
 // components/T03_SolicitacoesServico.jsx
-import React, { useState } from "react";
+
+// Importações de estilos
 import t03_solicitacoesServico from "./CSS/t03_solicitacoesServico.module.css";
-import BotoesSolicitacoesGestor from "../_componentes-grandes/historico/BotoesSolicitacoesGestor";
+
+// Importações de componentes
+import BotoesSolicitacoesGestor from "../_componentes-grandes/historico/BotoesSolicitacoesGestor.jsx";
+
+// Importações do React
+import React, { useState } from "react";
+
 
 // nome/cell/email - cliente
 const dadosRetornados = 3

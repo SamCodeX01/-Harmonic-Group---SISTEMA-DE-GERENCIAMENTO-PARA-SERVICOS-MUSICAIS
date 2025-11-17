@@ -1,5 +1,5 @@
 // Importação das rotas
-import Rotas from './routes/Rotas';
+import Rotas from './routes/Rotas.jsx';
 
 
 function App() {

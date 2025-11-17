@@ -1,11 +1,21 @@
 // Importações do CRUD API
-import { excluirPacoteServico } from "@services/BancoDadosGestor/PacoteServicoService.js"
-import { excluirInstrumento } from "@services/BancoDadosGestor/InstrumentoService.js"
-import { excluirTipoServico } from "@services/BancoDadosGestor/TipoServicoService.js"
-import { excluirMeioPagamento } from "@services/BancoDadosGestor/MeioPagamentoService.js"
-import { excluirRepertorio } from "@services/BancoDadosGestor/RepertorioService.js"
-import { excluirStatus } from "@services/BancoDadosGestor/StatusSolicitacaoService.js"
-import { excluirTipoLocal } from "@services/BancoDadosGestor/TipoLocalService.js"
+import { excluirPacoteServico } from "services/BancoDadosGestor/PacoteServicoService.js"
+import { excluirInstrumento }   from "services/BancoDadosGestor/InstrumentoService.js"
+import { excluirTipoServico }   from "services/BancoDadosGestor/TipoServicoService.js"
+import { excluirMeioPagamento } from "services/BancoDadosGestor/MeioPagamentoService.js"
+import { excluirRepertorio }    from "services/BancoDadosGestor/RepertorioService.js"
+import { excluirStatus }        from "services/BancoDadosGestor/StatusSolicitacaoService.js"
+import { excluirTipoLocal }     from "services/BancoDadosGestor/TipoLocalService.js"
+
+// Importações do CRUD API
+// import { excluirPacoteServico } from "@services/BancoDadosGestor/PacoteServicoService.js"
+// import { excluirInstrumento }   from "@services/BancoDadosGestor/InstrumentoService.js"
+// import { excluirTipoServico }   from "@services/BancoDadosGestor/TipoServicoService.js"
+// import { excluirMeioPagamento } from "@services/BancoDadosGestor/MeioPagamentoService.js"
+// import { excluirRepertorio }    from "@services/BancoDadosGestor/RepertorioService.js"
+// import { excluirStatus }        from "@services/BancoDadosGestor/StatusSolicitacaoService.js"
+// import { excluirTipoLocal }     from "@services/BancoDadosGestor/TipoLocalService.js"
+
 
 function Delete(tabela, id) {
 

@@ -1,5 +1,5 @@
 // Importações de estilos
-import tabelagestor from "./CSS/tabelagestor.module.css"
+// import tabelagestor from "./CSS/tabelagestor.module.css"
 
 // Importações de componentes
 // import Botao from "../forms/Botao";

@@ -26,8 +26,13 @@
 // }
 // export default BotoesSolicitacoesGestor;
 // components/BotoesSolicitacoesGestor.jsx
-import React, { useState } from "react";
+
+// Importações de estilos
 import botoessolicitacoesgestor from "./CSS/botoessolicitacoesgestor.module.css";
+
+// Importações do React
+import React, { useState } from "react";
+
 
 function BotoesSolicitacoesGestor({ solicitacaoSelecionada }) {
   const [loadingStates, setLoadingStates] = useState({});

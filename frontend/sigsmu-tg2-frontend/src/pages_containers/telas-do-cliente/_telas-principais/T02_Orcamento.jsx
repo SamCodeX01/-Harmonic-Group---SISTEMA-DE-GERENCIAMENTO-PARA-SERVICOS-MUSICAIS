@@ -2,19 +2,22 @@
 import t02_orcamento from "./CSS/t02_orcamento.module.css"
 
 // Importações de componentes
-import T09_Footer from '../../../site_do_sistema/components_site/T09_Footer'
-import Botao from "../../../components/Botao";
-import Campo from "../../../components/Campo";
-import Select from "../../../components/Select";
+import Botao     from "components/Botao.jsx";
+import Campo     from "components/Campo.jsx";
+import Select    from "components/Select.jsx";
+// import T09_Footer from '../../../site_do_sistema/components_site/T09_Footer.jsx'
 
-import footerImg from "../../../site_do_sistema/imagens_site/footer.png"
-import { useEffect, useState } from "react";
+// Importações de imagens
+import footerImg from "site_do_sistema/imagens_site/footer.png"
 
 // Importação dos serviços
-import { listarTiposLocal } from "../../../services/TelaOrcamento/TipoLocalService";
-import { listarPacotesServico } from "../../../services/TelaOrcamento/PacoteServicoService";
+import { listarTiposLocal }               from "services/TelaOrcamento/TipoLocalService.js";
+import { listarPacotesServico }           from "services/TelaOrcamento/PacoteServicoService.js";
+import { dadosCliente, dadosSolicitacao } from "services/GlobalData.js";
 
-import { dadosCliente, dadosSolicitacao } from "../../../services/GlobalData";
+// Importações do React
+import { useEffect, useState }            from "react";
+
 
 // Tela responsável por iniciar os FORMULÁRIOS DE ORÇAMENTO para o cliente
 function T02_Orcamento() {

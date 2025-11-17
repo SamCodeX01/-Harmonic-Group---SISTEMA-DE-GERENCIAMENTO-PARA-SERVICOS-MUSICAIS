@@ -2,12 +2,12 @@
 import t01_header from "./CSS/t01_header.module.css"
 
 // Importações de componentes
-import Botao from "../../../components/Botao";
-import Radio from "../../../components/Radio";
+import Botao from "components/Botao.jsx";
+import Radio from "components/Radio.jsx";
 
 // Importações do React
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation }         from "react-router-dom";
 
 
 // Componente utilizado como HEADER em todas as telas do gestor, direcionando para a tela que o gestor escolher

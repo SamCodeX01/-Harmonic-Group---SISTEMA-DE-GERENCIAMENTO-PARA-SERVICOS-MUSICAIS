@@ -2,7 +2,9 @@
 import t06_historico from "./CSS/t06_historico.module.css"
 
 // Importações de componentes
-import Cards from "../_componentes-grandes/_compartilhados/Cards";
+import Cards from "../_componentes-grandes/_compartilhados/Cards.jsx";
+
+// Importações do React
 import { useState } from "react";
 
 

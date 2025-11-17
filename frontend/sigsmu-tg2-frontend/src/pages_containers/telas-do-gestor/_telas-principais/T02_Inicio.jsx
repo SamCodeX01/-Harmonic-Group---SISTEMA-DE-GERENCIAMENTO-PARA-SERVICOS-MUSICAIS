@@ -2,7 +2,7 @@
 import t02_inicio from "./CSS/t02_inicio.module.css"
 
 // Importações de componentes
-import Lado from "../_componentes-grandes/indicadores/Lado";
+import Lado from "../_componentes-grandes/indicadores/Lado.jsx";
 
 
 // Tela de INÍCIO - para auxiliar o gestor com gráficos e análises de desempenho relativos a qualidade dos serviços prestados

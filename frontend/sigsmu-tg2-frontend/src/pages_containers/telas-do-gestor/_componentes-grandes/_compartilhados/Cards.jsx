@@ -2,7 +2,7 @@
 import cards from "./CSS/cards.module.css"
 
 // Importações de componentes
-import BotoesSolicitacoesGestor from "../historico/BotoesSolicitacoesGestor";
+import BotoesSolicitacoesGestor from "../historico/BotoesSolicitacoesGestor.jsx";
 
 
 // DESCRIÇÃO...

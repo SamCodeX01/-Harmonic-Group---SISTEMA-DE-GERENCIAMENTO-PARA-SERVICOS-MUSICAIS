@@ -2,7 +2,7 @@
 import botao from "./CSS/botao.module.css"
 
 // Importações do React
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 // Componente criado para FACILITAR A PASSAGEM DE PARÂMETROS para um botão comum

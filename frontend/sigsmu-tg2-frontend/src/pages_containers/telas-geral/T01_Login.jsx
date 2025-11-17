@@ -5,8 +5,8 @@ import t01_login from "./CSS/t01_login.module.css"
 import logo1 from "./logo1.jpeg"
 
 // Importações de componentes
-import Botao from "../../components/Botao.jsx";
-import Campo from "../../components/Campo.jsx";
+import Botao from "components/Botao.jsx";
+import Campo from "components/Campo.jsx";
 
 
 // Tela de LOGIN - para que usuários logem no sistema e vejam configurações específicas para cada tipo de perfil

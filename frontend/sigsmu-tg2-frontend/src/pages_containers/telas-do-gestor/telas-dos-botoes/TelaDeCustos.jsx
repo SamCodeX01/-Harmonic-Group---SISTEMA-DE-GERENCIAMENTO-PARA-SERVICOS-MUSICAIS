@@ -2,9 +2,9 @@
 import css from "./CSS/teladecustos.module.css"
 
 // Importações de componentes
-import Botao from "../../../components/Botao"
-import Campo from "../../../components/Campo"
-import Radio from "../../../components/Radio"
+import Botao from "components/Botao.jsx"
+import Campo from "components/Campo.jsx"
+import Radio from "components/Radio.jsx"
 
 // Importações do React
 import { useEffect, useState } from "react"

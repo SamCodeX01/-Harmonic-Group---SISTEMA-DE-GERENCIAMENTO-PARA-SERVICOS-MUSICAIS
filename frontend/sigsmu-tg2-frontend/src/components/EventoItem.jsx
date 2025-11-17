@@ -1,5 +1,9 @@
-import React, { use, useState } from "react";
-import eventoItemCss from "../components/CSS/eventoItem.module.css"
+// Importações de estilos
+import eventoItemCss from "./CSS/eventoItem.module.css"
+
+// Importações do React
+import React, { useState } from "react";
+
 
 function EventoItem({ evento, setMusicas }) {
     const [partesAbertas, setPartesAbertas] = useState({});

@@ -2,48 +2,45 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 //Teste apagar depois
-import T00_TESTES from '../pages_containers/telas-geral/T00_TESTES.jsx';
-import T00_ChatBot from '../site_do_sistema/components_site/T00_ChatBot.jsx';
+import T00_TESTES        from 'pages_containers/telas-geral/T00_TESTES.jsx';
+import T00_ChatBot       from 'site_do_sistema/components_site/T00_ChatBot.jsx';
 
 // Rotas do Cliente (rota inicial)
-import Site from '../site_do_sistema/Site.jsx';
-import T01_HeaderCliente from '../site_do_sistema/components_site/T01_Header.jsx';
-import T01_Inicio from "../pages_containers/telas-do-cliente/_telas-principais/T01_Inicio";
-import T02_Orcamento from "../pages_containers/telas-do-cliente/_telas-principais/T02_Orcamento";
-import T03_Repertorio from "../pages_containers/telas-do-cliente/_telas-principais/T03_Repertorio";
-import T09_Footer from '../site_do_sistema/components_site/T09_Footer.jsx';
-import T11_Sugestao from "../site_do_sistema/components_site/T11_Sugestao.jsx" //
-import T10_servicos from "../site_do_sistema/components_site/T10_Servicos.jsx" //
-import T12_Contatos from "../site_do_sistema/components_site/T12_Contatos.jsx"
-import T13_SejaParceiro from "../site_do_sistema/components_site/T13_SejaParceiro.jsx"
-import T14_GaleriaFotos from "../site_do_sistema/components_site/T14_GaleriaFotos.jsx"
+import Site              from 'site_do_sistema/Site.jsx';
+import T01_HeaderCliente from 'site_do_sistema/components_site/T01_Header.jsx';
+import T01_Inicio        from "pages_containers/telas-do-cliente/_telas-principais/T01_Inicio.jsx";
+import T02_Orcamento     from "pages_containers/telas-do-cliente/_telas-principais/T02_Orcamento.jsx";
+import T03_Repertorio    from "pages_containers/telas-do-cliente/_telas-principais/T03_Repertorio.jsx";
+import T09_Footer        from 'site_do_sistema/components_site/T09_Footer.jsx';
+import T11_Sugestao      from "site_do_sistema/components_site/T11_Sugestao.jsx" //
+import T10_servicos      from "site_do_sistema/components_site/T10_Servicos.jsx" //
+import T12_Contatos      from "site_do_sistema/components_site/T12_Contatos.jsx"
+import T13_SejaParceiro  from "site_do_sistema/components_site/T13_SejaParceiro.jsx"
+import T14_GaleriaFotos  from "site_do_sistema/components_site/T14_GaleriaFotos.jsx"
 
 // Rotas Intranet
-import T01_Login from '../pages_containers/telas-geral/T01_Login.jsx';
-import T02_Cadastro from '../pages_containers/telas-geral/T02_Cadastro.jsx';
-import T03_Poslogin from '../pages_containers/telas-geral/T03_Poslogin.jsx';
+import T01_Login         from 'pages_containers/telas-geral/T01_Login.jsx';
+import T02_Cadastro      from 'pages_containers/telas-geral/T02_Cadastro.jsx';
+import T03_Poslogin      from 'pages_containers/telas-geral/T03_Poslogin.jsx';
 
 
 // Rotas do Gestor
-import T01_HeaderGestor from '../pages_containers/telas-do-gestor/_telas-principais/T01_Header.jsx';
-import T02_Inicio from "../pages_containers/telas-do-gestor/_telas-principais/T02_Inicio";
-import T03_SolicitacoesServico from "../pages_containers/telas-do-gestor/_telas-principais/T03_SolicitacoesServico";
-import T04_BancoDeDados from "../pages_containers/telas-do-gestor/_telas-principais/T04_BancoDeDados";
-import T05_Permissoes from "../pages_containers/telas-do-gestor/_telas-principais/T05_Permissoes";
-import T06_Historico from "../pages_containers/telas-do-gestor/_telas-principais/T06_Historico";
+import T01_HeaderGestor         from 'pages_containers/telas-do-gestor/_telas-principais/T01_Header.jsx';
+import T02_Inicio               from "pages_containers/telas-do-gestor/_telas-principais/T02_Inicio.jsx";
+import T03_SolicitacoesServico  from "pages_containers/telas-do-gestor/_telas-principais/T03_SolicitacoesServico.jsx";
+import T04_BancoDeDados         from "pages_containers/telas-do-gestor/_telas-principais/T04_BancoDeDados.jsx";
+import T05_Permissoes           from "pages_containers/telas-do-gestor/_telas-principais/T05_Permissoes.jsx";
+import T06_Historico            from "pages_containers/telas-do-gestor/_telas-principais/T06_Historico.jsx";
 
-import TelaAlteracaoContrato from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaAlteracaoContrato";
-import TelaAtribuicaoAutomatica from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaAtribuicaoAutomatica";
-import TelaAtribuicaoManual from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaAtribuicaoManual";
-import TelaDeCustos from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaDeCustos";
-import TelaEnvioDevolutiva from "../pages_containers/telas-do-gestor/telas-dos-botoes/TelaEnvioDevolutiva";
-// import AgrupamentoOpcoes from '../components/AgrupamentoOpcoes.jsx';
-import EventoItem from '../components/EventoItem.jsx';
-
+import TelaAlteracaoContrato    from "pages_containers/telas-do-gestor/telas-dos-botoes/TelaAlteracaoContrato.jsx";
+import TelaAtribuicaoAutomatica from "pages_containers/telas-do-gestor/telas-dos-botoes/TelaAtribuicaoAutomatica.jsx";
+import TelaAtribuicaoManual     from "pages_containers/telas-do-gestor/telas-dos-botoes/TelaAtribuicaoManual.jsx";
+import TelaDeCustos             from "pages_containers/telas-do-gestor/telas-dos-botoes/TelaDeCustos.jsx";
+import TelaEnvioDevolutiva      from "pages_containers/telas-do-gestor/telas-dos-botoes/TelaEnvioDevolutiva.jsx";
 
 // Rotas do músico
-import T01_painelAgendamentos from '../pages_containers/telas-do-musico/T01_PainelAgendamentos.jsx';
-import T02_CadastroInstrumentos from '../pages_containers/telas-do-musico/T02_CadastroInstrumentos.jsx';
+import T01_painelAgendamentos   from 'pages_containers/telas-do-musico/T01_PainelAgendamentos.jsx';
+import T02_CadastroInstrumentos from 'pages_containers/telas-do-musico/T02_CadastroInstrumentos.jsx';
 
 
 // Salvador de vidas - amo o useLocation(☺)

@@ -2,10 +2,11 @@
 import t02_cadastro from "./CSS/t02_cadastro.module.css"
 
 // Importações de componentes
-import Campo from "../../components/Campo";
+import Campo from "components/Campo.jsx";
 
 // Importações do React
 import { useState } from "react";
+
 
 // Tela de CADASTRO DE USUÁRIOS - para que usuários se cadastrem no sistema como clientes/músicos/gestores.
 function T02_Cadastro() {

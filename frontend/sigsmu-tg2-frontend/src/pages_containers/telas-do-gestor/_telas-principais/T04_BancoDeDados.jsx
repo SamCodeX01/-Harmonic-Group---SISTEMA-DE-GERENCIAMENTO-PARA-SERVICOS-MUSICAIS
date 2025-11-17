@@ -2,20 +2,20 @@
 import t04_bancoDeDados from "./CSS/t04_bancoDeDados.module.css"
 
 // Importação de componentes
-import Botao from "../../../components/Botao"
-import Radio from "../../../components/Radio"
+import Botao from "components/Botao.jsx"
+import Radio from "components/Radio.jsx"
 
 // Importação de componentes grandes
-import HelpDoGestor from "../_componentes-grandes/cadastronobd/HelpDoGestor"
+import HelpDoGestor from "../_componentes-grandes/cadastronobd/HelpDoGestor.jsx"
 
 // Importação das funções CRUD
-import Select from "../_componentes-grandes/cadastronobd/CRUD/Select"
-import Insert from "../_componentes-grandes/cadastronobd/CRUD/Insert"
-import Update from "../_componentes-grandes/cadastronobd/CRUD/Update"
-import Delete from "../_componentes-grandes/cadastronobd/CRUD/Delete"
- 
+import Select from "pages_containers/telas-do-gestor/_componentes-grandes/cadastronobd/CRUD/Select.jsx"
+import Insert from "pages_containers/telas-do-gestor/_componentes-grandes/cadastronobd/CRUD/Insert.jsx"
+import Update from "pages_containers/telas-do-gestor/_componentes-grandes/cadastronobd/CRUD/Update.jsx"
+import Delete from "pages_containers/telas-do-gestor/_componentes-grandes/cadastronobd/CRUD/Delete.jsx"
+
 // Importações do React
-import { use, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 
 // Tela de BANCO DE DADOS - para que gestores consigam cadastrar novos serviços/músicas/meios de pagamento/etc
@@ -23,13 +23,9 @@ function T04_BancoDeDados() {
 
 
 
-
-
     // FALTA DESMARCAR (DESCOLORIR) OS BOTÕES NÃO MAIS SELECIONADOS
     // FALTA VALIDAR AS ENTRADAS PRO BANCO (DADOS + ID / DADOS / ID) - adicionar alerts específicos
     // CRIAR CAMPO SOMENTE PARA ID EM DELETE
-
-
 
 
 

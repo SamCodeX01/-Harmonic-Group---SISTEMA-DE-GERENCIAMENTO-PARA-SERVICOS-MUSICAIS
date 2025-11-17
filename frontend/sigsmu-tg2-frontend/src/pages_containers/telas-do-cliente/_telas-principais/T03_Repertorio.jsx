@@ -2,26 +2,25 @@
 import t11_sugestaoCss from "./CSS/t03_repertorio.module.css"
 
 // Importações de componentes
-import Select from "../../../components/Select";
+import Botao      from "components/Botao.jsx";
+import Select     from "components/Select.jsx";
+import EventoItem from "components/EventoItem.jsx"
 
 // Importações do React
 import React, { use, useEffect, useState } from "react";
 
 // Importações dos serviços
-import { dadosCliente, dadosSolicitacao } from "../../../services/GlobalData";
-import { adicionarCliente } from "../../../services/TelaOrcamento/ClienteService";
-import { adicionarSolicitacaoServico } from "../../../services/TelaOrcamento/SolicitacaoServicoService"
+import { adicionarCliente }                from "services/TelaOrcamento/ClienteService.js";
+import { adicionarSolicitacaoServico }     from "services/TelaOrcamento/SolicitacaoServicoService.js";
+import { dadosCliente, dadosSolicitacao }  from "services/GlobalData.js";
 
-import EventoItem from "../../../components/EventoItem"
-import getConfig from "./T03_repertorio_config";
-import Botao from "../../../components/Botao";
-
-
+import getConfig from "./T03_repertorio_config.js";
 
 
 // import T09_Footer from "./T09_Footer";
 // import footer from "../imagens_site/footer.png"
 // import footerImg from "../../site_do_sistema/imagens_site/footer.png"
+
 
 // TERMINAR   TERMINAR   TERMINAR   TERMINAR  TERMINAR  TERMINAR  TERMINAR
 function T03_Repertorio() {

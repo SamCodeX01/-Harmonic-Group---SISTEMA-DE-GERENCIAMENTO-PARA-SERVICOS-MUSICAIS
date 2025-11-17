@@ -1,7 +1,13 @@
-import React from "react";
 // import AgrupamentoOpcoes from "../../components/AgrupamentoOpcoes";
-import EventoItem from "../../components/EventoItem";
-import T01_PainelAgendamentos from "../telas-do-musico/T01_PainelAgendamentos"; 
+
+// Importações de componentes
+import T01_PainelAgendamentos from "../telas-do-musico/T01_PainelAgendamentos.jsx"; 
+
+import EventoItem from "components/EventoItem.jsx";
+
+// Importações do React
+import React from "react";
+
 
 function T00_TESTES() {
        // Crie um evento de exemplo para testar

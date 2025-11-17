@@ -2,7 +2,7 @@
 import t03_poslogin from "./CSS/t03_poslogin.module.css"
 
 // Importações de componentes
-import Botao from "../../components/Botao";
+import Botao from "components/Botao.jsx";
 
 
 // Tela responsável por direcionar o usuário para sua rota correspondente

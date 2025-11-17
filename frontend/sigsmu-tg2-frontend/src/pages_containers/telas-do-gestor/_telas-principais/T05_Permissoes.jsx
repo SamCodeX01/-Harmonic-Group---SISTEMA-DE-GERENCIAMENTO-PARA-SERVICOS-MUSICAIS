@@ -1,6 +1,8 @@
 // Importações de estilos
-import { useState } from "react";
 import t05_permissoes from "./CSS/t05_permissoes.module.css"
+
+// Importações do React
+import { useState } from "react";
 
 
 // Tela de PERMISSÕES - para gerenciamento de permissões de usuários do sistema
