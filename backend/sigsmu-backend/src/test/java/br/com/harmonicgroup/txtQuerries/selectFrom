@@ -3,20 +3,44 @@ SELECT * FROM ass_instrumentos_do_musico
 SELECT * FROM ass_instrumentos_escolhidos
 SELECT * FROM ass_musicas_escolhidas
 
-SELECT * FROM cliente
 SELECT * FROM avaliacao
-
-SELECT * FROM solicitacao_servico
-SELECT * FROM pacote_servico
-SELECT * FROM tipo_servico
-SELECT * FROM tipo_local
-SELECT * FROM meio_pagamento
-SELECT * FROM custo
-SELECT * FROM repertorio
-SELECT * FROM gestor
-SELECT * FROM ensaio
-SELECT * FROM musico
-SELECT * FROM instrumento
 SELECT * FROM categoria
+SELECT * FROM cliente
+SELECT * FROM custo
+SELECT * FROM ensaio
+SELECT * FROM gestor
+SELECT * FROM instrumento
 SELECT * FROM marca_fabricante
+SELECT * FROM meio_pagamento
+SELECT * FROM musico
+SELECT * FROM pacote_servico
+SELECT * FROM repertorio
+SELECT * FROM solicitacao_servico
 SELECT * FROM status_solicitacao
+SELECT * FROM tipo_local
+SELECT * FROM tipo_servico
+
+=========================================================================
+
+SUGESTÃO CHAT
+✔ 2. Usar um MariaDB remoto (PlanetScale / Aiven / RailDB / Clever Cloud)
+E conectar seu backend hospedado nele.
+
+=========================================================================
+
+🟣 Se quiser muito testar o backend, existe um último truque:
+Você pode deixar sua API rodando num servidor online e consumir pelo React na faculdade.
+
+Exemplo:
+- Subir seu backend Spring no Railway
+- Subir seu MariaDB gratuito no Clever Cloud
+
+No PC da faculdade, só o frontend consome as rotas HTTPS
+Sem instalar nada local.
+
+Se quiser, posso:
+✅ montar sua API para deploy
+ou
+✅ colocar o MariaDB em um servidor remoto gratuito
+
+=========================================================================

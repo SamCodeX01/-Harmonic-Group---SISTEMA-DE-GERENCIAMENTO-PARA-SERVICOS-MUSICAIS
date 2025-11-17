@@ -43,20 +43,23 @@
 import t03_solicitacoesServico from "./CSS/t03_solicitacoesServico.module.css";
 
 // Importações de componentes
-import BotoesSolicitacoesGestor from "../_componentes-grandes/historico/BotoesSolicitacoesGestor.jsx";
+import BotoesSolicitacoesGestor from "../_componentes-grandes/historico/BotoesSolicitacoesGestor";
+
+// Importações da API
+// import { listarInstrumentos } from "../../../services/BancoDadosGestor/InstrumentoService";
+
+// Importações dos serviços
+import { listarSolicitacoes } from "services/SolicitacoesServico/SolicitacoesService.js";
 
 // Importações do React
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
-// nome/cell/email - cliente
-const dadosRetornados = 3
 
-const solicitacoes = [{},{}]
-const solicitacoes2 = {}
+
 
 // Dados mockados para demonstração
-const mockSolicitacoes = [
+const mockSolicitacoes2 = [
   {
     id: 1,
     idSolicitacao: "SOL-2024-001",
@@ -129,6 +132,7 @@ const tiposEvento = [
   'Jantar Privado'
 ];
 
+
 const statusOptions = [
   'Todos',
   'pendente',
@@ -138,11 +142,37 @@ const statusOptions = [
 
 // Tela de SOLICITAÇÕES DE SERVIÇO - para visualização das ordens de serviço geradas por solicitações de clientes
 function T03_SolicitacoesServico() {
+
+  /////////////////////////////////////////////////////////////////////
+  // Solicitações de Serviço retornadas do banco
+  const [mockSolicitacoes, setSolicitacoesEmAberto] = useState(null)
+
+  async function puxarDados() {
+    try {
+      const retorno = await listarSolicitacoes()
+      setSolicitacoesEmAberto(retorno.data)
+
+
+    }
+    catch (erro) {
+      alert("Erro ao puxar dados do banco!")
+      console.log("Erro ao puxar dados do banco: " + erro)
+    }
+  }
+  useEffect(() => {
+    puxarDados()
+  }, [])
+  /////////////////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    // setSolicitacoes(mockSolicitacoes)            TENHO Q VER
+  }, [mockSolicitacoes])
+
   const [solicitacaoSelecionada, setSolicitacaoSelecionada] = useState(null);
   const [filtroData, setFiltroData] = useState('');
   const [filtroTipoEvento, setFiltroTipoEvento] = useState('Todos');
   const [filtroStatus, setFiltroStatus] = useState('Todos');
-  const [solicitacoes, setSolicitacoes] = useState(mockSolicitacoes);
+  const [solicitacoes, setSolicitacoes] = useState(mockSolicitacoes ? mockSolicitacoes : []);
   const [mostrarDetalhes, setMostrarDetalhes] = useState(false);
 
   const solicitacoesFiltradas = solicitacoes.filter(solicitacao => {
