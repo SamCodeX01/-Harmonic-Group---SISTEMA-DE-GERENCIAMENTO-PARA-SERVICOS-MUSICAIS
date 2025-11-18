@@ -1,4 +1,6 @@
-﻿export const adicionarInstrumento = async (body) => ({ success: true });
-export const atualizarInstrumento = async (id, body) => ({ success: true });
-export const listarInstrumentos = async () => [];
-export const excluirInstrumento = async (id) => ({ success: true });
+import api from "../api";
+
+export const listarInstrumentos = () => api.get("/instrumento");
+export const adicionarInstrumento = (body) => api.post("/instrumento", body);
+export const atualizarInstrumento = (id, body) => api.patch(`/instrumento/${id}`, body);
+export const excluirInstrumento = (id) => api.delete(`/instrumento/${id}`);

@@ -108,17 +108,17 @@ function T04_BancoDeDados() {
         setCampoSelecionado(null)
         setTabelaSelecionada(null)
 
-            switch(operacaoCRUD.value) {
-                case "insert": 
-                    setMensagemInputGestor("Registro a ser INSERIDO:");
-                    break;
-                case "update": 
-                    setMensagemInputGestor("Dado a ser ATUALIZADO:");
-                    break;
-                case "delete": 
-                    setMensagemInputGestor("Registro a ser DELETADO:");
-                    break;
-            }
+        switch(operacaoCRUD.value) {
+            case "insert": 
+                setMensagemInputGestor("Registro a ser INSERIDO:");
+                break;
+            case "update": 
+                setMensagemInputGestor("Dado a ser ATUALIZADO:");
+                break;
+            case "delete": 
+                setMensagemInputGestor("Registro a ser DELETADO:");
+                break;
+        }
     }, [operacaoCRUD])
 
 
@@ -126,6 +126,7 @@ function T04_BancoDeDados() {
     useEffect(() => {
         if (tabelaSelecionada) {
 
+            // Guarda a estrutura da tabela selecionada (nome/campos/prefixo)
             const obj = objTabelas.find(table => table.nome === tabelaSelecionada.value)
             setObjTabelaSelecionada(obj)
             
@@ -141,12 +142,16 @@ function T04_BancoDeDados() {
     }, [tabelaSelecionada])
 
 
-    // Executa sempre que o campo selecionado mudar
+
+
+    // Executa sempre que o campo selecionado mudar //////////////////////////////
     useEffect(() => {
 
         // PENSO EM ADICIONAR OS CAMPOS DA TABELA NA PARTE DO GESTOR
 
     }, [campoSelecionado])
+
+
 
 
     // Responsável por exibir os campos selecionáveis da tabela
@@ -188,7 +193,7 @@ function T04_BancoDeDados() {
                 
                 {/* CRUD_SELECT */} {tabelaSelecionada ?
                     <Select 
-                        tabela={objTabelaSelecionada.nome} 
+                        tabela={objTabelaSelecionada.nome}
                         campos={objTabelaSelecionada.campos}
                         prefixo={objTabelaSelecionada.prefixo}
                         mostrarPrefixo={true}

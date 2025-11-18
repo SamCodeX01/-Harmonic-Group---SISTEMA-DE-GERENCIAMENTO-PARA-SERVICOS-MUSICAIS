@@ -58,101 +58,19 @@ import React, { useEffect, useState } from "react";
 
 
 
-// Dados mockados para demonstração
-const mockSolicitacoes2 = [
-  {
-    id: 1,
-    idSolicitacao: "SOL-2024-001",
-    nomeCliente: "Guilherme Silva",
-    situacaoServico: "pendente",
-    dataSolicitacao: "2024-01-15",
-    tipoServico: "Aniversário",
-    pacoteEscolhido: "Harmonic Duo",
-    email: "guilherme@email.com",
-    telefone: "(11) 99999-9999",
-    enderecoEvento: "Rua das Flores, 123 - São Paulo/SP",
-    dataEvento: "2024-02-20",
-    horarioEvento: "19:00",
-    descricao: "Festa de aniversário para 50 convidados"
-  },
-  {
-    id: 2,
-    idSolicitacao: "SOL-2024-002",
-    nomeCliente: "Maria Santos",
-    situacaoServico: "andamento",
-    dataSolicitacao: "2024-01-14",
-    tipoServico: "Casamento",
-    pacoteEscolhido: "Harmonic Quartet",
-    email: "maria@email.com",
-    telefone: "(11) 98888-8888",
-    enderecoEvento: "Av. Paulista, 1000 - São Paulo/SP",
-    dataEvento: "2024-03-15",
-    horarioEvento: "16:00",
-    descricao: "Cerimônia e recepção de casamento"
-  },
-  {
-    id: 3,
-    idSolicitacao: "SOL-2024-003",
-    nomeCliente: "João Oliveira",
-    situacaoServico: "concluido",
-    dataSolicitacao: "2024-01-13",
-    tipoServico: "Evento Corporativo",
-    pacoteEscolhido: "Harmonic Trio",
-    email: "joao@email.com",
-    telefone: "(11) 97777-7777",
-    enderecoEvento: "Centro de Convenções - São Paulo/SP",
-    dataEvento: "2024-01-30",
-    horarioEvento: "20:00",
-    descricao: "Evento de lançamento de produto"
-  },
-  {
-    id: 4,
-    idSolicitacao: "SOL-2024-004",
-    nomeCliente: "Ana Costa",
-    situacaoServico: "pendente",
-    dataSolicitacao: "2024-01-12",
-    tipoServico: "Festa Infantil",
-    pacoteEscolhido: "Harmonic Solo",
-    email: "ana@email.com",
-    telefone: "(11) 96666-6666",
-    enderecoEvento: "Rua das Crianças, 456 - São Paulo/SP",
-    dataEvento: "2024-02-10",
-    horarioEvento: "15:00",
-    descricao: "Festa infantil tema super heróis"
-  }
-];
 
-const tiposEvento = [
-  'Todos',
-  'Casamento',
-  'Aniversário',
-  'Evento Corporativo',
-  'Festa Infantil',
-  'Formatura',
-  'Jantar Privado'
-];
-
-
-const statusOptions = [
-  'Todos',
-  'pendente',
-  'andamento',
-  'concluido'
-];
 
 // Tela de SOLICITAÇÕES DE SERVIÇO - para visualização das ordens de serviço geradas por solicitações de clientes
 function T03_SolicitacoesServico() {
 
-  /////////////////////////////////////////////////////////////////////
   // Solicitações de Serviço retornadas do banco
-  const [mockSolicitacoes, setSolicitacoesEmAberto] = useState(null)
+  const [solicitacoesEmAberto, setSolicitacoesEmAberto] = useState(null)
 
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   async function puxarDados() {
     try {
       const retorno = await listarSolicitacoes()
       setSolicitacoesEmAberto(retorno.data)
-
-
     }
     catch (erro) {
       alert("Erro ao puxar dados do banco!")
@@ -164,38 +82,82 @@ function T03_SolicitacoesServico() {
   }, [])
   /////////////////////////////////////////////////////////////////////
 
-  useEffect(() => {
-    // setSolicitacoes(mockSolicitacoes)            TENHO Q VER
-  }, [mockSolicitacoes])
+  // useEffect(() => {
+  // }, [solicitacoesEmAberto])
 
+
+  // Opções do filtro
+  const tiposEvento = [
+    'Todos',
+    'Casamento',
+    'Aniversário',
+    'Evento Corporativo',
+    'Festa Infantil',
+    'Formatura',
+    'Jantar Privado'
+  ];
+
+  // Opções do filtro
+  const statusOptions = [
+    'Todos',
+    'pendente',
+    'andamento',
+    'concluido'
+  ];
+
+  // Opções do filtro e seleção
   const [solicitacaoSelecionada, setSolicitacaoSelecionada] = useState(null);
-  const [filtroData, setFiltroData] = useState('');
-  const [filtroTipoEvento, setFiltroTipoEvento] = useState('Todos');
-  const [filtroStatus, setFiltroStatus] = useState('Todos');
-  const [solicitacoes, setSolicitacoes] = useState(mockSolicitacoes ? mockSolicitacoes : []);
-  const [mostrarDetalhes, setMostrarDetalhes] = useState(false);
+  const [filtroData, setFiltroData]                         = useState('');  // DD/MM/YYYY
+  const [filtroTipoEvento, setFiltroTipoEvento]             = useState('Todos');
+  const [filtroStatus, setFiltroStatus]                     = useState('Todos');
+  const [solicitacoes, setSolicitacoes]                     = useState([]);
+  const [mostrarDetalhes, setMostrarDetalhes]               = useState(false);
 
-  const solicitacoesFiltradas = solicitacoes.filter(solicitacao => {
-    const matchData = !filtroData || solicitacao.dataSolicitacao === filtroData;
-    const matchTipo = filtroTipoEvento === 'Todos' || solicitacao.tipoServico === filtroTipoEvento;
-    const matchStatus = filtroStatus === 'Todos' || solicitacao.situacaoServico === filtroStatus;
-    
-    return matchData && matchTipo && matchStatus;
-  });
+  const [solicitacoesFiltradas, setSolicitacoesFiltradas]   = useState([])
 
-  const formatarData = (data) => {
-    return new Date(data + 'T00:00:00').toLocaleDateString('pt-BR');
-  };
+  // DATAS PARA TESTE:
+  // 12/03/2025
+  // 27/07/2025
+  // 03/10/2025
+  // 19/01/2026
+  // 09/09/2025
 
+  // Executa quando o rotorno chega do banco?
+  useEffect(() => {
+    if (solicitacoesEmAberto) 
+      setSolicitacoes(solicitacoesEmAberto) 
+
+  }, [solicitacoesEmAberto])
+
+
+  useEffect(() => {
+
+    setSolicitacoesFiltradas(
+      (solicitacoes ?
+        solicitacoes.filter(solicitacao => { // Filtra por data/tipo/status //
+          const matchData   = !filtroData                  || solicitacao.dataSolicitacao                === filtroData;
+          const matchTipo   = filtroTipoEvento === 'Todos' || solicitacao.pacoteServico.tipoServico.nome === filtroTipoEvento; 
+          // COLOCAR UM CONSOLE LOG AQ PRA VER - o do banco e o do filtro
+          const matchStatus = filtroStatus === 'Todos'     || solicitacao.statusSolicitacao.situacao     === filtroStatus;
+          
+          return matchData && matchTipo && matchStatus;
+        })
+      : [])
+    )
+  }, [solicitacoes, filtroData, filtroTipoEvento, filtroStatus])
+
+
+
+  // ORGANIZA O STATUS DE CADA CARD //
   const getStatusBadge = (status) => {
     const statusClasses = {
-      pendente: `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusPendente}`,
+      pendente : `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusPendente}`,
       andamento: `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusAndamento}`,
       concluido: `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusConcluido}`
     };
     
     const statusText = {
-      pendente: 'Pendente',
+      pendente : 'Pendente',
       andamento: 'Em Andamento',
       concluido: 'Concluído'
     };
@@ -223,6 +185,7 @@ function T03_SolicitacoesServico() {
     setSolicitacaoSelecionada(null);
   };
 
+  // RETURN PRINCIPAL // RETURN PRINCIPAL // RETURN PRINCIPAL // RETURN PRINCIPAL // RETURN PRINCIPAL // RETURN PRINCIPAL //
   return (
     <div className={t03_solicitacoesServico.main}>
       <div className={t03_solicitacoesServico.dashboardContainer}>
@@ -267,9 +230,11 @@ function T03_SolicitacoesServico() {
               >
                 {statusOptions.map(status => (
                   <option key={status} value={status}>
-                    {status === 'Todos' ? 'Todos' : 
-                     status === 'pendente' ? 'Pendente' :
-                     status === 'andamento' ? 'Em Andamento' : 'Concluído'}
+                  {
+                    status === 'Todos' ? 'Todos' : 
+                    status === 'pendente' ? 'Pendente' :
+                    status === 'andamento' ? 'Em Andamento' : 'Concluído'
+                  }
                   </option>
                 ))}
               </select>
@@ -319,12 +284,15 @@ function T03_SolicitacoesServico() {
 
         {/* Lista de Solicitações */}
         <div className={t03_solicitacoesServico.solicitacoesContainer}>
+
+          {/* TÍTULO (SOLICITAÇÕES) */}
           <div className={t03_solicitacoesServico.solicitacoesHeader}>
             <h2 className={t03_solicitacoesServico.solicitacoesTitle}>
               Solicitações ({solicitacoesFiltradas.length})
             </h2>
           </div>
           
+          {/* CADA CARD */}
           <div className={t03_solicitacoesServico.cardsGrid}>
             {solicitacoesFiltradas.map((solicitacao) => (
               <div key={solicitacao.id} className={t03_solicitacoesServico.cardItem}>
@@ -348,42 +316,46 @@ function T03_SolicitacoesServico() {
                       <span className={t03_solicitacoesServico.cardId}>
                         {solicitacao.idSolicitacao}
                       </span>
-                      {getStatusBadge(solicitacao.situacaoServico)}
+                      {/* {console.log("-> " + solicitacao.statusSolicitacao.situacao)} */}
+                      {getStatusBadge(solicitacao.statusSolicitacao.situacao)}
+                      {/* {getStatusBadge(solicitacao.situacaoServico)} */}
                     </div>
                     
                     <div className={t03_solicitacoesServico.cardContent}>
                       <div className={t03_solicitacoesServico.cardField}>
                         <span className={t03_solicitacoesServico.cardLabel}>Cliente</span>
                         <p className={t03_solicitacoesServico.cardValue}>
-                          {solicitacao.nomeCliente}
+                          {solicitacao.cliente.nome}
                         </p>
                       </div>
                       
                       <div className={t03_solicitacoesServico.cardField}>
                         <span className={t03_solicitacoesServico.cardLabel}>Data da Solicitação</span>
                         <p className={t03_solicitacoesServico.cardValue}>
-                          {formatarData(solicitacao.dataSolicitacao)}
+                          {solicitacao.dataSolicitacao}
+                          {/* {formatarData(solicitacao.dataSolicitacao)} */}
                         </p>
                       </div>
                       
                       <div className={t03_solicitacoesServico.cardField}>
                         <span className={t03_solicitacoesServico.cardLabel}>Tipo de Serviço</span>
                         <p className={t03_solicitacoesServico.cardValue}>
-                          {solicitacao.tipoServico}
+                          {solicitacao.pacoteServico.tipoServico.nome}
                         </p>
                       </div>
                       
                       <div className={t03_solicitacoesServico.cardField}>
                         <span className={t03_solicitacoesServico.cardLabel}>Pacote Escolhido</span>
                         <p className={t03_solicitacoesServico.cardValuePacote}>
-                          {solicitacao.pacoteEscolhido}
+                          {solicitacao.pacoteServico.nome}
                         </p>
                       </div>
                       
                       <div className={t03_solicitacoesServico.cardField}>
                         <span className={t03_solicitacoesServico.cardLabel}>Data do Evento</span>
                         <p className={t03_solicitacoesServico.cardValue}>
-                          {formatarData(solicitacao.dataEvento)} às {solicitacao.horarioEvento}
+                          {solicitacao.dataEvento} às {solicitacao.horarioInicio}
+                          {/* {formatarData(solicitacao.dataEvento)} às {solicitacao.horarioEvento} */}
                         </p>
                       </div>
                     </div>
@@ -426,56 +398,58 @@ function T03_SolicitacoesServico() {
                   <div className={t03_solicitacoesServico.detailGroup}>
                     <span className={t03_solicitacoesServico.detailLabel}>Cliente</span>
                     <p className={t03_solicitacoesServico.detailValue}>
-                      {solicitacaoSelecionada.nomeCliente}
+                      {solicitacaoSelecionada.cliente.nome}
                     </p>
                   </div>
                   
                   <div className={t03_solicitacoesServico.detailGroupOdd}>
                     <span className={t03_solicitacoesServico.detailLabelOdd}>Status</span>
                     <div>
-                      {getStatusBadge(solicitacaoSelecionada.situacaoServico)}
+                      {getStatusBadge(solicitacaoSelecionada.statusSolicitacao.situacao)}
                     </div>
                   </div>
                   
                   <div className={t03_solicitacoesServico.detailGroup}>
                     <span className={t03_solicitacoesServico.detailLabel}>Data da Solicitação</span>
                     <p className={t03_solicitacoesServico.detailValue}>
-                      {formatarData(solicitacaoSelecionada.dataSolicitacao)}
+                      {solicitacaoSelecionada.dataSolicitacao}
+                      {/* {formatarData(solicitacaoSelecionada.dataSolicitacao)} */}
                     </p>
                   </div>
                   
                   <div className={t03_solicitacoesServico.detailGroupOdd}>
                     <span className={t03_solicitacoesServico.detailLabelOdd}>Tipo de Serviço</span>
                     <p className={t03_solicitacoesServico.detailValue}>
-                      {solicitacaoSelecionada.tipoServico}
+                      {solicitacaoSelecionada.pacoteServico.tipoServico.nome}
                     </p>
                   </div>
                   
                   <div className={t03_solicitacoesServico.detailGroup}>
                     <span className={t03_solicitacoesServico.detailLabel}>Pacote Escolhido</span>
                     <p className={t03_solicitacoesServico.detailValue}>
-                      {solicitacaoSelecionada.pacoteEscolhido}
+                      {solicitacaoSelecionada.pacoteServico.nome}
                     </p>
                   </div>
                   
                   <div className={t03_solicitacoesServico.detailGroupOdd}>
                     <span className={t03_solicitacoesServico.detailLabelOdd}>Data do Evento</span>
                     <p className={t03_solicitacoesServico.detailValue}>
-                      {formatarData(solicitacaoSelecionada.dataEvento)} às {solicitacaoSelecionada.horarioEvento}
+                      {solicitacaoSelecionada.dataEvento} às {solicitacaoSelecionada.horarioInicio}
+                      {/* {formatarData(solicitacaoSelecionada.dataEvento)} às {solicitacaoSelecionada.horarioEvento} */}
                     </p>
                   </div>
                   
                   <div className={t03_solicitacoesServico.detailGroup}>
                     <span className={t03_solicitacoesServico.detailLabel}>Endereço do Evento</span>
                     <p className={t03_solicitacoesServico.detailValue}>
-                      {solicitacaoSelecionada.enderecoEvento}
+                      {solicitacaoSelecionada.localEvento}
                     </p>
                   </div>
                   
                   <div className={t03_solicitacoesServico.detailGroupOdd}>
                     <span className={t03_solicitacoesServico.detailLabelOdd}>Contato</span>
                     <p className={t03_solicitacoesServico.detailValue}>
-                      {solicitacaoSelecionada.email} | {solicitacaoSelecionada.telefone}
+                      {solicitacaoSelecionada.cliente.email} | {solicitacaoSelecionada.cliente.celular}
                     </p>
                   </div>
                 </div>
@@ -483,7 +457,7 @@ function T03_SolicitacoesServico() {
                 <div className={t03_solicitacoesServico.detailGroup}>
                   <span className={t03_solicitacoesServico.detailLabel}>Descrição do Evento</span>
                   <p className={t03_solicitacoesServico.detailValue}>
-                    {solicitacaoSelecionada.descricao}
+                    {solicitacaoSelecionada.pacoteServico.descricao}
                   </p>
                 </div>
 
@@ -506,5 +480,4 @@ function T03_SolicitacoesServico() {
     </div>
   );
 }
-
 export default T03_SolicitacoesServico;

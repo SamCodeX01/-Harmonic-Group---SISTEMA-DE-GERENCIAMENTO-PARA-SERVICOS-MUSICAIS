@@ -36,50 +36,61 @@ function Select({tabela=null, campos=null, prefixo="", mostrarPrefixo=false}) {
     const [tiposLocal, setTiposLocal]               = useState()
 
     { // Retorna cada tabela do BANCO (useStates)  
+        
+        // Retorna os pacotes de serviço cadastrados no BANCO
         useEffect(() => {
-
-            // Retorna os pacotes de serviço cadastrados no BANCO
             listarPacotesServico()
                 .then(res => setPacotesServico(res.data))
                 .catch(err => console.log(err))
+        }, [pacotesServico])
 
-            // Retorna os instrumentos cadastrados no BANCO
+        // Retorna os instrumentos cadastrados no BANCO
+        useEffect(() => {
             listarInstrumentos()
                 .then(res => setInstrumentos(res.data))
                 .catch(err => console.log(err))
+        }, [instrumentos])
 
-            // Retorna os tipos de serviço cadastrados no BANCO
+        // Retorna os tipos de serviço cadastrados no BANCO
+        useEffect(() => {
             listarTiposServico()
                 .then(res => setServicos(res.data))
                 .catch(err => console.log(err))
+        }, [servicos])
 
-            // Retorna os meios de pagamento cadastrados no BANCO
+        // Retorna os meios de pagamento cadastrados no BANCO
+        useEffect(() => {
             listarMeiosPagamento()
                 .then(res => setMeiosPagamento(res.data))
                 .catch(err => console.log(err))
+        }, [meiosPagamento])
 
-            // Retorna as músicas cadastradas no BANCO
+        // Retorna as músicas cadastradas no BANCO
+        useEffect(() => {
             listarRepertorios()
                 .then(res => setRepertorios(res.data))
                 .catch(err => console.log(err))
+        }, [repertorios])
 
-            // Retorna os status cadastrados no BANCO
+        // Retorna os status cadastrados no BANCO
+        useEffect(() => {
             listarStatus()
                 .then(res => setStatusSolicitacao(res.data))
                 .catch(err => console.log(err))
+        }, [statusSolicitacao])
 
-            // Retorna os tipos de local cadastrados no BANCO
+        // Retorna os tipos de local cadastrados no BANCO
+        useEffect(() => {
             listarTiposLocal()
                 .then(res => setTiposLocal(res.data))
                 .catch(err => console.log(err))
-
-        }, [])
+        }, [tiposLocal])
     }
 
 
     // Mostra todos os registros do BANCO para a tabela selecionada
     const retornarRegistros = () => {
-        if (tabela != null) {
+        if (tabela != null)
             switch (tabela) {
                 case "PacoteServico":     return pacotesServico
                 case "Instrumento":       return instrumentos
@@ -89,11 +100,10 @@ function Select({tabela=null, campos=null, prefixo="", mostrarPrefixo=false}) {
                 case "StatusSolicitacao": return statusSolicitacao
                 case "TipoLocal":         return tiposLocal
             }
-        }
     }
 
     // Guarda apenas o retorno da tabela selecionada
-    const retorno = (tabela != null ? retornarRegistros() : null)
+    const retorno = tabela != null ? retornarRegistros() : null
 
     return (
         <table className={selectCSS.table}>
@@ -106,7 +116,7 @@ function Select({tabela=null, campos=null, prefixo="", mostrarPrefixo=false}) {
                     (campos != null &&
                     campos.map((nomeCampo, i) => {
                         if (nomeCampo[3] !== "_")
-                            return <th key={i}> {(mostrarPrefixo ? prefixo : "") + nomeCampo} </th>
+                            return <th key={i}> { (mostrarPrefixo ? prefixo : "") + nomeCampo} </th>
                     }))
                 }
                 </tr>
@@ -119,11 +129,11 @@ function Select({tabela=null, campos=null, prefixo="", mostrarPrefixo=false}) {
                 (retorno != null &&
                     retorno.map((obj, i) => {
                         return <tr key={i}>
-                        {
-                            Object.values(obj).map((atributo, i) => {
-                                return <td key={i}> {atributo} </td>
-                            }) // AQUI TÁ DANDO ERRO PQ OS PACOTES TÊM OUTRO OBJ DENTRO DELES
-                        }
+                            {
+                                Object.values(obj).map((atributo, i) => {
+                                    return <td key={i}> {atributo} </td>
+                                })
+                            }
                         </tr>
                     })
                 )
