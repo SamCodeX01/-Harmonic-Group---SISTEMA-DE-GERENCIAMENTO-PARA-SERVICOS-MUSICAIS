@@ -1,6 +1,8 @@
 package com.example.prog_dispos_mobile_p2;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,11 +19,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         new Handler().postDelayed(() ->{
-            startActivity(new Intent(MainActivity.this, Tela_00_Splash.class));
+            startActivity(new Intent(MainActivity.this, Tela_00_Login.class));
             finish();
         },4000);
-
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Prog_dispos_mobile_p2">
         <activity
+            android:name=".Tela_00_Login"
+            android:exported="false" />
+        <activity
             android:name=".Tela_00_Splash"
             android:exported="false" />
         <activity
