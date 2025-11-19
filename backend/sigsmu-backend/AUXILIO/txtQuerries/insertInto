@@ -16,14 +16,15 @@ SELECT * FROM categoria
 DELETE FROM categoria
 
 
--- 100%
+-- 1 100%
 INSERT INTO cliente(cli_cpf, cli_nome, cli_email, cli_celular, cli_data_nasc, cli_endereco)
 VALUES 
 ('12345678900','Mariana Silva','mariana.silva@example.com','11987654321','15/08/1995','Rua das Flores, 120 - Centro'),
 ('98765432155','Carlos Alberto','carlos.alberto@example.com','11999223344','22/11/1988','Av. Paulista, 999 - Bela Vista'),
 ('11122233344','Julia Mendes','julia.mendes@example.com','11988117766','03/04/1999','Rua Verdejante, 45 - Jardim Lua'),
 ('55566677788','Rodrigo Farias','rodrigo.farias@example.com','11977443322','29/01/1990','Rua do Sol, 310 - Vila Aurora'),
-('00011122233','Fernanda Oliveira','fernanda.oliveira@example.com','11966558877','09/06/1993','Travessa Horizonte, 12 - ParqueRio')
+('00011122233','Fernanda Oliveira','fernanda.oliveira@example.com','11966558877','09/06/1993','Travessa Horizonte, 12 - ParqueRio'),
+('00011122999','Rodrigo Alberto','rodrigo.alberto@example.com','11966578945','07/09/1953','Pirex, 145 - Parquinho')
 DROP TABLE cliente
 SELECT * FROM cliente
 DELETE FROM cliente
@@ -56,7 +57,7 @@ SELECT * FROM gestor
 DELETE FROM gestor
 
 
--- 50%
+-- 2 50%
 INSERT INTO instrumento(ins_nome)
 VALUES 
 ('clarinete'),
@@ -78,7 +79,7 @@ SELECT * FROM marca_fabricante
 DELETE FROM marca_fabricante
 
 
--- 100%
+-- 3 100%
 INSERT INTO meio_pagamento(pgt_nome)
 VALUES 
 ('cartão'),
@@ -98,18 +99,19 @@ SELECT * FROM musico
 DELETE FROM musico
 
 
--- 100%
+-- 8 100%
 INSERT INTO pacote_servico(ser_id, pac_descricao, pac_nome, pac_qtd_musicos, pac_valor)
 VALUES 
 (1, '...', 'Harmonic Duo', '2', '1200'),
 (1, '...', 'Harmonic Trio', '3', '1800'),
-(1, '...', 'Harmonic Quarteto', '4', '2400')
+(1, '...', 'Harmonic Quarteto', '4', '2400'),
+(1, '...', 'Harmonic Sexteto', '6', '3600')
 DROP TABLE pacote_servico
 SELECT * FROM pacote_servico
 DELETE FROM pacote_servico
 
 
--- 20%
+-- 4 20%
 INSERT INTO repertorio(rep_musica)
 VALUES 
 ('SkyLab'),
@@ -120,43 +122,57 @@ SELECT * FROM repertorio
 DELETE FROM repertorio
 
 
--- 100%
-INSERT INTO solicitacao_servico(sol_local_evento, sol_data_evento, sol_horario_inicio, sol_horario_termino, sol_qtd_convidados, sol_data_solicitacao, sol_e_orcamento, sol_data_aprovacao, cli_cpf, pac_id, tip_id)
+-- 9 100%
+INSERT INTO solicitacao_servico(
+	sol_local_evento, 
+	sol_data_evento, 
+	sol_horario_inicio, 
+	sol_horario_termino, 
+	sol_qtd_convidados, 
+	sol_data_solicitacao, 
+	sol_e_orcamento, 
+	sol_data_aprovacao, 
+	cli_cpf, 
+	pac_id, 
+	tip_id,
+	stt_id
+)
 VALUES 
-('Chácara Bela Vista','12/03/2025','18:00','23:00','150','05/02/2025','true','','12345678900', 2, 2),
-('Salão Crystal Hall','27/07/2025','20:00','02:00','250','14/06/2025','true','','98765432155', 3, 3),
-('Espaço Ouro Verde','03/10/2025','17:00','22:30','80','30/08/2025','true','','11122233344', 2, 3),
-('Rancho Horizonte','19/01/2026','15:00','21:00','120','10/12/2025','true','','55566677788', 4, 4),
-('Buffet Imperium','09/09/2025','19:30','01:00','300','22/07/2025','true','','00011122233', 4, 2)
+('Chácara Bela Vista','12/03/2025','18:00','23:00','150','05/02/2025','true','','12345678900', 7, 2, 1),
+('Salão Crystal Hall','27/07/2025','20:00','02:00','250','14/06/2025','true','','98765432155', 5, 3, 1),
+('Espaço Ouro Verde','03/10/2025','17:00','22:30','80','30/08/2025','true','','11122233344', 6, 3, 2),
+('Rancho Horizonte','19/01/2026','15:00','21:00','120','10/12/2025','true','','55566677788', 4, 4, 1),
+('Buffet Imperium','09/09/2025','19:30','01:00','300','22/07/2025','true','','00011122233', 4, 2, 3),
+('Imperium Romani','10/10/2026','19:00','00:00','200','30/10/2025','true','','00011122999', 6, 2, 1)
 DROP TABLE solicitacao_servico
 SELECT * FROM solicitacao_servico
 DELETE FROM solicitacao_servico
 
 
--- 100%
+-- 5 100%
 INSERT INTO status_solicitacao(stt_situacao)
 VALUES 
-('em análise'),
-('concluído'),
-('cancelado'),
-('aguardando resposta')
+('pendente'),
+('andamento'),
+('concluido')
 DROP TABLE status_solicitacao
 SELECT * FROM status_solicitacao
 DELETE FROM status_solicitacao
 
 
--- 100%
+-- 6 100%
 INSERT INTO tipo_local(tip_tipo)
-VALUES 
+VALUES
 ('montanha'),
 ('arena'),
-('restaurante')
+('restaurante'),
+('deserto')
 DROP TABLE tipo_local
 SELECT * FROM tipo_local
 DELETE FROM tipo_local
 
 
--- 100%
+-- 7 100%
 INSERT INTO tipo_servico(ser_nome)
 VALUES 
 ('casamento'),

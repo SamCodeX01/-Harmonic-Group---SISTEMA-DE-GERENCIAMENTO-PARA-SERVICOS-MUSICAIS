@@ -4,15 +4,60 @@ import t02_cadastro from "./CSS/t02_cadastro.module.css"
 // Importações de componentes
 import Campo from "components/Campo.jsx";
 
+// Importações do CRUD API
+import { adicionarMusico } from "services/Outras/Musico.js";
+
 // Importações do React
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 // Tela de CADASTRO DE USUÁRIOS - para que usuários se cadastrem no sistema como clientes/músicos/gestores.
 function T02_Cadastro() {
-
+    
     // Pega o empresa do radioButton para saber se é empresa ou não
     const [empresa, setEmpresa] = useState(false);
+
+    // Dados de input do usuário
+    const [cpf, setCpf]                     = useState("");
+    const [nome, setNome]                   = useState("");
+    const [dataNasc, setDataNasc]           = useState("");
+    const [sexo, setSexo]                   = useState("");
+    const [senha, setSenha]                 = useState("");
+    const [checkSenha, setCheckSenha]       = useState("");
+    const [senhaValidada, setSenhaValidada] = useState(false)
+    const [celular, setCelular]             = useState("");
+    const [email, setEmail]                 = useState("");
+    const [endereco, setEndereco]           = useState(""); // string
+    const [dataCadastro, setDataCadastro]   = useState("12-12-2012"); // new Date alguma coisa
+    
+    // Endereço
+    const [cep, setCep]                     = useState("");
+    const [estado, setEstado]               = useState("");
+    const [cidade, setCidade]               = useState("");
+    const [bairro, setBairro]               = useState("");
+    const [rua, setRua]                     = useState("");
+    const [numero, setNumero]               = useState("");
+    const [complemento, setComplemento]     = useState("");
+    const [referencia, setReferencia]       = useState("");
+    
+
+    // Quando clicarem em cadastrar...
+    useEffect(() => {
+        if (senhaValidada) {
+            adicionarMusico({
+                cpf          : cpf,
+                nome         : nome,
+                dataNasc     : dataNasc,
+                sexo         : sexo,
+                senha        : senha,
+                celular      : celular,
+                email        : email,
+                endereco     : endereco,
+                dataCadastro : dataCadastro
+            })
+        }
+    }, [senhaValidada])
+
 
     return(
         <form action="url" method="POST" className={t02_cadastro.main}>
@@ -24,66 +69,121 @@ function T02_Cadastro() {
             <input type="radio" name="radio" id="pessoaJuridica" onChange={evt => setEmpresa(!empresa)}/>
             <label htmlFor="pessoaJuridica">Pessoa Jurídica</label>
            
-           {/* Renderiza o fieldset somente se empresa for igual a true */}
-           {(empresa &&
+            {/* Renderiza se pessoa jurídica */}
+            { empresa &&
                 <fieldset>
                     <legend>Para empresas</legend>
-                    <Campo msg={"Cnpj:"} type={"number"} name={"cnpj"} id={"icnpj"} placeholder={"Digite o cnpj da sua empresa"}/>
-                    <Campo msg={"Inscrição Estadual:"} type={"number"} name={"inscricaoEstadual"} id={"iinscricaoEstadual"}  placeholder={"Digite a sua inscrição estadual"}/>
-                    <Campo msg={"Razão Social:"} type={"text"} name={"razaoSocial"} id={"irazaoSocial"} placeholder={"Digite a razão social"}/>
-                    <Campo msg={"Nome Fantasia:"} type={"text"} name={"nomeFantasia"} id={"inomeFantasia"} placeholder={"Digite o nome fantasia"}/>
+                    <Campo msg={"Cnpj:"} type={"number"} name={"cnpj"} 
+                    id={"icnpj"} placeholder={"Digite o cnpj da sua empresa"}/>
+
+                    <Campo msg={"Inscrição Estadual:"} type={"number"} name={"inscricaoEstadual"} 
+                    id={"iinscricaoEstadual"}  placeholder={"Digite a sua inscrição estadual"}/>
+
+                    <Campo msg={"Razão Social:"} type={"text"} name={"razaoSocial"} 
+                    id={"irazaoSocial"} placeholder={"Digite a razão social"}/>
+
+                    <Campo msg={"Nome Fantasia:"} type={"text"} name={"nomeFantasia"} 
+                    id={"inomeFantasia"} placeholder={"Digite o nome fantasia"}/>
                 </fieldset>
-            )}
+            }
+
+            {/* Renderiza se pessoa física */}
+            { !empresa && 
+                <fieldset>
+                    <legend>Pessoa física</legend>
+                    <Campo msg={"Cpf:"} type={"number"} name={"cpf"} 
+                    id={"icpf"} placeholder={"Digite seu cpf"} setValue={setCpf} />
+                </fieldset>
+            }
                
+            {/* Cadastro */}
             <fieldset>
                 <legend>Cadastro</legend>
-                <Campo msg={"Nome:"} type={"text"} name={"nome"} id={"inome"} placeholder={"Digite o seu nome completo"}/>
-                <Campo msg={"Nascimento: "} type={"date"} name={"nascimento"} id={"inascimento"} placeholder={"Digite o seu nome"}/>           
-                <label htmlFor="titulo">Como você se identifica?</label>
+                <Campo msg={"Nome:"} type={"text"} name={"nome"} 
+                id={"inome"} placeholder={"Digite o seu nome completo"} setValue={setNome} />
 
-                {/*    Campo Vazio    */}
-                <Campo htmlFor={"xxx"}/>
-
-                <label htmlFor="nome">Nome: </label>
-                <input type="text" name="nome" id="nome" placeholder="Digite o seu nome completo"></input>
-
-                <label htmlFor="nascimento">Nascimento: </label>          
-                <input type="date" name="nascimento" id="nascimento"/>
+                <Campo msg={"Nascimento: "} type={"date"} name={"nascimento"} 
+                id={"inascimento"} placeholder={"Digite o seu nome"} setValue={setDataNasc} />
            
                 <label htmlFor="titulo">Qual o seu gênero?</label>
-                <select>
+                <select onChange={evt => setSexo(evt.currentTarget.value)}>
                     <optgroup label="Titulo">
-                        <option>Homem</option>
-                        <option>Mulher</option>
-                        <option>Transgênero</option>
-                        <option>Prefiro não dizer</option>
-                        <option>Outro</option>
+                        <option value={""}>            Selecione uma opção </option>
+                        <option value={"Homem"}>       Homem </option>
+                        <option value={"Mulher"}>      Mulher </option>
+                        <option value={"Transgênero"}> Transgênero </option>
+                        <option value={"Prefire não dizer"}>     Prefiro não dizer </option>
+                        <option value={"Outro"}>       Outro </option>
                         <input type="text" />
                     </optgroup>
                 </select>
+
+                <Campo msg={"Senha: "} type={"password"} name={"senha"} 
+                id={"isenha"} placeholder={"Crie uma senha"} setValue={setSenha} />
+
+                <Campo msg={"Confirmar Senha: "} type={"password"} name={"senha2"} 
+                id={"isenha2"} placeholder={"Verifique sua senha"} setValue={setCheckSenha} />
             </fieldset>
            
+           {/* Contatos */}
             <fieldset>
                 <legend>Contatos</legend>
-                <Campo htmlFor={"telefone"} msg={"Telefone:"} type={"tel"} name={"telefone"} id={"telefone"} placeholder={"Digite o seu telefone"}/>
-                <Campo htmlFor={"celular"} msg={"Celular: "} type={"tel"} name={"celular"} id={"celular"} placeholder={"Digite o seu celular"}/>
-                <Campo htmlFor={"email"} msg={"E-mail: "} type={"email"} name={"email"} id={"email"} placeholder={"Digite o seu e-mail"}/>
-                <Campo htmlFor={"datacadastro"} msg={"Data do Cadastro: "} type={"date"} name={"datacadastro"} id={"datacadastro"}/>
+                <Campo htmlFor={"celular"} msg={"Celular: "} type={"tel"} name={"celular"} 
+                id={"celular"} placeholder={"Digite o seu celular"} setValue={setCelular} />
+
+                <Campo htmlFor={"email"} msg={"E-mail: "} type={"email"} name={"email"} 
+                id={"email"} placeholder={"Digite o seu e-mail"} setValue={setEmail} />
             </fieldset>
 
-
+            {/* Endereço */}
             <fieldset>
                 <legend>Endereço</legend>
-                <Campo htmlFor={"rua"} msg={"Rua: "} type={"text"} name={"rua"} id={"rua"} placeholder={"Digite o nome da rua"}/>
-                <Campo htmlFor={"numero"} msg={"Número: "} type={"text"} name={"numero"} id={"numero"} placeholder={"Digite o número da rua"}/>
-                <Campo htmlFor={"complemento"} msg={"Complemento: "} type={"text"} name={"complemento"} id={"complemento"} placeholder={"Digite o complemento do endereço"}/>
-                <Campo htmlFor={"bairro"} msg={"Bairro: "} type={"text"} name={"bairro"} id={"bairro"} placeholder={"Digite o seu bairro"}/>
-                <Campo htmlFor={"cep"} msg={"CEP: "} type={"text"} name={"cep"} id={"cep"} placeholder={"Digite o seu CEP"}/>
-                <Campo htmlFor={"cidade"} msg={"Cidade: "} type={"text"} name={"cidade"} id={"cidade"} placeholder={"Digite a sua cidade"}/>
-                <Campo htmlFor={"estado"} msg={"Estado: "} type={"text"} name={"estado"} id={"dataestado"} placeholder={"Digite o estado"}/>
-                <Campo htmlFor={"referencia"} msg={"Referência: "} type={"text"} name={"referencia"} id={"referencia"} placeholder={"Digite o endereço de referência"}/>
+                <Campo htmlFor={"cep"} msg={"CEP: "} type={"text"} name={"cep"} 
+                id={"cep"} placeholder={"Digite o seu CEP"} setValue={setCep} />
+
+                <Campo htmlFor={"estado"} msg={"Estado: "} type={"text"} name={"estado"} 
+                id={"dataestado"} placeholder={"Digite o estado"} setValue={setEstado} />
+                
+                <Campo htmlFor={"cidade"} msg={"Cidade: "} type={"text"} name={"cidade"} 
+                id={"cidade"} placeholder={"Digite a sua cidade"} setValue={setCidade} />
+                
+                <Campo htmlFor={"bairro"} msg={"Bairro: "} type={"text"} name={"bairro"} 
+                id={"bairro"} placeholder={"Digite o seu bairro"} setValue={setBairro} />
+
+                <Campo htmlFor={"rua"} msg={"Rua: "} type={"text"} name={"rua"} 
+                id={"rua"} placeholder={"Digite o nome da rua"} setValue={setRua} />
+
+                <Campo htmlFor={"numero"} msg={"Número: "} type={"text"} name={"numero"} 
+                id={"numero"} placeholder={"Digite o número da rua"} setValue={setNumero} />
+
+                <Campo htmlFor={"complemento"} msg={"Complemento: "} type={"text"} name={"complemento"} 
+                id={"complemento"} placeholder={"Digite o complemento do endereço"} setValue={setComplemento} />
+
+                <Campo htmlFor={"referencia"} msg={"Referência: "} type={"text"} name={"referencia"} 
+                id={"referencia"} placeholder={"Digite o endereço de referência"} setValue={setReferencia} />
             </fieldset>
-            <button type="submit">ENVIAR</button>
+
+            <div 
+                type="button"
+                onClick={evt => {
+                    if (senha === checkSenha) {
+                        setSenhaValidada(true)
+
+                        setEndereco(
+                            cep + ", " +
+                            estado + ", " +
+                            cidade + ", " +
+                            bairro + ", " +
+                            rua + ", " +
+                            numero + ", " +
+                            complemento + ", " +
+                            referencia
+                        )
+
+                    } else alert("Senhas não coincidem!")
+
+                }}
+            >ENVIAR</div>
 
             {/* Passa para a próxima tela */} 
             {/* <br/><br/> */}
