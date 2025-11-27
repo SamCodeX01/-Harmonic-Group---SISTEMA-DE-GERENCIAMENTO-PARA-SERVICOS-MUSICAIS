@@ -7,7 +7,6 @@ DELETE FROM avaliacao                   WHERE ava_id  =
 DELETE FROM categoria                   WHERE cat_id  = 
 DELETE FROM cliente                     WHERE cli_cpf = 
 DELETE FROM custo                       WHERE cus_id  = 
-DELETE FROM ensaio                      WHERE ens_id  = 
 DELETE FROM gestor                      WHERE ges_cpf = 
 DELETE FROM instrumento                 WHERE ins_id  = 
 DELETE FROM marca_fabricante            WHERE mar_id  = 

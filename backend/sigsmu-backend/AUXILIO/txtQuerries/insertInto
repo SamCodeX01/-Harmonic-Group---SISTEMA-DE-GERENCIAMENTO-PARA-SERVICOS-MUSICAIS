@@ -40,15 +40,6 @@ DELETE FROM custo
 
 
 ???
-INSERT INTO ensaio()
-VALUES 
-()
-DROP TABLE ensaio
-SELECT * FROM ensaio
-DELETE FROM ensaio
-
-
-???
 INSERT INTO gestor(ges_cpf, ges_nome, ges_dataCadastro, ges_senha)
 VALUES 
 ('')

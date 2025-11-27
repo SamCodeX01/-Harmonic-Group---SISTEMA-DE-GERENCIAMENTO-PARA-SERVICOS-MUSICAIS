@@ -23,9 +23,6 @@ public class Musico {
 
     @Column(name = "mus_nome")
     private String nome;
-    
-    // @Column(name = "mus_dataNasc")
-    // private String dataNasc;
 
     @Column(name = "mus_endereco")
     private String endereco;
@@ -54,6 +51,9 @@ public class Musico {
     @Column(name = "mus_contrato")
     private String contrato;
 
+    @Column(name = "mus_avaliacao") // Faltou adicionar no diagrama
+    private String avaliacao;
+
     // Associativas
     @JsonIgnore
     @OneToMany(mappedBy = "musico")
@@ -68,7 +68,7 @@ public class Musico {
     public Musico(){};
     
     public Musico(String cpf, String nome, String dataNasc, String endereco, String dataCadastro, String senha, String github,
-        String portifolio,String instagram,String facebook,String curriculo,String contrato){
+        String portifolio,String instagram,String facebook,String curriculo,String contrato, String avaliacao){
         this.cpf = cpf;
         this.nome = nome;
         this.endereco = endereco;
@@ -80,6 +80,7 @@ public class Musico {
         this.facebook = facebook;
         this.curriculo = curriculo;
         this.contrato = contrato;
+        this.avaliacao = avaliacao;
     };
 
 }

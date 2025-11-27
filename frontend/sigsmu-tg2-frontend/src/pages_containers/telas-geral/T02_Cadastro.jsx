@@ -13,9 +13,6 @@ import { useEffect, useState } from "react";
 
 // Tela de CADASTRO DE USUÁRIOS - para que usuários se cadastrem no sistema como clientes/músicos/gestores.
 function T02_Cadastro() {
-    
-    // Pega o empresa do radioButton para saber se é empresa ou não
-    const [empresa, setEmpresa] = useState(false);
 
     // Dados de input do usuário
     const [cpf, setCpf]                     = useState("");
@@ -29,6 +26,12 @@ function T02_Cadastro() {
     const [email, setEmail]                 = useState("");
     const [endereco, setEndereco]           = useState(""); // string
     const [dataCadastro, setDataCadastro]   = useState("12-12-2012"); // new Date alguma coisa
+
+    const [github, setGithub]               = useState("");
+    const [portifolio, setPortifolio]       = useState("");
+    const [instagram, setInstagram]         = useState("");
+    const [facebook, setFacebook]           = useState("");
+    const [curriculo, setCurriculo]         = useState("");
     
     // Endereço
     const [cep, setCep]                     = useState("");
@@ -61,46 +64,15 @@ function T02_Cadastro() {
 
     return(
         <form action="url" method="POST" className={t02_cadastro.main}>
-            {/* Muda o valor de empresa quando selecionado (useState) */}
-            <input type="radio" name="radio"  id="pessoaFisica" defaultChecked onChange={evt => setEmpresa(!empresa)} />         
-            <label htmlFor="pessoaFisica">Pessoa Física</label>
 
-            {/* Muda o valor de empresa quando selecionado (useState) */}
-            <input type="radio" name="radio" id="pessoaJuridica" onChange={evt => setEmpresa(!empresa)}/>
-            <label htmlFor="pessoaJuridica">Pessoa Jurídica</label>
-           
-            {/* Renderiza se pessoa jurídica */}
-            { empresa &&
-                <fieldset>
-                    <legend>Para empresas</legend>
-                    <Campo msg={"Cnpj:"} type={"number"} name={"cnpj"} 
-                    id={"icnpj"} placeholder={"Digite o cnpj da sua empresa"}/>
-
-                    <Campo msg={"Inscrição Estadual:"} type={"number"} name={"inscricaoEstadual"} 
-                    id={"iinscricaoEstadual"}  placeholder={"Digite a sua inscrição estadual"}/>
-
-                    <Campo msg={"Razão Social:"} type={"text"} name={"razaoSocial"} 
-                    id={"irazaoSocial"} placeholder={"Digite a razão social"}/>
-
-                    <Campo msg={"Nome Fantasia:"} type={"text"} name={"nomeFantasia"} 
-                    id={"inomeFantasia"} placeholder={"Digite o nome fantasia"}/>
-                </fieldset>
-            }
-
-            {/* Renderiza se pessoa física */}
-            { !empresa && 
-                <fieldset>
-                    <legend>Pessoa física</legend>
-                    <Campo msg={"Cpf:"} type={"number"} name={"cpf"} 
-                    id={"icpf"} placeholder={"Digite seu cpf"} setValue={setCpf} />
-                </fieldset>
-            }
-               
             {/* Cadastro */}
             <fieldset>
                 <legend>Cadastro</legend>
                 <Campo msg={"Nome:"} type={"text"} name={"nome"} 
                 id={"inome"} placeholder={"Digite o seu nome completo"} setValue={setNome} />
+
+                <Campo msg={"Cpf:"} type={"number"} name={"cpf"} 
+                id={"icpf"} placeholder={"Digite seu cpf"} setValue={setCpf} />
 
                 <Campo msg={"Nascimento: "} type={"date"} name={"nascimento"} 
                 id={"inascimento"} placeholder={"Digite o seu nome"} setValue={setDataNasc} />
@@ -125,7 +97,7 @@ function T02_Cadastro() {
                 id={"isenha2"} placeholder={"Verifique sua senha"} setValue={setCheckSenha} />
             </fieldset>
            
-           {/* Contatos */}
+            {/* Contatos */}
             <fieldset>
                 <legend>Contatos</legend>
                 <Campo htmlFor={"celular"} msg={"Celular: "} type={"tel"} name={"celular"} 
@@ -133,6 +105,25 @@ function T02_Cadastro() {
 
                 <Campo htmlFor={"email"} msg={"E-mail: "} type={"email"} name={"email"} 
                 id={"email"} placeholder={"Digite o seu e-mail"} setValue={setEmail} />
+            </fieldset>
+
+            {/* Projetos */}
+            <fieldset>
+                <legend>Projetos</legend>
+                <Campo htmlFor={"github"} msg={"Github: "} type={"tel"} name={"github"} 
+                id={"github"} placeholder={"Informe o link do seu github"} setValue={setGithub} />
+
+                <Campo htmlFor={"portifolio"} msg={"Portifolio: "} type={"email"} name={"portifolio"} 
+                id={"portifolio"} placeholder={"Informe o link do seu portifolio"} setValue={setPortifolio} />
+
+                <Campo htmlFor={"instagram"} msg={"Instagram: "} type={"tel"} name={"instagram"} 
+                id={"instagram"} placeholder={"Informe o link do seu instagram"} setValue={setInstagram} />
+
+                <Campo htmlFor={"facebook"} msg={"Facebook: "} type={"email"} name={"facebook"} 
+                id={"facebook"} placeholder={"Informe o link do seu facebook"} setValue={setFacebook} />
+
+                <Campo htmlFor={"curriculo"} msg={"Curriculo: "} type={"tel"} name={"curriculo"} 
+                id={"curriculo"} placeholder={"Informe o link do seu curriculo"} setValue={setCurriculo} />
             </fieldset>
 
             {/* Endereço */}

@@ -7,7 +7,6 @@ SELECT * FROM avaliacao
 SELECT * FROM categoria
 SELECT * FROM cliente
 SELECT * FROM custo
-SELECT * FROM ensaio
 SELECT * FROM gestor
 SELECT * FROM instrumento
 SELECT * FROM marca_fabricante

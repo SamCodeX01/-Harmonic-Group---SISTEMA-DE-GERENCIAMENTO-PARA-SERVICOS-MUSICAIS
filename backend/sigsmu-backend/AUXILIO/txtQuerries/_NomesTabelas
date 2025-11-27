@@ -3,7 +3,6 @@ avaliacao
 categoria
 cliente
 custo
-ensaio
 gestor
 instrumento
 marcafabricante
@@ -21,7 +20,6 @@ Avaliacao
 Categoria
 Cliente
 Custo
-Ensaio
 Gestor
 Instrumento
 MarcaFabricante
@@ -41,7 +39,6 @@ avaliacao
 categoria
 cliente
 custo
-ensaio
 gestor
 instrumento
 marca_fabricante
@@ -59,7 +56,6 @@ Avaliacao
 Categoria
 Cliente
 Custo
-Ensaio
 Gestor
 Instrumento
 Marca_Fabricante

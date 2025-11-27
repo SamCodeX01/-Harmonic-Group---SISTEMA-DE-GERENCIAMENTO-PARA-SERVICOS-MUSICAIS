@@ -3,7 +3,7 @@ import { useState } from "react"
 
 ////////////////////////////////////////////////////////////////
 let // Variáveis que armazenam os dados preenchidos pelo cliente
-    infoCliente, 
+    infoCliente,
     infoSolicitacao
 ; 
 

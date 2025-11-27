@@ -1,0 +1,43 @@
+DROP TABLE ass_grupo_do_servico;
+DROP TABLE ass_instrumentos_do_musico;
+DROP TABLE ass_instrumentos_escolhidos;
+DROP TABLE ass_musicas_escolhidas;
+
+DROP TABLE solicitacao_servico;
+DROP TABLE instrumento;
+DROP TABLE custo;
+DROP TABLE cliente;
+DROP TABLE musico;
+DROP TABLE gestor;
+DROP TABLE marca_fabricante;
+DROP TABLE meio_pagamento;
+DROP TABLE pacote_servico;
+DROP TABLE repertorio;
+DROP TABLE categoria;
+DROP TABLE status_solicitacao;
+DROP TABLE tipo_local;
+DROP TABLE tipo_servico;
+DROP TABLE avaliacao;
+
+
+
+DROP TABLE ass_grupo_do_servico_seq;
+DROP TABLE ass_instrumentos_do_musico_seq;
+DROP TABLE ass_instrumentos_escolhidos_seq;
+DROP TABLE ass_musicas_escolhidas_seq;
+
+DROP TABLE solicitacao_servico_seq;
+DROP TABLE instrumento_seq;
+DROP TABLE custo_seq;
+DROP TABLE cliente_seq;
+DROP TABLE musico_seq;
+DROP TABLE gestor_seq;
+DROP TABLE marca_fabricante_seq;
+DROP TABLE meio_pagamento_seq;
+DROP TABLE pacote_servico_seq;
+DROP TABLE repertorio_seq;
+DROP TABLE categoria_seq;
+DROP TABLE status_solicitacao_seq;
+DROP TABLE tipo_local_seq;
+DROP TABLE tipo_servico_seq;
+DROP TABLE avaliacao_seq;
