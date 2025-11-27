@@ -24,7 +24,7 @@ public class Gestor {
     @Column(name = "ges_nome")
     private String nome;
     
-    @Column(name = "ges_data_cadastro")
+    @Column(name = "ges_dataCadastro")
     private String dataCadastro;
 
     @Column(name = "ges_senha")

@@ -22,8 +22,4 @@ public class AssGrupoDoServico {
     @JoinColumn(name = "mus_cpf")
     private Musico musico;
 
-    @ManyToOne
-    @JoinColumn(name = "ens_id")
-    private Ensaio ensaio;
-
 }

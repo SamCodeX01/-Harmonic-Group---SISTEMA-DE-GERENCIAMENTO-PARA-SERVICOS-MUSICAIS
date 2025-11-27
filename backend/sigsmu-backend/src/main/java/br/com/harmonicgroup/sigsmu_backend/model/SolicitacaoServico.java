@@ -53,15 +53,6 @@ public class SolicitacaoServico {
 
 
     // Associativas
-    @OneToOne
-    @JoinColumn(name = "ava_id")
-    private Avaliacao avaliacao;
-
-    @OneToOne
-    @JoinColumn(name = "cus_id")
-    private Custo custo;
-
-
     @ManyToOne
     @JoinColumn(name = "cli_cpf")
     private Cliente cliente;
@@ -71,6 +62,14 @@ public class SolicitacaoServico {
     private Gestor gestor;
 
     @ManyToOne
+    @JoinColumn(name = "pac_id")
+    private PacoteServico pacoteServico;
+
+    @ManyToOne
+    @JoinColumn(name = "stt_id")
+    private StatusSolicitacao statusSolicitacao;
+
+    @ManyToOne
     @JoinColumn(name = "tip_id")
     private TipoLocal tipoLocal;
     
@@ -78,13 +77,13 @@ public class SolicitacaoServico {
     @JoinColumn(name = "pgt_id")
     private MeioPagamento meioPagamento;
     
-    @ManyToOne
-    @JoinColumn(name = "stt_id")
-    private StatusSolicitacao statusSolicitacao;
-    
-    @ManyToOne
-    @JoinColumn(name = "pac_id")
-    private PacoteServico pacoteServico;
+    @OneToOne
+    @JoinColumn(name = "cus_id")
+    private Custo custo;
+
+    @OneToOne
+    @JoinColumn(name = "ava_id")
+    private Avaliacao avaliacao;
 
     
     @JsonIgnore

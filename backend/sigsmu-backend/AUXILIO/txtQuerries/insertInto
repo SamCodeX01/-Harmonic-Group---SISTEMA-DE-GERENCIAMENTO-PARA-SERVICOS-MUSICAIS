@@ -16,7 +16,7 @@ SELECT * FROM categoria
 DELETE FROM categoria
 
 
--- 1 100%
+-- 1 100% (update cli_contrato)
 INSERT INTO cliente(cli_cpf, cli_nome, cli_email, cli_celular, cli_data_nasc, cli_endereco)
 VALUES 
 ('12345678900','Mariana Silva','mariana.silva@example.com','11987654321','15/08/1995','Rua das Flores, 120 - Centro'),
@@ -102,10 +102,10 @@ DELETE FROM musico
 -- 8 100%
 INSERT INTO pacote_servico(ser_id, pac_descricao, pac_nome, pac_qtd_musicos, pac_valor)
 VALUES 
-(1, '...', 'Harmonic Duo', '2', '1200'),
-(1, '...', 'Harmonic Trio', '3', '1800'),
-(1, '...', 'Harmonic Quarteto', '4', '2400'),
-(1, '...', 'Harmonic Sexteto', '6', '3600')
+(1, 'Pacote possui 2 músicos e é bom', 'Harmonic Duo', '2', '1200'),
+(1, 'Pacote possui 3 músicos e é muito bom', 'Harmonic Trio', '3', '1800'),
+(1, 'Pacote possui 4 músicos e é ótimo', 'Harmonic Quarteto', '4', '2400'),
+(1, 'Pacote possui 6 músicos e é perfeito', 'Harmonic Sexteto', '6', '3600')
 DROP TABLE pacote_servico
 SELECT * FROM pacote_servico
 DELETE FROM pacote_servico

@@ -60,5 +60,4 @@ public class PacoteServico {
         this.descricao = descricao;
     }
 
-
 }
