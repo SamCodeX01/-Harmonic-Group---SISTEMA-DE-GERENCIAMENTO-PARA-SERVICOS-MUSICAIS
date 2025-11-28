@@ -11,23 +11,21 @@ import Select    from "components/Select.jsx";
 import footerImg from "site_do_sistema/imagens_site/footer.png"
 
 // Importação dos serviços
-import { listarTiposLocal }               from "services/TabelasIndependentes/TipoLocalService.js";
-import { listarPacotesServico }           from "services/TabelasIndependentes/PacoteServicoService.js";
+import { listarTiposLocal }               from "services/TelaOrcamento/TipoLocalService.js";
+import { listarPacotesServico }           from "services/TelaOrcamento/PacoteServicoService.js";
 import { dadosCliente, dadosSolicitacao } from "services/_AUXILIAR/GlobalData.js";
 
 // Importações do React
-import { useEffect, useState } from "react";
+import { useEffect, useState }            from "react";
 
 
 // Tela responsável por iniciar os FORMULÁRIOS DE ORÇAMENTO para o cliente
 function T02_Orcamento() {
 
-    // ============================================================================ //
     // Dados retornados do Banco
-    const [tiposLocal,     setTiposLocal]     = useState(null) // tabela TipoLocal
-    const [pacotesServico, setPacotesServico] = useState(null) // tabela PacoteServico
-    // ============================================================================ //
-    
+    const [tiposLocal,     setTiposLocal]     = useState(null)
+    const [pacotesServico, setPacotesServico] = useState(null)
+
 
     // Retorna a LISTA DE TIPOS DE LOCAL do Banco
     const carregarTiposLocal = async () => {
@@ -58,13 +56,19 @@ function T02_Orcamento() {
     }, [])
 
 
-    // Itens e valores (ids) de TipoLocal
-    const [opcoesTipoLocal, setOpcoesTipoLocal]         = useState() // mostra no Select
-    const [idsTipoLocal,    setIdsTipoLocal]            = useState() // pega o id do selecionado
+    // Informações passadas pelo cliente (FORMS)
+    const [infoCliente,     setInfoCliente]     = useState(null) // obj ?
+    const [infoLocalEvento, setInfoLocalEvento] = useState("") // string   TENHO QUE VER
+    const [infoSolicitacao, setInfoSolicitacao] = useState(null) // obj ?
 
-    // Itens e valores (ids) de PacoteServico
-    const [opcoesPacoteServico, setOpcoesPacoteServico] = useState() // mostra no Select
-    const [idsPacoteServico,    setIdsPacoteServico]    = useState() // pega o id do selecionado
+
+    // Itens e valores (ids) de TipoLocal (passados pro Select)
+    const [opcoesTipoLocal, setOpcoesTipoLocal] = useState()
+    const [idsTipoLocal,    setIdsTipoLocal]    = useState()
+
+    // Itens e valores (ids) de PacoteServico (passados pro Select)
+    const [opcoesPacoteServico, setOpcoesPacoteServico] = useState()
+    const [idsPacoteServico,    setIdsPacoteServico]    = useState()
 
 
 
@@ -111,7 +115,7 @@ function T02_Orcamento() {
                 })
             )
         }
-    }, [tiposLocal]) // EXECUTA QUANDO O CLIENTE SELECIONA ALGO NO SELECT
+    }, [tiposLocal])
 
     // Define as opções a serem exibidas para escolha do cliente e seus valores (ids)
     // Tive que fazer dessa forma para não estragar o componente Select em outras telas
@@ -130,8 +134,18 @@ function T02_Orcamento() {
                 })
             )
         }
-    }, [pacotesServico]) // EXECUTA QUANDO O CLIENTE SELECIONA ALGO NO SELECT
+    }, [pacotesServico])
 
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Passa os dados para o arquivo .js global
+    useEffect(() => {
+        if (infoSolicitacao) {
+
+            dadosCliente.set(infoCliente)
+            dadosSolicitacao.set(infoSolicitacao)
+        }
+    }, [infoSolicitacao])
 
 
     return (
@@ -140,7 +154,7 @@ function T02_Orcamento() {
             <form action="" method="post">
 
                 <fieldset className={t02_orcamento.informacoescontato}>
-                    <legend> Informações de contato </legend>
+                    <legend>Informações de contato</legend>
                     <Campo msg={"Nome completo"}   type={"text"}   name={"name"}        id={"iname"}        setValue={setNome}     />
                     <Campo msg={"CPF"}             type={"text"}   name={"cpf"}         id={"icpf"}         setValue={setCpf}      />
                     <Campo msg={"Email"}           type={"email"}  name={"email"}       id={"iemail"}       setValue={setEmail}    />
@@ -150,7 +164,7 @@ function T02_Orcamento() {
                 </fieldset>
 
                 <fieldset className={t02_orcamento.sobreevento}>
-                    <legend> Sobre o evento </legend>
+                    <legend>Sobre o evento</legend>
                     
                     {/* <Campo msg={"Nome do pacote"}       type={"text"}   name={"pacote"}        id={"ipacote"}        setValue={setPacote}        /> */}
 
@@ -169,7 +183,7 @@ function T02_Orcamento() {
                 </fieldset>
 
                 <fieldset className={t02_orcamento.sobrelocalevento}>
-                    <legend> Sobre o local do evento </legend>
+                    <legend>Sobre o local do evento</legend>
                     <Campo msg={"Cep"}              type={"text"} name={"cep"}    id={"icep"}    setValue={setCep}       /> 
                     <Campo msg={"Nome do local"}    type={"text"} name={"local"}  id={"ilocal"}  setValue={setNomeLocal} /> 
                     <Campo msg={"Cidade"}           type={"text"} name={"cidade"} id={"icidade"} setValue={setCidade}    /> 
@@ -193,18 +207,22 @@ function T02_Orcamento() {
             <Botao msg={"Próxima"} rota={"/Repertorio"} ativarEstilo={true}
                 executarComando={() => {
 
+                    // TESTE
+                    // console.log("tipoLocal ID -> " + tipoLocal)
+                    // console.log("pacote ID -> " + pacote)
+
                     // Obj do Cliente
-                    const infoCliente = {
+                    setInfoCliente({
                         "cpf"      : cpf,
                         "nome"     : nome,
                         "email"    : email,
                         "celular"  : celular,
                         "dataNasc" : dataNasc,
                         "endereco" : endereco
-                    }
+                    })
 
-                    // String do local (sem tipoLocal ID)
-                    const infoLocalEvento = `
+                    // String do local (sem tipoLocal)
+                    setInfoLocalEvento(`
                         ${cep},
                         ${nomeLocal},
                         ${cidade},
@@ -212,34 +230,29 @@ function T02_Orcamento() {
                         ${rua},
                         ${numero},
                         ${complemento}
-                    `
+                    `)
 
                     // Obj das informações da solicitação
-                    const infoSolicitacao = {
-                        "localEvento"       : infoLocalEvento,
-                        "dataEvento"        : dataEvento,
-                        "horarioInicio"     : horarioInicio,
-                        "horarioTermino"    : horarioTermino,
-                        "qtdConvidados"     : qtdConvidados,
-                        "dataSolicitacao"   : "DD/MM/YYYY",
-                        "eOrcamento"        : "true",
-                        "dataAprovacao"     : "",
-                        "cliente"           : {"cpf" : cpf},
-                        "pacoteServico"     : {"id"  : Number(pacote)},
-                        "tipoLocal"         : {"id"  : Number(tipoLocal)},
-                        "statusSolicitacao" : {"id"  : 2}
-                    }
+                    setInfoSolicitacao({
+                        "localEvento"     : infoLocalEvento,
+                        "dataEvento"      : dataEvento,
+                        "horarioInicio"   : horarioInicio,
+                        "horarioTermino"  : horarioTermino,
+                        "qtdConvidados"   : qtdConvidados,
+                        "dataSolicitacao" : "DD/MM/YYYY",
+                        "eOrcamento"      : "true",
+                        "dataAprovacao"   : "",
+                        "cliente"         : {"cpf" : cpf},
+                        "pacoteServico"   : {"id"  : Number(pacote)},
+                        "tipoLocal"       : {"id"  : Number(tipoLocal)}
+                    })
 
+                    
                     console.log("=========================================")
                     console.log("cpf ID -> " + cpf)
                     console.log("pacote ID -> " + pacote)
                     console.log("tipoLocal ID -> " + tipoLocal)
                     console.log("=========================================")
-
-                    // Passa os dados para o arquivo .js global
-                    dadosCliente.set(infoCliente)
-                    dadosSolicitacao.set(infoSolicitacao)
-                    // Informações passadas pelo cliente (FORMS)
                 }}
             />
 

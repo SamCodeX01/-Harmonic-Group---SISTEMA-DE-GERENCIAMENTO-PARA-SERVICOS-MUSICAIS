@@ -24,6 +24,12 @@ public class Musico {
     @Column(name = "mus_nome")
     private String nome;
 
+    @Column(name = "mus_email") // faltou ADICIONAR nos diagrama
+    private String email;
+
+    @Column(name = "mus_celular") // faltou ADICIONAR nos diagrama
+    private String celular;
+
     @Column(name = "mus_endereco")
     private String endereco;
     
@@ -67,10 +73,12 @@ public class Musico {
     // Construtores
     public Musico(){};
     
-    public Musico(String cpf, String nome, String dataNasc, String endereco, String dataCadastro, String senha, String github,
+    public Musico(String cpf, String nome, String dataNasc, String endereco, String email, String celular, String dataCadastro, String senha, String github,
         String portifolio,String instagram,String facebook,String curriculo,String contrato, String avaliacao){
         this.cpf = cpf;
         this.nome = nome;
+        this.nome = email;
+        this.nome = celular;
         this.endereco = endereco;
         this.dataCadastro = dataCadastro;
         this.senha = senha;

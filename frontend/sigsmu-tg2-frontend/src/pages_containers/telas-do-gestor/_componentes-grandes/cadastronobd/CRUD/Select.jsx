@@ -2,13 +2,13 @@
 import selectCSS from "./CSS/select.module.css"
 
 // Importações do CRUD API
-import { listarPacotesServico } from "services/BancoDadosGestor/PacoteServicoService"
-import { listarInstrumentos }   from "services/BancoDadosGestor/InstrumentoService.js"
-import { listarTiposServico }   from "services/BancoDadosGestor/TipoServicoService.js"
-import { listarMeiosPagamento } from "services/BancoDadosGestor/MeioPagamentoService.js"
-import { listarRepertorios }    from "services/BancoDadosGestor/RepertorioService.js"
-import { listarStatus }         from "services/BancoDadosGestor/StatusSolicitacaoService.js"
-import { listarTiposLocal }     from "services/BancoDadosGestor/TipoLocalService.js"
+import { listarPacotesServico } from "services/TabelasIndependentes/PacoteServicoService"
+import { listarInstrumentos }   from "services/TabelasIndependentes/InstrumentoService.js"
+import { listarTiposServico }   from "services/TabelasIndependentes/TipoServicoService.js"
+import { listarMeiosPagamento } from "services/TabelasIndependentes/MeioPagamentoService.js"
+import { listarRepertorios }    from "services/TabelasIndependentes/RepertorioService.js"
+import { listarStatus }         from "services/TabelasIndependentes/StatusSolicitacaoService.js"
+import { listarTiposLocal }     from "services/TabelasIndependentes/TipoLocalService.js"
 
 // Importações do React
 import { useState, useEffect } from "react"

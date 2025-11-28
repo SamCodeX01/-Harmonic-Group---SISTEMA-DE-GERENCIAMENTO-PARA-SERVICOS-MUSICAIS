@@ -1,6 +1,7 @@
 package br.com.harmonicgroup.sigsmu_backend.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,6 +29,11 @@ public class MusicoController {
     @GetMapping
     public List<Musico> listarMusicos() {
         return musicoService.listarMusicos();
+    }
+    
+    @GetMapping("/{cpf}")
+    public Optional<Musico> buscarMusicoPorNome(@PathVariable String cpf) {
+        return musicoService.buscarMusicoPorCpf(cpf);
     }
 
     @PostMapping

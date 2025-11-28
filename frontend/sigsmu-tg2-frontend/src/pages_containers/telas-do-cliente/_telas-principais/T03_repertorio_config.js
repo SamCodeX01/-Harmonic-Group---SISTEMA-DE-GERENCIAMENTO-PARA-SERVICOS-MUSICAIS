@@ -165,10 +165,8 @@ const eventoCorporativo = {
     }
 };
 
-// Dados da tela orçamento
-const orcamentoData = {}
 
-function getConfig(servico) {
+function getMusicas(servico) {
 
     switch (servico) {
         case "casamento"   : return cerimoniaCivil
@@ -185,4 +183,4 @@ function getConfig(servico) {
     // eventoCorporativo
 
 }
-export default getConfig;
+export default getMusicas;

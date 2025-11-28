@@ -7,14 +7,14 @@ import Select     from "components/Select.jsx";
 import EventoItem from "components/EventoItem.jsx"
 
 // Importações do React
-import React, { use, useEffect, useState } from "react";
+import React, { useState } from "react";
 
 // Importações dos serviços
-import { adicionarCliente }                from "services/TelaOrcamento/ClienteService.js";
-import { adicionarSolicitacaoServico }     from "services/TelaOrcamento/SolicitacaoServicoService.js";
-import { dadosCliente, dadosSolicitacao }  from "services/GlobalData.js";
+import { adicionarCliente }                from "services/Atores/Cliente.js";
+import { adicionarSolicitacaoServico }     from "services/Outras/SolicitacaoServico.js";
+import { dadosCliente, dadosSolicitacao }  from "services/_AUXILIAR/GlobalData.js";
 
-import getConfig from "./T03_repertorio_config.js";
+import getMusicas from "./T03_repertorio_config.js";
 
 
 // import T09_Footer from "./T09_Footer";
@@ -63,7 +63,7 @@ function T03_Repertorio() {
 
             {/* mostra todos os eventos em forma de lista */}
             <div className={t11_sugestaoCss.eventosContainer}>
-                <EventoItem evento={ getConfig(servico) } setMusicas={setMusicasSelecionadas} />
+                <EventoItem evento={ getMusicas(servico) } setMusicas={setMusicasSelecionadas} />
             </div>
 
 

@@ -23,6 +23,12 @@ public class Gestor {
 
     @Column(name = "ges_nome")
     private String nome;
+
+    @Column(name = "ges_email") // faltou ADICIONAR nos diagrama
+    private String email;
+
+    @Column(name = "ges_celular") // faltou ADICIONAR nos diagrama
+    private String celular;
     
     @Column(name = "ges_dataCadastro")
     private String dataCadastro;
@@ -39,9 +45,11 @@ public class Gestor {
     // Construtores
     public Gestor(){};
     
-    public Gestor(String cpf, String nome, String dataCadastro, String senha){
+    public Gestor(String cpf, String nome, String email, String celular, String dataCadastro, String senha){
         this.cpf = cpf;
         this.nome = nome;
+        this.email = email;
+        this.celular = celular;
         this.dataCadastro = dataCadastro;
         this.senha = senha;
     };

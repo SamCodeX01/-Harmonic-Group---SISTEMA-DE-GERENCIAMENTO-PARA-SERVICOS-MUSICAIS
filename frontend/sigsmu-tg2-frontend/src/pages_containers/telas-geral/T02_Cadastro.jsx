@@ -5,7 +5,7 @@ import t02_cadastro from "./CSS/t02_cadastro.module.css"
 import Campo from "components/Campo.jsx";
 
 // Importações do CRUD API
-import { adicionarMusico } from "services/Outras/Musico.js";
+import { adicionarMusico } from "services/Atores/Musico.js";
 
 // Importações do React
 import { useEffect, useState } from "react";
@@ -17,15 +17,13 @@ function T02_Cadastro() {
     // Dados de input do usuário
     const [cpf, setCpf]                     = useState("");
     const [nome, setNome]                   = useState("");
-    const [dataNasc, setDataNasc]           = useState("");
-    const [sexo, setSexo]                   = useState("");
     const [senha, setSenha]                 = useState("");
     const [checkSenha, setCheckSenha]       = useState("");
     const [senhaValidada, setSenhaValidada] = useState(false)
     const [celular, setCelular]             = useState("");
     const [email, setEmail]                 = useState("");
     const [endereco, setEndereco]           = useState(""); // string
-    const [dataCadastro, setDataCadastro]   = useState("12-12-2012"); // new Date alguma coisa
+    const [dataCadastro, setDataCadastro]   = useState(""); // data atual
 
     const [github, setGithub]               = useState("");
     const [portifolio, setPortifolio]       = useState("");
@@ -48,15 +46,20 @@ function T02_Cadastro() {
     useEffect(() => {
         if (senhaValidada) {
             adicionarMusico({
-                cpf          : cpf,
-                nome         : nome,
-                dataNasc     : dataNasc,
-                sexo         : sexo,
-                senha        : senha,
-                celular      : celular,
-                email        : email,
-                endereco     : endereco,
-                dataCadastro : dataCadastro
+                cpf : cpf,
+                nome : nome,
+                email : email,
+                celular : celular,
+                endereco : endereco,
+                dataCadastro : dataCadastro,
+                senha : senha,
+                github : github,
+                portifolio : portifolio,
+                instagram : instagram,
+                facebook : facebook,
+                curriculo : curriculo,
+                contrato : "",
+                avaliacao : ""
             })
         }
     }, [senhaValidada])
@@ -73,22 +76,6 @@ function T02_Cadastro() {
 
                 <Campo msg={"Cpf:"} type={"number"} name={"cpf"} 
                 id={"icpf"} placeholder={"Digite seu cpf"} setValue={setCpf} />
-
-                <Campo msg={"Nascimento: "} type={"date"} name={"nascimento"} 
-                id={"inascimento"} placeholder={"Digite o seu nome"} setValue={setDataNasc} />
-           
-                <label htmlFor="titulo">Qual o seu gênero?</label>
-                <select onChange={evt => setSexo(evt.currentTarget.value)}>
-                    <optgroup label="Titulo">
-                        <option value={""}>            Selecione uma opção </option>
-                        <option value={"Homem"}>       Homem </option>
-                        <option value={"Mulher"}>      Mulher </option>
-                        <option value={"Transgênero"}> Transgênero </option>
-                        <option value={"Prefire não dizer"}>     Prefiro não dizer </option>
-                        <option value={"Outro"}>       Outro </option>
-                        <input type="text" />
-                    </optgroup>
-                </select>
 
                 <Campo msg={"Senha: "} type={"password"} name={"senha"} 
                 id={"isenha"} placeholder={"Crie uma senha"} setValue={setSenha} />
@@ -170,6 +157,11 @@ function T02_Cadastro() {
                             complemento + ", " +
                             referencia
                         )
+
+                        // Pega a data atual do sistema
+                        const date = new Date();
+                        const dataBR = date.toLocaleDateString('pt-BR');
+                        setDataCadastro(dataBR.replaceAll("/","-"))
 
                     } else alert("Senhas não coincidem!")
 

@@ -30,8 +30,9 @@ function Botao({msg, ativarEstilo, rota=null, style=null, value=null, executarCo
                         navigate(rota)
                 }
 
+                // Executa se tiver algum comando
                 if (executarComando != null) {
-                    executarComando()
+                    executarComando(evt, value)
                 }
             }}
 

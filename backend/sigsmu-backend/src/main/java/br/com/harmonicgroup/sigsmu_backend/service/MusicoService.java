@@ -1,6 +1,7 @@
 package br.com.harmonicgroup.sigsmu_backend.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import br.com.harmonicgroup.sigsmu_backend.model.Musico;
 import br.com.harmonicgroup.sigsmu_backend.model.UpdateDTO;
 import br.com.harmonicgroup.sigsmu_backend.repository.MusicoRepository;
-
 
 
 @Service
@@ -19,6 +19,10 @@ public class MusicoService {
 
     public List<Musico> listarMusicos() {
         return musicoRepository.findAll();
+    }
+    
+    public Optional<Musico> buscarMusicoPorCpf(String cpf) {
+        return musicoRepository.findById(cpf);
     }
 
     public void cadastrarMusico(Musico musico) {

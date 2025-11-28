@@ -1,11 +1,11 @@
 // Importações do CRUD API
-import { excluirPacoteServico } from "services/BancoDadosGestor/PacoteServicoService.js"
-import { excluirInstrumento }   from "services/BancoDadosGestor/InstrumentoService.js"
-import { excluirTipoServico }   from "services/BancoDadosGestor/TipoServicoService.js"
-import { excluirMeioPagamento } from "services/BancoDadosGestor/MeioPagamentoService.js"
-import { excluirRepertorio }    from "services/BancoDadosGestor/RepertorioService.js"
-import { excluirStatus }        from "services/BancoDadosGestor/StatusSolicitacaoService.js"
-import { excluirTipoLocal }     from "services/BancoDadosGestor/TipoLocalService.js"
+import { excluirPacoteServico } from "services/TabelasIndependentes/PacoteServicoService.js"
+import { excluirInstrumento }   from "services/TabelasIndependentes/InstrumentoService.js"
+import { excluirTipoServico }   from "services/TabelasIndependentes/TipoServicoService.js"
+import { excluirMeioPagamento } from "services/TabelasIndependentes/MeioPagamentoService.js"
+import { excluirRepertorio }    from "services/TabelasIndependentes/RepertorioService.js"
+import { excluirStatus }        from "services/TabelasIndependentes/StatusSolicitacaoService.js"
+import { excluirTipoLocal }     from "services/TabelasIndependentes/TipoLocalService.js"
 
 // Importações do CRUD API
 // import { excluirPacoteServico } from "@services/BancoDadosGestor/PacoteServicoService.js"

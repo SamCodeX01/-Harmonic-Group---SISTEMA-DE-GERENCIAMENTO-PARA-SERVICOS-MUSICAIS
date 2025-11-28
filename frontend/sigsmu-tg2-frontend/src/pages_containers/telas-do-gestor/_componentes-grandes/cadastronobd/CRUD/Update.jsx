@@ -1,11 +1,11 @@
 // Importações do CRUD API
-import { atualizarPacoteServico } from "services/BancoDadosGestor/PacoteServicoService.js"
-import { atualizarInstrumento }   from "services/BancoDadosGestor/InstrumentoService.js"
-import { atualizarTipoServico }   from "services/BancoDadosGestor/TipoServicoService.js"
-import { atualizarMeioPagamento } from "services/BancoDadosGestor/MeioPagamentoService.js"
-import { atualizarRepertorio }    from "services/BancoDadosGestor/RepertorioService.js"
-import { atualizarStatus }        from "services/BancoDadosGestor/StatusSolicitacaoService.js"
-import { atualizarTipoLocal }     from "services/BancoDadosGestor/TipoLocalService.js"
+import { atualizarPacoteServico } from "services/TabelasIndependentes/PacoteServicoService.js"
+import { atualizarInstrumento }   from "services/TabelasIndependentes/InstrumentoService.js"
+import { atualizarTipoServico }   from "services/TabelasIndependentes/TipoServicoService.js"
+import { atualizarMeioPagamento } from "services/TabelasIndependentes/MeioPagamentoService.js"
+import { atualizarRepertorio }    from "services/TabelasIndependentes/RepertorioService.js"
+import { atualizarStatus }        from "services/TabelasIndependentes/StatusSolicitacaoService.js"
+import { atualizarTipoLocal }     from "services/TabelasIndependentes/TipoLocalService.js"
 
 // // Importações do CRUD API
 // import { atualizarPacoteServico } from "@services/BancoDadosGestor/PacoteServicoService.js"
