@@ -1,10 +1,13 @@
+// Importações de estilos
+import select from "./CSS/select.module.css"
+
 // Importações do React
 import React from "react";
 
 
 function Select({msg, setValue, listaOpcoes, values=null}){
     return(
-        <div>
+        <div className={select.main}>
             <label htmlFor={"i"+msg}> {msg} </label>
 
             <select key={"i"+msg} onChange={evt => setValue(evt.currentTarget.value)}>

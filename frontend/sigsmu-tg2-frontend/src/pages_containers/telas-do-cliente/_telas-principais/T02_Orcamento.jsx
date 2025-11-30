@@ -158,7 +158,6 @@ function T02_Orcamento() {
                     <Campo msg={"Complemento"} type={"text"} name={"complemento"} id={"icomplemento"} setValue={setComplemento} /> 
                 </fieldset>
 
-            </form>
 
             <Botao msg={"Próxima"} rota={"/Repertorio"} ativarEstilo={true}
                 executarComando={() => {
@@ -210,6 +209,9 @@ function T02_Orcamento() {
                     // Informações passadas pelo cliente (FORMS) //
                 }}
             />
+
+            </form>
+
 
             <img className={t02_orcamento.footerImagem} src={footerImg} alt="" />
 

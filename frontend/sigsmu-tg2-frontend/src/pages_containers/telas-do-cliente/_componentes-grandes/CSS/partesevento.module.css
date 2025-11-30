@@ -6,6 +6,7 @@
     background: white;
 }
 
+
 .eventoHeader {
     margin-bottom: 20px;
     text-align: center;
@@ -82,6 +83,13 @@
 
 .musicasLista {
     margin-top: 15px;
+}
+
+.musicasLista select {
+    /* background-color: black; */
+    padding: 10px;
+    border-radius: 10px;
+
 }
 
 .musicasLista h4 {

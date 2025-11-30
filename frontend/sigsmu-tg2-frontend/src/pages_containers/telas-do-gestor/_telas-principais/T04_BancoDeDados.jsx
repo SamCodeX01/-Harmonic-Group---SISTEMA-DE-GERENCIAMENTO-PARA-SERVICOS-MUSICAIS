@@ -229,7 +229,7 @@ function T04_BancoDeDados() {
 
             {/* Local em que a TABELA SELECIONADA e seus CAMPOS serão exibidos para o gestor */}
             <div className={t04_bancoDeDados.tabelaCampos} >
-                {tabelaSelecionada ?
+                { tabelaSelecionada ?
                     <div>
 
                         {/*       Exibe a tabela selecionada       */}

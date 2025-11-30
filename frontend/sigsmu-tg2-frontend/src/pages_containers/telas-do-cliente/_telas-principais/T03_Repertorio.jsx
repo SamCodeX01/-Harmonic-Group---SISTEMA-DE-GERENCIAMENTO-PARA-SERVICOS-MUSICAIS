@@ -67,7 +67,7 @@ function T03_Repertorio() {
     }, [])
 
     // useStates de seleção do usuário
-    const [servicoSelecionado, setServicoSelecionado] = useState("casamento") // string por enquanto (->id)
+    const [servicoSelecionado, setServicoSelecionado]   = useState("casamento") // string por enquanto (->id)
     const [musicasSelecionadas, setMusicasSelecionadas] = useState() // strings
     
 
@@ -98,10 +98,7 @@ function T03_Repertorio() {
                     evento={ getMusicas(servicoSelecionado) }
                     setMusicas={setMusicasSelecionadas}
                 />
-            </div>
 
-
-            {/* "TESTE" */}
             <Botao msg={"SOLICITAR"}
                 executarComando={() => {
 
@@ -114,6 +111,11 @@ function T03_Repertorio() {
                     cadastrarNoBanco()
                 }}
             />
+
+            </div>
+
+
+            {/* "TESTE" */}
 
             {/* rota -> mensagem de obg */}
 
