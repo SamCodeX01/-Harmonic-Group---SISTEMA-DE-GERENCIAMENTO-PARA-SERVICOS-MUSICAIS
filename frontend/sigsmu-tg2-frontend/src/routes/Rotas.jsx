@@ -2,26 +2,24 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 //Teste apagar depois
-import T00_TESTES        from 'pages_containers/telas-geral/T00_TESTES.jsx';
-import T00_ChatBot       from 'site_do_sistema/components_site/T00_ChatBot.jsx';
+import T00_TESTES from 'pages_containers/telas-geral/T00_TESTES.jsx';
 
 // Rotas do Cliente (rota inicial)
 import Site              from 'site_do_sistema/Site.jsx';
 import T01_HeaderCliente from 'site_do_sistema/components_site/T01_Header.jsx';
-import T01_Inicio        from "pages_containers/telas-do-cliente/_telas-principais/T01_Inicio.jsx";
 import T02_Orcamento     from "pages_containers/telas-do-cliente/_telas-principais/T02_Orcamento.jsx";
 import T03_Repertorio    from "pages_containers/telas-do-cliente/_telas-principais/T03_Repertorio.jsx";
 import T09_Footer        from 'site_do_sistema/components_site/T09_Footer.jsx';
 import T11_Sugestao      from "site_do_sistema/components_site/T11_Sugestao.jsx" //
-import T10_servicos      from "site_do_sistema/components_site/T10_Servicos.jsx" //
+import T10_Servicos      from "site_do_sistema/components_site/T10_Servicos.jsx" //
 import T12_Contatos      from "site_do_sistema/components_site/T12_Contatos.jsx"
 import T13_SejaParceiro  from "site_do_sistema/components_site/T13_SejaParceiro.jsx"
 import T14_GaleriaFotos  from "site_do_sistema/components_site/T14_GaleriaFotos.jsx"
 
 // Rotas Intranet
-import T01_Login         from 'pages_containers/telas-geral/T01_Login.jsx';
-import T02_Cadastro      from 'pages_containers/telas-geral/T02_Cadastro.jsx';
-import T03_Poslogin      from 'pages_containers/telas-geral/T03_Poslogin.jsx';
+import T01_Login    from 'pages_containers/telas-geral/T01_Login.jsx';
+import T02_Cadastro from 'pages_containers/telas-geral/T02_Cadastro.jsx';
+import T03_Poslogin from 'pages_containers/telas-geral/T03_Poslogin.jsx';
 
 
 // Rotas do Gestor
@@ -29,7 +27,6 @@ import T01_HeaderGestor         from 'pages_containers/telas-do-gestor/_telas-pr
 import T02_Inicio               from "pages_containers/telas-do-gestor/_telas-principais/T02_Inicio.jsx";
 import T03_SolicitacoesServico  from "pages_containers/telas-do-gestor/_telas-principais/T03_SolicitacoesServico.jsx";
 import T04_BancoDeDados         from "pages_containers/telas-do-gestor/_telas-principais/T04_BancoDeDados.jsx";
-import T05_Permissoes           from "pages_containers/telas-do-gestor/_telas-principais/T05_Permissoes.jsx";
 import T06_Historico            from "pages_containers/telas-do-gestor/_telas-principais/T06_Historico.jsx";
 
 import TelaAlteracaoContrato    from "pages_containers/telas-do-gestor/telas-dos-botoes/TelaAlteracaoContrato.jsx";
@@ -43,7 +40,7 @@ import T01_painelAgendamentos   from 'pages_containers/telas-do-musico/T01_Paine
 import T02_CadastroInstrumentos from 'pages_containers/telas-do-musico/T02_CadastroInstrumentos.jsx';
 
 
-// Salvador de vidas - amo o useLocation(☺)
+// Configura o header de acordo com o path (Rotas - cliente/musico/gestor)
 function ConfigurarHeader() {
     const location = useLocation()
     const path = location.pathname
@@ -54,6 +51,8 @@ function ConfigurarHeader() {
     else if (nomeRota[1] === "RotasGestor")
         return <T01_HeaderGestor/>
 }
+
+// Configura o footer de acordo com o path (Rotas - cliente/musico/gestor)
 function ConfigurarFooter() {
     const location = useLocation()
     const path = location.pathname
@@ -65,27 +64,28 @@ function ConfigurarFooter() {
        // return <T01_HeaderGestor/>
 }
 
+
 function Rotas() {
     return (
         <Router>
+
             <ConfigurarHeader/>
 
             <Routes> 
+
                 {/*   TELA PARA TESTES DE NOVAS FUNCIONALIDADES   */}
-                {/* <Route path='/AreaDeTeste'     element={ <T00_ChatBot/> } /> */}
-                <Route path='/AreaDeTeste'     element={ <T00_TESTES/> } />
-                {/* <Route path='/AreaDeTeste'     element={ <EventoItem/> } /> */}
+                <Route path='/AreaDeTeste'  element={ <T00_TESTES/> } />
                 {/* ///////////////////////////////////////////// */}
 
                 {/*               ROTAS DO CLIENTE               */}
-                <Route path='/'           element={<Site/>} errorElement={<div>vvv</div>}/>
-                <Route path='/Inicio'     element={<Site/>} />
-                <Route path='/Servicos'   element={<T10_servicos/>}/>    
-                <Route path='/galeria'   element={<T14_GaleriaFotos/>}/>    
-                <Route path='/Sugestao'   element={<T11_Sugestao/>}/>    
-                <Route path="/Orcamento"  element={<T02_Orcamento/>} />
-                <Route path="/Repertorio" element={<T03_Repertorio/>} />
-                <Route path="/Contatos" element={<T12_Contatos/>} />
+                <Route path='/'             element={<Site/>} errorElement={<div>vvv</div>}/>
+                <Route path='/Inicio'       element={<Site/>} />
+                <Route path='/Servicos'     element={<T10_Servicos/>}/>    
+                <Route path='/galeria'      element={<T14_GaleriaFotos/>}/>    
+                <Route path='/Sugestao'     element={<T11_Sugestao/>}/>    
+                <Route path="/Orcamento"    element={<T02_Orcamento/>} />
+                <Route path="/Repertorio"   element={<T03_Repertorio/>} />
+                <Route path="/Contatos"     element={<T12_Contatos/>} />
                 <Route path="/SejaParceiro" element={<T13_SejaParceiro/>}/>
 
 
@@ -101,11 +101,10 @@ function Rotas() {
 
 
                 {/*                         ROTAS DO GESTOR                         */}
-                <Route path="/Intranet/RotasGestor/Inicio"              element={<T02_Inicio />} />
-                <Route path="/Intranet/RotasGestor/SolicitacoesServico" element={<T03_SolicitacoesServico />} />
-                <Route path="/Intranet/RotasGestor/BancoDeDados"        element={<T04_BancoDeDados />} />
-                <Route path="/Intranet/RotasGestor/Permissoes"          element={<T05_Permissoes />} />
-                <Route path="/Intranet/RotasGestor/Historico"           element={<T06_Historico />} /> 
+                <Route path="/Intranet/RotasGestor/Inicio"               element={<T02_Inicio />} />
+                <Route path="/Intranet/RotasGestor/SolicitacoesServico"  element={<T03_SolicitacoesServico />} />
+                <Route path="/Intranet/RotasGestor/BancoDeDados"         element={<T04_BancoDeDados />} />
+                <Route path="/Intranet/RotasGestor/Historico"            element={<T06_Historico />} /> 
                 
                 {/*                    Rotas das Opções do Gestor                    */}
                 <Route path="/Intranet/RotasGestor/SolicitacoesServico/AlteracaoContrato"    element={<TelaAlteracaoContrato />} />
@@ -117,6 +116,7 @@ function Rotas() {
             </Routes>
               
             <ConfigurarFooter/>
+
         </Router>
     )
 }

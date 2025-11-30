@@ -32,7 +32,7 @@ public class MusicoController {
     }
     
     @GetMapping("/{cpf}")
-    public Optional<Musico> buscarMusicoPorNome(@PathVariable String cpf) {
+    public Optional<Musico> buscarMusicoPorCpf(@PathVariable String cpf) {
         return musicoService.buscarMusicoPorCpf(cpf);
     }
 

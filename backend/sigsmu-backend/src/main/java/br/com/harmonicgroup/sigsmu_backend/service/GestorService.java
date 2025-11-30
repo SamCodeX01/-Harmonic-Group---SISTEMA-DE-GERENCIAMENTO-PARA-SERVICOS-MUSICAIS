@@ -15,6 +15,10 @@ public class GestorService {
     @Autowired
     GestorRepository gestorRepository;
 
+    public List<Gestor> listarGestores() {
+        return gestorRepository.findAll();
+    }
+
     public Optional<Gestor> buuscarGestorPorCpf(String cpf) {
         return gestorRepository.findById(cpf);
     }

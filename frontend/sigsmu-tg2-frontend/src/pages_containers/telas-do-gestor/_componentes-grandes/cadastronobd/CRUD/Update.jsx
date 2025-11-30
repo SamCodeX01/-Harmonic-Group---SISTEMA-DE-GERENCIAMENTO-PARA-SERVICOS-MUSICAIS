@@ -1,21 +1,12 @@
-// Importações do CRUD API
-import { atualizarPacoteServico } from "services/TabelasIndependentes/PacoteServicoService.js"
-import { atualizarInstrumento }   from "services/TabelasIndependentes/InstrumentoService.js"
-import { atualizarTipoServico }   from "services/TabelasIndependentes/TipoServicoService.js"
-import { atualizarMeioPagamento } from "services/TabelasIndependentes/MeioPagamentoService.js"
-import { atualizarRepertorio }    from "services/TabelasIndependentes/RepertorioService.js"
-import { atualizarStatus }        from "services/TabelasIndependentes/StatusSolicitacaoService.js"
-import { atualizarTipoLocal }     from "services/TabelasIndependentes/TipoLocalService.js"
+// Importações da API (Axios)
+import { atualizarPacoteServico } from "services/TabelasIndependentes/PacoteServico.js"
+import { atualizarInstrumento }   from "services/TabelasIndependentes/Instrumento.js"
+import { atualizarTipoServico }   from "services/TabelasIndependentes/TipoServico.js"
+import { atualizarMeioPagamento } from "services/TabelasIndependentes/MeioPagamento.js"
+import { atualizarRepertorio }    from "services/TabelasIndependentes/Repertorio.js"
+import { atualizarStatus }        from "services/TabelasIndependentes/StatusSolicitacao.js"
+import { atualizarTipoLocal }     from "services/TabelasIndependentes/TipoLocal.js"
 
-// // Importações do CRUD API
-// import { atualizarPacoteServico } from "@services/BancoDadosGestor/PacoteServicoService.js"
-// import { atualizarInstrumento }   from "@services/BancoDadosGestor/InstrumentoService.js"
-// import { atualizarTipoServico }   from "@services/BancoDadosGestor/TipoServicoService.js"
-// import { atualizarMeioPagamento } from "@services/BancoDadosGestor/MeioPagamentoService.js"
-// import { atualizarRepertorio }    from "@services/BancoDadosGestor/RepertorioService.js"
-// import { atualizarStatus }        from "@services/BancoDadosGestor/StatusSolicitacaoService.js"
-// import { atualizarTipoLocal }     from "@services/BancoDadosGestor/TipoLocalService.js"
-    
 
 function Update(tabela, campo, input) {
 

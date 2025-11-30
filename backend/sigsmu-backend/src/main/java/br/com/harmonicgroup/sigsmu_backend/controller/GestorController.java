@@ -1,5 +1,6 @@
 package br.com.harmonicgroup.sigsmu_backend.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class GestorController {
     
     @Autowired
     GestorService gestorService;
+
+    @GetMapping
+    public List<Gestor> listarGestores() {
+        return gestorService.listarGestores();
+    }
 
     @GetMapping("/{cpf}")
     public Optional<Gestor> buscarGestorPorCpf(@PathVariable String cpf) {

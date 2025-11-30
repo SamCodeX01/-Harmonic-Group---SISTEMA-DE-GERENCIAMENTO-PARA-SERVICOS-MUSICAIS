@@ -4,15 +4,17 @@ import t02_cadastro from "./CSS/t02_cadastro.module.css"
 // Importações de componentes
 import Campo from "components/Campo.jsx";
 
-// Importações do CRUD API
+// Importações da API (Axios)
 import { adicionarMusico } from "services/Atores/Musico.js";
 
 // Importações do React
 import { useEffect, useState } from "react";
+import { useNavigate }         from "react-router-dom";
 
 
 // Tela de CADASTRO DE USUÁRIOS - para que usuários se cadastrem no sistema como clientes/músicos/gestores.
 function T02_Cadastro() {
+    const navigate = useNavigate()
 
     // Dados de input do usuário
     const [cpf, setCpf]                     = useState("");
@@ -42,10 +44,10 @@ function T02_Cadastro() {
     const [referencia, setReferencia]       = useState("");
     
 
-    // Quando clicarem em cadastrar...
-    useEffect(() => {
-        if (senhaValidada) {
-            adicionarMusico({
+    // CADASTRA O MÚSICO no banco
+    const adicionarAoBanco = async () => {
+        try {
+            await adicionarMusico({
                 cpf : cpf,
                 nome : nome,
                 email : email,
@@ -61,6 +63,20 @@ function T02_Cadastro() {
                 contrato : "",
                 avaliacao : ""
             })
+
+            alert("Cadastro realizado com sucesso!")
+            navigate("/Intranet/TelaLogin", {replace: true})
+        }
+        catch(erro) {
+            alert("Erro ao cadastrar músico!")
+            console.log("Erro ao cadastrar músico: " + erro)
+        }
+    }
+
+    // Executa a função se senha estiver ok
+    useEffect(() => {
+        if (senhaValidada === true) {
+            adicionarAoBanco()
         }
     }, [senhaValidada])
 
@@ -145,6 +161,8 @@ function T02_Cadastro() {
                 type="button"
                 onClick={evt => {
                     if (senha === checkSenha) {
+
+                        // Seta a senha como validada
                         setSenhaValidada(true)
 
                         setEndereco(
@@ -162,8 +180,8 @@ function T02_Cadastro() {
                         const date = new Date();
                         const dataBR = date.toLocaleDateString('pt-BR');
                         setDataCadastro(dataBR.replaceAll("/","-"))
-
-                    } else alert("Senhas não coincidem!")
+                    } 
+                    else alert("Senhas não coincidem!")
 
                 }}
             >ENVIAR</div>

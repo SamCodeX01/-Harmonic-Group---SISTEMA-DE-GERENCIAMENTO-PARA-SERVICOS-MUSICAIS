@@ -1,26 +1,17 @@
 // Importações de estilos
 import selectCSS from "./CSS/select.module.css"
 
-// Importações do CRUD API
-import { listarPacotesServico } from "services/TabelasIndependentes/PacoteServicoService"
-import { listarInstrumentos }   from "services/TabelasIndependentes/InstrumentoService.js"
-import { listarTiposServico }   from "services/TabelasIndependentes/TipoServicoService.js"
-import { listarMeiosPagamento } from "services/TabelasIndependentes/MeioPagamentoService.js"
-import { listarRepertorios }    from "services/TabelasIndependentes/RepertorioService.js"
-import { listarStatus }         from "services/TabelasIndependentes/StatusSolicitacaoService.js"
-import { listarTiposLocal }     from "services/TabelasIndependentes/TipoLocalService.js"
+// Importações da API (Axios)
+import { listarPacotesServico } from "services/TabelasIndependentes/PacoteServico"
+import { listarInstrumentos }   from "services/TabelasIndependentes/Instrumento.js"
+import { listarTiposServico }   from "services/TabelasIndependentes/TipoServico.js"
+import { listarMeiosPagamento } from "services/TabelasIndependentes/MeioPagamento.js"
+import { listarRepertorios }    from "services/TabelasIndependentes/Repertorio.js"
+import { listarStatus }         from "services/TabelasIndependentes/StatusSolicitacao.js"
+import { listarTiposLocal }     from "services/TabelasIndependentes/TipoLocal.js"
 
 // Importações do React
 import { useState, useEffect } from "react"
-
-// Importações do CRUD API
-// import { listarPacotesServico } from "@services/BancoDadosGestor/PacoteServicoService.js"
-// import { listarInstrumentos }   from "@services/BancoDadosGestor/InstrumentoService.js"
-// import { listarTiposServico }   from "@services/BancoDadosGestor/TipoServicoService.js"
-// import { listarMeiosPagamento } from "@services/BancoDadosGestor/MeioPagamentoService.js"
-// import { listarRepertorios }    from "@services/BancoDadosGestor/RepertorioService.js"
-// import { listarStatus }         from "@services/BancoDadosGestor/StatusSolicitacaoService.js"
-// import { listarTiposLocal }     from "@services/BancoDadosGestor/TipoLocalService.js"
 
 
 // Função que retona o resultado de um SELECT no banco quando uma tabela é selecionada
@@ -35,8 +26,9 @@ function Select({tabela=null, campos=null, prefixo="", mostrarPrefixo=false}) {
     const [statusSolicitacao, setStatusSolicitacao] = useState()
     const [tiposLocal, setTiposLocal]               = useState()
 
-    { // Retorna cada tabela do BANCO (useStates)  
+    { // Retorna cada tabela do BANCO sempre que o componente for chamado
         useEffect(() => {
+            console.log(campos)
 
             // Retorna os pacotes de serviço cadastrados no BANCO
             listarPacotesServico()
@@ -73,7 +65,7 @@ function Select({tabela=null, campos=null, prefixo="", mostrarPrefixo=false}) {
                 .then(res => setTiposLocal(res.data))
                 .catch(err => console.log(err))
 
-        }, [])
+        }, [tabela, campos])
     }
 
 
@@ -93,36 +85,45 @@ function Select({tabela=null, campos=null, prefixo="", mostrarPrefixo=false}) {
     }
 
     // Guarda apenas o retorno da tabela selecionada
-    const retorno = (tabela != null ? retornarRegistros() : null)
+    const retorno = (tabela ? retornarRegistros() : null)
+
 
     return (
         <table className={selectCSS.table}>
             <caption> {tabela ? tabela : ""} </caption>
 
-            {/* Exibe os campos da tabela (nome do campo) */}
+            {/* Exibe os campos da tabela (nome do campo - HEADER) */}
             <thead className={selectCSS.thead}>
                 <tr>
-                {
-                    (campos != null &&
+                { campos != null &&
                     campos.map((nomeCampo, i) => {
-                        if (nomeCampo[3] !== "_")
+                        // if (nomeCampo[3] !== "_")
                             return <th key={i}> {(mostrarPrefixo ? prefixo : "") + nomeCampo} </th>
-                    }))
+                    })
                 }
                 </tr>
             </thead> 
             
-            {/* Exibe os dados retornados (registros) */}
+            {/* Exibe os dados retornados (registros - BODY) */}
             <tbody className={selectCSS.tbody}>
             {
                 // Se tiver retorno, executa
                 (retorno != null &&
-                    retorno.map((obj, i) => {
+
+                    // Executa individualmente cada registro (obj)
+                    retorno.map((registro, i) => {
+
+                        // Retorna cada linha
                         return <tr key={i}>
                         {
-                            Object.values(obj).map((atributo, i) => {
-                                return <td key={i}> {atributo} </td>
-                            }) // AQUI TÁ DANDO ERRO PQ OS PACOTES TÊM OUTRO OBJ DENTRO DELES
+                            // Pega cada valor para cada chave e retorna como dado
+                            Object.values(registro)
+
+                                // Filtra para eliminar objetos e deixar apenas valores
+                                .filter(dado => typeof dado !== "object")
+                                .map((dado, i) => {
+                                    return <td key={i}> {dado} </td>
+                                })
                         }
                         </tr>
                     })

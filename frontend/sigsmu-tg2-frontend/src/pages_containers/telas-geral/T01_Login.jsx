@@ -1,81 +1,123 @@
 // Importações de estilos
-import { useEffect, useState } from "react";
 import t01_login from "./CSS/t01_login.module.css"
 
-// Importações de iamgens
+// Importações de imagens
 import logo1 from "./logo1.jpeg"
 
 // Importações de componentes
 import Botao from "components/Botao.jsx";
 import Campo from "components/Campo.jsx";
 
+// Importações da API (Axios)
+import { buscarMusicoPorCpf }       from "services/Atores/Musico.js";
+import { buscarGestorPorCpf }       from "services/Atores/Gestor.js";
+import { dadosGestor, dadosMusico } from "services/_AUXILIAR/GlobalData.js";
+
 // Importações do React
 import { useNavigate } from "react-router-dom";
-import { buscarMusicoPorCpf } from "services/Atores/Musico";
-import { buscarGestorPorCpf } from "services/Atores/Gestor";
+import { useEffect, useState } from "react";
 
 
 // Tela de LOGIN - para que usuários logem no sistema e vejam configurações específicas para cada tipo de perfil
 function T01_Login() {
+    
+    //============================ PARA TESTES =============================//
+    const [ignorarLoginParaTestes, setIgnorarLoginParaTestes] = useState(false)
+    const mostrarBotaoIgnorar = true
+    //======================================================================//
+
     const navigate = useNavigate()
 
-    const [cpf, setCpf] = useState()
-    const [senha, setSenha]     = useState()
+    // Pega o cpf e senha do input (FORMS)
+    const [cpf, setCpf]     = useState()
+    const [senha, setSenha] = useState()
 
-    const [usuarioEncontrado, setUsuarioEncontrado] = useState({})
-    let tipoUsuario = null
+    // Guarda o obj do usuário encontrado no banco (gestor ou músico)
+    const [usuarioEncontrado, setUsuarioEncontrado] = useState(null)
 
-    async function buscarUsuario() {
-        let retorno = null
+    // Checa se de fato o usuário existe ou não no banco
+    async function buscarUsuarioNoBanco() {
 
         try {
-            retorno = await buscarGestorPorCpf(cpf)
-            setUsuarioEncontrado(retorno.data)
-            tipoUsuario = "gestor"
+            // Aguarda o retorno da API
+            let retorno = await buscarGestorPorCpf(cpf)
+
+            // Se houver retorno, guarda o obj retornado
+            if (retorno.data !== null)
+                setUsuarioEncontrado({...retorno.data, tipo : "gestor"})
+
+            else {
+                // Aguarda o retorno da API novamente
+                retorno = await buscarMusicoPorCpf(cpf)
+
+                // Se houver retorno, guarda o obj retornado
+                if (retorno.data !== null)
+                    setUsuarioEncontrado({...retorno.data, tipo : "musico"})
+                else
+                    alert("Usuário não encontrado!")
+            }
         }
         catch (erro) {
-            alert("Usuário não encontrado!")
+            alert("Erro ao buscar usuário!")
         }
-
-        //  PRECISA IMPLEMENTAR A LÓGICA DO MÚSICO PARA LOGIN (FALTA DE TEMPO)
-
-        // buscarMusicoPorCpf(cpf)
-
-        // // Buscar por nome do gestor (usuário) e caso não seja encontrado, buscar por nome do músico
-        // if (values.usuario === "gestorName") {
-        //     navigate("/Intranet/TelaGESTOR")
-        // } else if (values.usuario === "musicoName")
-        //     navigate("/Intranet/TelaMUSICO")
     }
 
-    // Passador de telas
+    // Responsável por validar e permitir o LOGIN caso um usuário seja encontrado
     useEffect(() => {
-        if (tipoUsuario === "gestor") {
-            if (senha === usuarioEncontrado.senha)
+
+        // Passa para as TELAS DO GESTOR caso o usuário seja um gestor
+        if (usuarioEncontrado?.tipo === "gestor") {
+            if (validarLogin()) {
+                dadosGestor.set( usuarioEncontrado )
                 navigate("/Intranet/RotasGestor/Inicio")
-            else
-                alert("Usuário ou senha errados!")
+            }
+        }
+
+        // Passa para as TELAS DO MÚSICO caso o usuário seja um músico
+        else if (usuarioEncontrado?.tipo === "musico") {
+            if (validarLogin()) {
+                dadosMusico.set( usuarioEncontrado )
+                navigate("/Intranet/RotasMusico/Inicio")
+            }
         }
     }, [usuarioEncontrado])
 
+    // Responsável por checar se a senha informada bate com a senha real do usuário
+    const validarLogin = () => {
+
+        // Só para visualizar (apagar depois)
+        console.log("Senha informada -> " + senha)
+        console.log("Senha real -> " + usuarioEncontrado.senha)
+
+        if (senha === usuarioEncontrado.senha)
+            return true
+        else
+            alert("Usuário ou senha inválido!")
+    }
 
 
     return (
         <div className={t01_login.main}>
+
+            {/* APAGAR DEPOIS */} {mostrarBotaoIgnorar &&
+            <div className={t01_login.ignorarLogin} 
+                onClick={() => setIgnorarLoginParaTestes(!ignorarLoginParaTestes)}>
+            IGNORAR {"\n"}LOGIN: {String(ignorarLoginParaTestes)} </div> }
+
             {/* <img src="../imagens/sem_imagem.png" alt="Logo" className={t01_login.img}/> */}
             <img src={logo1} alt="Logo" className={t01_login.img}/>
             
             <form action="post" className={t01_login.form}>
                 <Campo type="text"       name="login"        placeholder="Informe seu email" setValue={setCpf} />
-                <Campo type="password"   name="senha"        placeholder="Informe sua senha" setValue={setSenha}   />
+                <Campo type="password"   name="senha"        placeholder="Informe sua senha" setValue={setSenha} />
                 <Botao msg="Fazer Login" ativarEstilo={true} value={ {cpf, senha} }
-                    executarComando={(evt, values) => {
+                    executarComando={() => {
 
-                        buscarUsuario()
-
-
-                        
-                        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        // Realiza o processo de LOGIN ou o ignora para testes
+                        if (ignorarLoginParaTestes)
+                            navigate("/Intranet/TelaPosLogin")
+                        else
+                            buscarUsuarioNoBanco()
                     }} 
                 />
             </form>
@@ -85,7 +127,7 @@ function T01_Login() {
                 
                 <p> Não tem uma conta? </p>
                 
-                {/* Passa para a próxima tela */}
+                {/* Leva à tela de CADASTRO DE MÚSICOS */}
                 <Botao msg="Criar uma nova conta" ativarEstilo={false} rota={"/Intranet/TelaCadastro"}/>
             </div>
 

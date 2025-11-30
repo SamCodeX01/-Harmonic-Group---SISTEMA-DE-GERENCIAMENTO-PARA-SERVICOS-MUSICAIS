@@ -1,20 +1,11 @@
-// Importações do CRUD API
-import { adicionarPacoteServico } from "services/TabelasIndependentes/PacoteServicoService.js"
-import { adicionarInstrumento }   from "services/TabelasIndependentes/InstrumentoService.js"
-import { adicionarTipoServico }   from "services/TabelasIndependentes/TipoServicoService.js"
-import { adicionarMeioPagamento } from "services/TabelasIndependentes/MeioPagamentoService.js"
-import { adicionarRepertorio }    from "services/TabelasIndependentes/RepertorioService.js"
-import { adicionarStatus }        from "services/TabelasIndependentes/StatusSolicitacaoService.js"
-import { adicionarTipoLocal }     from "services/TabelasIndependentes/TipoLocalService.js"
-
-// Importações do CRUD API
-// import { adicionarPacoteServico } from "@services/BancoDadosGestor/PacoteServicoService.js"
-// import { adicionarInstrumento }   from "@services/BancoDadosGestor/InstrumentoService.js"
-// import { adicionarTipoServico }   from "@services/BancoDadosGestor/TipoServicoService.js"
-// import { adicionarMeioPagamento } from "@services/BancoDadosGestor/MeioPagamentoService.js"
-// import { adicionarRepertorio }    from "@services/BancoDadosGestor/RepertorioService.js"
-// import { adicionarStatus }        from "@services/BancoDadosGestor/StatusSolicitacaoService.js"
-// import { adicionarTipoLocal }     from "@services/BancoDadosGestor/TipoLocalService.js"
+// Importações da API (Axios)
+import { adicionarPacoteServico } from "services/TabelasIndependentes/PacoteServico.js"
+import { adicionarInstrumento }   from "services/TabelasIndependentes/Instrumento.js"
+import { adicionarTipoServico }   from "services/TabelasIndependentes/TipoServico.js"
+import { adicionarMeioPagamento } from "services/TabelasIndependentes/MeioPagamento.js"
+import { adicionarRepertorio }    from "services/TabelasIndependentes/Repertorio.js"
+import { adicionarStatus }        from "services/TabelasIndependentes/StatusSolicitacao.js"
+import { adicionarTipoLocal }     from "services/TabelasIndependentes/TipoLocal.js"
 
 // Importações do React
 import { useEffect } from "react"

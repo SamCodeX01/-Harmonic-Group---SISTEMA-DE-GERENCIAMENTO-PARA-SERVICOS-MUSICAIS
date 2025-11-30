@@ -6,7 +6,7 @@ import pacote03 from "../imagens_site/pacotes03.png"
 import footer from "../imagens_site/footer.png"
 // import t10_servicos from "./t10_servicos.module.css"
 import servicosCss from "./t10_servicos.module.css"
-import EventoItem from "../../components/EventoItem";
+import EventoItem from "../../pages_containers/telas-do-cliente/_componentes-grandes/PartesEvento";
 
 function T10_Servicos() {
 

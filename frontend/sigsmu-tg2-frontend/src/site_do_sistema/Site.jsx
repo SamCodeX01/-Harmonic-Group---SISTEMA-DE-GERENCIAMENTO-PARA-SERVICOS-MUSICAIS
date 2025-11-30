@@ -18,8 +18,6 @@ function Site(){
     return(
 
         <div className={site.main}>
-            {/* <h1>Bem-vindo ao Site do Sistema</h1>
-            <p>Este é o site principal do sistema.</p> */}
 
             <T02_Titulo/>
             <T03_Carrossel/>

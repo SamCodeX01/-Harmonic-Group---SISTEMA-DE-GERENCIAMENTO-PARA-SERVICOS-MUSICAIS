@@ -2,19 +2,20 @@
 import t11_sugestaoCss from "./CSS/t03_repertorio.module.css"
 
 // Importações de componentes
-import Botao      from "components/Botao.jsx";
-import Select     from "components/Select.jsx";
-import EventoItem from "components/EventoItem.jsx"
+import Botao        from "components/Botao.jsx";
+import Select       from "components/Select.jsx";
+import PartesEvento from "../_componentes-grandes/PartesEvento.jsx"
 
 // Importações do React
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-// Importações dos serviços
-import { adicionarCliente }                from "services/Atores/Cliente.js";
-import { adicionarSolicitacaoServico }     from "services/Outras/SolicitacaoServico.js";
-import { dadosCliente, dadosSolicitacao }  from "services/_AUXILIAR/GlobalData.js";
+// Importações da API (Axios)
+import { listarTiposServico }             from "services/TabelasIndependentes/TipoServico.js";
+import { adicionarCliente }               from "services/Atores/Cliente.js";
+import { adicionarSolicitacaoServico }    from "services/Outras/SolicitacaoServico.js";
+import { dadosCliente, dadosSolicitacao } from "services/_AUXILIAR/GlobalData.js";
+import getMusicas                         from "./T03_repertorio_config.js";
 
-import getMusicas from "./T03_repertorio_config.js";
 
 
 // import T09_Footer from "./T09_Footer";
@@ -25,23 +26,50 @@ import getMusicas from "./T03_repertorio_config.js";
 // TERMINAR   TERMINAR   TERMINAR   TERMINAR  TERMINAR  TERMINAR  TERMINAR
 function T03_Repertorio() {
 
+    //============ Dados retornados do banco ============//
+    const [tiposServico, setTiposServico] = useState(null)
+    //==================================================//
+    
     // Contém todos os dados informados pelo cliente até então
     const dadosTelaOrcamento = {
         cliente     : dadosCliente.get(),
         solicitacao : dadosSolicitacao.get()
     }
     
+    // Função responsável por PUXAR OS TIPOS DE SERVIÇO do banco - OK
+    const puxarTiposServico = async () => {
+        try {
+            const retorno = await listarTiposServico()
+            setTiposServico( retorno.data )
+        }
+        catch(erro) {
+            alert("Erro ao puxar os dados do banco!")
+            console.log("Erro ao puxar os dados do banco: " + erro)
+        }
+    }
 
-    const [servico, setServico] = useState("casamento") // string por enquanto (->id)
+    // Função responsável por CADASTRAR O CLIENTE e sua SOLICITAÇÃO no banco - OK
+    const cadastrarNoBanco = async () => {
+        try {
+            await adicionarCliente( dadosTelaOrcamento.cliente )
+            await adicionarSolicitacaoServico( dadosTelaOrcamento.solicitacao )
+            alert("Solicitação realizada com sucesso!")
+        }
+        catch(erro) {
+            alert("Erro ao cadastrar a solicitação!")
+            console.log("Erro ao cadastrar a solicitação: " + erro)
+        }
+    }
+    
+    // Executa as funções abaixo apenas uma única vez
+    useEffect(() => {
+        puxarTiposServico()
+    }, [])
+
+    // useStates de seleção do usuário
+    const [servicoSelecionado, setServicoSelecionado] = useState("casamento") // string por enquanto (->id)
     const [musicasSelecionadas, setMusicasSelecionadas] = useState() // strings
     
-    // TRAZER POR MEIO DO BANCO DEPOIS
-    const opcoesServicos = [
-        "casamento",
-        "aniversario",
-        "formatura",
-        "corporativo"
-    ]
 
     return (
         <div className={t11_sugestaoCss.main}>            
@@ -54,37 +82,36 @@ function T03_Repertorio() {
                 </p>
             </div>
 
+            
+            {/* Exibe os serviços disponíveis para o cliente */} { tiposServico &&
             <Select
                 msg={"Informe o tipo de serviço:"}
-                setValue={setServico}
-                listaOpcoes={opcoesServicos}
+                setValue={setServicoSelecionado}
+                listaOpcoes={ tiposServico.map( registro => registro.nome ) }
                 // values={}
-            />                
+            />
+            }
 
-            {/* mostra todos os eventos em forma de lista */}
+            {/* Mostra todas as partes do evento em forma de lista */}
             <div className={t11_sugestaoCss.eventosContainer}>
-                <EventoItem evento={ getMusicas(servico) } setMusicas={setMusicasSelecionadas} />
+                <PartesEvento
+                    evento={ getMusicas(servicoSelecionado) }
+                    setMusicas={setMusicasSelecionadas}
+                />
             </div>
 
 
-            {/* TESTE */}
+            {/* "TESTE" */}
             <Botao msg={"SOLICITAR"}
                 executarComando={() => {
-                    alert("Cadastro concluído!")
-                    
-                    // Object.entries(dadosTelaOrcamento.cliente).map(([txt, valor]) => {
+
+                    // console.log("===========================")
+                    // Object.entries(dadosTelaOrcamento.solicitacao).map(([txt, valor]) => {
                     //     console.log(txt + " -> " + valor)
-                    // }) // Mostra os dados do cliente
+                    // }) // Mostra os dados da solicitação de serviço
+                    // console.log("===========================")
 
-                    console.log("===========================")
-
-                    Object.entries(dadosTelaOrcamento.solicitacao).map(([txt, valor]) => {
-                        console.log(txt + " -> " + valor)
-                    }) // Mostra os dados da solicitação de serviço
-
-                    adicionarCliente(dadosTelaOrcamento.cliente)
-                    adicionarSolicitacaoServico(dadosTelaOrcamento.solicitacao)
-                    
+                    cadastrarNoBanco()
                 }}
             />
 

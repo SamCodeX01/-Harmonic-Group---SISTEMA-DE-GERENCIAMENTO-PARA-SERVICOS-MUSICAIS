@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import T09_Footer from "./T09_Footer";
 import footer from "../imagens_site/footer.png"
-import EventoItem from "../../components/EventoItem";
+import EventoItem from "../../pages_containers/telas-do-cliente/_componentes-grandes/PartesEvento";
 import T10_Servicos from "./T10_Servicos";
 import t11_sugestaoCss from "./t11_sugestao.module.css"
 import t10_servicos from "./t10_servicos.module.css"

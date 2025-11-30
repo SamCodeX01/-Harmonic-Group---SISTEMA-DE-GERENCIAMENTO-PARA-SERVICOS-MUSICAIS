@@ -1,13 +1,17 @@
 // components/MusicianDashboard.jsx
 
 // Importações de estilos
-import t01_painelAgendaCss from './CSS/t01_painelAgendamentos.module.css';
+import t01_painelAgendaCss from './CSS/t01_painelagendamentos.module.css';
 
 // Importações de componentes
 import Botao from 'components/Botao.jsx';
 
+// Importações da API (Axios)
+import { dadosMusico } from 'services/_AUXILIAR/GlobalData.js';
+
 // Importações do React
 import React, { useState, useEffect } from 'react';
+
 
 
 // Dados mockados para demonstração
@@ -50,6 +54,8 @@ const mockAgendamentos = [
   }
 ];
 
+// FALTA PUXAR TUDO DO BANCO //
+
 const tiposEvento = [
   'Todos',
   'Casamento',
@@ -60,6 +66,10 @@ const tiposEvento = [
 ];
 
 const T01_painelAgendamentos = () => {
+  
+  // Guarda o MÚSICO LOGADO no sistema
+  const musico = dadosMusico.get()
+
   const [agendamentos, setAgendamentos] = useState([]);
   const [filtroData, setFiltroData] = useState('');
   const [filtroTipoEvento, setFiltroTipoEvento] = useState('Todos');
@@ -118,6 +128,7 @@ const T01_painelAgendamentos = () => {
     // Em produção, isso abriria o PDF em uma nova aba
   };
 
+  // RETORNO PRINCIPAL
   return (
     <div className={t01_painelAgendaCss.musicianDashboard}>
       <div className={t01_painelAgendaCss.dashboardContainer}>

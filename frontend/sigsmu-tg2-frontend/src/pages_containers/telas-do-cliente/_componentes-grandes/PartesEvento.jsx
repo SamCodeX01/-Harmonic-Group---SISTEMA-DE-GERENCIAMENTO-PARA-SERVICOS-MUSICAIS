@@ -1,11 +1,11 @@
 // Importações de estilos
-import eventoItemCss from "./CSS/eventoItem.module.css"
+import eventoItemCss from "./CSS/partesevento.module.css"
 
 // Importações do React
 import React, { useState } from "react";
 
 
-function EventoItem({ evento, setMusicas }) {
+function PartesEvento({ evento, setMusicas }) {
     const [partesAbertas, setPartesAbertas] = useState({});
 
     // Onde as músicas serão guardadas
@@ -81,4 +81,4 @@ function EventoItem({ evento, setMusicas }) {
     )
 }
 
-export default EventoItem;
+export default PartesEvento;

@@ -14,12 +14,8 @@ import { useLocation }         from "react-router-dom";
 function T01_Header() {
     const path = useLocation()
     const splitPath = path.pathname.split("/").filter(Boolean)
-    let botaoSelecionado
 
-    useEffect(() => {
-
-    }, [])
-
+    // TALVEZ TENHA QUE FAZER ALGO AQUI
 
     // Usado para pegar o botão selecionado
     const [botao, setBotao] = useState("iheader0")
@@ -29,11 +25,10 @@ function T01_Header() {
         <div className={t01_header.main}>
         {
             <Radio setSelecionado={setBotao} name={"header"} firstChecked >
-                <Botao msg={"Início (indicadores)"} rota={"/Intranet/RotasGestor/Inicio"} ativarEstilo={true} />
-                <Botao msg={"Solicitações de Serviço"} rota={"/Intranet/RotasGestor/SolicitacoesServico"} ativarEstilo={true} />
-                <Botao msg={"Banco de Dados"} rota={"/Intranet/RotasGestor/BancoDeDados"} ativarEstilo={true} />
-                <Botao msg={"Gerencia de Permissões"} rota={"/Intranet/RotasGestor/Permissoes"} ativarEstilo={true} />
-                <Botao msg={"Histórico Geral"} rota={"/Intranet/RotasGestor/Historico"} ativarEstilo={true} />
+                <Botao msg={"Início (indicadores)"}    rota={"/Intranet/RotasGestor/Inicio"}              ativarEstilo />
+                <Botao msg={"Solicitações de Serviço"} rota={"/Intranet/RotasGestor/SolicitacoesServico"} ativarEstilo />
+                <Botao msg={"Banco de Dados"}          rota={"/Intranet/RotasGestor/BancoDeDados"}        ativarEstilo />
+                <Botao msg={"Histórico Geral"}         rota={"/Intranet/RotasGestor/Historico"}           ativarEstilo />
             </Radio>
         }
         </div>

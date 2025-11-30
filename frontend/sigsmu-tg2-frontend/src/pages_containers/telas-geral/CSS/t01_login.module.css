@@ -55,6 +55,15 @@
 =======
 } */ 
 
+.ignorarLogin {
+    position: fixed;
+    top: 0;
+} .ignorarLogin:hover {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
 .main {
     position: absolute;
     max-width: 400px;

@@ -4,7 +4,9 @@ import { useState } from "react"
 ////////////////////////////////////////////////////////////////
 let // Variáveis que armazenam os dados preenchidos pelo cliente
     infoCliente,
-    infoSolicitacao
+    infoSolicitacao,
+    infoGestor,
+    infoMusico
 ; 
 
 export const dadosCliente = {
@@ -15,4 +17,14 @@ export const dadosCliente = {
 export const dadosSolicitacao = {
     get : ()     => { return infoSolicitacao },
     set : (dado) => { infoSolicitacao = dado }
+}
+
+export const dadosGestor = {
+    get : ()     => { return infoGestor },
+    set : (dado) => { infoGestor = dado }
+}
+
+export const dadosMusico = {
+    get : ()     => { return infoMusico },
+    set : (dado) => { infoMusico = dado }
 }

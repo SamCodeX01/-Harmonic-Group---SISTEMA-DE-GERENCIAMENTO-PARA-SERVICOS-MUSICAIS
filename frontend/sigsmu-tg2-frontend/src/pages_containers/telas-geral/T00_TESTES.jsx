@@ -3,7 +3,7 @@
 // Importações de componentes
 import T01_PainelAgendamentos from "../telas-do-musico/T01_PainelAgendamentos.jsx"; 
 
-import EventoItem from "components/EventoItem.jsx";
+import EventoItem from "pages_containers/telas-do-cliente/_componentes-grandes/PartesEvento.jsx";
 
 // Importações do React
 import React from "react";

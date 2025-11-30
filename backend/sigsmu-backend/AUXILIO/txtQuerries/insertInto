@@ -38,7 +38,7 @@ SELECT * FROM custo
 DELETE FROM custo
 
 
--- 10 100% ok
+-- 9 100% ok
 INSERT INTO gestor(ges_cpf, ges_nome, ges_email, ges_celular, ges_data_cadastro, ges_senha) VALUES 
 	('999888777','Guilherme Bezerra','gui@gui','5457658','19-10-2025','4321'),
 	('777888999','Samuel Ramos','sam@sam','9416657','30-09-2025','1234')
@@ -78,7 +78,7 @@ SELECT * FROM meio_pagamento
 DELETE FROM meio_pagamento
 
 
--- 100% ok
+-- 10 100% ok
 INSERT INTO musico(
 	mus_cpf,
 	mus_nome,
@@ -124,7 +124,7 @@ SELECT * FROM repertorio
 DELETE FROM repertorio
 
 
--- 9 100%
+-- Last 100% (checar FKs sempre que executar INSERT)
 INSERT INTO solicitacao_servico(
 	sol_local_evento, 
 	sol_data_evento, 
@@ -139,12 +139,12 @@ INSERT INTO solicitacao_servico(
 	tip_id,
 	stt_id
 ) VALUES 
-	('Chácara Bela Vista','12/03/2025','18:00','23:00','150','05/02/2025','true','','12345678900', 7, 2, 1),
-	('Salão Crystal Hall','27/07/2025','20:00','02:00','250','14/06/2025','true','','98765432155', 5, 3, 1),
-	('Espaço Ouro Verde','03/10/2025','17:00','22:30','80','30/08/2025','true','','11122233344', 6, 3, 2),
-	('Rancho Horizonte','19/01/2026','15:00','21:00','120','10/12/2025','true','','55566677788', 4, 4, 1),
-	('Buffet Imperium','09/09/2025','19:30','01:00','300','22/07/2025','true','','00011122233', 4, 2, 3),
-	('Imperium Romani','10/10/2026','19:00','00:00','200','30/10/2025','true','','00011122999', 6, 2, 1)
+	('Chácara Bela Vista','12/03/2025','18:00','23:00','150','05/02/2025','true','','12345678900', 4, 2, 1),
+	('Salão Crystal Hall','27/07/2025','20:00','02:00','250','14/06/2025','true','','98765432155', 2, 3, 1),
+	('Espaço Ouro Verde','03/10/2025','17:00','22:30','80','30/08/2025','true','','11122233344', 3, 3, 2),
+	('Rancho Horizonte','19/01/2026','15:00','21:00','120','10/12/2025','true','','55566677788', 1, 4, 1),
+	('Buffet Imperium','09/09/2025','19:30','01:00','300','22/07/2025','true','','00011122233', 1, 2, 3),
+	('Imperium Romani','10/10/2026','19:00','00:00','200','30/10/2025','true','','00011122999', 3, 2, 1)
 DROP TABLE solicitacao_servico
 SELECT * FROM solicitacao_servico
 DELETE FROM solicitacao_servico WHERE sol_id = 22

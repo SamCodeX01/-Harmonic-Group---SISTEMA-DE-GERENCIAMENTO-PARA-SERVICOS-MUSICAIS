@@ -1,5 +1,5 @@
 // Importações de estilos
-import t03_solicitacoesServico from "./CSS/t03_solicitacoesServico.module.css";
+import t03_solicitacoesServico from "./CSS/t03_solicitacoesservico.module.css";
 
 // Importações de componentes
 import BotoesSolicitacoesGestor from "../_componentes-grandes/historico/BotoesSolicitacoesGestor.jsx";
@@ -7,38 +7,43 @@ import BotoesSolicitacoesGestor from "../_componentes-grandes/historico/BotoesSo
 // Importações da API
 // import { listarInstrumentos } from "../../../services/BancoDadosGestor/InstrumentoService";
 
-// Importações dos serviços
+// Importações da API (Axios)
+import { dadosGestor }        from "services/_AUXILIAR/GlobalData.js";
 import { listarSolicitacoes } from "services/Outras/SolicitacaoServico.js";
 
 // Importações do React
 import React, { useEffect, useState } from "react";
 
 
-
 // Tela de SOLICITAÇÕES DE SERVIÇO - para visualização das ordens de serviço geradas por solicitações de clientes
 function T03_SolicitacoesServico() {
 
-  // Solicitações de Serviço retornadas do banco
-  const [solicitacoesEmAberto, setSolicitacoesEmAberto] = useState(null)
+  // Guarda o GESTOR LOGADO no sistema
+  const gestor = dadosGestor.get()
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Solicitações de Serviço retornadas do banco
+  const [solicitacoesRetornadas, setSolicitacoesRetornadas] = useState(null)
+
+  //////////////////////////////////////////////////////////////////////
+
+  // Responsável por carregar as informações importantes dessa tela
   async function puxarDados() {
     try {
       const retorno = await listarSolicitacoes()
-      setSolicitacoesEmAberto(retorno.data)
+      setSolicitacoesRetornadas(retorno.data)
     }
     catch (erro) {
       alert("Erro ao puxar dados do banco!")
       console.log("Erro ao puxar dados do banco: " + erro)
     }
   }
+
+  // Chama a função acima abaixo apenas uma única vez
   useEffect(() => {
     puxarDados()
   }, [])
-  /////////////////////////////////////////////////////////////////////
 
-  // useEffect(() => {
-  // }, [solicitacoesEmAberto])
+  /////////////////////////////////////////////////////////////////////
 
 
   // Opções do filtro
@@ -79,14 +84,14 @@ function T03_SolicitacoesServico() {
 
   // Executa quando o rotorno chega do banco?
   useEffect(() => {
-    if (solicitacoesEmAberto) 
-      setSolicitacoes(solicitacoesEmAberto) 
+    if (solicitacoesRetornadas) 
+      setSolicitacoes(solicitacoesRetornadas) 
 
-  }, [solicitacoesEmAberto])
+  }, [solicitacoesRetornadas])
 
 
   useEffect(() => {
-
+    // Responsável por exibir as solicitações corretas de acordo com os filtros selecionados
     setSolicitacoesFiltradas(
       (solicitacoes ?
         solicitacoes.filter(solicitacao => { // Filtra por data/tipo/status //
@@ -140,17 +145,19 @@ function T03_SolicitacoesServico() {
     setSolicitacaoSelecionada(null);
   };
 
+
   // RETURN PRINCIPAL // RETURN PRINCIPAL // RETURN PRINCIPAL // RETURN PRINCIPAL // RETURN PRINCIPAL // RETURN PRINCIPAL //
   return (
     <div className={t03_solicitacoesServico.main}>
       <div className={t03_solicitacoesServico.dashboardContainer}>
-        {/* Cabeçalho */}
+
+        {/* Cabeçalho H1 da página*/}
         <div className={t03_solicitacoesServico.dashboardHeader}>
           <h1 className={t03_solicitacoesServico.dashboardTitle}>Painel de Solicitações</h1>
           <p className={t03_solicitacoesServico.dashboardSubtitle}>Gerencie as solicitações de serviço dos clientes</p>
         </div>
 
-        {/* Filtros */}
+        {/* Filtros - div de filtros por data / tipo servico / status */}
         <div className={t03_solicitacoesServico.filtersContainer}>
           <div className={t03_solicitacoesServico.filtersGrid}>
             <div className={t03_solicitacoesServico.filterGroup}>
@@ -206,7 +213,7 @@ function T03_SolicitacoesServico() {
           </div>
         </div>
 
-        {/* Estatísticas */}
+        {/* Estatísticas - div que exibe a quantidade de solicitações pendentes / em andamento / concluídas */}
         <div className={t03_solicitacoesServico.statsGrid}>
           <div className={t03_solicitacoesServico.statCard}>
             <div className={t03_solicitacoesServico.statNumberTotal}>
@@ -267,15 +274,18 @@ function T03_SolicitacoesServico() {
                   <div className={`${t03_solicitacoesServico.card} ${
                     solicitacaoSelecionada?.id === solicitacao.id ? t03_solicitacoesServico.cardSelected : ''
                   }`}>
+
+                    {/* HEADER DE CADA CARD */}
                     <div className={t03_solicitacoesServico.cardHeader}>
                       <span className={t03_solicitacoesServico.cardId}>
-                        {solicitacao.idSolicitacao}
+                        ID da solicitação: {solicitacao.id}
                       </span>
                       {/* {console.log("-> " + solicitacao.statusSolicitacao.situacao)} */}
                       {getStatusBadge(solicitacao.statusSolicitacao.situacao)}
                       {/* {getStatusBadge(solicitacao.situacaoServico)} */}
                     </div>
                     
+                    {/* INFORMAÇÕES DE CADA CARD */}
                     <div className={t03_solicitacoesServico.cardContent}>
                       <div className={t03_solicitacoesServico.cardField}>
                         <span className={t03_solicitacoesServico.cardLabel}>Cliente</span>
@@ -326,16 +336,15 @@ function T03_SolicitacoesServico() {
             )}
           </div>
 
-          {/* Botões de Ação - Aparecem apenas quando uma solicitação está selecionada */}
-          {solicitacaoSelecionada && (
-            <BotoesSolicitacoesGestor solicitacaoSelecionada={solicitacaoSelecionada} />
-          )}
         </div>
 
-        {/* Modal de Detalhes */}
+
+        {/* MAIORES DETALHES DE CADA CARD */}
         {mostrarDetalhes && solicitacaoSelecionada && (
           <div className={t03_solicitacoesServico.modalOverlay} onClick={handleFecharDetalhes}>
             <div className={t03_solicitacoesServico.modalContainer} onClick={(e) => e.stopPropagation()}>
+              
+              {/* HEADER DOS MAIORES DETALHES DE CADA CARD */}
               <div className={t03_solicitacoesServico.modalHeader}>
                 <h3 className={t03_solicitacoesServico.modalTitle}>
                   Detalhes da Solicitação - {solicitacaoSelecionada.idSolicitacao}
@@ -348,6 +357,7 @@ function T03_SolicitacoesServico() {
                 </button>
               </div>
               
+              {/* MAIN DOS MAIORES DETALHES DE CADA CARD - os botões do gestor ficam aqui dentro */}
               <div className={t03_solicitacoesServico.modalContent}>
                 <div className={t03_solicitacoesServico.detailsGrid}>
                   <div className={t03_solicitacoesServico.detailGroup}>
@@ -420,6 +430,7 @@ function T03_SolicitacoesServico() {
                 <BotoesSolicitacoesGestor solicitacaoSelecionada={solicitacaoSelecionada} />
               </div>
               
+              {/* FOOTER DOS MAIORES DETALHES DE CADA CARD */}
               <div className={t03_solicitacoesServico.modalFooter}>
                 <button
                   onClick={handleFecharDetalhes}
@@ -428,9 +439,11 @@ function T03_SolicitacoesServico() {
                   Fechar
                 </button>
               </div>
+
             </div>
           </div>
         )}
+
       </div>
     </div>
   );

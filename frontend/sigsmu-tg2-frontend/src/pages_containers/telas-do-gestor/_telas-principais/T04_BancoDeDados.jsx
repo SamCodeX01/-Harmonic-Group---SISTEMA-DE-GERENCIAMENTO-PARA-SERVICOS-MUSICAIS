@@ -1,5 +1,5 @@
 // Importações de estilos
-import t04_bancoDeDados from "./CSS/t04_bancoDeDados.module.css"
+import t04_bancoDeDados from "./CSS/t04_bancodedados.module.css"
 
 // Importação de componentes
 import Botao from "components/Botao.jsx"
@@ -84,7 +84,7 @@ function T04_BancoDeDados() {
     }
     const tableTipoLocal = {
         nome: "TipoLocal",
-        campos: ["id", "nome"],
+        campos: ["id", "tipo"],
         prefixo: "tip_",
         msg_output: "Tipo de Local"
     }
@@ -130,6 +130,7 @@ function T04_BancoDeDados() {
             const obj = objTabelas.find(table => table.nome === tabelaSelecionada.value)
             setObjTabelaSelecionada(obj)
             
+            // Configura algum campo selecionado de acordo com a operação CRUD a ser realizada
             if (obj.campos.length === 2 && operacaoCRUD.value != "delete") {
                 setCampoSelecionado({value: obj.prefixo + obj.campos[1]})
             } else if (operacaoCRUD.value != "delete") {
@@ -143,7 +144,6 @@ function T04_BancoDeDados() {
 
 
 
-
     // Executa sempre que o campo selecionado mudar //////////////////////////////
     useEffect(() => {
 
@@ -153,13 +153,12 @@ function T04_BancoDeDados() {
 
 
 
-
     // Responsável por exibir os campos selecionáveis da tabela
     const montarCampos = () => {
         if (objTabelaSelecionada.msg_output != null) {
 
             const prefixo = objTabelaSelecionada.prefixo 
-            const campos = objTabelaSelecionada.campos
+            const campos  = objTabelaSelecionada.campos
             
             if (operacaoCRUD.value === "delete") {
                 return <Botao msg={campos[0]} value={prefixo+campos[0]}/>
@@ -196,7 +195,7 @@ function T04_BancoDeDados() {
                         tabela={objTabelaSelecionada.nome}
                         campos={objTabelaSelecionada.campos}
                         prefixo={objTabelaSelecionada.prefixo}
-                        mostrarPrefixo={true}
+                        mostrarPrefixo={false}
                     />
                 : <div> Selecione alguma tabela para vizualizá-la </div>}
                   
@@ -205,10 +204,10 @@ function T04_BancoDeDados() {
 
             {/* Local em que o gestor poderá alternar CADASTRO/ALTERAÇÃO/EXCLUSÃO de dados do banco */}
             <div className={t04_bancoDeDados.botoes}>
-                <Radio setSelecionado={setOperacaoCRUD} name={"crud"} firstChecked={true}>
-                    <Botao msg={"CADASTRAR"} rota={""} ativarEstilo={true} value={"insert"} />
-                    <Botao msg={"ALTERAR"} rota={""} ativarEstilo={true} value={"update"} />
-                    <Botao msg={"EXCLUIR"} rota={""} ativarEstilo={true} value={"delete"} />
+                <Radio setSelecionado={setOperacaoCRUD} name={"crud"} firstChecked >
+                    <Botao msg={"CADASTRAR"} rota={""}  ativarEstilo={true} value={"insert"} />
+                    <Botao msg={"ALTERAR"}   rota={""}  ativarEstilo={true} value={"update"} />
+                    <Botao msg={"EXCLUIR"}   rota={""}  ativarEstilo={true} value={"delete"} />
                 </Radio>
             </div>
 
