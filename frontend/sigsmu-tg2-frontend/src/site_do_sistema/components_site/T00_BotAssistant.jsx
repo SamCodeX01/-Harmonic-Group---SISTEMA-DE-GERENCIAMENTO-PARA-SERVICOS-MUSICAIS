@@ -13,9 +13,11 @@ const BotAssistant = () => {
     // =============================================
     // SAUDAÇÕES BÁSICAS
     // =============================================
-    'olá': 'Olá! Bem-vindo à Harmonic Group! Como posso ajudar você com nossos serviços musicais para eventos?',
-    'ola': 'Olá! Bem-vindo à Harmonic Group! Como posso ajudar você com nossos serviços musicais para eventos?',
-    'oi': 'Oi! Sou o assistente virtual da Harmonic Group. Em que posso ajudar?',
+    'olá': 'Olá! Sou o Harmoni! 😊, Seja Bem-vindo ao Harmonic Group! Como posso ajudar você com nossos serviços musicais para eventos?',
+    'ola': 'Olá! Sou o Harmoni! 😊, Seja Bem-vindo ao Harmonic Group! Como posso ajudar você com nossos serviços musicais para eventos?',
+    'oi': 'Olá! Sou o Harmoni! 😊, Seja Bem-vindo ao Harmonic Group! Como posso ajudar você com nossos serviços musicais para eventos?',
+    'Hello': 'Olá! Sou o Harmoni! 😊, Seja Bem-vindo ao Harmonic Group! Como posso ajudar você com nossos serviços musicais para eventos?', 
+    'hello': 'Olá! Sou o Harmoni! 😊, Seja Bem-vindo ao Harmonic Group! Como posso ajudar você com nossos serviços musicais para eventos?', 
     'bom dia': 'Bom dia! 🌞 Em que posso ajudar com os serviços musicais da Harmonic Group?',
     'boa tarde': 'Boa tarde! ☀️ Como posso auxiliar você hoje?',
     'boa noite': 'Boa noite! 🌙 Estou aqui para ajudar com nossos serviços musicais.',
@@ -49,12 +51,11 @@ const BotAssistant = () => {
     // =============================================
     // PROCESSO DE CONTRATAÇÃO E AGENDAMENTO
     // =============================================
-    'contratar': 'Para contratar, acesse nossa plataforma online! Lá você pode ver músicos disponíveis, ver agendas e solicitar orçamento. Posso ajudar com alguma dúvida específica?',
-    'contratação': 'Para contratar, acesse nossa plataforma online! Lá você pode ver músicos disponíveis, ver agendas e solicitar orçamento. Posso ajudar com alguma dúvida específica?',
-    'contratacao': 'Para contratar, acesse nossa plataforma online! Lá você pode ver músicos disponíveis, ver agendas e solicitar orçamento. Posso ajudar com alguma dúvida específica?',
-    'como contratar': 'Para contratar, acesse nossa plataforma online! Lá você pode ver músicos disponíveis, ver agendas e solicitar orçamento.',
-    'quero contratar': 'Para contratar, acesse nossa plataforma online! Lá você pode ver músicos disponíveis, ver agendas e solicitar orçamento.',
-    
+    'contratar': 'Para contratar, basta preencher o nosso formulário e solicitar um orçamento. Algo mais em que eu posssa ajudar?',
+    'contratação': 'Para contratar, basta preencher o nosso formulário e solicitar um orçamento. Algo mais em que eu posssa ajudar?',
+    'contratacao': 'Para contratar, basta preencher o nosso formulário e solicitar um orçamento. Algo mais em que eu posssa ajudar?',
+    'como contratar': 'Para contratar, basta preencher o nosso formulário e solicitar um orçamento. Algo mais em que eu posssa ajudar?',
+    'quero contratar': 'Para contratar, basta preencher o nosso formulário e solicitar um orçamento. Algo mais em que eu posssa ajudar?',
     'agendar': 'O agendamento é feito pela nossa plataforma em tempo real! Após escolher o músico e data, a confirmação é instantânea com notificação por WhatsApp ou e-mail.',
     'agendamento': 'O agendamento é feito pela nossa plataforma em tempo real! Após escolher o músico e data, a confirmação é instantânea com notificação por WhatsApp ou e-mail.',
     'marcar': 'O agendamento é feito pela nossa plataforma em tempo real! Após escolher o músico e data, a confirmação é instantânea com notificação por WhatsApp ou e-mail.',
@@ -64,6 +65,7 @@ const BotAssistant = () => {
     'repertorio': 'Sim! Você pode escolher o repertório! Nossa plataforma tem lista de músicas sugeridas e aceita pedidos específicos para personalizar sua experiência.',
     'músicas': 'Sim! Você pode escolher o repertório! Nossa plataforma tem lista de músicas sugeridas e aceita pedidos específicos para personalizar sua experiência.',
     'musicas': 'Sim! Você pode escolher o repertório! Nossa plataforma tem lista de músicas sugeridas e aceita pedidos específicos para personalizar sua experiência.',
+    'musica': 'Sim! Você pode escolher o repertório! Nossa plataforma tem lista de músicas sugeridas e aceita pedidos específicos para personalizar sua experiência.',
     'escolher música': 'Sim! Você pode escolher o repertório! Nossa plataforma tem lista de músicas sugeridas e aceita pedidos específicos para personalizar sua experiência.',
     'escolher musicas': 'Sim! Você pode escolher o repertório! Nossa plataforma tem lista de músicas sugeridas e aceita pedidos específicos para personalizar sua experiência.',
     
@@ -124,7 +126,7 @@ const BotAssistant = () => {
     'notificações': 'Enviamos notificações por WhatsApp e e-mail sobre confirmações, lembretes e mudanças na agenda!',
     'lembrete': 'Enviamos notificações por WhatsApp e e-mail sobre confirmações, lembretes e mudanças na agenda!',
     
-    'chatbot': 'Esse sou eu! 😊 Estou aqui para responder dúvidas 24/7 sobre serviços, preços e funcionamento da plataforma.',
+    'chatbot': 'Esse sou eu! 😊 Estou aqui para responder as suas dúvidas sobre serviços, preços e funcionamento da plataforma.',
 
     // =============================================
     // PARA MÚSICOS E PARCEIROS
@@ -153,7 +155,9 @@ const BotAssistant = () => {
     'estilo': 'Nossos músicos são categorizados por estilo (Jazz, MPB, Sertanejo, Pop, Clássico)! Use os filtros na plataforma para encontrar o perfil ideal.',
     'gênero': 'Nossos músicos são categorizados por estilo (Jazz, MPB, Sertanejo, Pop, Clássico)! Use os filtros na plataforma para encontrar o perfil ideal.',
     'genero': 'Nossos músicos são categorizados por estilo (Jazz, MPB, Sertanejo, Pop, Clássico)! Use os filtros na plataforma para encontrar o perfil ideal.',
-    
+    'quais estilos': 'Nossos músicos tocam diversos estilos: Jazz, MPB, Sertanejo, Pop, Rock, Clássico, Bossa Nova, Forró e muito mais! Você pode filtrar por estilo na nossa plataforma.',
+    'quais estilos musicais': 'Nossos músicos tocam diversos estilos: Jazz, MPB, Sertanejo, Pop, Rock, Clássico, Bossa Nova, Forró e muito mais! Você pode filtrar por estilo na nossa plataforma.',
+    'estilos musicais': 'Temos músicos especializados em Jazz, MPB, Sertanejo, Pop, Rock, Clássico, Bossa Nova, Forró e diversos outros estilos!',
     'jazz': 'Temos excelentes músicos de Jazz! Perfeito para eventos sofisticados como jantares corporativos ou casamentos elegantes.',
     'mpb': 'MPB é um de nossos estilos mais populares! Temos vários artistas especializados.',
     'sertanejo': 'Sertanejo é sucesso garantido! Temos duplas e bandas completas no estilo.',
@@ -223,7 +227,7 @@ const BotAssistant = () => {
     // =============================================
     // DEFAULT
     // =============================================
-    'default': 'Desculpe, não entendi completamente. Sou especializado em serviços da Harmonic Group como: contratação de músicos, agendamento para eventos, contratos e pagamentos. Pode reformular sua pergunta?'
+    'default': 'Desculpe, não entendi. Poderia reformular a sua pergunta? Se possível, terei o prazer de responder! 😊' 
   };
 
   // Efeito para rolar para a última mensagem
@@ -338,7 +342,7 @@ const BotAssistant = () => {
         setMessages([{
           id: 'welcome',
           type: 'bot',
-          text: '🎵 Olá! Sou o assistente virtual da Harmonic Group! Posso ajudar com informações sobre serviços musicais, contratação de músicos, agendamento para eventos e muito mais. Como posso ajudar você hoje?',
+          text: '🎵 Olá! Sou o Harmoni, assistente virtual do Harmonic Group! Posso ajudar com informações sobre serviços musicais, contratação de músicos, agendamento para eventos e muito mais. Como posso ajudar você hoje?',
           timestamp: new Date()
         }]);
       }, 500);
@@ -370,7 +374,7 @@ const BotAssistant = () => {
         <div className={botAssistant.botInfo}>
           <div className={botAssistant.botStatus}>
             <div className={botAssistant.statusIndicatorConnected}></div>
-            <span>Harmonic Group - Assistente</span>
+            <span>Harmoni - Assistente Musical</span>
           </div>
           <div className={botAssistant.connectionInfo}>
             ✅ Online - Especialista em Música
