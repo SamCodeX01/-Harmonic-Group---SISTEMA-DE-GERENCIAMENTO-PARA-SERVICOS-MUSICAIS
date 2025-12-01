@@ -23,24 +23,24 @@ public class RepertorioService {
         repertorioRepository.save(repertorio);
     }
 
-    public void atualizarRepertorio(UpdateDTO body, Integer id) {
-        Repertorio atual = repertorioRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Repertório não encontrado!"));
+    // public void atualizarRepertorio(UpdateDTO body, Integer id) {
+    //     Repertorio atual = repertorioRepository.findById(id)
+    //         .orElseThrow(() -> new RuntimeException("Repertório não encontrado!"));
 
-        switch (body.getCampo()) {
-            case "musica": atual.setMusica( body.getNovoValor() );
-                break;
-            case "artista": atual.setArtista( body.getNovoValor() );
-                break;
-            case "genero": atual.setGenero( body.getNovoValor() );
-                break;
-            case "tempo": atual.setTempo( body.getNovoValor() );
-                break;
-            case "tocamos": atual.setTocamos( body.getNovoValor() );
-                break;
-        }
-        repertorioRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "musica": atual.setMusica( body.getNovoValor() );
+    //             break;
+    //         case "artista": atual.setArtista( body.getNovoValor() );
+    //             break;
+    //         case "genero": atual.setGenero( body.getNovoValor() );
+    //             break;
+    //         case "tempo": atual.setTempo( body.getNovoValor() );
+    //             break;
+    //         case "tocamos": atual.setTocamos( body.getNovoValor() );
+    //             break;
+    //     }
+    //     repertorioRepository.save(atual);
+    // }
 
     public void excluirRepertorio(Integer id) {
         repertorioRepository.deleteById(id);

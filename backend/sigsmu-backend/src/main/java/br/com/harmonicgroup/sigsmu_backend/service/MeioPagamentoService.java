@@ -26,16 +26,16 @@ public class MeioPagamentoService {
         meioPagamentoRepository.save(meioPagamento);
     }
 
-    public void atualizarMeioPagamento(UpdateDTO body, Integer id) {
-        MeioPagamento atual = meioPagamentoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Meio de pagamento não encontrado!"));
+    // public void atualizarMeioPagamento(UpdateDTO body, Integer id) {
+    //     MeioPagamento atual = meioPagamentoRepository.findById(id)
+    //         .orElseThrow(() -> new RuntimeException("Meio de pagamento não encontrado!"));
 
-        switch (body.getCampo()) {
-            case "nome": atual.setNome( body.getNovoValor() );
-                break;
-        }
-        meioPagamentoRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "nome": atual.setNome( body.getNovoValor() );
+    //             break;
+    //     }
+    //     meioPagamentoRepository.save(atual);
+    // }
 
     public void excluirMeioPagamento(Integer id) {
         meioPagamentoRepository.deleteById(id);

@@ -35,10 +35,10 @@ public class MeioPagamentoController {
         meioPagamentoService.cadastrarMeioPagamento(meioPagamento);
     }
     
-    @PatchMapping("/{id}")
-    public void atualizarMeioPagamento(@RequestBody UpdateDTO body, @PathVariable Integer id) {
-        meioPagamentoService.atualizarMeioPagamento(body, id);
-    }
+    // @PatchMapping("/{id}")
+    // public void atualizarMeioPagamento(@RequestBody UpdateDTO body, @PathVariable Integer id) {
+    //     meioPagamentoService.atualizarMeioPagamento(body, id);
+    // }
     
     @DeleteMapping("/{id}")
     public void excluirMeioPagamento(@PathVariable Integer id) {

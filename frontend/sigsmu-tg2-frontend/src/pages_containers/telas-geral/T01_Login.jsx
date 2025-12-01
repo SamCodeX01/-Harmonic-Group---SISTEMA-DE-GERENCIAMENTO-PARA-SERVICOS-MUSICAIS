@@ -99,7 +99,7 @@ function T01_Login() {
     return (
         <div className={t01_login.main}>
 
-            {/* APAGAR DEPOIS */} {mostrarBotaoIgnorar &&
+            {/* para testes - APAGAR BLOCO DEPOIS */} {mostrarBotaoIgnorar &&
             <div className={t01_login.ignorarLogin} 
                 onClick={() => setIgnorarLoginParaTestes(!ignorarLoginParaTestes)}>
             IGNORAR {"\n"}LOGIN: {String(ignorarLoginParaTestes)} </div> }

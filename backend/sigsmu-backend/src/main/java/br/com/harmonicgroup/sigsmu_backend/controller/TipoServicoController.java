@@ -35,10 +35,10 @@ public class TipoServicoController {
         servicoService.cadastrarTipoServico(servico);
     }
     
-    @PatchMapping("/{id}")
-    public void atualizarTipoServico(@RequestBody UpdateDTO body, @PathVariable Integer id) {
-        servicoService.atualizarTipoServico(body, id);
-    }
+    // @PatchMapping("/{id}")
+    // public void atualizarTipoServico(@RequestBody UpdateDTO body, @PathVariable Integer id) {
+    //     servicoService.atualizarTipoServico(body, id);
+    // }
     
     @DeleteMapping("/{id}")
     public void excluirTipoServico(@PathVariable Integer id) {

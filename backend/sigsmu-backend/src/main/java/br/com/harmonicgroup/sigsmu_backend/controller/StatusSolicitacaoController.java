@@ -35,10 +35,10 @@ public class StatusSolicitacaoController {
         statusSolicitacaoService.cadastrarStatusSolicitacao(statusSolicitacao);
     }
     
-    @PatchMapping("/{id}")
-    public void atualizarStatusSolicitacao(@RequestBody UpdateDTO body, @PathVariable Integer id) {
-        statusSolicitacaoService.atualizarStatusSolicitacao(body, id);
-    }
+    // @PatchMapping("/{id}")
+    // public void atualizarStatusSolicitacao(@RequestBody UpdateDTO body, @PathVariable Integer id) {
+    //     statusSolicitacaoService.atualizarStatusSolicitacao(body, id);
+    // }
     
     @DeleteMapping("/{id}")
     public void excluirStatusSolicitacao(@PathVariable Integer id) {

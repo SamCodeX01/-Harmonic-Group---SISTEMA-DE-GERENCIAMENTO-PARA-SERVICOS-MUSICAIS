@@ -23,16 +23,16 @@ public class TipoServicoService {
         servicoRepository.save(servico);
     }
 
-    public void atualizarTipoServico(UpdateDTO body, Integer id) {
-        TipoServico atual = servicoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Instrumento não encontrado!"));
+    // public void atualizarTipoServico(UpdateDTO body, Integer id) {
+    //     TipoServico atual = servicoRepository.findById(id)
+    //         .orElseThrow(() -> new RuntimeException("Instrumento não encontrado!"));
 
-        switch (body.getCampo()) {
-            case "nome": atual.setNome( body.getNovoValor() );
-                break;
-        }
-        servicoRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "nome": atual.setNome( body.getNovoValor() );
+    //             break;
+    //     }
+    //     servicoRepository.save(atual);
+    // }
 
     public void excluirTipoServico(Integer id) {
         servicoRepository.deleteById(id);

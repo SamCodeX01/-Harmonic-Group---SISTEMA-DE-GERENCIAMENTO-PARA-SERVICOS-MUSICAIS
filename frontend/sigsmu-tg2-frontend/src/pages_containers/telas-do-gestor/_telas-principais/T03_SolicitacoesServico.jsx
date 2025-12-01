@@ -18,8 +18,9 @@ import React, { useEffect, useState } from "react";
 // Tela de SOLICITAÇÕES DE SERVIÇO - para visualização das ordens de serviço geradas por solicitações de clientes
 function T03_SolicitacoesServico() {
 
-  // Guarda o GESTOR LOGADO no sistema
+  // Guarda o GESTOR LOGADO no sistema //
   const gestor = dadosGestor.get()
+  //==================================//
 
   // Solicitações de Serviço retornadas do banco
   const [solicitacoesRetornadas, setSolicitacoesRetornadas] = useState(null)
@@ -46,7 +47,9 @@ function T03_SolicitacoesServico() {
   /////////////////////////////////////////////////////////////////////
 
 
-  // Opções do filtro
+  
+
+  // Opções do filtro - TEM QUE PUXAR DO BANCO
   const tiposEvento = [
     'Todos',
     'Casamento',
@@ -57,7 +60,7 @@ function T03_SolicitacoesServico() {
     'Jantar Privado'
   ];
 
-  // Opções do filtro
+  // Opções do filtro - TEM QUE PUXAR DO BANCO (e add o campo cor para aplicação dinâmica)
   const statusOptions = [
     'Todos',
     'pendente',
@@ -110,6 +113,7 @@ function T03_SolicitacoesServico() {
 
   // ORGANIZA O STATUS DE CADA CARD //
   const getStatusBadge = (status) => {
+    
     const statusClasses = {
       pendente : `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusPendente}`,
       andamento: `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusAndamento}`,
@@ -160,6 +164,7 @@ function T03_SolicitacoesServico() {
         {/* Filtros - div de filtros por data / tipo servico / status */}
         <div className={t03_solicitacoesServico.filtersContainer}>
           <div className={t03_solicitacoesServico.filtersGrid}>
+
             <div className={t03_solicitacoesServico.filterGroup}>
               <label className={t03_solicitacoesServico.filterLabel}>Data da Solicitação</label>
               <input
@@ -215,6 +220,7 @@ function T03_SolicitacoesServico() {
 
         {/* Estatísticas - div que exibe a quantidade de solicitações pendentes / em andamento / concluídas */}
         <div className={t03_solicitacoesServico.statsGrid}>
+
           <div className={t03_solicitacoesServico.statCard}>
             <div className={t03_solicitacoesServico.statNumberTotal}>
               {solicitacoes.length}
@@ -242,6 +248,7 @@ function T03_SolicitacoesServico() {
             </div>
             <div className={t03_solicitacoesServico.statLabel}>Concluídos</div>
           </div>
+
         </div>
 
         {/* Lista de Solicitações */}
@@ -323,7 +330,9 @@ function T03_SolicitacoesServico() {
                           {/* {formatarData(solicitacao.dataEvento)} às {solicitacao.horarioEvento} */}
                         </p>
                       </div>
+
                     </div>
+
                   </div>
                 </label>
               </div>
@@ -360,6 +369,7 @@ function T03_SolicitacoesServico() {
               {/* MAIN DOS MAIORES DETALHES DE CADA CARD - os botões do gestor ficam aqui dentro */}
               <div className={t03_solicitacoesServico.modalContent}>
                 <div className={t03_solicitacoesServico.detailsGrid}>
+
                   <div className={t03_solicitacoesServico.detailGroup}>
                     <span className={t03_solicitacoesServico.detailLabel}>Cliente</span>
                     <p className={t03_solicitacoesServico.detailValue}>

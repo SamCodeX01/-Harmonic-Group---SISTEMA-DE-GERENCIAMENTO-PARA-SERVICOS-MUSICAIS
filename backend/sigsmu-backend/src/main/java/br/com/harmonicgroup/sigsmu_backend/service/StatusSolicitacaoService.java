@@ -23,16 +23,16 @@ public class StatusSolicitacaoService {
         statusSolicitacaoRepository.save(statusSolicitacao);
     }
 
-    public void atualizarStatusSolicitacao(UpdateDTO body, Integer id) {
-        StatusSolicitacao atual = statusSolicitacaoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Status não encontrado!"));
+    // public void atualizarStatusSolicitacao(UpdateDTO body, Integer id) {
+    //     StatusSolicitacao atual = statusSolicitacaoRepository.findById(id)
+    //         .orElseThrow(() -> new RuntimeException("Status não encontrado!"));
 
-        switch (body.getCampo()) {
-            case "situacao": atual.setSituacao( body.getNovoValor() );
-                break;
-        }
-        statusSolicitacaoRepository.save(atual);
-    }
+    //     switch (body.getCampo()) {
+    //         case "situacao": atual.setSituacao( body.getNovoValor() );
+    //             break;
+    //     }
+    //     statusSolicitacaoRepository.save(atual);
+    // }
 
     public void excluirStatusSolicitacao(Integer id) {
         statusSolicitacaoRepository.deleteById(id);
