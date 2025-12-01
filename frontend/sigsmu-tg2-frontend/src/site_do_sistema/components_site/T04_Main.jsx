@@ -11,9 +11,11 @@ import footer                from "../imagens_site/footer.png"
 
 
 function T04_Main(){
-   
+     
     return(
         <div>
+            <img className={t04_main.telas} src={realizeAsuaFesta} alt="" />
+            <img className={t04_main.telas} src={sobreOProdutor} alt="" />
             {/* <h1>Realize a sua festa com a gente!</h1>     
             <div className={t04_main.container}>
 
@@ -36,10 +38,10 @@ function T04_Main(){
                </div>
                 
             </div> */}
-
+           
             <img className={t04_main.telas} src={realizeAsuaFesta}      alt="" />
             <img className={t04_main.telas} src={sobreOProdutor}        alt="" />
-            <img className={t04_main.telas} src={formacaoPersonalizada} alt="" />
+            <img className={t04_main.telas} id="formacaoPersonalizada" src={formacaoPersonalizada} alt=""></img>
             <img className={t04_main.telas} src={depoimentos}           alt="" />
             <img className={t04_main.telas} src={queTalFazerParte}      alt="" />
             <img className={t04_main.telas} src={footer}                alt="" />

@@ -4,7 +4,7 @@ import t09_footer from "./t09_footer.module.css";
 function T09_Footer(){
     return(
         <div className={t09_footer.footer}>
-            <p>Copyright ©️ 2025. Harmonic Group. Todos os Direitos Reservados</p>
+            <p>Copyright ©️ 2025. SIGSMU. Todos os Direitos Reservados</p>
         </div>
         
     )
