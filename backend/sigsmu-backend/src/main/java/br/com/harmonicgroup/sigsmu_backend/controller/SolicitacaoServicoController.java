@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.harmonicgroup.sigsmu_backend.model.SolicitacaoServico;
 import br.com.harmonicgroup.sigsmu_backend.model.UpdateDTO;
 import br.com.harmonicgroup.sigsmu_backend.service.SolicitacaoServicoService;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
@@ -43,6 +45,17 @@ public class SolicitacaoServicoController {
     @DeleteMapping("/{id}")
     public void excluirSolicitacaoServico(@PathVariable Integer id) {
         solicitacaoServicoService.excluirSolicitacaoServico(id);
+    }
+
+
+    @GetMapping("/status")
+    public List<SolicitacaoServico> buscarSolicitacoesPorStatus(@RequestParam Integer id) {
+        return solicitacaoServicoService.buscarSolicitacoesPorStatus(id);
+    }
+
+    @GetMapping("/ativa")
+    public List<SolicitacaoServico> buscarSolicitacoesAtivas() {
+        return solicitacaoServicoService.buscarSolicitacoesAtivas();
     }
 
 }

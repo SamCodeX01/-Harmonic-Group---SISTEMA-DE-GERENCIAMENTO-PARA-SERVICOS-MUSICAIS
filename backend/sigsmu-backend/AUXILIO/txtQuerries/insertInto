@@ -23,7 +23,8 @@ INSERT INTO cliente(cli_cpf, cli_nome, cli_email, cli_celular, cli_data_nasc, cl
 	('11122233344','Julia Mendes','julia.mendes@example.com','11988117766','03/04/1999','Rua Verdejante, 45 - Jardim Lua'),
 	('55566677788','Rodrigo Farias','rodrigo.farias@example.com','11977443322','29/01/1990','Rua do Sol, 310 - Vila Aurora'),
 	('00011122233','Fernanda Oliveira','fernanda.oliveira@example.com','11966558877','09/06/1993','Travessa Horizonte, 12 - ParqueRio'),
-	('00011122999','Rodrigo Alberto','rodrigo.alberto@example.com','11966578945','07/09/1953','Pirex, 145 - Parquinho')
+	('00011122999','Rodrigo Alberto','rodrigo.alberto@example.com','11966578945','07/09/1953','Pirex, 145 - Parquinho'),
+	('169754682435','Luiz Gestor','luiz.gestor@example.com','11965375389','01/05/1980','Rua Sei lá das Quantas, 5 - Centro')
 DROP TABLE cliente
 SELECT * FROM cliente
 DELETE FROM cliente WHERE cli_cpf = '456456'
@@ -138,16 +139,29 @@ INSERT INTO solicitacao_servico(
 	pac_id, 
 	tip_id,
 	stt_id
-) VALUES 
+) VALUES
 	('Chácara Bela Vista','12/03/2025','18:00','23:00','150','05/02/2025','true','','12345678900', 4, 2, 1),
 	('Salão Crystal Hall','27/07/2025','20:00','02:00','250','14/06/2025','true','','98765432155', 2, 3, 1),
 	('Espaço Ouro Verde','03/10/2025','17:00','22:30','80','30/08/2025','true','','11122233344', 3, 3, 2),
 	('Rancho Horizonte','19/01/2026','15:00','21:00','120','10/12/2025','true','','55566677788', 1, 4, 1),
 	('Buffet Imperium','09/09/2025','19:30','01:00','300','22/07/2025','true','','00011122233', 1, 2, 3),
-	('Imperium Romani','10/10/2026','19:00','00:00','200','30/10/2025','true','','00011122999', 3, 2, 1)
+	('Imperium Romani','10/10/2026','19:00','00:00','200','30/10/2025','true','','00011122999', 3, 2, 1),
+	('Inova','19/06/2027','10:50','16:22','60','28/02/2025','false','03/03/2025','169754682435', 5, 4, 4)
 DROP TABLE solicitacao_servico
 SELECT * FROM solicitacao_servico
 DELETE FROM solicitacao_servico WHERE sol_id = 22
+
+
+A PARTIR DO PACOTE (DUO/TRIO - 2VIOLINISTAS/1PIANISTA) 
+DECIDIR...
+-
+EU VOU É SÓ ABRIR A SOLICITAÇÃO PARA OS MÚSICOS E 
+LIMITAR PELA QUANTIDADE DE MUSICOS DO PACOTE.
+FICA BEM MAIS FÁCIL. QUANDO 3 MUSICOS ACEITAREM
+NO PACOTE TRIO, A SOLICITAÇÃO FECHA E PRONTO
++
+PARA A SOLICITAÇÃO SER MOSTRADA NA TELA DO 
+musico, ELA TERA QUE TER O CUS_ID PREENCHIDO
 
 
 -- 5 100%

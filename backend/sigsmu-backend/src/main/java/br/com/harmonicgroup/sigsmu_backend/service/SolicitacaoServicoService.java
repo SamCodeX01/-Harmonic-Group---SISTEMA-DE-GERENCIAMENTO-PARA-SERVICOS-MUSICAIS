@@ -40,4 +40,20 @@ public class SolicitacaoServicoService {
         solicitacaoServicoRepository.deleteById(id);
     }
 
+
+    // Retorna solicitações específicas para o status passado (id)
+    public List<SolicitacaoServico> buscarSolicitacoesPorStatus(Integer id) {
+        return solicitacaoServicoRepository.findByStatusSolicitacaoId(id);
+    }
+
+    // Retorna apenas solicitações que não estão marcadas como concluida ou cancelada
+    public List<SolicitacaoServico> buscarSolicitacoesAtivas() {
+        return solicitacaoServicoRepository.findByStatusSolicitacao_IdNotIn( List.of(3, 4) );
+    }
+
+    // Retorna solicitações com custo preenchido
+    // public List<SolicitacaoServico> buscarSolicitacoesLiberadasParaMusicos() {
+    //     return solicitacaoServicoRepository.findByCustoId();
+    // }
+
 }

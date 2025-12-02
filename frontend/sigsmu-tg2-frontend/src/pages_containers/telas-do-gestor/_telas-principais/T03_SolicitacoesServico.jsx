@@ -9,10 +9,19 @@ import BotoesSolicitacoesGestor from "../_componentes-grandes/historico/BotoesSo
 
 // Importações da API (Axios)
 import { dadosGestor }        from "services/_AUXILIAR/GlobalData.js";
-import { listarSolicitacoes } from "services/Outras/SolicitacaoServico.js";
+import { listarSolicitacoes, listarSolicitacoesEmAberto } from "services/Outras/SolicitacaoServico.js";
+import { listarTiposServico } from "services/TabelasIndependentes/TipoServico";
 
 // Importações do React
 import React, { useEffect, useState } from "react";
+
+
+function capitalizeWords(str) {
+  return str
+    .split(" ")
+    .map(p => p.charAt(0).toUpperCase() + p.slice(1))
+    .join(" ");
+}
 
 
 // Tela de SOLICITAÇÕES DE SERVIÇO - para visualização das ordens de serviço geradas por solicitações de clientes
@@ -25,12 +34,14 @@ function T03_SolicitacoesServico() {
   // Solicitações de Serviço retornadas do banco
   const [solicitacoesRetornadas, setSolicitacoesRetornadas] = useState(null)
 
+  const [tiposEvento, setTiposEvento] = useState([])
+
   //////////////////////////////////////////////////////////////////////
 
   // Responsável por carregar as informações importantes dessa tela
-  async function puxarDados() {
+  const puxarSolicitacoes = async () => {
     try {
-      const retorno = await listarSolicitacoes()
+      const retorno = await listarSolicitacoesEmAberto()
       setSolicitacoesRetornadas(retorno.data)
     }
     catch (erro) {
@@ -39,33 +50,31 @@ function T03_SolicitacoesServico() {
     }
   }
 
-  // Chama a função acima abaixo apenas uma única vez
+  const puxarTiposServico = async () => {
+    try {
+      const promisse = await listarTiposServico()
+      setTiposEvento( ["Todos", ...promisse.data.map(tipoLocal => tipoLocal.nome)] )
+    }
+    catch(erro) {
+      alert("Erro ao puxar tipos de serviço!")
+      console.log("Erro ao puxar tipos de serviço: " + erro)
+    }
+  }
+
+  // Chama a função abaixo apenas uma única vez
   useEffect(() => {
-    puxarDados()
+    puxarSolicitacoes()
+    puxarTiposServico()
   }, [])
 
   /////////////////////////////////////////////////////////////////////
 
 
-  
-
-  // Opções do filtro - TEM QUE PUXAR DO BANCO
-  const tiposEvento = [
-    'Todos',
-    'Casamento',
-    'Aniversário',
-    'Evento Corporativo',
-    'Festa Infantil',
-    'Formatura',
-    'Jantar Privado'
-  ];
-
   // Opções do filtro - TEM QUE PUXAR DO BANCO (e add o campo cor para aplicação dinâmica)
   const statusOptions = [
     'Todos',
     'pendente',
-    'andamento',
-    'concluido'
+    'andamento'
   ];
 
   // Opções do filtro e seleção
@@ -73,7 +82,6 @@ function T03_SolicitacoesServico() {
   const [filtroData, setFiltroData]                         = useState('');  // DD/MM/YYYY
   const [filtroTipoEvento, setFiltroTipoEvento]             = useState('Todos');
   const [filtroStatus, setFiltroStatus]                     = useState('Todos');
-  const [solicitacoes, setSolicitacoes]                     = useState([]);
   const [mostrarDetalhes, setMostrarDetalhes]               = useState(false);
 
   const [solicitacoesFiltradas, setSolicitacoesFiltradas]   = useState([])
@@ -85,19 +93,12 @@ function T03_SolicitacoesServico() {
   // 19/01/2026
   // 09/09/2025
 
-  // Executa quando o rotorno chega do banco?
   useEffect(() => {
-    if (solicitacoesRetornadas) 
-      setSolicitacoes(solicitacoesRetornadas) 
 
-  }, [solicitacoesRetornadas])
-
-
-  useEffect(() => {
     // Responsável por exibir as solicitações corretas de acordo com os filtros selecionados
     setSolicitacoesFiltradas(
-      (solicitacoes ?
-        solicitacoes.filter(solicitacao => { // Filtra por data/tipo/status //
+      (solicitacoesRetornadas ?
+        solicitacoesRetornadas.filter(solicitacao => { // Filtra por data/tipo/status //
           const matchData   = !filtroData                  || solicitacao.dataSolicitacao                === filtroData;
           const matchTipo   = filtroTipoEvento === 'Todos' || solicitacao.pacoteServico.tipoServico.nome === filtroTipoEvento; 
           // COLOCAR UM CONSOLE LOG AQ PRA VER - o do banco e o do filtro
@@ -107,7 +108,7 @@ function T03_SolicitacoesServico() {
         })
       : [])
     )
-  }, [solicitacoes, filtroData, filtroTipoEvento, filtroStatus])
+  }, [solicitacoesRetornadas, filtroData, filtroTipoEvento, filtroStatus])
 
 
 
@@ -182,8 +183,8 @@ function T03_SolicitacoesServico() {
                 onChange={(e) => setFiltroTipoEvento(e.target.value)}
                 className={t03_solicitacoesServico.filterSelect}
               >
-                {tiposEvento.map(tipo => (
-                  <option key={tipo} value={tipo}>{tipo}</option>
+                {tiposEvento.map((evento, i) => (
+                  <option key={i} >{evento}</option>
                 ))}
               </select>
             </div>
@@ -199,8 +200,7 @@ function T03_SolicitacoesServico() {
                   <option key={status} value={status}>
                   {
                     status === 'Todos' ? 'Todos' : 
-                    status === 'pendente' ? 'Pendente' :
-                    status === 'andamento' ? 'Em Andamento' : 'Concluído'
+                    status === 'pendente' ? 'Pendente' : 'Em Andamento'
                   }
                   </option>
                 ))}
@@ -223,28 +223,28 @@ function T03_SolicitacoesServico() {
 
           <div className={t03_solicitacoesServico.statCard}>
             <div className={t03_solicitacoesServico.statNumberTotal}>
-              {solicitacoes.length}
+              {solicitacoesRetornadas?.length}
             </div>
             <div className={t03_solicitacoesServico.statLabel}>Total de Solicitações</div>
           </div>
           
           <div className={t03_solicitacoesServico.statCard}>
             <div className={t03_solicitacoesServico.statNumberPendente}>
-              {solicitacoes.filter(s => s.situacaoServico === 'pendente').length}
+              {solicitacoesRetornadas?.filter(s => s.situacaoServico === 'pendente').length}
             </div>
             <div className={t03_solicitacoesServico.statLabel}>Pendentes</div>
           </div>
           
           <div className={t03_solicitacoesServico.statCard}>
             <div className={t03_solicitacoesServico.statNumberAndamento}>
-              {solicitacoes.filter(s => s.situacaoServico === 'andamento').length}
+              {solicitacoesRetornadas?.filter(s => s.situacaoServico === 'andamento').length}
             </div>
             <div className={t03_solicitacoesServico.statLabel}>Em Andamento</div>
           </div>
           
           <div className={t03_solicitacoesServico.statCard}>
             <div className={t03_solicitacoesServico.statNumberConcluido}>
-              {solicitacoes.filter(s => s.situacaoServico === 'concluido').length}
+              {solicitacoesRetornadas?.filter(s => s.situacaoServico === 'concluido').length}
             </div>
             <div className={t03_solicitacoesServico.statLabel}>Concluídos</div>
           </div>
@@ -294,17 +294,18 @@ function T03_SolicitacoesServico() {
                     
                     {/* INFORMAÇÕES DE CADA CARD */}
                     <div className={t03_solicitacoesServico.cardContent}>
+
                       <div className={t03_solicitacoesServico.cardField}>
                         <span className={t03_solicitacoesServico.cardLabel}>Cliente</span>
                         <p className={t03_solicitacoesServico.cardValue}>
-                          {solicitacao.cliente.nome}
+                          {capitalizeWords(solicitacao.cliente.nome)}
                         </p>
                       </div>
                       
                       <div className={t03_solicitacoesServico.cardField}>
                         <span className={t03_solicitacoesServico.cardLabel}>Data da Solicitação</span>
                         <p className={t03_solicitacoesServico.cardValue}>
-                          {solicitacao.dataSolicitacao}
+                          {capitalizeWords(solicitacao.dataSolicitacao)}
                           {/* {formatarData(solicitacao.dataSolicitacao)} */}
                         </p>
                       </div>
@@ -312,14 +313,14 @@ function T03_SolicitacoesServico() {
                       <div className={t03_solicitacoesServico.cardField}>
                         <span className={t03_solicitacoesServico.cardLabel}>Tipo de Serviço</span>
                         <p className={t03_solicitacoesServico.cardValue}>
-                          {solicitacao.pacoteServico.tipoServico.nome}
+                          {capitalizeWords(solicitacao.pacoteServico.tipoServico.nome)}
                         </p>
                       </div>
                       
                       <div className={t03_solicitacoesServico.cardField}>
                         <span className={t03_solicitacoesServico.cardLabel}>Pacote Escolhido</span>
                         <p className={t03_solicitacoesServico.cardValuePacote}>
-                          {solicitacao.pacoteServico.nome}
+                          {capitalizeWords(solicitacao.pacoteServico.nome)}
                         </p>
                       </div>
                       
@@ -373,7 +374,7 @@ function T03_SolicitacoesServico() {
                   <div className={t03_solicitacoesServico.detailGroup}>
                     <span className={t03_solicitacoesServico.detailLabel}>Cliente</span>
                     <p className={t03_solicitacoesServico.detailValue}>
-                      {solicitacaoSelecionada.cliente.nome}
+                      {capitalizeWords(solicitacaoSelecionada.cliente.nome)}
                     </p>
                   </div>
                   
@@ -395,14 +396,14 @@ function T03_SolicitacoesServico() {
                   <div className={t03_solicitacoesServico.detailGroupOdd}>
                     <span className={t03_solicitacoesServico.detailLabelOdd}>Tipo de Serviço</span>
                     <p className={t03_solicitacoesServico.detailValue}>
-                      {solicitacaoSelecionada.pacoteServico.tipoServico.nome}
+                      {capitalizeWords(solicitacaoSelecionada.pacoteServico.tipoServico.nome)}
                     </p>
                   </div>
                   
                   <div className={t03_solicitacoesServico.detailGroup}>
                     <span className={t03_solicitacoesServico.detailLabel}>Pacote Escolhido</span>
                     <p className={t03_solicitacoesServico.detailValue}>
-                      {solicitacaoSelecionada.pacoteServico.nome}
+                      {capitalizeWords(solicitacaoSelecionada.pacoteServico.nome)}
                     </p>
                   </div>
                   
@@ -417,7 +418,7 @@ function T03_SolicitacoesServico() {
                   <div className={t03_solicitacoesServico.detailGroup}>
                     <span className={t03_solicitacoesServico.detailLabel}>Endereço do Evento</span>
                     <p className={t03_solicitacoesServico.detailValue}>
-                      {solicitacaoSelecionada.localEvento}
+                      {capitalizeWords(solicitacaoSelecionada.localEvento)}
                     </p>
                   </div>
                   

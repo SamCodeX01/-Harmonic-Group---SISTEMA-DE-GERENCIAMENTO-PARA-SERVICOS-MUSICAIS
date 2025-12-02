@@ -1,32 +1,451 @@
 // Importações de estilos
 import t06_historico from "./CSS/t06_historico.module.css"
 
+
+
+// Importações de estilos
+import t03_solicitacoesServico from "./CSS/t03_solicitacoesservico.module.css";
+
 // Importações de componentes
-import Cards from "../_componentes-grandes/_compartilhados/Cards.jsx";
+
+// Importações da API
+// import { listarInstrumentos } from "../../../services/BancoDadosGestor/InstrumentoService";
+
+// Importações da API (Axios)
+import { dadosGestor }                                     from "services/_AUXILIAR/GlobalData.js";
+import { buscarSolicitacoesPorStatus, listarSolicitacoes } from "services/Outras/SolicitacaoServico.js";
+import { listarTiposServico }                              from "services/TabelasIndependentes/TipoServico";
 
 // Importações do React
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
-// Tela de HISTÓRICO - para armazenar registros de serviços já realizados ou até mesmo cancelados
+function capitalizeWords(str) {
+  return str
+    .split(" ")
+    .map(p => p.charAt(0).toUpperCase() + p.slice(1))
+    .join(" ");
+}
+
+
+
+// Tela de SOLICITAÇÕES DE SERVIÇO - para visualização das ordens de serviço geradas por solicitações de clientes
 function T06_Historico() {
 
-    // Nem sei se precisa disso, pq é uma tela apenas de visualização, não alteração
-    const [dadosCliente, setDadosCliente] = useState({
-        idSolicitacao: 1234,
-        nomeCliente: "Guilherme",
-        situacaoServico: "Em andamento",
+    // Guarda o GESTOR LOGADO no sistema //
+    const gestor = dadosGestor.get()
+    //==================================//
 
-        dataSolicitacao: "23/12/2022",
-        tipoServico: "Aniversário",
-        pacoteEscolhido: "Harmonic Duo"
-    })
+  /////////////////////////////////////////////////////////////////////
 
-    return (
-        <div className={t06_historico.main}>
-            <Cards id={1} objCliente={dadosCliente} metodoSet={setDadosCliente} comBotao={true} />
-            <Cards id={2} objCliente={dadosCliente} metodoSet={setDadosCliente} comBotao={true} />
-        </div>
+
+  const statusOptions = [
+    'concluido',
+    'cancelado'
+  ];
+
+
+  // Opções do filtro e seleção
+  const [solicitacaoSelecionada, setSolicitacaoSelecionada] = useState(null);
+  const [filtroData, setFiltroData]                         = useState('');  // DD/MM/YYYY
+  const [filtroTipoEvento, setFiltroTipoEvento]             = useState('Todos');
+  const [filtroStatus, setFiltroStatus]                     = useState('concluido');
+  const [solicitacoes, setSolicitacoes]                     = useState([]);
+  const [mostrarDetalhes, setMostrarDetalhes]               = useState(false);
+
+  const [solicitacoesFiltradas, setSolicitacoesFiltradas]   = useState([])
+
+  /////////////////////////////////////////////////////////////////////
+
+  // Solicitações de Serviço retornadas do banco
+  const [solicitacoesRetornadas, setSolicitacoesRetornadas] = useState([])
+  const [tiposEvento, setTiposEvento] = useState([])
+
+
+  // Responsável por retornar os tipos de serviço
+  const puxarTiposServico = async () => {
+    try {
+      const promisse = await listarTiposServico()
+      setTiposEvento( ["Todos", ...promisse.data.map(tipoLocal => tipoLocal.nome)] )
+    }
+    catch(erro) {
+      alert("Erro ao puxar tipos de serviço!")
+      console.log("Erro ao puxar tipos de serviço: " + erro)
+    }
+  }
+
+  // Responsável por retornar as solicitações do banco de acordo com o filtro escolhido
+  const buscarSolicitacoes = async () => {
+    try {
+
+        // Busca por solicitações concluídas
+        if (filtroStatus === 'concluido') {
+            const response = await buscarSolicitacoesPorStatus(3)
+            setSolicitacoesRetornadas( response.data )
+        } 
+        
+        // Busca por solicitações canceladas
+        else { 
+            const response = await buscarSolicitacoesPorStatus(4)
+            setSolicitacoesRetornadas( response.data )
+        }
+    }
+    catch(erro) {
+        alert("Erro ao puxar solicitações do banco!")
+        console.log("Erro ao puxar solicitações do banco: " + erro)
+    }
+  }
+
+  // Sempre que o status mudar, busca no banco (WHERE stt ===)
+  useEffect(() => {
+    buscarSolicitacoes()
+  }, [filtroStatus])
+
+  // Chama as funções abaixo apenas uma única vez
+  useEffect(() => {
+    puxarTiposServico()
+  }, [])
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // DATAS PARA TESTE:
+  // 12/03/2025
+  // 27/07/2025
+  // 03/10/2025
+  // 19/01/2026
+  // 09/09/2025
+
+
+  useEffect(() => {
+
+    // Responsável por exibir as solicitações corretas de acordo com os filtros selecionados
+    setSolicitacoesFiltradas(
+        solicitacoesRetornadas.filter(solicitacao => { // Filtra por data/tipo/status //
+          const matchData   = !filtroData                      || solicitacao.dataSolicitacao                === filtroData;
+          const matchTipo   = filtroTipoEvento === 'Todos'     || solicitacao.pacoteServico.tipoServico.nome === filtroTipoEvento; 
+          // COLOCAR UM CONSOLE LOG AQ PRA VER - o do banco e o do filtro
+          const matchStatus = filtroStatus === 'concluido'     || solicitacao.statusSolicitacao.situacao     === filtroStatus;
+          
+          return matchData && matchTipo && matchStatus;
+        })
     )
+  }, [solicitacoesRetornadas, filtroData, filtroTipoEvento, filtroStatus])
+
+
+
+  // ORGANIZA O STATUS DE CADA CARD //
+  const getStatusBadge = (status) => {
+    
+    const statusClasses = {
+      concluido: `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusConcluido}`,
+      cancelado: `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusCancelado}`
+    }; // TENHO QUE VER
+    
+    const statusText = {
+      concluido: 'Concluído',
+      cancelado: 'Cancelado'
+    };
+    
+    return (
+      <span className={statusClasses[status] || statusClasses.pendente}>
+        {statusText[status] || statusText.pendente}
+      </span>
+    );
+  };
+
+  const handleCardClick = (solicitacao) => {
+    setSolicitacaoSelecionada(solicitacao);
+    setMostrarDetalhes(true);
+  };
+
+  const handleLimparFiltros = () => {
+    setFiltroData('');
+    setFiltroTipoEvento('Todos');
+    setFiltroStatus('concluido');
+  };
+
+  const handleFecharDetalhes = () => {
+    setMostrarDetalhes(false);
+    setSolicitacaoSelecionada(null);
+  };
+
+
+  // RETURN PRINCIPAL // RETURN PRINCIPAL // RETURN PRINCIPAL // RETURN PRINCIPAL // RETURN PRINCIPAL // RETURN PRINCIPAL //
+  return (
+    <div className={t03_solicitacoesServico.main}>
+      <div className={t03_solicitacoesServico.dashboardContainer}>
+
+        {/* Cabeçalho H1 da página*/}
+        <div className={t03_solicitacoesServico.dashboardHeader}>
+          <h1 className={t03_solicitacoesServico.dashboardTitle}>Histórico de Solicitações</h1>
+          <p className={t03_solicitacoesServico.dashboardSubtitle}>Visualize as solicitações já finalizadas</p>
+        </div>
+
+        {/* Filtros - div de filtros por data / tipo servico / status */}
+        <div className={t03_solicitacoesServico.filtersContainer}>
+          <div className={t03_solicitacoesServico.filtersGrid}>
+
+            <div className={t03_solicitacoesServico.filterGroup}>
+              <label className={t03_solicitacoesServico.filterLabel}>Data da Solicitação</label>
+              <input
+                type="date"
+                value={filtroData}
+                onChange={(e) => setFiltroData(e.target.value)}
+                className={t03_solicitacoesServico.filterInput}
+              />
+            </div>
+            
+            <div className={t03_solicitacoesServico.filterGroup}>
+              <label className={t03_solicitacoesServico.filterLabel}>Tipo de Evento</label>
+              <select
+                value={filtroTipoEvento}
+                onChange={(e) => setFiltroTipoEvento(e.target.value)}
+                className={t03_solicitacoesServico.filterSelect}
+              >
+                {tiposEvento.map((evento, i) => (
+                  <option key={i} >{evento}</option>
+                ))}
+              </select>
+            </div>
+            
+            <div className={t03_solicitacoesServico.filterGroup}>
+              <label className={t03_solicitacoesServico.filterLabel}>Status</label>
+              <select
+                value={filtroStatus}
+                onChange={(e) => setFiltroStatus(e.target.value)}
+                className={t03_solicitacoesServico.filterSelect}
+              >
+                {statusOptions.map(status => (
+                  <option key={status} value={status}>
+                  {
+                    status === 'concluido' ? 'Concluído' : 'Cancelado'
+                  }
+                  </option>
+                ))}
+              </select>
+            </div>
+            
+            <div className={t03_solicitacoesServico.filterGroup}>
+              <button
+                onClick={handleLimparFiltros}
+                className={t03_solicitacoesServico.filterButton}
+              >
+                Limpar Filtros
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+        {/* Lista de Solicitações */}
+        <div className={t03_solicitacoesServico.solicitacoesContainer}>
+
+          {/* TÍTULO (SOLICITAÇÕES) */}
+          <div className={t03_solicitacoesServico.solicitacoesHeader}>
+            <h2 className={t03_solicitacoesServico.solicitacoesTitle}>
+              Solicitações ({solicitacoesFiltradas.length})
+            </h2>
+          </div>
+          
+          {/* CADA CARD */}
+          <div className={t03_solicitacoesServico.cardsGrid}>
+            {solicitacoesFiltradas.map((solicitacao) => (
+              <div key={solicitacao.id} className={t03_solicitacoesServico.cardItem}>
+                <input
+                  type="radio"
+                  id={`solicitacao-${solicitacao.id}`}
+                  name="solicitacao"
+                  value={solicitacao.id}
+                  checked={solicitacaoSelecionada?.id === solicitacao.id}
+                  onChange={() => handleCardClick(solicitacao)}
+                  className={t03_solicitacoesServico.radioInput}
+                />
+                <label 
+                  htmlFor={`solicitacao-${solicitacao.id}`}
+                  className={t03_solicitacoesServico.cardItem}
+                >
+                  <div className={`${t03_solicitacoesServico.card} ${
+                    solicitacaoSelecionada?.id === solicitacao.id ? t03_solicitacoesServico.cardSelected : ''
+                  }`}>
+
+                    {/* HEADER DE CADA CARD */}
+                    <div className={t03_solicitacoesServico.cardHeader}>
+                      <span className={t03_solicitacoesServico.cardId}>
+                        ID da solicitação: {solicitacao.id}
+                      </span>
+                      {/* {console.log("-> " + solicitacao.statusSolicitacao.situacao)} */}
+                      {getStatusBadge(solicitacao.statusSolicitacao.situacao)}
+                      {/* {getStatusBadge(solicitacao.situacaoServico)} */}
+                    </div>
+                    
+                    {/* INFORMAÇÕES DE CADA CARD */}
+                    <div className={t03_solicitacoesServico.cardContent}>
+
+                      <div className={t03_solicitacoesServico.cardField}>
+                        <span className={t03_solicitacoesServico.cardLabel}>Cliente</span>
+                        <p className={t03_solicitacoesServico.cardValue}>
+                          {capitalizeWords(solicitacao.cliente.nome)}
+                        </p>
+                      </div>
+                      
+                      <div className={t03_solicitacoesServico.cardField}>
+                        <span className={t03_solicitacoesServico.cardLabel}>Data da Solicitação</span>
+                        <p className={t03_solicitacoesServico.cardValue}>
+                          {capitalizeWords(solicitacao.dataSolicitacao)}
+                          {/* {formatarData(solicitacao.dataSolicitacao)} */}
+                        </p>
+                      </div>
+                      
+                      <div className={t03_solicitacoesServico.cardField}>
+                        <span className={t03_solicitacoesServico.cardLabel}>Tipo de Serviço</span>
+                        <p className={t03_solicitacoesServico.cardValue}>
+                          {capitalizeWords(solicitacao.pacoteServico.tipoServico.nome)}
+                        </p>
+                      </div>
+                      
+                      <div className={t03_solicitacoesServico.cardField}>
+                        <span className={t03_solicitacoesServico.cardLabel}>Pacote Escolhido</span>
+                        <p className={t03_solicitacoesServico.cardValuePacote}>
+                          {capitalizeWords(solicitacao.pacoteServico.nome)}
+                        </p>
+                      </div>
+                      
+                      <div className={t03_solicitacoesServico.cardField}>
+                        <span className={t03_solicitacoesServico.cardLabel}>Data do Evento</span>
+                        <p className={t03_solicitacoesServico.cardValue}>
+                          {solicitacao.dataEvento} às {solicitacao.horarioInicio}
+                          {/* {formatarData(solicitacao.dataEvento)} às {solicitacao.horarioEvento} */}
+                        </p>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </label>
+              </div>
+            ))}
+            
+            {solicitacoesFiltradas.length === 0 && (
+              <div className={t03_solicitacoesServico.emptyState}>
+                Nenhuma solicitação encontrada com os filtros aplicados.
+              </div>
+            )}
+          </div>
+
+        </div>
+
+
+        {/* MAIORES DETALHES DE CADA CARD */}
+        {mostrarDetalhes && solicitacaoSelecionada && (
+          <div className={t03_solicitacoesServico.modalOverlay} onClick={handleFecharDetalhes}>
+            <div className={t03_solicitacoesServico.modalContainer} onClick={(e) => e.stopPropagation()}>
+              
+              {/* HEADER DOS MAIORES DETALHES DE CADA CARD */}
+              <div className={t03_solicitacoesServico.modalHeader}>
+                <h3 className={t03_solicitacoesServico.modalTitle}>
+                  Detalhes da Solicitação - {solicitacaoSelecionada.idSolicitacao}
+                </h3>
+                <button
+                  onClick={handleFecharDetalhes}
+                  className={t03_solicitacoesServico.modalClose}
+                >
+                  ✕
+                </button>
+              </div>
+              
+              {/* MAIN DOS MAIORES DETALHES DE CADA CARD - os botões do gestor ficam aqui dentro */}
+              <div className={t03_solicitacoesServico.modalContent}>
+                <div className={t03_solicitacoesServico.detailsGrid}>
+
+                  <div className={t03_solicitacoesServico.detailGroup}>
+                    <span className={t03_solicitacoesServico.detailLabel}>Cliente</span>
+                    <p className={t03_solicitacoesServico.detailValue}>
+                      {capitalizeWords(solicitacaoSelecionada.cliente.nome)}
+                    </p>
+                  </div>
+                  
+                  <div className={t03_solicitacoesServico.detailGroupOdd}>
+                    <span className={t03_solicitacoesServico.detailLabelOdd}>Status</span>
+                    <div>
+                      {getStatusBadge(solicitacaoSelecionada.statusSolicitacao.situacao)}
+                    </div>
+                  </div>
+                  
+                  <div className={t03_solicitacoesServico.detailGroup}>
+                    <span className={t03_solicitacoesServico.detailLabel}>Data da Solicitação</span>
+                    <p className={t03_solicitacoesServico.detailValue}>
+                      {solicitacaoSelecionada.dataSolicitacao}
+                      {/* {formatarData(solicitacaoSelecionada.dataSolicitacao)} */}
+                    </p>
+                  </div>
+                  
+                  <div className={t03_solicitacoesServico.detailGroupOdd}>
+                    <span className={t03_solicitacoesServico.detailLabelOdd}>Tipo de Serviço</span>
+                    <p className={t03_solicitacoesServico.detailValue}>
+                      {capitalizeWords(solicitacaoSelecionada.pacoteServico.tipoServico.nome)}
+                    </p>
+                  </div>
+                  
+                  <div className={t03_solicitacoesServico.detailGroup}>
+                    <span className={t03_solicitacoesServico.detailLabel}>Pacote Escolhido</span>
+                    <p className={t03_solicitacoesServico.detailValue}>
+                      {capitalizeWords(solicitacaoSelecionada.pacoteServico.nome)}
+                    </p>
+                  </div>
+                  
+                  <div className={t03_solicitacoesServico.detailGroupOdd}>
+                    <span className={t03_solicitacoesServico.detailLabelOdd}>Data do Evento</span>
+                    <p className={t03_solicitacoesServico.detailValue}>
+                      {solicitacaoSelecionada.dataEvento} às {solicitacaoSelecionada.horarioInicio}
+                      {/* {formatarData(solicitacaoSelecionada.dataEvento)} às {solicitacaoSelecionada.horarioEvento} */}
+                    </p>
+                  </div>
+                  
+                  <div className={t03_solicitacoesServico.detailGroup}>
+                    <span className={t03_solicitacoesServico.detailLabel}>Endereço do Evento</span>
+                    <p className={t03_solicitacoesServico.detailValue}>
+                      {capitalizeWords(solicitacaoSelecionada.localEvento)}
+                    </p>
+                  </div>
+                  
+                  <div className={t03_solicitacoesServico.detailGroupOdd}>
+                    <span className={t03_solicitacoesServico.detailLabelOdd}>Contato</span>
+                    <p className={t03_solicitacoesServico.detailValue}>
+                      {solicitacaoSelecionada.cliente.email} | {solicitacaoSelecionada.cliente.celular}
+                    </p>
+                  </div>
+                </div>
+                
+                <div className={t03_solicitacoesServico.detailGroup}>
+                  <span className={t03_solicitacoesServico.detailLabel}>Descrição do Evento</span>
+                  <p className={t03_solicitacoesServico.detailValue}>
+                    {solicitacaoSelecionada.pacoteServico.descricao}
+                  </p>
+                </div>
+
+                {/* Botões de Ação no Modal - EORCAMENTO ? "Ver Orçamento" : "Ver Contrato" ////////////////////////////////////////////////////////////////////////////////////////// */}
+                <button>
+                    Ver orçamento
+                </button>
+
+              </div>
+              
+              {/* FOOTER DOS MAIORES DETALHES DE CADA CARD */}
+              <div className={t03_solicitacoesServico.modalFooter}>
+                <button
+                  onClick={handleFecharDetalhes}
+                  className={t03_solicitacoesServico.secondaryButton}
+                >
+                  Fechar
+                </button>
+              </div>
+
+            </div>
+          </div>
+        )}
+
+      </div>
+    </div>
+  );
 }
 export default T06_Historico;

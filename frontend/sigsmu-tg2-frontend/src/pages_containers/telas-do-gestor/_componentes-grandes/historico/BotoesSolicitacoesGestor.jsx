@@ -104,14 +104,14 @@ function BotoesSolicitacoesGestor({ solicitacaoSelecionada }) {
 
   return (
     <div className={botoessolicitacoesgestor.main} onClick={evt => {evt.stopPropagation()}}>
+      
       <button 
         className={getBotaoClassName('atribuir-equipes')}
         onClick={() => handleAcao('atribuir-equipes')}
-        // disabled={loadingStates['atribuir-equipes']}
-        // data-tooltip="Designar músicos para este evento"
+        disabled={loadingStates['atribuir-equipes']}
+        data-tooltip="Designar músicos para este evento"
       >
-        {/* {loadingStates['atribuir-equipes'] ? '' : 'Designar músicos para este evento'} */}
-        Designar músicos para evento
+        {loadingStates['atribuir-equipes'] ? '' : 'Designar músicos para este evento'}
       </button>
       
       <button 
