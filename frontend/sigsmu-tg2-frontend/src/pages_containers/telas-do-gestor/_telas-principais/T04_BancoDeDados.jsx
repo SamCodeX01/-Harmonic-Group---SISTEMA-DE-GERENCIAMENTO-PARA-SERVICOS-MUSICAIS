@@ -22,11 +22,9 @@ import { useEffect, useState } from "react"
 function T04_BancoDeDados() {
 
 
-
     // FALTA DESMARCAR (DESCOLORIR) OS BOTÕES NÃO MAIS SELECIONADOS
     // FALTA VALIDAR AS ENTRADAS PRO BANCO (DADOS + ID / DADOS / ID) - adicionar alerts específicos
     // CRIAR CAMPO SOMENTE PARA ID EM DELETE
-
 
 
     // Guarda a operação CRUD (evt)
@@ -157,7 +155,7 @@ function T04_BancoDeDados() {
     const montarCampos = () => {
         if (objTabelaSelecionada.msg_output != null) {
 
-            const prefixo = objTabelaSelecionada.prefixo 
+            const prefixo = objTabelaSelecionada.prefixo
             const campos  = objTabelaSelecionada.campos
             
             if (operacaoCRUD.value === "delete") {
