@@ -12,6 +12,7 @@ import { dadosMusico } from 'services/_AUXILIAR/GlobalData.js';
 
 // Importações do React
 import React, { useState, useEffect } from 'react';
+import { listarTiposServico } from 'services/TabelasIndependentes/TipoServico';
 
 
 
@@ -57,6 +58,8 @@ const mockAgendamentos = [
 
 // FALTA PUXAR TUDO DO BANCO //
 
+
+
 const tiposEvento = [
   'Todos',
   'Casamento',
@@ -67,6 +70,24 @@ const tiposEvento = [
 ];
 
 const T01_painelAgendamentos = () => {
+
+  // const [tiposEvento, setTiposEvento] = useState(["teste"])
+
+  // const buscarTiposDeEvento = async () => {
+  //   try {
+  //     const promisse = await listarTiposServico()
+  //     setTiposEvento( ["Todos", ...promisse.data] )
+  //   }
+  //   catch(erro) {
+  //     alert("Erro ao puxar os tipos de evento do banco!")
+  //     console.log("Erro ao puxar os tipos de evento do banco: " + erro)
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   buscarTiposDeEvento()
+  // }, [])
+
   
   // Guarda o MÚSICO LOGADO no sistema
   const musico = dadosMusico.get()
@@ -159,9 +180,12 @@ const T01_painelAgendamentos = () => {
                 onChange={(e) => setFiltroTipoEvento(e.target.value)}
                 className={t01_painelAgendaCss.filterSelect}
               >
-                {tiposEvento.map(tipo => (
-                  <option key={tipo} value={tipo}>{tipo}</option>
+                {tiposEvento.map((tipo, i) => (
+                  <option key={i} value={tipo}>{tipo}</option>
                 ))}
+                {/* {tiposEvento.map((registro, i) => (
+                  <option key={i} value={registro.nome}>{registro.nome}</option>
+                ))} */}
               </select>
             </div>
             
