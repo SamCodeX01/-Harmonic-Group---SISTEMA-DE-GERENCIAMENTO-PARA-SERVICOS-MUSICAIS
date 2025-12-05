@@ -8,12 +8,11 @@ import Botao from 'components/Botao.jsx';
 
 // Importações da API (Axios)
 import { dadosMusico } from 'services/_AUXILIAR/GlobalData.js';
+import { listarTiposServico } from 'services/TabelasIndependentes/TipoServico';
 // import { lis } from 'services/Outras/SolicitacaoServico.js' 
 
 // Importações do React
 import React, { useState, useEffect } from 'react';
-import { listarTiposServico } from 'services/TabelasIndependentes/TipoServico';
-
 
 
 // Dados mockados para demonstração
@@ -26,7 +25,6 @@ const mockAgendamentos = [
     tipoEvento: 'Casamento',
     contrato: 'CONTRATO_001.pdf',
     status: 'confirmado',
-    cliente: 'Maria Silva & João Santos',
     valor: 2500.00,
     instrumentos: ['Violino', 'Piano']
   },
@@ -38,7 +36,6 @@ const mockAgendamentos = [
     tipoEvento: 'Evento Corporativo',
     contrato: 'CONTRATO_002.pdf',
     status: 'pendente',
-    cliente: 'Tech Solutions Ltda',
     valor: 3200.00,
     instrumentos: ['Violino', 'Viola', 'Violoncelo']
   },
@@ -50,14 +47,26 @@ const mockAgendamentos = [
     tipoEvento: 'Festa Infantil',
     contrato: 'CONTRATO_003.pdf',
     status: 'confirmado',
-    cliente: 'Família Oliveira',
     valor: 1800.00,
     instrumentos: ['Violino']
   }
 ];
 
-// FALTA PUXAR TUDO DO BANCO //
+/*
+  id
+  dataEvento
+  horarioInicio
+  horarioTermino
+  localEvento
+  tipoServico
+  valorCache
+  instrumentosEscolhidos
+  status TENHO QUE VER
+  contrato
+*/
 
+
+// FALTA PUXAR TUDO DO BANCO //
 
 
 const tiposEvento = [
@@ -261,7 +270,7 @@ const T01_painelAgendamentos = () => {
                 <tr>
                   <th className={t01_painelAgendaCss.tableHeaderCell}>Data/Hora</th>
                   <th className={t01_painelAgendaCss.tableHeaderCell}>Local & Evento</th>
-                  <th className={t01_painelAgendaCss.tableHeaderCell}>Cliente</th>
+                  <th className={t01_painelAgendaCss.tableHeaderCell}></th>
                   <th className={t01_painelAgendaCss.tableHeaderCell}>Valor</th>
                   <th className={t01_painelAgendaCss.tableHeaderCell}>Status</th>
                   <th className={t01_painelAgendaCss.tableHeaderCell}>Ações</th>
@@ -308,15 +317,8 @@ const T01_painelAgendamentos = () => {
                     </td>
                     <td className={`${t01_painelAgendaCss.tableCell} ${t01_painelAgendaCss.actionsCell}`}>
                       <div className={t01_painelAgendaCss.actionsGroup}>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleVisualizarContrato(agendamento.contrato);
-                          }}
-                          className={`${t01_painelAgendaCss.actionButton} ${t01_painelAgendaCss.actionButtonContract}`}
-                        >
-                          Contrato
-                        </button>
+                                      
+                        {/* Quando o STATUS === pendente, mostra o botão de aceitação */}
                         {agendamento.status === 'pendente' && (
                           <button
                             onClick={(e) => {
@@ -328,6 +330,20 @@ const T01_painelAgendamentos = () => {
                             Confirmar
                           </button>
                         )}
+
+                        {/* Quando o STATUS === confirmado, mostra o botão de baixar contrato */}
+                        {agendamento.status === 'confirmado' && (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleVisualizarContrato(agendamento.contrato);
+                            }}
+                            className={`${t01_painelAgendaCss.actionButton} ${t01_painelAgendaCss.actionButtonContract}`}
+                          >
+                            Contrato
+                          </button> 
+                        )}
+
                       </div>
                     </td>
                   </tr>

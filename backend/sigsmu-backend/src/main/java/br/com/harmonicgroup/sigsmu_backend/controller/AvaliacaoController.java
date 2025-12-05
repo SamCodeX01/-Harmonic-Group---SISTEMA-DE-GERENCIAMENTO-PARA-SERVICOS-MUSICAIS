@@ -3,7 +3,6 @@ package br.com.harmonicgroup.sigsmu_backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,7 +16,6 @@ import br.com.harmonicgroup.sigsmu_backend.model.Avaliacao;
 import br.com.harmonicgroup.sigsmu_backend.service.AvaliacaoService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/avaliacao")
 public class AvaliacaoController {
     
