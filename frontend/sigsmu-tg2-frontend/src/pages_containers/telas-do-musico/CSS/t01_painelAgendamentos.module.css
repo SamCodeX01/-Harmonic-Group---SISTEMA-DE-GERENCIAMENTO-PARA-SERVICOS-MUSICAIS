@@ -36,12 +36,17 @@
 }
 
 .filtersContainer {
-  background-color: var(--corbranco60);
+  background-color: var(--corazul);
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(25, 109, 186, 0.1);
   padding: 24px;
   margin-bottom: 24px;
   border: 2px solid var(--corazul);
+
+} .filtersContainer > span {
+  color: white;
+  font-size: large;
+  font-weight: bold;
 }
 
 .filtersGrid {
@@ -65,8 +70,8 @@
   display: block;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--corazul);
-  margin-bottom: 8px;
+  color: white;
+  /* margin-bottom: 8px; */
 }
 
 .main input,
@@ -199,8 +204,25 @@
 .agendamentosHeader {
   padding: 20px 24px;
   border-bottom: 2px solid var(--corazul);
-  background: linear-gradient(135deg, var(--corazul) 0%, #1a5fa3 100%);
+  background: var(--corazul);
+
+  display: flex;
+  justify-content: space-between;
+
+} .agendamentosHeader > div {
+  background-color: var(--cordourado10);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: large;
+  transition: all 0.3s ease;
+
+} .agendamentosHeader > div:hover {
+  background-color: #c28d10;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(219, 157, 18, 0.3);
 }
+
 
 .agendamentosTitle {
   font-size: 1.3rem;
@@ -235,13 +257,13 @@
 
 .tableRow {
   transition: all 0.3s ease;
-  cursor: pointer;
+  /* cursor: pointer; */
   border-bottom: 1px solid #e2e8f0;
 }
 
 .tableRow:hover {
   background-color: rgba(25, 109, 186, 0.05);
-  transform: scale(1.01);
+  transform: scale(1.0008);
 }
 
 .tableRowEven {
@@ -327,12 +349,6 @@
   background-color: rgba(219, 157, 18, 0.1);
   color: var(--cordourado10);
   border-color: var(--cordourado10);
-}
-
-.statusCancelled {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: #dc2626;
-  border-color: #dc2626;
 }
 
 .actionsCell {

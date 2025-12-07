@@ -7,12 +7,12 @@ import Campo from "components/Campo.jsx"
 import Radio from "components/Radio.jsx"
 
 // Importações da API (Axios)
-import { adicionarCusto }              from "services/Servico/Custo.js"
+import { definirCustoServico }         from "services/Outras/SolicitacaoServico.js"
 import { dadosSolicitacaoSelecionada } from "services/_AUXILIAR/GlobalData.js"
 
 // Importações do React
 import { useEffect, useState } from "react"
-import { replace, useNavigate } from "react-router-dom"
+import { useNavigate }         from "react-router-dom"
 
 
 // Tela de definição de CUSTOS para cada solicitação de serviço
@@ -99,12 +99,12 @@ function TelaDeCustos() {
                     </div>
                 }
 
-                { botaoSelecionado.id === "ibutton2" && 
+                { botaoSelecionado?.id === "ibutton2" && 
                     <Botao
                         msg={"ENVIAR"}
                         executarComando={async () => {
                             try {
-                                await adicionarCusto(solicitacao.id, {
+                                await definirCustoServico(solicitacao.id, {
                                     combustivel,
                                     precoLitro,
                                     distancia,
@@ -121,7 +121,7 @@ function TelaDeCustos() {
                                 navigate("/Intranet/RotasGestor/SolicitacoesServico", {replace:true})
                             }
                             catch(erro) {
-                                alert("Erro ao cadastrar custo!")
+                                alert("Erro ao cadastrar custo! \nVolte a página e tente novamente sem recarregar")
                                 console.log("Erro ao cadastrar custo: " + erro)
                             }
                         }}

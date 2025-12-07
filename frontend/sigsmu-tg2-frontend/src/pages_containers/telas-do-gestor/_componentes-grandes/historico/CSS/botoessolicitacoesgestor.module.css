@@ -8,6 +8,7 @@
 .main {
   display: flex;
   flex-wrap: wrap;
+
   gap: 12px;
   padding: 20px;
   background-color: rgba(25, 109, 186, 0.05);
@@ -285,4 +286,50 @@
     padding: 12px 16px;
     font-size: 0.9rem;
   }
+}
+
+
+
+
+.area_simulada {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+} 
+.simulado {
+  background-color: #196DBA;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  /* border: none; */
+  color: black;
+  font-weight: bold;
+  
+} .simulado:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(25, 109, 186, 0.4);
+  /* background: linear-gradient(135deg, #1a5fa3 0%, var(--corazul) 100%); */
+  cursor: pointer;
+}
+
+.simulado:nth-child(1) {
+  background-color: green;
+
+} 
+.simulado:nth-child(1):hover {
+  background: linear-gradient(135deg, green 0%, white 100%);
+}
+
+.simulado:nth-child(2) {
+  background-color: red;
+
+} .simulado:nth-child(2):hover {
+  background: linear-gradient(135deg, red 0%, white 100%);
+}
+
+.simulado:nth-child(3) {
+  background-color: yellow;
+
+} .simulado:nth-child(3):hover {
+  background: linear-gradient(135deg, yellow 0%, white 100%);
 }

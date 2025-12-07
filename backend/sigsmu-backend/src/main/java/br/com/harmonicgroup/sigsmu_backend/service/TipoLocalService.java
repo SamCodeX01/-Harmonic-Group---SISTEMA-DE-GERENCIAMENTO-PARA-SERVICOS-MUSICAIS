@@ -25,10 +25,10 @@ public class TipoLocalService {
 
     // public void atualizarTipoLocal(UpdateDTO body, Integer id) {
     //     TipoLocal atual = tipoLocalRepository.findById(id)
-    //         .orElseThrow(() -> new RuntimeException("Tipo de local não encontrado!"));
+    //     .orElseThrow(() -> new RuntimeException("Tipo de local não encontrado!"));
 
     //     switch (body.getCampo()) {
-    //         case "nome": atual.setNome( body.getNovoValor() );
+    //         case "nome": atual.setTipo( body.getNovoValor() );
     //             break;
     //     }
     //     tipoLocalRepository.save(atual);

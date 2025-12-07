@@ -1,7 +1,4 @@
-// components/MusicianDashboard.jsx
-
 // Importações de estilos
-// import css from './CSS/t01_painelagendamentos.module.css';
 import css from './CSS/t01_painelagendamentos.module.css';
 
 // Importações de componentes
@@ -9,18 +6,16 @@ import Botao from 'components/Botao.jsx';
 import Select from 'components/Select.jsx';
 
 // Importações da API (Axios)
-import { dadosMusico }                                             from 'services/_AUXILIAR/GlobalData.js';
 import { listarSolicitacoesParaMusicos, mudarStatusDaSolicitacao } from "services/Outras/SolicitacaoServico.js"
 import { buscarInstrumentosEscolhidos }                            from "services/TabelasAssociativas/InstrumentosEscolhidos.js"
 import { buscarInstrumentosDoMusico }                              from "services/TabelasAssociativas/InstrumentosDoMusico.js"
 import { buscarGrupoDoServico, adicionarAoGrupoDoServico }         from "services/TabelasAssociativas/GrupoDoServico.js"
-// import { lis } from 'services/Outras/SolicitacaoServico.js' 
 
 // Importações do React
 import React, { useState, useEffect } from 'react';
 
 
-// ESTRUTURA DO QUE PRECISO MOSTRAR //
+// ESTRUTURA DO QUE PRECISA MOSTRAR //
 /*
   id
   dataEvento
@@ -57,12 +52,7 @@ function T01_painelAgendamentos(){
   const [objsDosAgendamentos, setObjsDosAgendamentos] = useState(null);
   
 
-  // Separa os instrumentos e músicos de cada solicitação    - ERRADO
-  // const [instrumentosDoServico, setInstrumentosDoServico] = useState(null)
-  // const [grupoDoServico, setGrupoDoServico]               = useState(null)
-
   const [musicoEstaNoServico, setMusicoEstaNoServico]     = useState(false)
-
   const [instrumentosEscolhidos, setInstrumentosEscolhidos] = useState(null)
 
 
@@ -92,7 +82,7 @@ function T01_painelAgendamentos(){
           );
 
           // Se bater, retorna a solicitação
-          return existe && solicitacao.statusSolicitacao.situacao === "aprovacao" ? solicitacao : null;
+          return existe && solicitacao.statusSolicitacao.situacao === "andamento" ? solicitacao : null;
         })
       ); // FIM DO AWAIT PROMISSE
 
@@ -109,7 +99,7 @@ function T01_painelAgendamentos(){
 
           // Se a solicitacao atingir o número de músicos cadastrados, ela MUDA O STATUS e desaparece
           if (grupoDoServico.length >= instrumentosDaSolicitacao.length)
-            await mudarStatusDaSolicitacao(solicitacao.id, 1)
+            await mudarStatusDaSolicitacao(solicitacao.id, 1) // muda para status pendente
           else {
             return {
               solicitacao,
@@ -196,14 +186,12 @@ function T01_painelAgendamentos(){
 
     const statusClasses = {
       confirmado : `${css.statusBadge} ${css.statusConfirmed}`,
-      pendente   : `${css.statusBadge} ${css.statusPending}`,
-      cancelado  : `${css.statusBadge} ${css.statusCancelled}`
+      pendente   : `${css.statusBadge} ${css.statusPending}`
     };
     
     const statusText = {
       confirmado : 'Confirmado',
-      pendente   : 'Pendente',
-      cancelado  : 'Cancelado'
+      pendente   : 'Pendente'
     };
     
     return (
@@ -275,12 +263,13 @@ function T01_painelAgendamentos(){
               <Select 
                 msg={"Status"}
                 setValue={setFiltroStatus}
-                listaOpcoes={["Todos","confirmado","pendente","cancelado"]}
+                listaOpcoes={["Todos","confirmado","pendente"]}
               />
             </div>
             
             {/* Botão limpar filtros */}
             <div >
+              <label>.</label>
               <button
                 onClick={() => {
                   setFiltroData('');
@@ -306,14 +295,14 @@ function T01_painelAgendamentos(){
           
           <div className={css.statCard}>
             <div className={css.statNumberConfirmed}>
-              {agendamentos.filter(a => a.status === 'confirmado').length}
+              {agendamentos.filter(a => a.statusSolicitacao.situacao === 'confirmado').length}
             </div>
             <div className={css.statLabel}>Confirmados</div>
           </div>
           
           <div className={css.statCard}>
             <div className={css.statNumberPending}>
-              {agendamentos.filter(a => a.status === 'pendente').length}
+              {agendamentos.filter(a => a.statusSolicitacao.situacao === 'pendente').length}
             </div>
             <div className={css.statLabel}>Pendentes</div>
           </div>
@@ -334,6 +323,12 @@ function T01_painelAgendamentos(){
             <h2 className={css.agendamentosTitle}>
               Agendamentos ({agendamentosFiltrados.length})
             </h2>
+
+            <Botao
+              msg={"cadastro de instrumentos"}
+              rota={"/Intranet/RotasMusico/CadastroInstrumentos"}
+              ativarEstilo
+            />
           </div>
           
           {/* Tabela */}
@@ -387,12 +382,10 @@ function T01_painelAgendamentos(){
                       </div>
                     </td>
 
-                    {/* VALOR DO CACHE - TENHO QUE VER AINDA */}
+                    {/* VALOR DO CACHE */}
                     <td className={css.tableCell}>
                       <div className={css.valueAmount}>
-                        R$ XXXX,XX
-                        {/* R$ { Number(agendamento.valor) .toLocaleString('pt-BR')} */}
-                        {/* R$ {agendamento.valor.toLocaleString('pt-BR')} */}
+                        R$ { Number(agendamento.custo.cacheMusicos).toLocaleString('pt-BR')}
                       </div>
                     </td>
 
@@ -473,13 +466,6 @@ function T01_painelAgendamentos(){
         </div>
 
       </div>
-
-      {/* TEM QUE ARRUMAR */}
-      <Botao
-        msg={"cadastro de instrumentos"}
-        rota={"/Intranet/RotasMusico/CadastroInstrumentos"}
-        ativarEstilo
-      />
 
     </div>
   );

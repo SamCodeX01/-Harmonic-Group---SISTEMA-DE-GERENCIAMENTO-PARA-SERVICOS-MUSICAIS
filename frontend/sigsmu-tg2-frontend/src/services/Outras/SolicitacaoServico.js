@@ -8,4 +8,6 @@ export const buscarSolicitacoesPorStatus   = (id)                  => api.get(`/
 
 export const listarSolicitacoesEmAberto    = ()                    => api.get(`/solicitacaoservico/ativa`)
 export const listarSolicitacoesParaMusicos = ()                    => api.get(`/solicitacaoservico/aceitacao`)
-export const mudarStatusDaSolicitacao      = (sol_id, novo_stt_id) => api.get(`/solicitacaoservico/${sol_id}/status/${novo_stt_id}`)
+
+export const mudarStatusDaSolicitacao      = (sol_id, novo_stt_id) => api.post(`/solicitacaoservico/${sol_id}/status/${novo_stt_id}`)
+export const definirCustoServico           = (sol_id, body)        => api.post(`/solicitacaoservico/custo/${sol_id}`, body)

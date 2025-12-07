@@ -28,7 +28,7 @@ function Select({tabela=null, campos=null, prefixo="", mostrarPrefixo=false}) {
 
     { // Retorna cada tabela do BANCO sempre que o componente for chamado
         useEffect(() => {
-            console.log(campos)
+            // console.log(campos)
 
             // Retorna os pacotes de serviço cadastrados no BANCO
             listarPacotesServico()

@@ -15,6 +15,7 @@ import { adicionarCliente }                                         from "servic
 import { adicionarSolicitacaoServico, buscarSolicitacaoPorCliente } from "services/Outras/SolicitacaoServico.js";
 import { dadosCliente, dadosSolicitacao }                           from "services/_AUXILIAR/GlobalData.js";
 import { adicionarAosInstrumentosEscolhidos }                       from "services/TabelasAssociativas/InstrumentosEscolhidos.js";
+import { adicionarAsMusicasEscolhidas }                             from "services/TabelasAssociativas/MusicasEscolhidas.js"
 import getMusicas                                                   from "./T03_repertorio_config.js";
 
 
@@ -86,6 +87,21 @@ function T03_Repertorio() {
                     "instrumento"        : { "id" : ins_id }
                 })
             })
+
+            // try {
+            //     await Promise.all(
+            //         musicasSelecionadas.map(async musica => {
+
+            //             // NÃO TEMOS AS MÚSICAS CADASTRADAS NO BANCO 
+            //             await adicionarAsMusicasEscolhidas(sol_id, )
+            //             // aqui precisaria de uma lista de ids de repertório
+            //         })
+            //     ) 
+            // }
+            // catch(erro) {
+            //     alert("Erro ao vincular músicas ao serviço!")
+            //     console.log("Erro ao vincular músicas ao serviço: " + erro)
+            // }
             
             alert("Solicitação realizada com sucesso!")
         }
@@ -127,8 +143,11 @@ function T03_Repertorio() {
 
     // useStates de seleção do usuário
     const [servicoSelecionado, setServicoSelecionado]   = useState("casamento") // string por enquanto (->id)
-    const [musicasSelecionadas, setMusicasSelecionadas] = useState() // strings
+    const [musicasSelecionadas, setMusicasSelecionadas] = useState([]) // strings
     
+    useEffect(() => {
+        console.log("qtd de musicasSelecionadas -> ", musicasSelecionadas)
+    }, [musicasSelecionadas])
 
     return (
         <div className={t11_sugestaoCss.main}>            
@@ -155,7 +174,7 @@ function T03_Repertorio() {
             <div className={t11_sugestaoCss.eventosContainer}>
                 <PartesEvento
                     evento={ getMusicas(servicoSelecionado) }
-                    setMusicas={setMusicasSelecionadas}
+                    setMusicas={ setMusicasSelecionadas }
                 />
 
             <Botao msg={"SOLICITAR"}

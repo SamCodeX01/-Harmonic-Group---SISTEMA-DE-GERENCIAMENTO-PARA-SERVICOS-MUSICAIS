@@ -4,19 +4,17 @@ import t03_solicitacoesServico from "./CSS/t03_solicitacoesservico.module.css";
 // Importações de componentes
 import BotoesSolicitacoesGestor from "../_componentes-grandes/historico/BotoesSolicitacoesGestor.jsx";
 
-// Importações da API
-// import { listarInstrumentos } from "../../../services/BancoDadosGestor/InstrumentoService";
-
 // Importações da API (Axios)
-import { dadosGestor }        from "services/_AUXILIAR/GlobalData.js";
 import { listarSolicitacoesEmAberto } from "services/Outras/SolicitacaoServico.js";
-import { listarTiposServico } from "services/TabelasIndependentes/TipoServico";
+import { listarTiposServico }         from "services/TabelasIndependentes/TipoServico";
+import { buscarGrupoDoServico }       from "services/TabelasAssociativas/GrupoDoServico";
+import { dadosGestor }                from "services/_AUXILIAR/GlobalData.js";
 
 // Importações do React
 import React, { useEffect, useState } from "react";
-import { buscarGrupoDoServico } from "services/TabelasAssociativas/GrupoDoServico";
 
 
+// Função criada para capitalizar as palavras (primeira letra em maiúsculo)
 function capitalizeWords(str) {
   return str
     .split(" ")
@@ -34,7 +32,7 @@ function T03_SolicitacoesServico() {
 
   // Solicitações de Serviço retornadas do banco
   const [solicitacoesRetornadas, setSolicitacoesRetornadas] = useState(null)
-  const [grupoDoServico, setGrupoDoServico] = useState(null)
+  const [grupoDoServico, setGrupoDoServico]                 = useState(null)
 
   const [tiposEvento, setTiposEvento] = useState([])
 
@@ -67,6 +65,7 @@ function T03_SolicitacoesServico() {
   }
 
 
+  // Puxa os tipos de serviço do banco
   const puxarTiposServico = async () => {
     try {
       const response = await listarTiposServico()
@@ -77,8 +76,6 @@ function T03_SolicitacoesServico() {
       console.log("Erro ao puxar tipos de serviço: " + erro)
     }
   }
-
-
 
 
   // Chama a função abaixo apenas uma única vez
@@ -95,7 +92,8 @@ function T03_SolicitacoesServico() {
     'Todos',
     'pendente',
     'andamento',
-    'definir custos'
+    'aprovacao',
+    'marcado'
   ];
 
   // Opções do filtro e seleção
@@ -140,13 +138,15 @@ function T03_SolicitacoesServico() {
     const statusClasses = {
       pendente : `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusPendente}`,
       andamento: `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusAndamento}`,
-      concluido: `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusConcluido}`
+      aprovacao: `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusAprovacao}`,
+      marcado: `${t03_solicitacoesServico.statusBadge} ${t03_solicitacoesServico.statusMarcado}`
     };
     
     const statusText = {
-      pendente : 'Pendente',
-      andamento: 'Em Andamento',
-      concluido: 'Concluído'
+      pendente  : 'Pendente',
+      andamento : 'Em Andamento',
+      aprovacao : 'Em Aprovação',
+      marcado   : 'Marcado'
     };
     
     return (
@@ -224,7 +224,8 @@ function T03_SolicitacoesServico() {
                   {
                     status === 'Todos' ? 'Todos' : 
                     status === 'pendente' ? 'Pendente' : 
-                    status === 'definir custos' ? 'Definir Custos' : 'Em Andamento'
+                    status === 'andamento' ? 'Em Andamento' : 
+                    status === 'aprovacao' ? 'Em Aprovação' : "Marcado"
                   }
                   </option>
                 ))}
@@ -254,23 +255,23 @@ function T03_SolicitacoesServico() {
           
           <div className={t03_solicitacoesServico.statCard}>
             <div className={t03_solicitacoesServico.statNumberPendente}>
-              {solicitacoesRetornadas?.filter(s => s.situacaoServico === 'pendente').length}
+              {solicitacoesRetornadas?.filter(s => s.statusSolicitacao.situacao === 'pendente').length}
             </div>
             <div className={t03_solicitacoesServico.statLabel}>Pendentes</div>
           </div>
           
           <div className={t03_solicitacoesServico.statCard}>
             <div className={t03_solicitacoesServico.statNumberAndamento}>
-              {solicitacoesRetornadas?.filter(s => s.situacaoServico === 'andamento').length}
+              {solicitacoesRetornadas?.filter(s => s.statusSolicitacao.situacao === 'andamento').length}
             </div>
             <div className={t03_solicitacoesServico.statLabel}>Em Andamento</div>
           </div>
           
           <div className={t03_solicitacoesServico.statCard}>
             <div className={t03_solicitacoesServico.statNumberConcluido}>
-              {solicitacoesRetornadas?.filter(s => s.situacaoServico === 'concluido').length}
+              {solicitacoesRetornadas?.filter(s => s.statusSolicitacao.situacao === 'marcado').length}
             </div>
-            <div className={t03_solicitacoesServico.statLabel}>Concluídos</div>
+            <div className={t03_solicitacoesServico.statLabel}>Marcados</div>
           </div>
 
         </div>
@@ -464,145 +465,145 @@ function T03_SolicitacoesServico() {
 
                 {/* Mostra os custos se definidos */}
                 {solicitacaoSelecionada.custo && 
-                  <div className={t03_solicitacoesServico.detailGroup}>
+                  <div className={t03_solicitacoesServico.custo}> Custos do Serviço:
+                    <div className={t03_solicitacoesServico.detailGroup}>
 
-                    <div>
-                      <span className={t03_solicitacoesServico.detailLabel}>Combustível</span>
-                      <p className={t03_solicitacoesServico.detailValue}>
-                        {solicitacaoSelecionada.custo.combustivel}
-                      </p>
-                    </div>
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Combustível</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {solicitacaoSelecionada.custo.combustivel}
+                        </p>
+                      </div>
 
-                    <div>
-                      <span className={t03_solicitacoesServico.detailLabel}>Preço do litro</span>
-                      <p className={t03_solicitacoesServico.detailValue}>
-                        {solicitacaoSelecionada.custo.precoLitro}
-                      </p>
-                    </div>
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Preço do litro</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {solicitacaoSelecionada.custo.precoLitro}
+                        </p>
+                      </div>
 
-                    <div>
-                      <span className={t03_solicitacoesServico.detailLabel}>Distância</span>
-                      <p className={t03_solicitacoesServico.detailValue}>
-                        {solicitacaoSelecionada.custo.distancia}
-                      </p>
-                    </div>
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Distância</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {solicitacaoSelecionada.custo.distancia}
+                        </p>
+                      </div>
 
-                    <div>
-                      <span className={t03_solicitacoesServico.detailLabel}>Pedágio</span>
-                      <p className={t03_solicitacoesServico.detailValue}>
-                        {solicitacaoSelecionada.custo.pedagio}
-                      </p>
-                    </div>
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Pedágio</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {solicitacaoSelecionada.custo.pedagio}
+                        </p>
+                      </div>
                     
-                    <div>
-                      <span className={t03_solicitacoesServico.detailLabel}>Consumo Médio dos Veículos</span>
-                      <p className={t03_solicitacoesServico.detailValue}>
-                        {solicitacaoSelecionada.custo.consumoMedioVeiculo}
-                      </p>
-                    </div>
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Consumo Médio dos Veículos</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {solicitacaoSelecionada.custo.consumoMedioVeiculo}
+                        </p>
+                      </div>
 
-                    <div>
-                      <span className={t03_solicitacoesServico.detailLabel}>Cache dos Músicos</span>
-                      <p className={t03_solicitacoesServico.detailValue}>
-                        {solicitacaoSelecionada.custo.cacheMusicos}
-                      </p>
-                    </div>
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Cache dos Músicos</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {solicitacaoSelecionada.custo.cacheMusicos}
+                        </p>
+                      </div>
 
-                    <div>
-                      <span className={t03_solicitacoesServico.detailLabel}>Alimentação</span>
-                      <p className={t03_solicitacoesServico.detailValue}>
-                        {solicitacaoSelecionada.custo.alimentacao}
-                      </p>
-                    </div>
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Alimentação</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {solicitacaoSelecionada.custo.alimentacao}
+                        </p>
+                      </div>
 
-                    <div>
-                      <span className={t03_solicitacoesServico.detailLabel}>Aluguel de Equipamentos</span>
-                      <p className={t03_solicitacoesServico.detailValue}>
-                        {solicitacaoSelecionada.custo.aluguelEquipamentos}
-                      </p>
-                    </div>
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Aluguel de Equipamentos</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {solicitacaoSelecionada.custo.aluguelEquipamentos}
+                        </p>
+                      </div>
                     
-                    <div>
-                      <span className={t03_solicitacoesServico.detailLabel}>Demonstração</span>
-                      <p className={t03_solicitacoesServico.detailValue}>
-                        {solicitacaoSelecionada.custo.demonstracao}
-                      </p>
-                    </div>
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Demonstração</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {solicitacaoSelecionada.custo.demonstracao}
+                        </p>
+                      </div>
                     
-                    <div>
-                      <span className={t03_solicitacoesServico.detailLabel}>Passagem dos Músicos</span>
-                      <p className={t03_solicitacoesServico.detailValue}>
-                        {solicitacaoSelecionada.custo.passagemMusico}
-                      </p>
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Passagem dos Músicos</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {solicitacaoSelecionada.custo.passagemMusico}
+                        </p>
+                      </div>
+
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Desconto</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {solicitacaoSelecionada.custo.desconto}
+                        </p>
+                      </div>
+
+                      {/* <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>TOTAL</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {solicitacaoSelecionada.custo}
+                        </p>
+                      </div> */}
                     </div>
-
-                    <div>
-                      <span className={t03_solicitacoesServico.detailLabel}>Desconto</span>
-                      <p className={t03_solicitacoesServico.detailValue}>
-                        {solicitacaoSelecionada.custo.desconto}
-                      </p>
-                    </div>
-
-                    {/* <div>
-                      <span className={t03_solicitacoesServico.detailLabel}>TOTAL</span>
-                      <p className={t03_solicitacoesServico.detailValue}>
-                        {solicitacaoSelecionada.custo}
-                      </p>
-                    </div> */}
-
                   </div>
                 }
 
                 {/* {console.log("sol_id -> " + solicitacaoSelecionada.id)}
                 {console.log("retorno -> ", puxarGrupoDoServico(solicitacaoSelecionada.id) ) } */}
                 
-                { grupoDoServico[indexSolicitacaoSelecionada]?.map((musico, i) => {
-                    return <div className={t03_solicitacoesServico.detailGroup} key={i}> 
-                      
-                      <div>
-                        <span className={t03_solicitacoesServico.detailLabel}>Nome</span>
-                        <p className={t03_solicitacoesServico.detailValue}>
-                          {musico.nome}
-                        </p>
+                { grupoDoServico[indexSolicitacaoSelecionada] && 
+                  <div className={t03_solicitacoesServico.musicos}> Grupo do Serviço:
+                  {
+                    grupoDoServico[indexSolicitacaoSelecionada].map((musico, i) => {
+                      return <div className={t03_solicitacoesServico.detailGroup} key={i}>
+                    
+                        <div>
+                          <span className={t03_solicitacoesServico.detailLabel}>Nome</span>
+                          <p className={t03_solicitacoesServico.detailValue}>
+                            {musico.nome}
+                          </p>
+                        </div>
+                        <div>
+                          <span className={t03_solicitacoesServico.detailLabel}>Email</span>
+                          <p className={t03_solicitacoesServico.detailValue}>
+                            {musico.email}
+                          </p>
+                        </div>
+                        <div>
+                          <span className={t03_solicitacoesServico.detailLabel}>Celular</span>
+                          <p className={t03_solicitacoesServico.detailValue}>
+                            {musico.celular}
+                          </p>
+                        </div>
+                        <div>
+                          <span className={t03_solicitacoesServico.detailLabel}>Endereço</span>
+                          <p className={t03_solicitacoesServico.detailValue}>
+                            {musico.endereco}
+                          </p>
+                        </div>
+                        <div>
+                          <span className={t03_solicitacoesServico.detailLabel}>Data de Cadastro</span>
+                          <p className={t03_solicitacoesServico.detailValue}>
+                            {musico.dataCadastro}
+                          </p>
+                        </div>
+                        <div>
+                          <span className={t03_solicitacoesServico.detailLabel}>Avaliacao</span>
+                          <p className={t03_solicitacoesServico.detailValue}>
+                            {musico.avaliacao}
+                          </p>
+                        </div>
                       </div>
-
-                      <div>
-                        <span className={t03_solicitacoesServico.detailLabel}>Email</span>
-                        <p className={t03_solicitacoesServico.detailValue}>
-                          {musico.email}
-                        </p>
-                      </div>
-
-                      <div>
-                        <span className={t03_solicitacoesServico.detailLabel}>Celular</span>
-                        <p className={t03_solicitacoesServico.detailValue}>
-                          {musico.celular}
-                        </p>
-                      </div>
-
-                      <div>
-                        <span className={t03_solicitacoesServico.detailLabel}>Endereço</span>
-                        <p className={t03_solicitacoesServico.detailValue}>
-                          {musico.endereco}
-                        </p>
-                      </div>
-
-                      <div>
-                        <span className={t03_solicitacoesServico.detailLabel}>Data de Cadastro</span>
-                        <p className={t03_solicitacoesServico.detailValue}>
-                          {musico.dataCadastro}
-                        </p>
-                      </div>
-
-                      <div>
-                        <span className={t03_solicitacoesServico.detailLabel}>Avaliacao</span>
-                        <p className={t03_solicitacoesServico.detailValue}>
-                          {musico.avaliacao}
-                        </p>
-                      </div>
-
-                    </div>
-                  })
+                    })
+                  }
+                  </div>
                 }
 
                 {/* Botões de Ação no Modal */}

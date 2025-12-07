@@ -50,7 +50,9 @@ function Insert(tabela, campos, input) {
         case "TipoLocal":         adicionarTipoLocal(body)
             break
     }
+
     alert("Registro adicionado!")
+    window.location.reload()
 
 }
 export default Insert;

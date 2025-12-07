@@ -40,7 +40,8 @@ function T04_BancoDeDados() {
 
     // Configura a mensagem a ser exibida no input do gestor e guarda sua resposta (input)
     const [mensagemInputGestor, setMensagemInputGestor] = useState()
-    const [inputGestor, setInputGestor] = useState(null)
+    const [inputGestor, setInputGestor]                 = useState(null)
+    const [inputGestor2, setInputGestor2]               = useState(null)
 
 
     // Configuração das tabelas e campos
@@ -106,15 +107,16 @@ function T04_BancoDeDados() {
         setCampoSelecionado(null)
         setTabelaSelecionada(null)
 
-        switch(operacaoCRUD.value) {
+
+        switch(operacaoCRUD?.value) {
             case "insert": 
-                setMensagemInputGestor("Registro a ser INSERIDO:");
+                setMensagemInputGestor("Valores a serem cadastrados:");
                 break;
             case "update": 
-                setMensagemInputGestor("Dado a ser ATUALIZADO:");
+                setMensagemInputGestor("Novo valor do campo:");
                 break;
             case "delete": 
-                setMensagemInputGestor("Registro a ser DELETADO:");
+                setMensagemInputGestor("ID do registro a ser deletado:");
                 break;
         }
     }, [operacaoCRUD])
@@ -130,11 +132,12 @@ function T04_BancoDeDados() {
             
             // Configura algum campo selecionado de acordo com a operação CRUD a ser realizada
             if (obj.campos.length === 2 && operacaoCRUD.value != "delete") {
-                setCampoSelecionado({value: obj.prefixo + obj.campos[1]})
+                setCampoSelecionado({value: obj.campos[1]})
             } else if (operacaoCRUD.value != "delete") {
                 setCampoSelecionado(null)
             } else {
-                setCampoSelecionado({value: obj.prefixo + obj.campos[0]})
+                setCampoSelecionado({value: obj.campos[0]})
+                // setCampoSelecionado({value: obj.prefixo + obj.campos[0]}) - PRECAUÇÃO
             }
 
         }
@@ -142,16 +145,7 @@ function T04_BancoDeDados() {
 
 
 
-    // Executa sempre que o campo selecionado mudar //////////////////////////////
-    useEffect(() => {
-
-        // PENSO EM ADICIONAR OS CAMPOS DA TABELA NA PARTE DO GESTOR
-
-    }, [campoSelecionado])
-
-
-
-    // Responsável por exibir os campos selecionáveis da tabela
+    // Responsável por EXIBIR OS CAMPOS selecionáveis da tabela
     const montarCampos = () => {
         if (objTabelaSelecionada.msg_output != null) {
 
@@ -195,7 +189,7 @@ function T04_BancoDeDados() {
                         prefixo={objTabelaSelecionada.prefixo}
                         mostrarPrefixo={false}
                     />
-                : <div> Selecione alguma tabela para vizualizá-la </div>}
+                : <div> Selecione alguma tabela para visualizá-la </div>}
                   
             </div> 
 
@@ -234,7 +228,7 @@ function T04_BancoDeDados() {
                         <Botao msg={objTabelaSelecionada.msg_output}/>
 
                         <section className={t04_bancoDeDados.campos}>                          
-                            {montarCampos()}
+                            {operacaoCRUD.value !== "insert" ? montarCampos() : ""}
                         </section>
 
                     </div>
@@ -243,10 +237,14 @@ function T04_BancoDeDados() {
             </div>
             
 
-            {/* Local em que o gestor poderá DAR INPUT de dados e manipular o banco */}
+            {/* Local em que o gestor dá INPUT DE DADOS e manipular o banco */}
             <div className={t04_bancoDeDados.inputGestor}>
 
-                <HelpDoGestor input={true} msg={mensagemInputGestor} setInput={setInputGestor} />
+                { operacaoCRUD?.value === "update" ?
+                    <HelpDoGestor input={true} msg={mensagemInputGestor} setInput={setInputGestor} setInput2={setInputGestor2} operacao={operacaoCRUD?.value} />
+                    :
+                    <HelpDoGestor input={true} msg={mensagemInputGestor} setInput={setInputGestor} operacao={operacaoCRUD?.value} />
+                }                
 
                 <div>
                     <HelpDoGestor msg={"Nome da tabela:"} evento={tabelaSelecionada} />
@@ -254,32 +252,42 @@ function T04_BancoDeDados() {
                     {/* BOTÃO EXECUTAR COMANDO */}
                     <button onClick={() => { 
                         const operacao = operacaoCRUD.value
-
+                        
                         if ( tabelaSelecionada && inputGestor && (campoSelecionado || operacao === "insert") ) {
 
-                            switch (operacaoCRUD.value) {
-                                case "insert":
-                                    {/* CRUD_INSERT */} Insert(
-                                        objTabelaSelecionada.nome,
-                                        objTabelaSelecionada.campos,
-                                        inputGestor
-                                    )
-                                    break
+                            if (operacao === "update" && inputGestor2 == null)
+                                alert("Falta informar o id do campo a ser alterado!")
+                            else {
+                                //////////////////////////////////////////////////////////////////////////////////////////////////
+                                switch (operacaoCRUD.value) {
+                                    case "insert":
+                                        {/* CRUD_INSERT */} Insert(
+                                            objTabelaSelecionada.nome,
+                                            objTabelaSelecionada.campos,
+                                            inputGestor
+                                        )
+                                        break
 
-                                case "update": 
-                                    {/* CRUD_UPDATE */} Update (
-                                        objTabelaSelecionada.nome,
-                                        campoSelecionado.value,
-                                        inputGestor
-                                    ) // ID puxado pelo input internamente
-                                    break
+                                    case "update": 
+                                        {/* CRUD_UPDATE */} 
+                                        // {console.log("tabela -> " + objTabelaSelecionada.nome)}
+                                        // {console.log("campo value -> " + campoSelecionado.value)}
+                                        // {console.log("input1 -> " + inputGestor)}
+                                        Update (
+                                            objTabelaSelecionada.nome,
+                                            campoSelecionado.value,
+                                            inputGestor,
+                                            inputGestor2
+                                        ) // ID puxado pelo input internamente
+                                        break
 
-                                case "delete": 
-                                    {/* CRUD_DELETE */} Delete(
-                                        objTabelaSelecionada.nome,
-                                        inputGestor
-                                    )
-                                    break
+                                    case "delete": 
+                                        {/* CRUD_DELETE */} Delete(
+                                            objTabelaSelecionada.nome,
+                                            inputGestor
+                                        )
+                                        break
+                                }
                             }
                         } else {
                             if (!tabelaSelecionada)     alert("Falta selecionar a tabela!")
@@ -291,8 +299,9 @@ function T04_BancoDeDados() {
                 </div>
 
                 <HelpDoGestor 
-                    msg={"Campo:"} 
-                    evento={campoSelecionado}
+                    msg={operacaoCRUD.value === "insert" ? "Campos:" : "Campo:"} 
+                    evento={operacaoCRUD.value === "insert" ? {"value":objTabelaSelecionada?.campos} : campoSelecionado}
+                    operacao={operacaoCRUD?.value}
                 />
 
             </div>

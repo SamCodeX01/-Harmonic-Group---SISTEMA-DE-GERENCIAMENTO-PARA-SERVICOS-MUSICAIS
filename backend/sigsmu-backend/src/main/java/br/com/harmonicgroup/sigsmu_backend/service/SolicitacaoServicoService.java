@@ -7,9 +7,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.harmonicgroup.sigsmu_backend.model.Custo;
 import br.com.harmonicgroup.sigsmu_backend.model.SolicitacaoServico;
 import br.com.harmonicgroup.sigsmu_backend.model.StatusSolicitacao;
 import br.com.harmonicgroup.sigsmu_backend.model.UpdateDTO;
+import br.com.harmonicgroup.sigsmu_backend.repository.CustoRepository;
 import br.com.harmonicgroup.sigsmu_backend.repository.SolicitacaoServicoRepository;
 import br.com.harmonicgroup.sigsmu_backend.repository.StatusSolicitacaoRepository;
 
@@ -23,6 +25,9 @@ public class SolicitacaoServicoService {
 
     @Autowired
     StatusSolicitacaoRepository statusSolicitacaoRepository;
+
+    @Autowired
+    CustoRepository custoRepository;
 
 
     public List<SolicitacaoServico> listarSolicitacoesServico() {
@@ -48,6 +53,11 @@ public class SolicitacaoServicoService {
         solicitacaoServicoRepository.deleteById(id);
     }
 
+
+    // Retorna a solicitação de serviço por id
+    public Optional<SolicitacaoServico> buscarSolicitacaoPorId(Integer id) {
+        return solicitacaoServicoRepository.findById(id);
+    }
 
     // Retorna a solicitação de serviço do cliente informado
     public Optional<SolicitacaoServico> buscarSolicitacaoPorCliente(String cpf) {
@@ -90,6 +100,18 @@ public class SolicitacaoServicoService {
         solicitacao.setStatusSolicitacao(novoStatus);
         solicitacaoServicoRepository.save(solicitacao);
 
+    }
+
+    // Adiciona o custo do serviço a solicitação
+    public void definirCustoDoServico(Integer sol_id, Custo custo) {
+        SolicitacaoServico solicitacao = solicitacaoServicoRepository.findById(sol_id)
+        .orElseThrow(() -> new RuntimeException("Solicitação não encontrada"));
+
+        custoRepository.save(custo);
+
+        // Muda o status da solicitação e salva no banco
+        solicitacao.setCusto(custo);
+        solicitacaoServicoRepository.save(solicitacao);
     }
 
     // Retorna solicitações com custo preenchido

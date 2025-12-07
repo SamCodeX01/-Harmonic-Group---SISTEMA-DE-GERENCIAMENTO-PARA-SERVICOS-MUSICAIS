@@ -196,7 +196,7 @@ function T02_Orcamento() {
                         "pacoteServico"     : {"id"  : Number(pacote)},
                         "tipoLocal"         : {"id"  : Number(tipoLocal)},
                         "statusSolicitacao" : {"id"  : 1}
-                    }
+                    } // manda com status de pendente
 
                     console.log("=========================================")
                     console.log("cpf ID -> " + cpf)

@@ -26,6 +26,8 @@ function Delete(tabela, id) {
         case "TipoLocal":         excluirTipoLocal(id)
             break
     }
+    
     alert("Registro deletado!")
+    window.location.reload()
 }
 export default Delete;

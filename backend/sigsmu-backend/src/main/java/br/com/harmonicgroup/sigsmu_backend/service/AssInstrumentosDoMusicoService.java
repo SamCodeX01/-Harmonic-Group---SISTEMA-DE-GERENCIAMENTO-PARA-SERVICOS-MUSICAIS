@@ -32,8 +32,19 @@ public class AssInstrumentosDoMusicoService {
         return instrumentos;
     }
 
+    // Adiciona instrumento (id) passado como parâmetro à lista de instrumentos do músico (cpf)
     public void adicionarAosInstrumentosDoMusico(AssInstrumentosDoMusico assInstrumentosDoMusico) {
         assInstrumentosDoMusicoRepository.save(assInstrumentosDoMusico);
+    }
+
+    // Remove o instrumento da lista de instrumentos do músico
+    public void removerInstrumentoDaLista(String mus_cpf, Integer ins_id) {
+        List<AssInstrumentosDoMusico> objInstrumentos = assInstrumentosDoMusicoRepository.findByMusicoCpf(mus_cpf);
+        
+        for (AssInstrumentosDoMusico registro : objInstrumentos) {
+            if (registro.getInstrumento().getId() == ins_id)
+                assInstrumentosDoMusicoRepository.deleteById(registro.getId());
+        }
     }
 
 }

@@ -30,8 +30,6 @@ import T04_BancoDeDados         from "pages_containers/telas-do-gestor/_telas-pr
 import T06_Historico            from "pages_containers/telas-do-gestor/_telas-principais/T06_Historico.jsx";
 
 import TelaAlteracaoContrato    from "pages_containers/telas-do-gestor/telas-dos-botoes/TelaAlteracaoContrato.jsx";
-import TelaAtribuicaoAutomatica from "pages_containers/telas-do-gestor/telas-dos-botoes/TelaAtribuicaoAutomatica.jsx";
-import TelaAtribuicaoManual     from "pages_containers/telas-do-gestor/telas-dos-botoes/TelaAtribuicaoManual.jsx";
 import TelaDeCustos             from "pages_containers/telas-do-gestor/telas-dos-botoes/TelaDeCustos.jsx";
 import TelaEnvioDevolutiva      from "pages_containers/telas-do-gestor/telas-dos-botoes/TelaEnvioDevolutiva.jsx";
 
@@ -109,8 +107,6 @@ function Rotas() {
                 {/*                    Rotas das Opções do Gestor                    */}
                 <Route path="/Intranet/RotasGestor/SolicitacoesServico/AlteracaoContrato"    element={<TelaAlteracaoContrato />} />
                 <Route path="/Intranet/RotasGestor/SolicitacoesServico/Custos"               element={<TelaDeCustos />} /> 
-                <Route path="/Intranet/RotasGestor/SolicitacoesServico/AtribuicaoAutomatica" element={<TelaAtribuicaoAutomatica />} /> 
-                <Route path="/Intranet/RotasGestor/SolicitacoesServico/AtribuicaoManual"     element={<TelaAtribuicaoManual />} /> 
                 <Route path="/Intranet/RotasGestor/SolicitacoesServico/Devolutiva"           element={<TelaEnvioDevolutiva />} /> 
               
             </Routes>

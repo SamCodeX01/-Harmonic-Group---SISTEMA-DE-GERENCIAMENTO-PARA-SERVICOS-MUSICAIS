@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.harmonicgroup.sigsmu_backend.model.Custo;
 import br.com.harmonicgroup.sigsmu_backend.model.SolicitacaoServico;
 import br.com.harmonicgroup.sigsmu_backend.model.UpdateDTO;
 import br.com.harmonicgroup.sigsmu_backend.service.SolicitacaoServicoService;
@@ -47,12 +48,19 @@ public class SolicitacaoServicoController {
     }
 
 
+    // Retorna a solicitação de serviço relativa ao id passado como parâmetro
+    @GetMapping("/buscar/{id}")
+    public Optional<SolicitacaoServico> buscarSolicitacaoPorId(@PathVariable Integer id) {
+        return solicitacaoServicoService.buscarSolicitacaoPorId(id);
+    }
 
+    // Retorna a solicitação de um cliente específico
     @GetMapping("/{cpf}")
     public Optional<SolicitacaoServico> buscarSolicitacaoPorCliente(@PathVariable String cpf) {
         return solicitacaoServicoService.buscarSolicitacaoPorCliente(cpf);
     }
 
+    // Retorna a solicitação buscada por status - não usado!
     @GetMapping("/status")
     public List<SolicitacaoServico> buscarSolicitacoesPorStatus(@RequestParam Integer id) {
         return solicitacaoServicoService.buscarSolicitacoesPorStatus(id);
@@ -70,10 +78,17 @@ public class SolicitacaoServicoController {
         return solicitacaoServicoService.buscarSolicitacoesParaAceitacao();
     }
     
-    // Solicitações para a tela inicial do musico
-    @GetMapping("/{sol_id}/status/{novo_stt_id}")
+
+    // Muda o status da solicitação
+    @PostMapping("/{sol_id}/status/{novo_stt_id}")
     public void mudarStatusDaSolicitacao(@PathVariable Integer sol_id, @PathVariable Integer novo_stt_id) {
         solicitacaoServicoService.mudarStatusDaSolicitacao(sol_id, novo_stt_id);
+    }
+
+    // Salva o custo do serviço
+    @PostMapping("/custo/{sol_id}")
+    public void definirCustoDoServico(@PathVariable Integer sol_id, @RequestBody Custo custo) {
+        solicitacaoServicoService.definirCustoDoServico(sol_id, custo);
     }
 
 }

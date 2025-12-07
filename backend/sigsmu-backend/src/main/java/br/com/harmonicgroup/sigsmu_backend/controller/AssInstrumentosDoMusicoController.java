@@ -3,6 +3,7 @@ package br.com.harmonicgroup.sigsmu_backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +36,11 @@ public class AssInstrumentosDoMusicoController {
     @PostMapping
     public void adicionarAosInstrumentosDoMusico(@RequestBody AssInstrumentosDoMusico assInstrumentosDoMusico) {
         assInstrumentosDoMusicoService.adicionarAosInstrumentosDoMusico(assInstrumentosDoMusico);
+    }
+
+    @DeleteMapping("/{cpf}/instrumento/{id}")
+    public void removerInstrumentoDaLista(@PathVariable String cpf, @PathVariable Integer id) {
+        assInstrumentosDoMusicoService.removerInstrumentoDaLista(cpf, id);
     }
 
 }

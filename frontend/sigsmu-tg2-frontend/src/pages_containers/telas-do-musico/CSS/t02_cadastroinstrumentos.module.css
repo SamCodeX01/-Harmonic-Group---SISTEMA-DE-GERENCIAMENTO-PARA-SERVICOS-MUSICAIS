@@ -1,8 +1,48 @@
 
+/* .box_instrumentos {
+    color: white;
+    text-align: center;
+} */
+.instrumentos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-.musicoContainer {
-    background-color: var(--corespaco30);
-    color: var(--corpreto);
+    text-align: start;
+    font-size: large;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    text-shadow: none;
+    
+
+} .instrumentos legend {
+    background-color: var(--cordourado10);
+    padding: 5px;
+    border-radius: 10px;
+    font-size: larger;
+}
+
+.info_instrumento {
+    display: inline-block;
+
+} .excluir_instrumento {
+    background-color: var(--cordourado10);
+    padding: 10px;
+    border-radius: 10px;
+    width: 40px;
+    text-align: center;
+    border: 1px solid black;
+
+} .excluir_instrumento:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
+.musicoContainer, .box_instrumentos {
+    background-color: var(--corazul);
     border-radius: 20px;
     padding: 2.5rem;
     margin-top: 2rem;
@@ -12,7 +52,7 @@
     border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.titulo {
+.titulo, .box_instrumentos {
     font-size: 1.8rem;
     font-weight: 700;
     text-align: center;
