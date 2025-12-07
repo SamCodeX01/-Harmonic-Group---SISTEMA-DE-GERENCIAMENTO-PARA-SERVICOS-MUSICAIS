@@ -21,6 +21,11 @@ public class AssInstrumentosEscolhidosController {
     @Autowired
     AssInstrumentosEscolhidosService assInstrumentosEscolhidosService;
 
+    @GetMapping
+    public List<AssInstrumentosEscolhidos> listarInstrumentosEscolhidos() {
+        return assInstrumentosEscolhidosService.listarInstrumentosEscolhidos();
+    }
+
     @GetMapping("/{id}")
     public List<Instrumento> buscarInstrumentosEscolhidos(@PathVariable Integer id) {
         return assInstrumentosEscolhidosService.buscarInstrumentosEscolhidos(id);

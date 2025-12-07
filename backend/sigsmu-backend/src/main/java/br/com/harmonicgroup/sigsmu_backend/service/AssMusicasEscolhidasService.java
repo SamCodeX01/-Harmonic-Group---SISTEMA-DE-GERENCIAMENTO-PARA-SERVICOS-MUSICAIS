@@ -16,6 +16,10 @@ public class AssMusicasEscolhidasService {
     @Autowired
     AssMusicasEscolhidasRepository assMusicasEscolhidasRepository;
 
+    public List<AssMusicasEscolhidas> listarMusicasEscolhidas() {
+        return assMusicasEscolhidasRepository.findAll();
+    }
+
     public List<Repertorio> buscarMusicasEscolhidas(Integer id) {
         List<AssMusicasEscolhidas> assMusicasEscolhidas = assMusicasEscolhidasRepository.findBySolicitacaoServicoId(id);
 

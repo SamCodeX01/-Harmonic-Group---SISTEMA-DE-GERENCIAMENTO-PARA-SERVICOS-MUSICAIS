@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.harmonicgroup.sigsmu_backend.model.AssInstrumentosDoMusico;
 import br.com.harmonicgroup.sigsmu_backend.model.AssInstrumentosEscolhidos;
 import br.com.harmonicgroup.sigsmu_backend.model.Instrumento;
 import br.com.harmonicgroup.sigsmu_backend.repository.AssInstrumentosEscolhidosRepository;
@@ -15,6 +16,10 @@ public class AssInstrumentosEscolhidosService {
     
     @Autowired
     AssInstrumentosEscolhidosRepository assInstrumentosEscolhidosRepository;
+
+    public List<AssInstrumentosEscolhidos> listarInstrumentosEscolhidos() {
+        return assInstrumentosEscolhidosRepository.findAll();
+    }
 
     public List<Instrumento> buscarInstrumentosEscolhidos(Integer id) {
         List<AssInstrumentosEscolhidos> assInstrumentosEscolhidos = assInstrumentosEscolhidosRepository.findBySolicitacaoServicoId(id);

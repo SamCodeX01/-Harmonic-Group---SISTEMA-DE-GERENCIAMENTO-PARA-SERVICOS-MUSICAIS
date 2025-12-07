@@ -1,6 +1,7 @@
 package br.com.harmonicgroup.sigsmu_backend.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +27,11 @@ public class ClienteController {
     @GetMapping
     public List<Cliente> listarClientes() {
         return clienteService.listarClientes();
+    }
+
+    @GetMapping("/{cpf}")
+    public Optional<Cliente> buscarCliente(@PathVariable String cpf) {
+        return clienteService.buscarCliente(cpf);
     }
 
     @PostMapping

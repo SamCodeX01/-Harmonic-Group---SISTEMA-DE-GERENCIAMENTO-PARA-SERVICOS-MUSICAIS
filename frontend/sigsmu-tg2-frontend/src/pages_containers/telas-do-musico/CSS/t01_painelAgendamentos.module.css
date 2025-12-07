@@ -5,7 +5,7 @@
   --cordourado10: #DB9D12;
 }
 
-.musicianDashboard {
+.main {
   min-height: 100vh;
   background-color: #f8fafc;
   padding: 24px;
@@ -61,7 +61,7 @@
   flex-direction: column;
 }
 
-.filterLabel {
+.main label {
   display: block;
   font-size: 0.9rem;
   font-weight: 600;
@@ -69,8 +69,8 @@
   margin-bottom: 8px;
 }
 
-.filterInput,
-.filterSelect {
+.main input,
+.main select {
   width: 100%;
   padding: 12px;
   border: 2px solid #e2e8f0;
@@ -79,6 +79,17 @@
   transition: all 0.3s ease;
   background-color: var(--corbranco60);
 }
+
+/* .filterInput,
+.filterSelect {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  background-color: var(--corbranco60);
+} */
 
 .filterInput:focus,
 .filterSelect:focus {

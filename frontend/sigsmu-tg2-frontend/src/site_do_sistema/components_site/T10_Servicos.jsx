@@ -51,12 +51,12 @@ function T10_Servicos() {
       instrumentos: ["Guitarra/Violão", "Baixo", "Bateria", "Vocalista"]
     },
     {
-      nome: "Harmonic 5",
+      nome: "Plugados Harmonic 5",
       descricao: "Formação de banda para festas composta por guitarra ou violão, baixo, bateria, vocalista e teclado.",
       instrumentos: ["Guitarra/Violão", "Baixo", "Bateria", "Vocalista", "Teclado"]
     },
     {
-      nome: "Harmonic 6",
+      nome: "Plugados Harmonic 6",
       descricao: "Formação de banda para festas composta por guitarra ou violão, baixo, bateria, vocalista, teclado e saxofone.",
       instrumentos: ["Guitarra/Violão", "Baixo", "Bateria", "Vocalista", "Teclado", "Saxofone"]
     },

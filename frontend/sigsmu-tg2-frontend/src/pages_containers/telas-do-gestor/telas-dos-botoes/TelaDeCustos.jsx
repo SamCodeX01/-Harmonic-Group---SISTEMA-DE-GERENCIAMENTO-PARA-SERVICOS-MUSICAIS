@@ -6,23 +6,46 @@ import Botao from "components/Botao.jsx"
 import Campo from "components/Campo.jsx"
 import Radio from "components/Radio.jsx"
 
+// Importações da API (Axios)
+import { adicionarCusto }              from "services/Servico/Custo.js"
+import { dadosSolicitacaoSelecionada } from "services/_AUXILIAR/GlobalData.js"
+
 // Importações do React
 import { useEffect, useState } from "react"
+import { replace, useNavigate } from "react-router-dom"
 
 
 // Tela de definição de CUSTOS para cada solicitação de serviço
 function TelaDeCustos() {
+    const navigate = useNavigate()
+
+    // Solicitação selecionada
+    const solicitacao = dadosSolicitacaoSelecionada.get()
     
     // Muda o botão selecionado ao clique do usuário
     const [botaoSelecionado, setBotaoSelecionado] = useState()
 
     // Define se as divs serão mostradas ou não
     const [mostrarTransporte, setMostrarTransporte] = useState()
-    const [mostrarMusico, setMostrarMusico] = useState()
+    const [mostrarMusico, setMostrarMusico]         = useState()
+
+
+    const [combustivel, setCombustivel]                 = useState()
+    const [precoLitro, setPrecoLitro]                   = useState()
+    const [distancia, setDistancia]                     = useState()
+    const [pedagio, setPedagio]                         = useState()
+    const [consumoMedioVeiculo, setConsumoMedioVeiculo] = useState()
+    const [cacheMusicos, setCacheMusicos]               = useState()
+    const [alimentacao, setAlimentacao]                 = useState()
+    const [aluguelEquipamentos, setAluguelEquipamentos] = useState()
+    const [demonstracao, setDemonstracao]               = useState()
+    const [passagemMusico, setPassagemMusico]           = useState()
+
     
     // Só executa quando o valor de botaoSelecionado mudar
     useEffect(() => {
         if (botaoSelecionado) {
+
             setMostrarTransporte(false)
             setMostrarMusico(false)
 
@@ -58,22 +81,51 @@ function TelaDeCustos() {
 
                 {mostrarTransporte && 
                     <div className={css.transporte}>
-                        <Campo msg={"Combustível"} />
-                        <Campo msg={"Preço por litro"} />
-                        <Campo msg={"Distância a percorrer"} />
-                        <Campo msg={"Pedágio"} />
-                        <Campo msg={"Consumo médio do carro"} />
+                        <Campo msg={"Combustível"}            setValue={setCombustivel}/>
+                        <Campo msg={"Preço por litro"}        setValue={setPrecoLitro}/>
+                        <Campo msg={"Distância a percorrer"}  setValue={setDistancia}/>
+                        <Campo msg={"Pedágio"}                setValue={setPedagio}/>
+                        <Campo msg={"Consumo médio do carro"} setValue={setConsumoMedioVeiculo}/>
                     </div>
                 }
 
                 {mostrarMusico && 
                     <div className={css.musico}>
-                        <Campo msg={"Cache dos músicos"} />
-                        <Campo msg={"Alimentação"} />
-                        <Campo msg={"Aluguel de equipamentos"} />
-                        <Campo msg={"Demonstração"} />
-                        <Campo msg={"Passagem do músico"} />
+                        <Campo msg={"Cache dos músicos"}       setValue={setCacheMusicos}/>
+                        <Campo msg={"Alimentação"}             setValue={setAlimentacao}/>
+                        <Campo msg={"Aluguel de equipamentos"} setValue={setAluguelEquipamentos}/>
+                        <Campo msg={"Demonstração"}            setValue={setDemonstracao}/>
+                        <Campo msg={"Passagem do músico"}      setValue={setPassagemMusico}/>
                     </div>
+                }
+
+                { botaoSelecionado.id === "ibutton2" && 
+                    <Botao
+                        msg={"ENVIAR"}
+                        executarComando={async () => {
+                            try {
+                                await adicionarCusto(solicitacao.id, {
+                                    combustivel,
+                                    precoLitro,
+                                    distancia,
+                                    pedagio,
+                                    consumoMedioVeiculo,
+                                    cacheMusicos,
+                                    alimentacao,
+                                    aluguelEquipamentos,
+                                    demonstracao,
+                                    passagemMusico
+                                })
+
+                                alert("Custo definido com sucesso!")
+                                navigate("/Intranet/RotasGestor/SolicitacoesServico", {replace:true})
+                            }
+                            catch(erro) {
+                                alert("Erro ao cadastrar custo!")
+                                console.log("Erro ao cadastrar custo: " + erro)
+                            }
+                        }}
+                    />
                 }
 
             </div>

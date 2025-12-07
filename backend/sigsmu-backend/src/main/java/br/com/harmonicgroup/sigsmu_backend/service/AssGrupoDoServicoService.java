@@ -16,6 +16,10 @@ public class AssGrupoDoServicoService {
     @Autowired
     AssGrupoDoServicoRepository assGrupoDoServicoRepository;
 
+    public List<AssGrupoDoServico> listarGruposDeServico() {
+        return assGrupoDoServicoRepository.findAll();
+    }
+
     public List<Musico> buscarGrupoDoServico(Integer id) {
         List<AssGrupoDoServico> assGrupoDoServico = assGrupoDoServicoRepository.findBySolicitacaoServicoId(id);
 

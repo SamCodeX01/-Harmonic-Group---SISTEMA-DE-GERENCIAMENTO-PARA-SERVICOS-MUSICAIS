@@ -68,7 +68,8 @@ function T01_Login() {
         // Passa para as TELAS DO GESTOR caso o usuário seja um gestor
         if (usuarioEncontrado?.tipo === "gestor") {
             if (validarLogin()) {
-                dadosGestor.set( usuarioEncontrado )
+                // dadosGestor.set( usuarioEncontrado )
+                localStorage.setItem("usuarioLogado", JSON.stringify(usuarioEncontrado));
                 navigate("/Intranet/RotasGestor/Inicio")
             }
         }
@@ -76,10 +77,14 @@ function T01_Login() {
         // Passa para as TELAS DO MÚSICO caso o usuário seja um músico
         else if (usuarioEncontrado?.tipo === "musico") {
             if (validarLogin()) {
-                dadosMusico.set( usuarioEncontrado )
+                // dadosMusico.set( usuarioEncontrado )
+                localStorage.setItem("usuarioLogado", JSON.stringify(usuarioEncontrado));
                 navigate("/Intranet/RotasMusico/Inicio")
             }
         }
+
+        // localStorage.setItem("usuarioLogado", JSON.stringify(usuarioEncontrado));
+
     }, [usuarioEncontrado])
 
     // Responsável por checar se a senha informada bate com a senha real do usuário
@@ -137,3 +142,8 @@ function T01_Login() {
     )
 }
 export default T01_Login;
+
+//============ SALVAR E RECUPERAR DADOS DO LOCAL STORAGE =============//
+// localStorage.setItem("usuarioLogado", JSON.stringify(usuario));    //
+// const usuario = JSON.parse(localStorage.getItem("usuarioLogado")); //
+//====================================================================//

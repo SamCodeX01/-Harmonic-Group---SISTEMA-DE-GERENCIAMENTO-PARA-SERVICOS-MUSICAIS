@@ -1,57 +1,26 @@
 // components/MusicianDashboard.jsx
 
 // Importações de estilos
-import t01_painelAgendaCss from './CSS/t01_painelagendamentos.module.css';
+// import css from './CSS/t01_painelagendamentos.module.css';
+import css from './CSS/t01_painelagendamentos.module.css';
 
 // Importações de componentes
 import Botao from 'components/Botao.jsx';
+import Select from 'components/Select.jsx';
 
 // Importações da API (Axios)
-import { dadosMusico } from 'services/_AUXILIAR/GlobalData.js';
-import { listarTiposServico } from 'services/TabelasIndependentes/TipoServico';
+import { dadosMusico }                                             from 'services/_AUXILIAR/GlobalData.js';
+import { listarSolicitacoesParaMusicos, mudarStatusDaSolicitacao } from "services/Outras/SolicitacaoServico.js"
+import { buscarInstrumentosEscolhidos }                            from "services/TabelasAssociativas/InstrumentosEscolhidos.js"
+import { buscarInstrumentosDoMusico }                              from "services/TabelasAssociativas/InstrumentosDoMusico.js"
+import { buscarGrupoDoServico, adicionarAoGrupoDoServico }         from "services/TabelasAssociativas/GrupoDoServico.js"
 // import { lis } from 'services/Outras/SolicitacaoServico.js' 
 
 // Importações do React
 import React, { useState, useEffect } from 'react';
 
 
-// Dados mockados para demonstração
-const mockAgendamentos = [
-  {
-    id: 1,
-    data: '2024-12-15',
-    hora: '19:00',
-    local: 'Salão de Eventos Villa Borghese',
-    tipoEvento: 'Casamento',
-    contrato: 'CONTRATO_001.pdf',
-    status: 'confirmado',
-    valor: 2500.00,
-    instrumentos: ['Violino', 'Piano']
-  },
-  {
-    id: 2,
-    data: '2024-12-20',
-    hora: '20:30',
-    local: 'Centro de Convenções Expo Center',
-    tipoEvento: 'Evento Corporativo',
-    contrato: 'CONTRATO_002.pdf',
-    status: 'pendente',
-    valor: 3200.00,
-    instrumentos: ['Violino', 'Viola', 'Violoncelo']
-  },
-  {
-    id: 3,
-    data: '2024-12-22',
-    hora: '16:00',
-    local: 'Buffet Infantil Mundo Mágico',
-    tipoEvento: 'Festa Infantil',
-    contrato: 'CONTRATO_003.pdf',
-    status: 'confirmado',
-    valor: 1800.00,
-    instrumentos: ['Violino']
-  }
-];
-
+// ESTRUTURA DO QUE PRECISO MOSTRAR //
 /*
   id
   dataEvento
@@ -62,12 +31,11 @@ const mockAgendamentos = [
   valorCache
   instrumentosEscolhidos
   status TENHO QUE VER
-  contrato
+  contrato : 'CONTRATO_003.pdf',
 */
 
 
 // FALTA PUXAR TUDO DO BANCO //
-
 
 const tiposEvento = [
   'Todos',
@@ -78,63 +46,164 @@ const tiposEvento = [
   'Jantar Privado'
 ];
 
-const T01_painelAgendamentos = () => {
 
-  // const [tiposEvento, setTiposEvento] = useState(["teste"])
+// Tela de VISUALIZAÇÃO DE AGENDAMENTOS de serviços so músico
+function T01_painelAgendamentos(){
 
-  // const buscarTiposDeEvento = async () => {
-  //   try {
-  //     const promisse = await listarTiposServico()
-  //     setTiposEvento( ["Todos", ...promisse.data] )
-  //   }
-  //   catch(erro) {
-  //     alert("Erro ao puxar os tipos de evento do banco!")
-  //     console.log("Erro ao puxar os tipos de evento do banco: " + erro)
-  //   }
-  // }
+  // Musico logado
+  const musicoLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-  // useEffect(() => {
-  //   buscarTiposDeEvento()
-  // }, [])
+  const [agendamentos, setAgendamentos]               = useState([]);
+  const [objsDosAgendamentos, setObjsDosAgendamentos] = useState(null);
+  
+
+  // Separa os instrumentos e músicos de cada solicitação    - ERRADO
+  // const [instrumentosDoServico, setInstrumentosDoServico] = useState(null)
+  // const [grupoDoServico, setGrupoDoServico]               = useState(null)
+
+  const [musicoEstaNoServico, setMusicoEstaNoServico]     = useState(false)
+
+  const [instrumentosEscolhidos, setInstrumentosEscolhidos] = useState(null)
+
+
+  // Retorna vários dados essenciais do banco
+  const puxarDadosDoBanco = async () => {
+    try {
+
+      // Retorna as solicitações em aberto - MUDAR DPS
+      const solicitacoesRetornadas = (await listarSolicitacoesParaMusicos()).data;
+      console.log("Qtd de solicitações puxadas -> ", solicitacoesRetornadas.length)
+      
+      // Retorna os instrumentos cadastrados do músico logado
+      const instrumentosDoMusico = (await buscarInstrumentosDoMusico(musicoLogado.cpf)).data
+      console.log("Qtd de instrumentos do músico -> ", instrumentosDoMusico.length)
+      
+
+      // Retorna somente as solicitações de serviço que fazem sentido com o perfil do músico
+      const listaFiltrada = await Promise.all(
+        solicitacoesRetornadas.map(async solicitacao => {
+          
+          // Trás os instrumentos da solicitação atual
+          const instrumentosSolicitacao = (await buscarInstrumentosEscolhidos(solicitacao.id)).data
+
+          // Verifica se algum dos instrumentos bate com os do músico
+          const existe = instrumentosSolicitacao?.some(ins =>
+            instrumentosDoMusico?.some(musIns => musIns.id === ins.id)
+          );
+
+          // Se bater, retorna a solicitação
+          return existe && solicitacao.statusSolicitacao.situacao === "aprovacao" ? solicitacao : null;
+        })
+      ); // FIM DO AWAIT PROMISSE
+
+
+      // Responsável por montar os objs contendo a SOLICITAÇÃO/GRUPO/INSTRUMENTOS de cada solicitação
+      const objsListaFiltrada = await Promise.all(
+        listaFiltrada.filter(item => item !== null).map(async solicitacao => {
+
+          // Retorna o grupo e instrumentos do servico atual
+          const grupoDoServico = await puxarMusicosDoServico(solicitacao.id)
+          const instrumentosDaSolicitacao = await puxarInstrumentosEscolhidos(solicitacao.id)
+
+          console.log("solicitacao -> ", solicitacao)
+
+          // Se a solicitacao atingir o número de músicos cadastrados, ela MUDA O STATUS e desaparece
+          if (grupoDoServico.length >= instrumentosDaSolicitacao.length)
+            await mudarStatusDaSolicitacao(solicitacao.id, 1)
+          else {
+            return {
+              solicitacao,
+              grupoDoServico,
+              instrumentosDaSolicitacao
+            }
+          }
+
+        })
+      ); // FIM DO AWAIT PROMISSE
+
+
+      // Guarda as listas para recuperação depois      
+      setAgendamentos( objsListaFiltrada.map(obj => obj.solicitacao) )
+      setObjsDosAgendamentos ( objsListaFiltrada )
+
+
+      // Teste apenas
+      console.log( "Solicitações -> ", objsListaFiltrada.map(obj => obj.solicitacao) )
+      console.log("Tamanho da lista filtrada -> ", objsListaFiltrada.map(obj => obj.solicitacao).length)
+
+    } 
+    catch (erro) {
+      alert("Erro ao puxar as solicitações em aberto!");
+      console.log("Erro ao puxar as solicitações em aberto: " + erro);
+    }
+  };
+
+
+  // Retorna os instrumentos do serviço
+  const puxarInstrumentosEscolhidos = async (sol_id) => {
+      try {
+        const response = await buscarInstrumentosEscolhidos(sol_id)
+        return response.data
+      }
+      catch(erro) {
+        alert("Erro ao puxar instrumentos da solicitação!")
+        console.log("Erro ao puxar instrumentos da solicitação: " + erro)
+      }
+    }
+    
+
+  // Checa se músico faz parte do grupo de serviço ou não
+  const puxarMusicosDoServico = async (sol_id) => {
+    try {
+      const response = await buscarGrupoDoServico(sol_id)
+      return response.data
+      // console.log("SOL_ID -> " + sol_id)
+      // console.log("grupo_da_sol " + sol_id + " -> ", promisse.data)
+    }
+    catch(erro) {
+      alert("Erro ao verificar se o músico faz parte do serviço!")
+      console.log("Erro ao verificar se o músico faz parte do serviço: " + erro)
+    }
+  }
+    
+  // Executa a função abaixo somente uma vez
+  useEffect(() => {
+    puxarDadosDoBanco()
+    console.log("CPF_LOGADO -> " + musicoLogado.cpf)
+  }, [])
+
 
   
-  // Guarda o MÚSICO LOGADO no sistema
-  const musico = dadosMusico.get()
-
-  const [agendamentos, setAgendamentos] = useState([]);
-  const [filtroData, setFiltroData] = useState('');
+  const [filtroData, setFiltroData]             = useState('');
   const [filtroTipoEvento, setFiltroTipoEvento] = useState('Todos');
-  const [filtroStatus, setFiltroStatus] = useState('Todos');
-  const [agendamentoSelecionado, setAgendamentoSelecionado] = useState(null);
+  const [filtroStatus, setFiltroStatus]         = useState('Todos');
 
-  useEffect(() => {
-    // Simular carregamento de dados da API
-    setAgendamentos(mockAgendamentos);
-  }, []);
 
   const agendamentosFiltrados = agendamentos.filter(agendamento => {
-    const matchData = !filtroData || agendamento.data === filtroData;
-    const matchTipo = filtroTipoEvento === 'Todos' || agendamento.tipoEvento === filtroTipoEvento;
-    const matchStatus = filtroStatus === 'Todos' || agendamento.status === filtroStatus;
+    const matchData   = !filtroData                  || agendamento.dataEvento                     === filtroData;
+    const matchTipo   = filtroTipoEvento === 'Todos' || agendamento.pacoteServico.tipoServico.nome === filtroTipoEvento;
+    const matchStatus = filtroStatus === 'Todos'     || agendamento.statusSolicitacao.situacao     === filtroStatus;
     
     return matchData && matchTipo && matchStatus;
   });
 
+  // FORMATA A DATA PARA DEIXAR PADRONIZADO
   const formatarData = (data) => {
     return new Date(data + 'T00:00:00').toLocaleDateString('pt-BR');
   };
 
   const getStatusBadge = (status) => {
+
     const statusClasses = {
-      confirmado: `${t01_painelAgendaCss.statusBadge} ${t01_painelAgendaCss.statusConfirmed}`,
-      pendente: `${t01_painelAgendaCss.statusBadge} ${t01_painelAgendaCss.statusPending}`,
-      cancelado: `${t01_painelAgendaCss.statusBadge} ${t01_painelAgendaCss.statusCancelled}`
+      confirmado : `${css.statusBadge} ${css.statusConfirmed}`,
+      pendente   : `${css.statusBadge} ${css.statusPending}`,
+      cancelado  : `${css.statusBadge} ${css.statusCancelled}`
     };
     
     const statusText = {
-      confirmado: 'Confirmado',
-      pendente: 'Pendente',
-      cancelado: 'Cancelado'
+      confirmado : 'Confirmado',
+      pendente   : 'Pendente',
+      cancelado  : 'Cancelado'
     };
     
     return (
@@ -159,35 +228,38 @@ const T01_painelAgendamentos = () => {
     // Em produção, isso abriria o PDF em uma nova aba
   };
 
-  // RETORNO PRINCIPAL
+  // RETORNO PRINCIPAL ======================================================================================================== //
   return (
-    <div className={t01_painelAgendaCss.musicianDashboard}>
-      <div className={t01_painelAgendaCss.dashboardContainer}>
+    <div className={css.main}>
+      <div className={css.dashboardContainer}>
+
         {/* Cabeçalho */}
-        <div className={t01_painelAgendaCss.dashboardHeader}>
-          <h1 className={t01_painelAgendaCss.dashboardTitle}>Painel de Agendamentos</h1>
-          <p className={t01_painelAgendaCss.dashboardSubtitle}>Gerencie seus eventos e contratos musicais</p>
+        <div className={css.dashboardHeader}>
+          <h1 className={css.dashboardTitle}>Painel de Agendamentos</h1>
+          <p className={css.dashboardSubtitle}>Gerencie seus eventos e contratos musicais</p>
         </div>
 
         {/* Filtros */}
-        <div className={t01_painelAgendaCss.filtersContainer}>
-          <div className={t01_painelAgendaCss.filtersGrid}>
-            <div className={t01_painelAgendaCss.filterGroup}>
-              <label className={t01_painelAgendaCss.filterLabel}>Data</label>
+        <div className={css.filtersContainer}>
+          <div className={css.filtersGrid}>
+
+            {/* TENHO QUE VER */}
+            <div className={css.filterGroup}>
+              <label className={css.filterLabel}>Data</label>
               <input
                 type="date"
                 value={filtroData}
                 onChange={(e) => setFiltroData(e.target.value)}
-                className={t01_painelAgendaCss.filterInput}
+                className={css.filterInput}
               />
             </div>
             
-            <div className={t01_painelAgendaCss.filterGroup}>
-              <label className={t01_painelAgendaCss.filterLabel}>Tipo de Evento</label>
+            {/* TENHO QUE VER */}
+            <div className={css.filterGroup}>
+              <label>Tipo de Evento</label>
               <select
                 value={filtroTipoEvento}
                 onChange={(e) => setFiltroTipoEvento(e.target.value)}
-                className={t01_painelAgendaCss.filterSelect}
               >
                 {tiposEvento.map((tipo, i) => (
                   <option key={i} value={tipo}>{tipo}</option>
@@ -198,282 +270,216 @@ const T01_painelAgendamentos = () => {
               </select>
             </div>
             
-            <div className={t01_painelAgendaCss.filterGroup}>
-              <label className={t01_painelAgendaCss.filterLabel}>Status</label>
-              <select
-                value={filtroStatus}
-                onChange={(e) => setFiltroStatus(e.target.value)}
-                className={t01_painelAgendaCss.filterSelect}
-              >
-                <option value="Todos">Todos</option>
-                <option value="confirmado">Confirmado</option>
-                <option value="pendente">Pendente</option>
-                <option value="cancelado">Cancelado</option>
-              </select>
+            {/* Filtro de Status */}
+            <div className={css.filterGroup}>
+              <Select 
+                msg={"Status"}
+                setValue={setFiltroStatus}
+                listaOpcoes={["Todos","confirmado","pendente","cancelado"]}
+              />
             </div>
             
-            <div className={t01_painelAgendaCss.filterGroup}>
+            {/* Botão limpar filtros */}
+            <div >
               <button
                 onClick={() => {
                   setFiltroData('');
                   setFiltroTipoEvento('Todos');
                   setFiltroStatus('Todos');
                 }}
-                className={t01_painelAgendaCss.filterButton}
+                className={css.filterButton}
               >
                 Limpar Filtros
               </button>
             </div>
+
           </div>
         </div>
 
         {/* Estatísticas */}
-        <div className={t01_painelAgendaCss.statsGrid}>
-          <div className={t01_painelAgendaCss.statCard}>
-            <div className={t01_painelAgendaCss.statNumberTotal}>{agendamentos.length}</div>
-            <div className={t01_painelAgendaCss.statLabel}>Total de Agendamentos</div>
+        <div className={css.statsGrid}>
+
+          <div className={css.statCard}>
+            <div className={css.statNumberTotal}>{agendamentos.length}</div>
+            <div className={css.statLabel}>Total de Agendamentos</div>
           </div>
           
-          <div className={t01_painelAgendaCss.statCard}>
-            <div className={t01_painelAgendaCss.statNumberConfirmed}>
+          <div className={css.statCard}>
+            <div className={css.statNumberConfirmed}>
               {agendamentos.filter(a => a.status === 'confirmado').length}
             </div>
-            <div className={t01_painelAgendaCss.statLabel}>Confirmados</div>
+            <div className={css.statLabel}>Confirmados</div>
           </div>
           
-          <div className={t01_painelAgendaCss.statCard}>
-            <div className={t01_painelAgendaCss.statNumberPending}>
+          <div className={css.statCard}>
+            <div className={css.statNumberPending}>
               {agendamentos.filter(a => a.status === 'pendente').length}
             </div>
-            <div className={t01_painelAgendaCss.statLabel}>Pendentes</div>
+            <div className={css.statLabel}>Pendentes</div>
           </div>
           
-          <div className={t01_painelAgendaCss.statCard}>
-            <div className={t01_painelAgendaCss.statNumberValue}>
+          <div className={css.statCard}>
+            <div className={css.statNumberValue}>
               R$ {agendamentos.reduce((total, a) => total + a.valor, 0).toLocaleString('pt-BR')}
             </div>
-            <div className={t01_painelAgendaCss.statLabel}>Valor Total</div>
+            <div className={css.statLabel}>Valor Total</div>
           </div>
         </div>
 
         {/* Lista de Agendamentos */}
-        <div className={t01_painelAgendaCss.agendamentosContainer}>
-          <div className={t01_painelAgendaCss.agendamentosHeader}>
-            <h2 className={t01_painelAgendaCss.agendamentosTitle}>
+        <div className={css.agendamentosContainer}>
+
+          {/* Título da tabela */}
+          <div className={css.agendamentosHeader}>
+            <h2 className={css.agendamentosTitle}>
               Agendamentos ({agendamentosFiltrados.length})
             </h2>
           </div>
           
-          <div className={t01_painelAgendaCss.tableContainer}>
-            <table className={t01_painelAgendaCss.agendamentosTable}>
-              <thead className={t01_painelAgendaCss.tableHeader}>
+          {/* Tabela */}
+          <div className={css.tableContainer}>
+            <table className={css.agendamentosTable}>
+
+              {/* Header da tabela */}
+              <thead className={css.tableHeader}>
                 <tr>
-                  <th className={t01_painelAgendaCss.tableHeaderCell}>Data/Hora</th>
-                  <th className={t01_painelAgendaCss.tableHeaderCell}>Local & Evento</th>
-                  <th className={t01_painelAgendaCss.tableHeaderCell}></th>
-                  <th className={t01_painelAgendaCss.tableHeaderCell}>Valor</th>
-                  <th className={t01_painelAgendaCss.tableHeaderCell}>Status</th>
-                  <th className={t01_painelAgendaCss.tableHeaderCell}>Ações</th>
+                  <th className={css.tableHeaderCell}>Data/Hora</th>
+                  <th className={css.tableHeaderCell}>Local & Evento</th>
+                  <th className={css.tableHeaderCell}>Valor</th>
+                  <th className={css.tableHeaderCell}>Status</th>
+                  <th className={css.tableHeaderCell}>Ações</th>
                 </tr>
               </thead>
+
+              {/* Body da tabela - PERCORRE SOLICITAÇÕES */}
               <tbody>
                 {agendamentosFiltrados.map((agendamento, index) => (
                   <tr 
                     key={agendamento.id}
-                    className={index % 2 === 0 ? t01_painelAgendaCss.tableRow : `${t01_painelAgendaCss.tableRow} ${t01_painelAgendaCss.tableRowEven}`}
-                    onClick={() => setAgendamentoSelecionado(agendamento)}
+                    className={index % 2 === 0 ? css.tableRow : `${css.tableRow} ${css.tableRowEven}`}
+                    // onClick={() => setAgendamentoSelecionado(agendamento)}
                   >
-                    <td className={`${t01_painelAgendaCss.tableCell} ${t01_painelAgendaCss.dateTimeCell}`}>
-                      <div className={t01_painelAgendaCss.dateMain}>
-                        {formatarData(agendamento.data)}
+
+                    {/* DATA E HORA DO EVENTO */}
+                    <td className={`${css.tableCell} ${css.dateTimeCell}`}>
+                      <div className={css.dateMain}>
+                        {agendamento.dataEvento}
+                        {/* {formatarData(agendamento.data)} */}
                       </div>
-                      <div className={t01_painelAgendaCss.timeSub}>
-                        {agendamento.hora}
-                      </div>
-                    </td>
-                    <td className={t01_painelAgendaCss.tableCell}>
-                      <div className={t01_painelAgendaCss.localMain}>
-                        {agendamento.local}
-                      </div>
-                      <div className={t01_painelAgendaCss.eventType}>
-                        {agendamento.tipoEvento}
-                      </div>
-                      <div className={t01_painelAgendaCss.instruments}>
-                        {agendamento.instrumentos.join(', ')}
+
+                      <div className={css.timeSub}>
+                        {`${agendamento.horarioInicio} - ${agendamento.horarioTermino}`}
                       </div>
                     </td>
-                    <td className={t01_painelAgendaCss.tableCell}>
-                      <div className={t01_painelAgendaCss.clientName}>
-                        {agendamento.cliente}
+
+                    {/* LOCAL / SERVIÇO / INSTRUMENTOS */}
+                    <td className={css.tableCell}>
+                      <div className={css.localMain}>
+                        {agendamento.localEvento}
+                      </div>
+
+                      <div className={css.eventType}>
+                        {agendamento.pacoteServico.tipoServico.nome}
+                      </div>
+
+                      <div className={css.instruments}>
+                        { objsDosAgendamentos[index].instrumentosDaSolicitacao.map(registro => registro.nome).slice(1).join(', ') }
                       </div>
                     </td>
-                    <td className={t01_painelAgendaCss.tableCell}>
-                      <div className={t01_painelAgendaCss.valueAmount}>
-                        R$ {agendamento.valor.toLocaleString('pt-BR')}
+
+                    {/* VALOR DO CACHE - TENHO QUE VER AINDA */}
+                    <td className={css.tableCell}>
+                      <div className={css.valueAmount}>
+                        R$ XXXX,XX
+                        {/* R$ { Number(agendamento.valor) .toLocaleString('pt-BR')} */}
+                        {/* R$ {agendamento.valor.toLocaleString('pt-BR')} */}
                       </div>
                     </td>
-                    <td className={t01_painelAgendaCss.tableCell}>
-                      {getStatusBadge(agendamento.status)}
+
+                    {/* STATUS DA SOLICITAÇÃO */}
+                    <td className={css.tableCell}>
+                      {getStatusBadge( objsDosAgendamentos[index].grupoDoServico
+                        .find(mus_ser => mus_ser.cpf === musicoLogado.cpf) ? "confirmado" : "pendente" )
+                      }
                     </td>
-                    <td className={`${t01_painelAgendaCss.tableCell} ${t01_painelAgendaCss.actionsCell}`}>
-                      <div className={t01_painelAgendaCss.actionsGroup}>
-                                      
-                        {/* Quando o STATUS === pendente, mostra o botão de aceitação */}
-                        {agendamento.status === 'pendente' && (
+
+                    {/* BOTÕES */}
+                    <td className={`${css.tableCell} ${css.actionsCell}`}>
+                      <div className={css.actionsGroup}>
+                      
+                        {/* Se músico estiver no grupo... */}
+                        { objsDosAgendamentos[index].grupoDoServico.find(mus_ser => mus_ser.cpf === musicoLogado.cpf)
+                        ?
+                        
+                        ( // mostra o botão de BAIXAR CONTRATO
                           <button
+                            className={`${css.actionButton} ${css.actionButtonContract}`}
                             onClick={(e) => {
                               e.stopPropagation();
-                              handleConfirmarParticipacao(agendamento.id);
+                              handleVisualizarContrato(agendamento.contrato);
+
+                              // EXIBIR CONTRATO AQUI // ========================================================================= //
+
                             }}
-                            className={`${t01_painelAgendaCss.actionButton} ${t01_painelAgendaCss.actionButtonConfirm}`}
+                          >
+                            Contrato
+                          </button> 
+                        )
+                        :
+                        ( // senão, mostra o botão de ACEITAR SERVIÇO
+                          <button
+                            className={`${css.actionButton} ${css.actionButtonConfirm}`}
+                            onClick={ async evt => {
+                              evt.stopPropagation();
+                              
+                              try {
+                                // Adiciona o músico ao grupo do serviço 
+                                await adicionarAoGrupoDoServico({
+                                  "solicitacaoServico" : { "id"  : agendamento.id },
+                                  "musico"             : { "cpf" : musicoLogado.cpf }
+                                })
+                                handleConfirmarParticipacao(agendamento.id);
+                                
+                                // GERAR CONTRATO // ================================================================================= //
+                                
+                                // Recarrega a página (para puxar dados novos do banco)
+                                window.location.reload();
+                              }
+                              catch(erro) {
+                                alert("Erro ao adicionar músico ao grupo do serviço!")
+                                console.log("Erro ao adicionar músico ao grupo do serviço: " + erro)
+                              }
+                            }}
                           >
                             Confirmar
                           </button>
                         )}
 
-                        {/* Quando o STATUS === confirmado, mostra o botão de baixar contrato */}
-                        {agendamento.status === 'confirmado' && (
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleVisualizarContrato(agendamento.contrato);
-                            }}
-                            className={`${t01_painelAgendaCss.actionButton} ${t01_painelAgendaCss.actionButtonContract}`}
-                          >
-                            Contrato
-                          </button> 
-                        )}
-
                       </div>
                     </td>
+
                   </tr>
                 ))}
               </tbody>
+
             </table>
             
             {agendamentosFiltrados.length === 0 && (
-              <div className={t01_painelAgendaCss.emptyState}>
+              <div className={css.emptyState}>
                 Nenhum agendamento encontrado com os filtros aplicados.
               </div>
             )}
           </div>
         </div>
 
-        {/* Modal de Detalhes */}
-        {agendamentoSelecionado && (
-          <div className={t01_painelAgendaCss.modalOverlay}>
-            <div className={t01_painelAgendaCss.modalContainer}>
-              <div className={t01_painelAgendaCss.modalHeader}>
-                <h3 className={t01_painelAgendaCss.modalTitle}>Detalhes do Agendamento</h3>
-                <button
-                  onClick={() => setAgendamentoSelecionado(null)}
-                  className={t01_painelAgendaCss.modalClose}
-                >
-                  ✕
-                </button>
-              </div>
-              
-              <div className={t01_painelAgendaCss.modalContent}>
-                <div className={t01_painelAgendaCss.detailsGrid}>
-                  <div className={t01_painelAgendaCss.detailGroup}>
-                    <span className={t01_painelAgendaCss.detailLabel}>Data</span>
-                    <p className={t01_painelAgendaCss.detailValue}>
-                      {formatarData(agendamentoSelecionado.data)}
-                    </p>
-                  </div>
-                  
-                  <div className={t01_painelAgendaCss.detailGroupOdd}>
-                    <span className={t01_painelAgendaCss.detailLabelOdd}>Hora</span>
-                    <p className={t01_painelAgendaCss.detailValue}>
-                      {agendamentoSelecionado.hora}
-                    </p>
-                  </div>
-                  
-                  <div className={t01_painelAgendaCss.detailGroup}>
-                    <span className={t01_painelAgendaCss.detailLabel}>Local do Evento</span>
-                    <p className={t01_painelAgendaCss.detailValue}>
-                      {agendamentoSelecionado.local}
-                    </p>
-                  </div>
-                  
-                  <div className={t01_painelAgendaCss.detailGroupOdd}>
-                    <span className={t01_painelAgendaCss.detailLabelOdd}>Tipo de Evento</span>
-                    <p className={t01_painelAgendaCss.detailValue}>
-                      {agendamentoSelecionado.tipoEvento}
-                    </p>
-                  </div>
-                  
-                  <div className={t01_painelAgendaCss.detailGroup}>
-                    <span className={t01_painelAgendaCss.detailLabel}>Status</span>
-                    <div>
-                      {getStatusBadge(agendamentoSelecionado.status)}
-                    </div>
-                  </div>
-                  
-                  <div className={t01_painelAgendaCss.detailGroupOdd}>
-                    <span className={t01_painelAgendaCss.detailLabelOdd}>Cliente</span>
-                    <p className={t01_painelAgendaCss.detailValue}>
-                      {agendamentoSelecionado.cliente}
-                    </p>
-                  </div>
-                  
-                  <div className={t01_painelAgendaCss.detailGroup}>
-                    <span className={t01_painelAgendaCss.detailLabel}>Instrumentos Requeridos</span>
-                    <p className={t01_painelAgendaCss.detailValue}>
-                      {agendamentoSelecionado.instrumentos.join(', ')}
-                    </p>
-                  </div>
-                  
-                  <div className={t01_painelAgendaCss.detailGroupOdd}>
-                    <span className={t01_painelAgendaCss.detailLabelOdd}>Valor do Serviço</span>
-                    <p className={t01_painelAgendaCss.detailValueLarge}>
-                      R$ {agendamentoSelecionado.valor.toLocaleString('pt-BR')}
-                    </p>
-                  </div>
-                </div>
-                
-                <div className={t01_painelAgendaCss.detailGroup}>
-                  <span className={t01_painelAgendaCss.detailLabel}>Contrato</span>
-                  <div>
-                    <button
-                      onClick={() => handleVisualizarContrato(agendamentoSelecionado.contrato)}
-                      className={t01_painelAgendaCss.contractButton}
-                    >
-                      📄 Visualizar Contrato
-                    </button>
-                  </div>
-                </div>
-              </div>
-              
-              <div className={t01_painelAgendaCss.modalFooter}>
-                <button
-                  onClick={() => setAgendamentoSelecionado(null)}
-                  className={t01_painelAgendaCss.secondaryButton}
-                >
-                  Fechar
-                </button>
-                {agendamentoSelecionado.status === 'pendente' && (
-                  <button
-                    onClick={() => {
-                      handleConfirmarParticipacao(agendamentoSelecionado.id);
-                      setAgendamentoSelecionado(null);
-                    }}
-                    className={t01_painelAgendaCss.primaryButton}
-                  >
-                    Confirmar Participação
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
-        <Botao
-          msg={"cadastro de instrumentos"}
-          rota={"/Intranet/RotasMusico/CadastroInstrumentos"}
-          ativarEstilo
-        />
+      {/* TEM QUE ARRUMAR */}
+      <Botao
+        msg={"cadastro de instrumentos"}
+        rota={"/Intranet/RotasMusico/CadastroInstrumentos"}
+        ativarEstilo
+      />
 
     </div>
   );

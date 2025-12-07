@@ -10,11 +10,12 @@ import PartesEvento from "../_componentes-grandes/PartesEvento.jsx"
 import React, { useEffect, useState } from "react";
 
 // Importações da API (Axios)
-import { listarTiposServico }             from "services/TabelasIndependentes/TipoServico.js";
-import { adicionarCliente }               from "services/Atores/Cliente.js";
-import { adicionarSolicitacaoServico }    from "services/Outras/SolicitacaoServico.js";
-import { dadosCliente, dadosSolicitacao } from "services/_AUXILIAR/GlobalData.js";
-import getMusicas                         from "./T03_repertorio_config.js";
+import { listarTiposServico }                                       from "services/TabelasIndependentes/TipoServico.js";
+import { adicionarCliente }                                         from "services/Atores/Cliente.js";
+import { adicionarSolicitacaoServico, buscarSolicitacaoPorCliente } from "services/Outras/SolicitacaoServico.js";
+import { dadosCliente, dadosSolicitacao }                           from "services/_AUXILIAR/GlobalData.js";
+import { adicionarAosInstrumentosEscolhidos }                       from "services/TabelasAssociativas/InstrumentosEscolhidos.js";
+import getMusicas                                                   from "./T03_repertorio_config.js";
 
 
 
@@ -51,8 +52,41 @@ function T03_Repertorio() {
     // Função responsável por CADASTRAR O CLIENTE e sua SOLICITAÇÃO no banco - OK
     const cadastrarNoBanco = async () => {
         try {
+            // Aciciona o cliente ao banco - se der erro, cpf já existe e não cadastra o resto
             await adicionarCliente( dadosTelaOrcamento.cliente )
             await adicionarSolicitacaoServico( dadosTelaOrcamento.solicitacao )
+            
+            // Só para organizar os dados
+            const cli_cpf = dadosTelaOrcamento.cliente.cpf
+            const arrayIdsInstrumentos = retornarInstrumentosEmId()
+            let sol_id
+            
+            try {
+                const promisse = await buscarSolicitacaoPorCliente(cli_cpf)
+                const sol = promisse.data
+                sol_id = sol.id
+            }
+            catch(erro) {
+                alert("Erro ao adquirir o id da solicitação!")
+                console.log("Erro ao adquirir o id da solicitação: " + erro)
+            }
+
+
+            //======================= Para Testes =======================//
+            console.log("cli_cpf -> " + cli_cpf)
+            console.log("arrayIdsInstrumentos -> " + arrayIdsInstrumentos)
+            console.log("sol_id -> " + sol_id)
+            //===========================================================//
+            
+            
+            // Adiciona cada instrumento a tabela de instrumentos escolhidos
+            arrayIdsInstrumentos.forEach(async (ins_id) => {
+                await adicionarAosInstrumentosEscolhidos({
+                    "solicitacaoServico" : { "id" : sol_id },
+                    "instrumento"        : { "id" : ins_id }
+                })
+            })
+            
             alert("Solicitação realizada com sucesso!")
         }
         catch(erro) {
@@ -65,6 +99,31 @@ function T03_Repertorio() {
     useEffect(() => {
         puxarTiposServico()
     }, [])
+
+    // Retorna a lista de instrumentos do pacote de serviço escolhido
+    const retornarInstrumentosEmId = () => {
+        let ser_id = dadosTelaOrcamento.solicitacao.pacoteServico.id
+
+        switch(ser_id) {
+
+            // Casamentos
+            case 1 : return [1,1]
+            case 2 : return [1,1,3]
+            case 3 : return [1,1,3,4]
+            case 4 : return [1,1,3,4,6]
+            
+            // Festas
+            case 5 : return [8,7,6,4]
+            case 6 : return [8,7,6,4,10]
+            case 7 : return [8,7,6,4,10,12]
+            
+            // Acústicos
+            case 8  : return [9,6,4]
+            case 9  : return [9,6,4,10]
+            case 10 : return [9,6,4,10,4]
+            case 11 : return [9,6,4,10,4,1]
+        }
+    }
 
     // useStates de seleção do usuário
     const [servicoSelecionado, setServicoSelecionado]   = useState("casamento") // string por enquanto (->id)

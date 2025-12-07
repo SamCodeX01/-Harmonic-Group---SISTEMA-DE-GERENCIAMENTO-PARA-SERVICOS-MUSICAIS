@@ -21,6 +21,11 @@ public class AssMusicasEscolhidasController {
     @Autowired
     AssMusicasEscolhidasService assMusicasEscolhidasService;
 
+    @GetMapping
+    public List<AssMusicasEscolhidas> listarMusicasEscolhidas() {
+        return assMusicasEscolhidasService.listarMusicasEscolhidas();
+    }
+
     @GetMapping("/{id}")
     public List<Repertorio> buscarMusicasEscolhidas(@PathVariable Integer id) {
         return assMusicasEscolhidasService.buscarMusicasEscolhidas(id);

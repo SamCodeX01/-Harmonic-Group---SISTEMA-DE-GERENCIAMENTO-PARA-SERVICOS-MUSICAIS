@@ -1,12 +1,12 @@
 // Importações do React
 import { useState } from "react"
 
-////////////////////////////////////////////////////////////////
-let // Variáveis que armazenam os dados preenchidos pelo cliente
+let // Objetos que armazenam os dados preenchidos pelo cliente
     infoCliente,
     infoSolicitacao,
     infoGestor,
-    infoMusico
+    infoMusico,
+    infoSolicitacaoSelecionada
 ; 
 
 export const dadosCliente = {
@@ -18,6 +18,20 @@ export const dadosSolicitacao = {
     get : ()     => { return infoSolicitacao },
     set : (dado) => { infoSolicitacao = dado }
 }
+
+
+export const dadosSolicitacaoSelecionada = {
+    get : ()     => { return infoSolicitacaoSelecionada },
+    set : (dado) => { infoSolicitacaoSelecionada = dado }
+}
+
+
+
+
+
+
+
+
 
 export const dadosGestor = {
     get : ()     => { return infoGestor },

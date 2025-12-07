@@ -16,6 +16,10 @@ public class AssInstrumentosDoMusicoService {
     @Autowired
     AssInstrumentosDoMusicoRepository assInstrumentosDoMusicoRepository;
 
+    public List<AssInstrumentosDoMusico> listarInstrumentosDosMusicos() {
+        return assInstrumentosDoMusicoRepository.findAll();
+    }
+
     public List<Instrumento> buscarInstrumentosDoMusico(String cpf) {
         List<AssInstrumentosDoMusico> assInstrumentosDoMusico = assInstrumentosDoMusicoRepository.findByMusicoCpf(cpf);
 

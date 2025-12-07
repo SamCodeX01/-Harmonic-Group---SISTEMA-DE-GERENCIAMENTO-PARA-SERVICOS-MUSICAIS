@@ -1,6 +1,7 @@
 package br.com.harmonicgroup.sigsmu_backend.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ public class ClienteService {
 
     public List<Cliente> listarClientes() {
         return clienteRepository.findAll();
+    }
+
+    public Optional<Cliente> buscarCliente(String cpf) {
+        return clienteRepository.findById(cpf);
     }
 
     public void cadastrarCliente(Cliente cliente) {

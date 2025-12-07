@@ -21,6 +21,11 @@ public class AssGrupoDoServicoController {
     @Autowired
     AssGrupoDoServicoService assGrupoDoServicoService;
 
+    @GetMapping
+    public List<AssGrupoDoServico> listarGruposDeServico() {
+        return assGrupoDoServicoService.listarGruposDeServico();
+    }
+
     @GetMapping("/{id}")
     public List<Musico> buscarGrupoDoServico(@PathVariable Integer id) {
         return assGrupoDoServicoService.buscarGrupoDoServico(id);

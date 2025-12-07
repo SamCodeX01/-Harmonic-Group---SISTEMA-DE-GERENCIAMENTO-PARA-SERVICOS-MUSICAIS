@@ -1,6 +1,7 @@
 package br.com.harmonicgroup.sigsmu_backend.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,14 +47,33 @@ public class SolicitacaoServicoController {
     }
 
 
+
+    @GetMapping("/{cpf}")
+    public Optional<SolicitacaoServico> buscarSolicitacaoPorCliente(@PathVariable String cpf) {
+        return solicitacaoServicoService.buscarSolicitacaoPorCliente(cpf);
+    }
+
     @GetMapping("/status")
     public List<SolicitacaoServico> buscarSolicitacoesPorStatus(@RequestParam Integer id) {
         return solicitacaoServicoService.buscarSolicitacoesPorStatus(id);
     }
 
+    // Solicitações para a tela inicial do gestor
     @GetMapping("/ativa")
     public List<SolicitacaoServico> buscarSolicitacoesAtivas() {
         return solicitacaoServicoService.buscarSolicitacoesAtivas();
+    }
+
+    // Solicitações para a tela inicial do musico
+    @GetMapping("/aceitacao")
+    public List<SolicitacaoServico> buscarSolicitacoesParaAceitacao() {
+        return solicitacaoServicoService.buscarSolicitacoesParaAceitacao();
+    }
+    
+    // Solicitações para a tela inicial do musico
+    @GetMapping("/{sol_id}/status/{novo_stt_id}")
+    public void mudarStatusDaSolicitacao(@PathVariable Integer sol_id, @PathVariable Integer novo_stt_id) {
+        solicitacaoServicoService.mudarStatusDaSolicitacao(sol_id, novo_stt_id);
     }
 
 }

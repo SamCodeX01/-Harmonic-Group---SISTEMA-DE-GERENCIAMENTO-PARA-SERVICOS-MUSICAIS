@@ -195,7 +195,7 @@ function T02_Orcamento() {
                         "cliente"           : {"cpf" : cpf},
                         "pacoteServico"     : {"id"  : Number(pacote)},
                         "tipoLocal"         : {"id"  : Number(tipoLocal)},
-                        "statusSolicitacao" : {"id"  : 2}
+                        "statusSolicitacao" : {"id"  : 1}
                     }
 
                     console.log("=========================================")

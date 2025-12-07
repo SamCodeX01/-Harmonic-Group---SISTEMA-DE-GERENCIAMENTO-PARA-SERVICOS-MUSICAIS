@@ -31,9 +31,9 @@ DELETE FROM cliente WHERE cli_cpf = '456456'
 
 
 ???
-INSERT INTO custo()
+INSERT INTO custo(cus_alimentacao)
 VALUES 
-()
+('boa')
 DROP TABLE custo
 SELECT * FROM custo
 DELETE FROM custo
@@ -50,11 +50,18 @@ DELETE FROM gestor
 
 -- 2 50%
 INSERT INTO instrumento(ins_nome) VALUES 
-	('clarinete'),
-	('violao'),
-	('flauta'),
+	('violino'),
+	('playback'),
 	('piano'),
-	('guitarra')
+	('vocalista'),
+	('trompete triunfal'),
+	('percussão'),
+	('baixo'),
+	('violão/guitarra'),
+	('violão'),
+	('teclado'),
+	('baixo acústico'),
+	('saxofone')
 DROP TABLE instrumento
 SELECT * FROM instrumento
 DELETE FROM instrumento
@@ -108,8 +115,15 @@ DELETE FROM musico WHERE mus_cpf = '666664'
 INSERT INTO pacote_servico(ser_id, pac_descricao, pac_nome, pac_qtd_musicos, pac_valor) VALUES
 	(1, 'Pacote possui 2 músicos e é bom', 'Harmonic Duo', '2', '1200'),
 	(1, 'Pacote possui 3 músicos e é muito bom', 'Harmonic Trio', '3', '1800'),
-	(1, 'Pacote possui 4 músicos e é ótimo', 'Harmonic Quarteto', '4', '2400'),
-	(1, 'Pacote possui 6 músicos e é perfeito', 'Harmonic Sexteto', '6', '3600')
+	(1, 'Pacote possui 4 músicos e é ótimo', 'Harmonic Alegro', '4', '2400'),
+	(1, 'Pacote possui 5 músicos e é perfeito', 'Harmonic Adagio', '5', '3000'),
+	(5, 'Anime sua festa com esse pacote legal', 'Plugados Harmonic 4', '4', '2600'),
+	(5, 'Anime sua festa com esse pacote maneiro', 'Plugados Harmonic 5', '5', '3000'),
+	(5, 'Anime sua festa com esse pacote sensacional', 'Plugados Harmonic 6', '6', '3400'),
+	(5, 'Pacote acústico de boa qualidade', 'Acústico 3', '3', '3000'),
+	(5, 'Pacote acústico de muito boa qualidade', 'Acústico 4', '4', '3500'),
+	(5, 'Pacote acústico de excelente qualidade', 'Acústico 5', '5', '4000'),
+	(5, 'Pacote acústico de perfeita qualidade', 'Acústico 6', '6', '4500')
 DROP TABLE pacote_servico
 SELECT * FROM pacote_servico
 DELETE FROM pacote_servico
@@ -149,12 +163,9 @@ INSERT INTO solicitacao_servico(
 	('Inova','19/06/2027','10:50','16:22','60','28/02/2025','false','03/03/2025','169754682435', 5, 4, 4)
 DROP TABLE solicitacao_servico
 SELECT * FROM solicitacao_servico
-DELETE FROM solicitacao_servico WHERE sol_id = 22
+DELETE FROM solicitacao_servico WHERE sol_id = 36
+UPDATE solicitacao_servico SET stt_id = 5 WHERE sol_id = 19
 
-
-A PARTIR DO PACOTE (DUO/TRIO - 2VIOLINISTAS/1PIANISTA) 
-DECIDIR...
--
 EU VOU É SÓ ABRIR A SOLICITAÇÃO PARA OS MÚSICOS E 
 LIMITAR PELA QUANTIDADE DE MUSICOS DO PACOTE.
 FICA BEM MAIS FÁCIL. QUANDO 3 MUSICOS ACEITAREM
@@ -169,10 +180,24 @@ INSERT INTO status_solicitacao(stt_situacao) VALUES
 	('pendente'),
 	('andamento'),
 	('concluido'),
-	('cancelado')
+	('cancelado'),
+	('aprovacao'),
+	('marcado')
 DROP TABLE status_solicitacao
 SELECT * FROM status_solicitacao
 DELETE FROM status_solicitacao
+
+-- solicitação so aparece pro musico caso:
+-- DATA de aprovacao estiver vazia     - SPRING BOOT
+-- CUSTOS com id preenchido            - SPRING BOOT
+-- STATUS DO solicitacao FOR ANDAMENTO - REACT
+
+FLUXO:
+cliente faz solicitação e fica PENDENTE para definir custos
+gestor define custos e clica para liberar para musicos -> fica em ANDAMENTO
+musicos aceitam ate atingir a capacidade maxima (qtdMusicosSolicitacao) e fica PENDENTE
+gestor confere tudo, gera contrato e fica ACEITACAO
+cliente aprova ou reprova e então fica CANCELADO ou MARCADO? e depois CONCLUIDO
 
 
 -- 6 100%
@@ -191,7 +216,8 @@ INSERT INTO tipo_servico(ser_nome) VALUES
 	('casamento'),
 	('aniversario'),
 	('formatura'),
-	('corporativo')
+	('corporativo'),
+	('festas')
 DROP TABLE tipo_servico
 SELECT * FROM tipo_servico
 DELETE FROM tipo_servico

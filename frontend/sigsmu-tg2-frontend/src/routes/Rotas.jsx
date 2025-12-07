@@ -78,10 +78,10 @@ function Rotas() {
                 {/* ///////////////////////////////////////////// */}
 
                 {/*               ROTAS DO CLIENTE               */}
-                <Route path='/'             element={<Site/>} errorElement={<div>vvv</div>}/>
+                <Route path='/'             element={<Site/>} errorElement={<div> ERRO </div>}/>
                 <Route path='/Inicio'       element={<Site/>} />
                 <Route path='/Servicos'     element={<T10_Servicos/>}/>    
-                <Route path='/galeria'      element={<T14_GaleriaFotos/>}/>    
+                <Route path='/Galeria'      element={<T14_GaleriaFotos/>}/>    
                 <Route path='/Sugestao'     element={<T11_Sugestao/>}/>    
                 <Route path="/Orcamento"    element={<T02_Orcamento/>} />
                 <Route path="/Repertorio"   element={<T03_Repertorio/>} />

@@ -147,20 +147,7 @@
   color: transparent;
 }
 
-.botaoLoading::after {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  top: 50%;
-  left: 50%;
-  margin-left: -8px;
-  margin-top: -8px;
-  border: 2px solid transparent;
-  border-top: 2px solid var(--corbranco60);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
+
 
 .botaoVerMaisLoading {
   position: relative;
@@ -187,29 +174,6 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Efeito de ripple para clique */
-.botaoRipple {
-  position: relative;
-  overflow: hidden;
-}
-
-.botaoRipple::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease;
-}
-
-.botaoRipple:active::after {
-  width: 100px;
-  height: 100px;
-}
 
 /* Estados específicos para cada botão */
 .botaoAtribuirEquipes {
@@ -292,16 +256,6 @@
   z-index: 1000;
 }
 
-.botaoTooltip:hover::after {
-  content: '';
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 6px solid transparent;
-  border-top-color: #1e293b;
-  margin-bottom: 2px;
-}
 
 @media (max-width: 768px) {
   .main {

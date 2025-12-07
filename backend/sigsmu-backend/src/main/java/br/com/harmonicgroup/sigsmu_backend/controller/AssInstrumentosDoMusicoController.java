@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.harmonicgroup.sigsmu_backend.model.AssGrupoDoServico;
 import br.com.harmonicgroup.sigsmu_backend.model.AssInstrumentosDoMusico;
 import br.com.harmonicgroup.sigsmu_backend.model.Instrumento;
 import br.com.harmonicgroup.sigsmu_backend.service.AssInstrumentosDoMusicoService;
@@ -20,6 +21,11 @@ public class AssInstrumentosDoMusicoController {
     
     @Autowired
     AssInstrumentosDoMusicoService assInstrumentosDoMusicoService;
+
+    @GetMapping
+    public List<AssInstrumentosDoMusico> listarInstrumentosDosMusicos() {
+        return assInstrumentosDoMusicoService.listarInstrumentosDosMusicos();
+    }
 
     @GetMapping("/{cpf}")
     public List<Instrumento> buscarInstrumentosDoMusico(@PathVariable String cpf) {

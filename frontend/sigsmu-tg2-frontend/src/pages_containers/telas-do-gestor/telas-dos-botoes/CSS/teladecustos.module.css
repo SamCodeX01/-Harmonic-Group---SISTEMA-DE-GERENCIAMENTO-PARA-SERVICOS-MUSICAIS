@@ -1,4 +1,7 @@
 .main {
+    position: absolute;
+    z-index: 10;
+
     border: solid black;
     width: 700px;
     margin: auto;

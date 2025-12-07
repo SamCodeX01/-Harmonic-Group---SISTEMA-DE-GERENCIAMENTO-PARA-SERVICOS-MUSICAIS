@@ -9,11 +9,12 @@ import BotoesSolicitacoesGestor from "../_componentes-grandes/historico/BotoesSo
 
 // Importações da API (Axios)
 import { dadosGestor }        from "services/_AUXILIAR/GlobalData.js";
-import { listarSolicitacoes, listarSolicitacoesEmAberto } from "services/Outras/SolicitacaoServico.js";
+import { listarSolicitacoesEmAberto } from "services/Outras/SolicitacaoServico.js";
 import { listarTiposServico } from "services/TabelasIndependentes/TipoServico";
 
 // Importações do React
 import React, { useEffect, useState } from "react";
+import { buscarGrupoDoServico } from "services/TabelasAssociativas/GrupoDoServico";
 
 
 function capitalizeWords(str) {
@@ -28,11 +29,12 @@ function capitalizeWords(str) {
 function T03_SolicitacoesServico() {
 
   // Guarda o GESTOR LOGADO no sistema //
-  const gestor = dadosGestor.get()
+  const gestorLogado = dadosGestor.get()
   //==================================//
 
   // Solicitações de Serviço retornadas do banco
   const [solicitacoesRetornadas, setSolicitacoesRetornadas] = useState(null)
+  const [grupoDoServico, setGrupoDoServico] = useState(null)
 
   const [tiposEvento, setTiposEvento] = useState([])
 
@@ -41,8 +43,22 @@ function T03_SolicitacoesServico() {
   // Responsável por carregar as informações importantes dessa tela
   const puxarSolicitacoes = async () => {
     try {
-      const retorno = await listarSolicitacoesEmAberto()
-      setSolicitacoesRetornadas(retorno.data)
+      const response1 = await listarSolicitacoesEmAberto()
+      setSolicitacoesRetornadas(response1.data)
+
+      const grupo = await Promise.all(
+        (response1.data).map(async solicitacao => {
+          try {
+            const response2 = await buscarGrupoDoServico(solicitacao.id)
+            return response2.data
+          }
+          catch(erro) {
+            alert("Erro ao puxar grupo do serviço!")
+            console.log("Erro ao puxar grupo do serviço: " + erro)
+          }
+        })
+      )
+      setGrupoDoServico( grupo )
     }
     catch (erro) {
       alert("Erro ao puxar dados do banco!")
@@ -50,16 +66,20 @@ function T03_SolicitacoesServico() {
     }
   }
 
+
   const puxarTiposServico = async () => {
     try {
-      const promisse = await listarTiposServico()
-      setTiposEvento( ["Todos", ...promisse.data.map(tipoLocal => tipoLocal.nome)] )
+      const response = await listarTiposServico()
+      setTiposEvento( ["Todos", ...response.data.map(tipoLocal => tipoLocal.nome)] )
     }
     catch(erro) {
       alert("Erro ao puxar tipos de serviço!")
       console.log("Erro ao puxar tipos de serviço: " + erro)
     }
   }
+
+
+
 
   // Chama a função abaixo apenas uma única vez
   useEffect(() => {
@@ -74,17 +94,19 @@ function T03_SolicitacoesServico() {
   const statusOptions = [
     'Todos',
     'pendente',
-    'andamento'
+    'andamento',
+    'definir custos'
   ];
 
   // Opções do filtro e seleção
-  const [solicitacaoSelecionada, setSolicitacaoSelecionada] = useState(null);
-  const [filtroData, setFiltroData]                         = useState('');  // DD/MM/YYYY
-  const [filtroTipoEvento, setFiltroTipoEvento]             = useState('Todos');
-  const [filtroStatus, setFiltroStatus]                     = useState('Todos');
-  const [mostrarDetalhes, setMostrarDetalhes]               = useState(false);
+  const [solicitacaoSelecionada, setSolicitacaoSelecionada]           = useState(null);
+  const [indexSolicitacaoSelecionada, setIndexSolicitacaoSelecionada] = useState(null);
+  const [filtroData, setFiltroData]                                   = useState('');  // DD/MM/YYYY
+  const [filtroTipoEvento, setFiltroTipoEvento]                       = useState('Todos');
+  const [filtroStatus, setFiltroStatus]                               = useState('Todos');
+  const [mostrarDetalhes, setMostrarDetalhes]                         = useState(false);
 
-  const [solicitacoesFiltradas, setSolicitacoesFiltradas]   = useState([])
+  const [solicitacoesFiltradas, setSolicitacoesFiltradas]             = useState([])
 
   // DATAS PARA TESTE:
   // 12/03/2025
@@ -134,8 +156,9 @@ function T03_SolicitacoesServico() {
     );
   };
 
-  const handleCardClick = (solicitacao) => {
+  const handleCardClick = (solicitacao, i) => {
     setSolicitacaoSelecionada(solicitacao);
+    setIndexSolicitacaoSelecionada(i)
     setMostrarDetalhes(true);
   };
 
@@ -200,7 +223,8 @@ function T03_SolicitacoesServico() {
                   <option key={status} value={status}>
                   {
                     status === 'Todos' ? 'Todos' : 
-                    status === 'pendente' ? 'Pendente' : 'Em Andamento'
+                    status === 'pendente' ? 'Pendente' : 
+                    status === 'definir custos' ? 'Definir Custos' : 'Em Andamento'
                   }
                   </option>
                 ))}
@@ -263,7 +287,7 @@ function T03_SolicitacoesServico() {
           
           {/* CADA CARD */}
           <div className={t03_solicitacoesServico.cardsGrid}>
-            {solicitacoesFiltradas.map((solicitacao) => (
+            {solicitacoesFiltradas.map((solicitacao, i) => (
               <div key={solicitacao.id} className={t03_solicitacoesServico.cardItem}>
                 <input
                   type="radio"
@@ -271,7 +295,7 @@ function T03_SolicitacoesServico() {
                   name="solicitacao"
                   value={solicitacao.id}
                   checked={solicitacaoSelecionada?.id === solicitacao.id}
-                  onChange={() => handleCardClick(solicitacao)}
+                  onChange={() => handleCardClick(solicitacao, i)}
                   className={t03_solicitacoesServico.radioInput}
                 />
                 <label 
@@ -428,6 +452,7 @@ function T03_SolicitacoesServico() {
                       {solicitacaoSelecionada.cliente.email} | {solicitacaoSelecionada.cliente.celular}
                     </p>
                   </div>
+
                 </div>
                 
                 <div className={t03_solicitacoesServico.detailGroup}>
@@ -436,6 +461,149 @@ function T03_SolicitacoesServico() {
                     {solicitacaoSelecionada.pacoteServico.descricao}
                   </p>
                 </div>
+
+                {/* Mostra os custos se definidos */}
+                {solicitacaoSelecionada.custo && 
+                  <div className={t03_solicitacoesServico.detailGroup}>
+
+                    <div>
+                      <span className={t03_solicitacoesServico.detailLabel}>Combustível</span>
+                      <p className={t03_solicitacoesServico.detailValue}>
+                        {solicitacaoSelecionada.custo.combustivel}
+                      </p>
+                    </div>
+
+                    <div>
+                      <span className={t03_solicitacoesServico.detailLabel}>Preço do litro</span>
+                      <p className={t03_solicitacoesServico.detailValue}>
+                        {solicitacaoSelecionada.custo.precoLitro}
+                      </p>
+                    </div>
+
+                    <div>
+                      <span className={t03_solicitacoesServico.detailLabel}>Distância</span>
+                      <p className={t03_solicitacoesServico.detailValue}>
+                        {solicitacaoSelecionada.custo.distancia}
+                      </p>
+                    </div>
+
+                    <div>
+                      <span className={t03_solicitacoesServico.detailLabel}>Pedágio</span>
+                      <p className={t03_solicitacoesServico.detailValue}>
+                        {solicitacaoSelecionada.custo.pedagio}
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <span className={t03_solicitacoesServico.detailLabel}>Consumo Médio dos Veículos</span>
+                      <p className={t03_solicitacoesServico.detailValue}>
+                        {solicitacaoSelecionada.custo.consumoMedioVeiculo}
+                      </p>
+                    </div>
+
+                    <div>
+                      <span className={t03_solicitacoesServico.detailLabel}>Cache dos Músicos</span>
+                      <p className={t03_solicitacoesServico.detailValue}>
+                        {solicitacaoSelecionada.custo.cacheMusicos}
+                      </p>
+                    </div>
+
+                    <div>
+                      <span className={t03_solicitacoesServico.detailLabel}>Alimentação</span>
+                      <p className={t03_solicitacoesServico.detailValue}>
+                        {solicitacaoSelecionada.custo.alimentacao}
+                      </p>
+                    </div>
+
+                    <div>
+                      <span className={t03_solicitacoesServico.detailLabel}>Aluguel de Equipamentos</span>
+                      <p className={t03_solicitacoesServico.detailValue}>
+                        {solicitacaoSelecionada.custo.aluguelEquipamentos}
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <span className={t03_solicitacoesServico.detailLabel}>Demonstração</span>
+                      <p className={t03_solicitacoesServico.detailValue}>
+                        {solicitacaoSelecionada.custo.demonstracao}
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <span className={t03_solicitacoesServico.detailLabel}>Passagem dos Músicos</span>
+                      <p className={t03_solicitacoesServico.detailValue}>
+                        {solicitacaoSelecionada.custo.passagemMusico}
+                      </p>
+                    </div>
+
+                    <div>
+                      <span className={t03_solicitacoesServico.detailLabel}>Desconto</span>
+                      <p className={t03_solicitacoesServico.detailValue}>
+                        {solicitacaoSelecionada.custo.desconto}
+                      </p>
+                    </div>
+
+                    {/* <div>
+                      <span className={t03_solicitacoesServico.detailLabel}>TOTAL</span>
+                      <p className={t03_solicitacoesServico.detailValue}>
+                        {solicitacaoSelecionada.custo}
+                      </p>
+                    </div> */}
+
+                  </div>
+                }
+
+                {/* {console.log("sol_id -> " + solicitacaoSelecionada.id)}
+                {console.log("retorno -> ", puxarGrupoDoServico(solicitacaoSelecionada.id) ) } */}
+                
+                { grupoDoServico[indexSolicitacaoSelecionada]?.map((musico, i) => {
+                    return <div className={t03_solicitacoesServico.detailGroup} key={i}> 
+                      
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Nome</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {musico.nome}
+                        </p>
+                      </div>
+
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Email</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {musico.email}
+                        </p>
+                      </div>
+
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Celular</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {musico.celular}
+                        </p>
+                      </div>
+
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Endereço</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {musico.endereco}
+                        </p>
+                      </div>
+
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Data de Cadastro</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {musico.dataCadastro}
+                        </p>
+                      </div>
+
+                      <div>
+                        <span className={t03_solicitacoesServico.detailLabel}>Avaliacao</span>
+                        <p className={t03_solicitacoesServico.detailValue}>
+                          {musico.avaliacao}
+                        </p>
+                      </div>
+
+                    </div>
+                  })
+                }
 
                 {/* Botões de Ação no Modal */}
                 <BotoesSolicitacoesGestor solicitacaoSelecionada={solicitacaoSelecionada} />
