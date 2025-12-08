@@ -233,7 +233,7 @@ function T03_SolicitacoesServico() {
               </select>
             </div>
             
-            <div className={t03_solicitacoesServico.filterGroup}>
+            <div className={t03_solicitacoesServico.filterGroup}> .
               <button
                 onClick={handleLimparFiltros}
                 className={t03_solicitacoesServico.filterButton}
@@ -324,7 +324,7 @@ function T03_SolicitacoesServico() {
                       <div className={t03_solicitacoesServico.cardField}>
                         <span className={t03_solicitacoesServico.cardLabel}>Cliente</span>
                         <p className={t03_solicitacoesServico.cardValue}>
-                          {capitalizeWords(solicitacao.cliente.nome)}
+                          {capitalizeWords(solicitacao?.cliente?.nome)}
                         </p>
                       </div>
                       
@@ -608,7 +608,9 @@ function T03_SolicitacoesServico() {
                 }
 
                 {/* Botões de Ação no Modal */}
-                <BotoesSolicitacoesGestor solicitacaoSelecionada={solicitacaoSelecionada} />
+                <BotoesSolicitacoesGestor 
+                  solicitacaoSelecionada={solicitacaoSelecionada} 
+                />
               </div>
               
               {/* FOOTER DOS MAIORES DETALHES DE CADA CARD */}

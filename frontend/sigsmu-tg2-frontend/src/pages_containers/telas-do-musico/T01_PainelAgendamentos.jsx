@@ -51,9 +51,6 @@ function T01_painelAgendamentos(){
   const [objsDosAgendamentos, setObjsDosAgendamentos] = useState(null);
   
 
-  const [musicoEstaNoServico, setMusicoEstaNoServico]     = useState(false)
-  const [instrumentosEscolhidos, setInstrumentosEscolhidos] = useState(null)
-
 
   // Retorna vários dados essenciais do banco
   const puxarDadosDoBanco = async () => {
@@ -226,92 +223,73 @@ function T01_painelAgendamentos(){
           <p className={css.dashboardSubtitle}>Gerencie seus eventos e contratos musicais</p>
         </div>
 
-        {/* Filtros */}
-        <div className={css.filtersContainer}>
-          <div className={css.filtersGrid}>
-
-            {/* por data */}
-            <div className={css.filterGroup}>
-              <label className={css.filterLabel}>Data</label>
-              <input
-                type="date"
-                value={filtroData}
-                onChange={(e) => setFiltroData(e.target.value)}
-                className={css.filterInput}
-              />
-            </div>
-            
-            {/* Tipo do Evento */}
-            <div className={css.filterGroup}>
-              <label>Tipo de Evento</label>
-              <select
-                value={filtroTipoEvento}
-                onChange={(e) => setFiltroTipoEvento(e.target.value)}
-              >
-                {tiposEvento.map((tipo, i) => (
-                  <option key={i} value={tipo}>{tipo.charAt(0).toUpperCase() + tipo.slice(1)}</option>
-                ))}
-              </select>
-            </div>
-            
-            {/* Filtro de Status */}
-            <div className={css.filterGroup}>
-              <Select 
-                msg={"Status"}
-                setValue={setFiltroStatus}
-                listaOpcoes={["Todos","confirmado","pendente"]}
-              />
-            </div>
-            
-            {/* Botão limpar filtros */}
-            <div >
-              <label>.</label>
-              <button
-                onClick={() => {
-                  setFiltroData('');
-                  setFiltroTipoEvento('Todos');
-                  setFiltroStatus('Todos');
-                }}
-                className={css.filterButton}
-              >
-                Limpar Filtros
-              </button>
-            </div>
-
-          </div>
-        </div>
+        
 
         {/* Estatísticas */}
         <div className={css.statsGrid}>
 
+          {/* Total de agendamentos */}
           <div className={css.statCard}>
             <div className={css.statNumberTotal}>{agendamentos.length}</div>
             <div className={css.statLabel}>Total de Agendamentos</div>
           </div>
           
-          <div className={css.statCard}>
-            <div className={css.statNumberConfirmed}>
-              X
-              {/* {agendamentos.filter(a => a.statusSolicitacao.situacao === 'confirmado').length} */}
-              {/* {console.log("TESTE -> ", objsDosAgendamentos.filter(obj => obj.grupoDoServico.filter(m => m.cpf === musicoLogado.cpf)).length ) } */}
-            </div>
-            <div className={css.statLabel}>Confirmados</div>
-          </div>
-          
-          <div className={css.statCard}>
-            <div className={css.statNumberPending}>
-              X
-              {/* {agendamentos.filter(a => a.statusSolicitacao.situacao === 'pendente').length} */}
-            </div>
-            <div className={css.statLabel}>Pendentes</div>
-          </div>
-          
+          {/* Valor total */}
           <div className={css.statCard}>
             <div className={css.statNumberValue}>
               R$ { agendamentos.reduce((total, a) => total + Number(a.custo.cacheMusicos), 0).toLocaleString('pt-BR')}
             </div>
             <div className={css.statLabel}>Valor Total</div>
           </div>
+
+
+          {/* Filtros */}
+          <div className={css.filtersContainer}>
+            <div className={css.filtersGrid}>
+
+              {/* por data */}
+              <div className={css.filterGroup}>
+                <label className={css.filterLabel}>Data</label>
+                <input
+                  type="date"
+                  value={filtroData}
+                  onChange={(e) => setFiltroData(e.target.value)}
+                  className={css.filterInput}
+                />
+              </div>
+              
+              {/* Tipo do Evento */}
+              <div className={css.filterGroup}>
+                <label>Tipo de Evento</label>
+                <select
+                  value={filtroTipoEvento}
+                  onChange={(e) => setFiltroTipoEvento(e.target.value)}
+                >
+                  {tiposEvento.map((tipo, i) => (
+                    <option key={i} value={tipo}>{tipo.charAt(0).toUpperCase() + tipo.slice(1)}</option>
+                  ))}
+                </select>
+              </div>
+              
+              
+              {/* Botão limpar filtros */}
+              <div className={css.filterGroup}>
+                <label>.</label>
+                <button
+                  onClick={() => {
+                    setFiltroData('');
+                    setFiltroTipoEvento('Todos');
+                    setFiltroStatus('Todos');
+                  }}
+                  className={css.filterButton}
+                >
+                  Limpar Filtros
+                </button>
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
         {/* Lista de Agendamentos */}
