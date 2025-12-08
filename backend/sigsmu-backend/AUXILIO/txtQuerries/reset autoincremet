@@ -1,0 +1,17 @@
+ALTER TABLE ass_grupo_do_servico auto_increment = 1;
+ALTER TABLE ass_instrumentos_do_musico auto_increment = 1;
+ALTER TABLE ass_instrumentos_escolhidos auto_increment = 1;
+ALTER TABLE ass_musicas_escolhidas auto_increment = 1;
+
+ALTER TABLE solicitacao_servico auto_increment = 1;
+ALTER TABLE instrumento auto_increment = 1;
+ALTER TABLE custo auto_increment = 1;
+ALTER TABLE marca_fabricante auto_increment = 1;
+ALTER TABLE meio_pagamento auto_increment = 1;
+ALTER TABLE pacote_servico auto_increment = 1;
+ALTER TABLE repertorio auto_increment = 1;
+ALTER TABLE categoria auto_increment = 1;
+ALTER TABLE status_solicitacao auto_increment = 1;
+ALTER TABLE tipo_local auto_increment = 1;
+ALTER TABLE tipo_servico auto_increment = 1;
+ALTER TABLE avaliacao auto_increment = 1;

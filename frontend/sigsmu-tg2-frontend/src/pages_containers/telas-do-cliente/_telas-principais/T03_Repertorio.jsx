@@ -45,8 +45,8 @@ function T03_Repertorio() {
             setTiposServico( retorno.data )
         }
         catch(erro) {
-            alert("Erro ao puxar os dados do banco!")
-            console.log("Erro ao puxar os dados do banco: " + erro)
+            alert("Erro ao exibir os tipos de serviço!")
+            console.log("Erro ao puxar os tipos de serviço do banco: " + erro)
         }
     }
 
@@ -104,6 +104,7 @@ function T03_Repertorio() {
             // }
             
             alert("Solicitação realizada com sucesso!")
+            window.location.reload()
         }
         catch(erro) {
             alert("Erro ao cadastrar a solicitação!")
@@ -146,7 +147,7 @@ function T03_Repertorio() {
     const [musicasSelecionadas, setMusicasSelecionadas] = useState([]) // strings
     
     useEffect(() => {
-        console.log("qtd de musicasSelecionadas -> ", musicasSelecionadas)
+        console.log("musicasSelecionadas -> ", musicasSelecionadas)
     }, [musicasSelecionadas])
 
     return (

@@ -49,21 +49,10 @@ function BotoesSolicitacoesGestor({ solicitacaoSelecionada }) {
   const [clickEffects, setClickEffects] = useState({});
 
   const [mostrarBotoesSimulados, setMostrarBotoesSimulados] = useState(false)
-  const [statusSolicitacao, setStatusSolicitacao]           = useState(null)
 
-  // const puxarStatusSolicitacao = async () => {
-  //   try {
-  //     const response = await mudarStatusDaSolicitacao(solicitacaoSelecionada.id)
-  //   }
-  //   catch(erro) {
-  //     alert("Não foi possível puxar o status atual da solicitação!")
-  //     console.log("Erro ao puxar status da solicitação: " + erro)
-  //   }
-  // }
+
 
   useEffect(() => {
-    // puxarStatusSolicitacao()
-
     const statusAtual = solicitacaoSelecionada.statusSolicitacao.situacao
 
     console.log("statusAtual -> " + statusAtual)
@@ -71,57 +60,6 @@ function BotoesSolicitacoesGestor({ solicitacaoSelecionada }) {
       setMostrarBotoesSimulados(true)
   }, [])
 
-  // const handleAcao = async (acao) => {
-  //   if (!solicitacaoSelecionada) {
-  //     alert("Por favor, selecione uma solicitação primeiro.");
-  //     return;
-  //   }
-
-  //   // Ativar efeito de clique
-  //   setClickEffects(prev => ({ ...prev, [acao]: true }));
-    
-  //   // Ativar loading
-  //   setLoadingStates(prev => ({ ...prev, [acao]: true }));
-
-  //   try {
-  //     // Simular uma operação assíncrona
-  //     await new Promise(resolve => setTimeout(resolve, 1000));
-      
-  //     // Aqui você pode implementar a lógica específica para cada ação
-  //     switch(acao) {
-  //       case 'atribuir-equipes':
-  //         alert(`Atribuindo equipes para: ${solicitacaoSelecionada.idSolicitacao}`);
-  //         // Navegar para rota ou abrir modal
-  //         break;
-  //       case 'gerenciar-ensaio':
-  //         alert(`Gerenciando ensaio para: ${solicitacaoSelecionada.idSolicitacao}`);
-  //         break;
-  //       case 'definir-custos':
-  //         alert(`Definindo custos para: ${solicitacaoSelecionada.idSolicitacao}`);
-  //         break;
-  //       case 'alterar-contrato':
-  //         alert(`Alterando contrato para: ${solicitacaoSelecionada.idSolicitacao}`);
-  //         break;
-  //       case 'enviar-devolutiva':
-  //         alert(`Enviando devolutiva para: ${solicitacaoSelecionada.nomeCliente}`);
-  //         break;
-  //       case 'ver-mais':
-  //         alert(`Abrindo detalhes completos de: ${solicitacaoSelecionada.idSolicitacao}`);
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //   } catch (error) {
-  //     console.error('Erro ao executar ação:', error);
-  //     alert('Erro ao executar a ação. Tente novamente.');
-  //   } finally {
-  //     // Desativar loading e efeito de clique
-  //     setLoadingStates(prev => ({ ...prev, [acao]: false }));
-  //     setTimeout(() => {
-  //       setClickEffects(prev => ({ ...prev, [acao]: false }));
-  //     }, 300);
-  //   }
-  // };
 
   const getBotaoClassName = (acao, isVerMais = false) => {
     const baseClass = isVerMais ? botoessolicitacoesgestor.botaoVerMais : botoessolicitacoesgestor.botao;
@@ -175,9 +113,14 @@ function BotoesSolicitacoesGestor({ solicitacaoSelecionada }) {
 
       {/* Devolutiva de orçamento - FALTA FAZER */}
       <button 
-        className={getBotaoClassName('gerenciar-ensaio')}
+        className={getBotaoClassName('gerenciar-ensaio')} // nome errado apenas
         onClick={async () => {
+
+          // Fazer verificacao se o servico tem grupo
+
           try {
+            console.log("sol_id -> " + solicitacaoSelecionada.id)
+
             await mudarStatusDaSolicitacao(solicitacaoSelecionada.id, 5) // muda status para aprovação
             alert("Devolutiva enviada! (Twilio/SendGrid)")
             setMostrarBotoesSimulados(true)
@@ -185,7 +128,11 @@ function BotoesSolicitacoesGestor({ solicitacaoSelecionada }) {
           }
           catch(erro) {
             alert("Não foi possível enviar a devolutiva!")
+
             console.log("Erro ao mudar o status do serviço para APROVACAO: " + erro)
+            
+            console.log("mostrarBotões? -> " + mostrarBotoesSimulados)
+            console.log("sol_stt -> " + solicitacaoSelecionada.statusSolicitacao.situacao)
           }
 
           // GERAR CONTRATO E ENVIAR POR SENDGRID E TWILIO
