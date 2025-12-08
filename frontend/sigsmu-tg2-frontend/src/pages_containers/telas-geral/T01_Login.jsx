@@ -130,7 +130,7 @@ function T01_Login() {
             </form>
 
             <div>
-                <p><a href="" target="blank"> Esqueci minha senha </a></p>
+                <p><a> Esqueci minha senha </a></p>
                 
                 <p> Não tem uma conta? </p>
                 

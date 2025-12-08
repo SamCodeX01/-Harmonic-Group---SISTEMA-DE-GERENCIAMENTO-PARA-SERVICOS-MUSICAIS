@@ -16,10 +16,11 @@ import React, { useEffect, useState } from "react";
 
 // Função criada para capitalizar as palavras (primeira letra em maiúsculo)
 function capitalizeWords(str) {
-  return str
+  return str ? str
     .split(" ")
     .map(p => p.charAt(0).toUpperCase() + p.slice(1))
-    .join(" ");
+    .join(" ")
+    : str
 }
 
 

@@ -94,3 +94,19 @@
 .main button {
   background-color: var(--cordourado10);
 }
+
+.botao_enviar {
+  background-color: var(--cordourado10);
+  width: 100px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  border: 1px solid black;
+  margin-left: auto;
+
+} .botao_enviar:hover {
+  cursor:pointer;
+  color: white;
+
+}

@@ -34,11 +34,10 @@ import React, { useState, useEffect } from 'react';
 
 const tiposEvento = [
   'Todos',
-  'Casamento',
-  'Evento Corporativo',
-  'Festa Infantil',
-  'Formatura',
-  'Jantar Privado'
+  'casamento',
+  'aniversario',
+  'formatura',
+  'corporativo'
 ];
 
 
@@ -231,7 +230,7 @@ function T01_painelAgendamentos(){
         <div className={css.filtersContainer}>
           <div className={css.filtersGrid}>
 
-            {/* TENHO QUE VER */}
+            {/* por data */}
             <div className={css.filterGroup}>
               <label className={css.filterLabel}>Data</label>
               <input
@@ -242,7 +241,7 @@ function T01_painelAgendamentos(){
               />
             </div>
             
-            {/* TENHO QUE VER */}
+            {/* Tipo do Evento */}
             <div className={css.filterGroup}>
               <label>Tipo de Evento</label>
               <select
@@ -250,11 +249,8 @@ function T01_painelAgendamentos(){
                 onChange={(e) => setFiltroTipoEvento(e.target.value)}
               >
                 {tiposEvento.map((tipo, i) => (
-                  <option key={i} value={tipo}>{tipo}</option>
+                  <option key={i} value={tipo}>{tipo.charAt(0).toUpperCase() + tipo.slice(1)}</option>
                 ))}
-                {/* {tiposEvento.map((registro, i) => (
-                  <option key={i} value={registro.nome}>{registro.nome}</option>
-                ))} */}
               </select>
             </div>
             
@@ -295,21 +291,24 @@ function T01_painelAgendamentos(){
           
           <div className={css.statCard}>
             <div className={css.statNumberConfirmed}>
-              {agendamentos.filter(a => a.statusSolicitacao.situacao === 'confirmado').length}
+              X
+              {/* {agendamentos.filter(a => a.statusSolicitacao.situacao === 'confirmado').length} */}
+              {/* {console.log("TESTE -> ", objsDosAgendamentos.filter(obj => obj.grupoDoServico.filter(m => m.cpf === musicoLogado.cpf)).length ) } */}
             </div>
             <div className={css.statLabel}>Confirmados</div>
           </div>
           
           <div className={css.statCard}>
             <div className={css.statNumberPending}>
-              {agendamentos.filter(a => a.statusSolicitacao.situacao === 'pendente').length}
+              X
+              {/* {agendamentos.filter(a => a.statusSolicitacao.situacao === 'pendente').length} */}
             </div>
             <div className={css.statLabel}>Pendentes</div>
           </div>
           
           <div className={css.statCard}>
             <div className={css.statNumberValue}>
-              R$ {agendamentos.reduce((total, a) => total + a.valor, 0).toLocaleString('pt-BR')}
+              R$ { agendamentos.reduce((total, a) => total + Number(a.custo.cacheMusicos), 0).toLocaleString('pt-BR')}
             </div>
             <div className={css.statLabel}>Valor Total</div>
           </div>
@@ -327,7 +326,6 @@ function T01_painelAgendamentos(){
             <Botao
               msg={"cadastro de instrumentos"}
               rota={"/Intranet/RotasMusico/CadastroInstrumentos"}
-              ativarEstilo
             />
           </div>
           

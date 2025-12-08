@@ -159,6 +159,7 @@ function T02_Cadastro() {
 
             <div 
                 type="button"
+                className={t02_cadastro.botao_enviar}
                 onClick={evt => {
                     if (senha === checkSenha) {
 
