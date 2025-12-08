@@ -15,6 +15,7 @@ import T10_Servicos      from "site_do_sistema/components_site/T10_Servicos.jsx"
 import T12_Contatos      from "site_do_sistema/components_site/T12_Contatos.jsx"
 import T13_SejaParceiro  from "site_do_sistema/components_site/T13_SejaParceiro.jsx"
 import T14_GaleriaFotos  from "site_do_sistema/components_site/T14_GaleriaFotos.jsx"
+import T15_GaleriaVideos from 'site_do_sistema/components_site/T15_GaleriaVideos.jsx';
 
 // Rotas Intranet
 import T01_Login    from 'pages_containers/telas-geral/T01_Login.jsx';
@@ -80,6 +81,7 @@ function Rotas() {
                 <Route path='/Inicio'       element={<Site/>} />
                 <Route path='/Servicos'     element={<T10_Servicos/>}/>    
                 <Route path='/Galeria'      element={<T14_GaleriaFotos/>}/>    
+                <Route path='/Videos'      element={<T15_GaleriaVideos/>}/>    
                 <Route path='/Sugestao'     element={<T11_Sugestao/>}/>    
                 <Route path="/Orcamento"    element={<T02_Orcamento/>} />
                 <Route path="/Repertorio"   element={<T03_Repertorio/>} />

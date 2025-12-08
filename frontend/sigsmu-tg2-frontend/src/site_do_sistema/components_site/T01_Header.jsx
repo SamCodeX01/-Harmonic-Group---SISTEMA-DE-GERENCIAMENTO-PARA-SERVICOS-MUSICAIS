@@ -25,6 +25,7 @@ function T01_Header(){
                         <li> <Botao msg={"Home"}                rota={"/Inicio"} /></li>
                         <li> <Botao msg={"Serviços"}            rota={"/Servicos"}/></li>
                         <li> <Botao msg={"Galeria de Fotos"}    rota={"/Galeria"}/></li>
+                        <li> <Botao msg={"Galeria de Vídeos"}   rota={"/Videos"}/></li>
                         <li> <Botao msg={"Sugestão de Músicas"} rota={"/Sugestao"}/></li>
                         <li> <Botao msg={"Orçamentos"}          rota={"/Orcamento"}/></li>
                         <li> <Botao msg={"Contatos"}            rota={"/Contatos"}/></li>

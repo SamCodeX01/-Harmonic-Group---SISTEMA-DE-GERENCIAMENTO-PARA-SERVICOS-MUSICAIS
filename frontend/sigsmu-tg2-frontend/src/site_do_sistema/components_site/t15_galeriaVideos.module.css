@@ -1,0 +1,542 @@
+/* CSS/t15_galeriaVideos.module.css */
+:root {
+  --corbranco60: #FFFFFF;
+  --corespaco30: #18203D;
+  --cordourado10: #DB9D12;
+  --corpreto: #1E1E1E;
+  --corazul: #196DBA;
+}
+
+.galeriaVideosContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f1425 0%, var(--corespaco30) 100%);
+}
+
+.heroSection {
+  background: linear-gradient(135deg, var(--corespaco30) 0%, #0f1425 100%);
+  padding: 100px 20px;
+  text-align: center;
+  color: var(--corbranco60);
+  position: relative;
+  overflow: hidden;
+}
+
+.heroSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(219, 157, 18, 0.1) 0%, transparent 70%);
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, var(--corbranco60) 0%, var(--cordourado10) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  color: var(--corbranco60);
+}
+
+.contentWrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.filtrosContainer {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.filtrosTitulo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--corbranco60);
+  margin-bottom: 25px;
+}
+
+.filtrosGrid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.filtroBotao {
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--corbranco60);
+  border: 2px solid transparent;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.filtroBotao:hover {
+  background: rgba(219, 157, 18, 0.2);
+  border-color: var(--cordourado10);
+  transform: translateY(-2px);
+}
+
+.filtroBotaoAtivo {
+  background: linear-gradient(135deg, var(--cordourado10) 0%, #c28d10 100%);
+  color: var(--corbranco60);
+  border-color: var(--cordourado10);
+  box-shadow: 0 4px 15px rgba(219, 157, 18, 0.3);
+}
+
+/* Grid de Vídeos */
+.videosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.videoCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.videoCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  border-color: var(--cordourado10);
+}
+
+.videoCard:hover .videoThumbnail::before {
+  opacity: 1;
+}
+
+.videoThumbnail {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--corespaco30) 0%, var(--corazul) 100%);
+}
+
+.videoThumbnail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 0%, rgba(219, 157, 18, 0.3) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.videoCard:hover .thumbnailImage {
+  transform: scale(1.05);
+}
+
+.thumbnailPlaceholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--corespaco30) 0%, var(--corazul) 100%);
+  display: none;
+}
+
+.playIcon {
+  font-size: 3rem;
+  color: var(--cordourado10);
+  margin-bottom: 10px;
+}
+
+.placeholderText {
+  color: var(--corbranco60);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.videoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+  z-index: 2;
+}
+
+.videoInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.videoDuracao {
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--corbranco60);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.videoCategoria {
+  background: rgba(219, 157, 18, 0.9);
+  color: var(--corbranco60);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.playButton {
+  background: var(--cordourado10);
+  color: var(--corbranco60);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.videoInfoCard {
+  padding: 20px;
+  background: rgba(24, 32, 61, 0.8);
+}
+
+.videoTitulo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--corbranco60);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.videoDescricao {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.videoMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.videoData {
+  color: var(--cordourado10);
+}
+
+.videoId {
+  color: rgba(255, 255, 255, 0.5);
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modalContainer {
+  background: linear-gradient(135deg, var(--corespaco30) 0%, #0f1425 100%);
+  border-radius: 16px;
+  max-width: 1000px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  border: 2px solid var(--cordourado10);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modalHeader {
+  padding: 20px 30px;
+  background: rgba(24, 32, 61, 0.8);
+  border-bottom: 1px solid rgba(219, 157, 18, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalTitulo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--corbranco60);
+  margin: 0;
+}
+
+.modalFechar {
+  background: none;
+  border: none;
+  color: var(--corbranco60);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.modalFechar:hover {
+  background: rgba(219, 157, 18, 0.2);
+  color: var(--cordourado10);
+}
+
+.modalContent {
+  padding: 30px;
+}
+
+.videoPlayer {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  margin-bottom: 25px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+}
+
+.youtubeIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.modalInfo {
+  color: var(--corbranco60);
+}
+
+.modalInfoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 25px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(219, 157, 18, 0.2);
+}
+
+.modalInfoItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalInfoLabel {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4px;
+}
+
+.modalInfoValue {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--corbranco60);
+}
+
+.modalInfoValue:last-child {
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border-left: 3px solid var(--cordourado10);
+}
+
+.modalDescricao {
+  margin-bottom: 25px;
+}
+
+.modalDescricaoTitulo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--corbranco60);
+  margin-bottom: 10px;
+}
+
+.modalDescricaoTexto {
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.modalAcoes {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+.botaoYouTube {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+  color: var(--corbranco60);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.botaoYouTube:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 0, 0, 0.4);
+}
+
+.botaoFechar {
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--corbranco60);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.botaoFechar:hover {
+  background: rgba(219, 157, 18, 0.2);
+  border-color: var(--cordourado10);
+}
+
+.semVideos {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--corbranco60);
+}
+
+.semVideosIcon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.semVideos h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--corbranco60);
+}
+
+.semVideos p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .videosGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .filtrosGrid {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  
+  .modalContainer {
+    margin: 10px;
+    max-height: 95vh;
+  }
+  
+  .modalContent {
+    padding: 20px;
+  }
+  
+  .modalInfoGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modalAcoes {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .videosGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .heroSection {
+    padding: 60px 20px;
+  }
+  
+  .contentWrapper {
+    padding: 40px 15px;
+  }
+  
+  .videoThumbnail {
+    height: 160px;
+  }
+}
